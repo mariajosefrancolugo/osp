@@ -79,6 +79,6 @@ INSTALLED_APPS = (
     'osp.core',
     'osp.surveys',
     'osp.assessments',
-    'osp.notes',
+    'osp.visits',
     'osp.reports',
 )
