@@ -1,0 +1,13 @@
+/* Global Stylesheet */
+
+html, body
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#header
+{
+    height: 75px;
+    background: #0b486b;
+    color: #cff09e;
+}
