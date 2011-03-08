@@ -11,16 +11,17 @@
     {% endblock %}
   </head>
   <body>
-    <div id="header">
-      <a href="{% url core:index %}">Online Student Profile</a>
+    <div id="header"><div id="header-inner">
+      <a href="{% url core:index %}" id="osp-link">Online Student Profile</a>
       <div id="search">
+        <input type="text" name="query" id="id_query" value="Search for Student" />
       </div>
       <div id="groups">
       </div>
       <div id="classes">
       </div>
-      <a href="{% url core:logout %}">Sign Out</a>
-    </div>
+      <a href="{% url core:logout %}" id="logout-link">Sign Out</a>
+    </div></div>
     <div id="body">
     </div>
     <div id="footer">

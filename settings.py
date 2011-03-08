@@ -1,4 +1,8 @@
 import os
+import ldap
+
+from django_auth_ldap.config import LDAPSearch
+
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
@@ -37,6 +41,7 @@ USE_L10N = True
 
 # Absolute path to the directory that holds uploaded media
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
+STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 # URL that handles the media served from MEDIA_ROOT
 # This does not have to include the site's FQDN
@@ -49,6 +54,23 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 # Salt for hashing of passwords and such
 # This needs to be changed for each individual installation
 SECRET_KEY = 'Chac-8#haCa_Ra-e?-e+ucrur=gEFRasejayasaC?meMe!AC-a'
+
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# LDAP authentication backend settings
+AUTH_LDAP_SERVER_URI = 'ldap://localhost:5000'
+AUTH_LDAP_BIND_DN = 'sa152'
+AUTH_LDAP_BIND_PASSWORD = 'LOA327z4'
+AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=AllUsers,dc=cpcc,dc=edu',
+    ldap.SCOPE_SUBTREE, '(sAMAccountName=%(user)s)')
+AUTH_LDAP_USER_ATTR_MAP = {
+    'first_name': 'givenName',
+    'last_name': 'sn',
+    'email': 'mail'
+}
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
