@@ -62,6 +62,7 @@ AUTHENTICATION_BACKENDS = (
 
 # LDAP authentication backend settings
 AUTH_LDAP_SERVER_URI = 'ldap://localhost:5000'
+AUTH_LDAP_BIND_DOMAIN = 'cpcc'
 AUTH_LDAP_BIND_DN = 'sa152'
 AUTH_LDAP_BIND_PASSWORD = 'LOA327z4'
 AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=AllUsers,dc=cpcc,dc=edu',
