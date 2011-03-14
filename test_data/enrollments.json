@@ -1,0 +1,74 @@
+[
+    {
+        "prefix": "CIS",
+        "number": "110",
+        "section": "01",
+        "term": "SP",
+        "year": 2011,
+        "student": "jmoorin1"
+    },
+    {
+        "prefix": "ENG",
+        "number": "111",
+        "section": "01",
+        "term": "SP",
+        "year": 2011,
+        "student": "jmoorin1"
+    },
+    {
+        "prefix": "ENG",
+        "number": "111",
+        "section": "01",
+        "term": "SP",
+        "year": 2011,
+        "student": "jmoorin1"
+    },
+    {
+        "prefix": "CIS",
+        "number": "115",
+        "section": "02",
+        "term": "SP",
+        "year": 2011,
+        "student": "sbs2b769"
+    },
+    {
+        "prefix": "ENG",
+        "number": "113",
+        "section": "02",
+        "term": "SP",
+        "year": 2011,
+        "student": "sbs2b769"
+    },
+    {
+        "prefix": "MAT",
+        "number": "140",
+        "section": "01",
+        "term": "SP",
+        "year": 2011,
+        "student": "sbs2b769"
+    },
+    {
+        "prefix": "CIS",
+        "number": "111",
+        "section": "07",
+        "term": "SP",
+        "year": 2011,
+        "student": "cme55a4d"
+    },
+    {
+        "prefix": "ENG",
+        "number": "112",
+        "section": "03",
+        "term": "SP",
+        "year": 2011,
+        "student": "cme55a4d"
+    },
+    {
+        "prefix": "MAT",
+        "number": "121",
+        "section": "10",
+        "term": "SP",
+        "year": 2011,
+        "student": "cme55a4d"
+    }
+]
