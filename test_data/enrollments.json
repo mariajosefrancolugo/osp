@@ -16,9 +16,9 @@
         "student": "jmoorin1"
     },
     {
-        "prefix": "ENG",
-        "number": "111",
-        "section": "01",
+        "prefix": "MAT",
+        "number": "115",
+        "section": "02",
         "term": "SP",
         "year": 2011,
         "student": "jmoorin1"
@@ -70,5 +70,53 @@
         "term": "SP",
         "year": 2011,
         "student": "cme55a4d"
+    },
+    {
+        "prefix": "CIS",
+        "number": "110",
+        "section": "03",
+        "term": "SP",
+        "year": 2011,
+        "student": "kingle00"
+    },
+    {
+        "prefix": "ENG",
+        "number": "112",
+        "section": "01",
+        "term": "SP",
+        "year": 2011,
+        "student": "kingle00"
+    },
+    {
+        "prefix": "MAT",
+        "number": "115",
+        "section": "21",
+        "term": "SP",
+        "year": 2011,
+        "student": "kingle00"
+    },
+    {
+        "prefix": "CIS",
+        "number": "110",
+        "section": "03",
+        "term": "SP",
+        "year": 2011,
+        "student": "lis636de"
+    },
+    {
+        "prefix": "ENG",
+        "number": "112",
+        "section": "01",
+        "term": "SP",
+        "year": 2011,
+        "student": "lis636de"
+    },
+    {
+        "prefix": "MAT",
+        "number": "115",
+        "section": "21",
+        "term": "SP",
+        "year": 2011,
+        "student": "lis636de"
     }
 ]
