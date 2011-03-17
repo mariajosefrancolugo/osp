@@ -3,30 +3,35 @@
         "username": "jmoorin1",
         "first_name": "Jonathan",
         "last_name": "Mooring",
-        "email": "jmoorin1@email.cpcc.edu"
+        "email": "jmoorin1@email.cpcc.edu",
+        "is_active": true
     },
     {
         "username": "sbs2b769",
         "first_name": "Scott",
         "last_name": "Sheffield",
-        "email": "sbs2b769@email.cpcc.edu"
+        "email": "sbs2b769@email.cpcc.edu",
+        "is_active": true
     },
     {
         "username": "cme55a4d",
         "first_name": "Christopher",
         "last_name": "Emery",
-        "email": "cme55a4d@email.cpcc.edu"
+        "email": "cme55a4d@email.cpcc.edu",
+        "is_active": true
     },
     {
         "username": "kingle00",
         "first_name": "Kenneth",
         "last_name": "Ingle",
-        "email": "kingle00@email.cpcc.edu"
+        "email": "kingle00@email.cpcc.edu",
+        "is_active": true
     },
     {
         "username": "lis636de",
         "first_name": "Lucia",
         "last_name": "Siochi",
-        "email": "lis636de@email.cpcc.edu"
+        "email": "lis636de@email.cpcc.edu",
+        "is_active": true
     }
 ]

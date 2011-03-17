@@ -1,5 +1,3 @@
-import traceback
-
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 from django.utils import simplejson as json
