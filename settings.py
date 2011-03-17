@@ -3,7 +3,6 @@ import ldap
 
 from django_auth_ldap.config import LDAPSearch
 
-
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
@@ -105,3 +104,7 @@ INSTALLED_APPS = (
     'osp.visits',
     'osp.reports',
 )
+
+# API credentials
+API_USERNAME = 'test'
+API_PASSWORD = 'test'

@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    #(r'^api/', include('osp.api.urls')),
+    (r'^api/', include('osp.api.urls')),
     #(r'^survey/', include('osp.surveys.urls')),
     #(r'^assessment/', include('osp.assessments.urls')),
     #(r'^note/', include('osp.notes.urls')),
