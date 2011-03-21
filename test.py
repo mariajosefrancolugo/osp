@@ -17,3 +17,18 @@ out = res.read()
 res.close()
 
 print out
+
+f = file('test_data/students.json')
+data = f.read()
+f.close()
+
+req = urllib2.Request('http://localhost:8000/api/students/import/')
+req.add_header('Authorization', 'Basic %s' % creds)
+req.add_header('Content-type', 'application/json')
+req.add_data(data)
+
+res = urllib2.urlopen(req)
+out = res.read()
+res.close()
+
+print out
