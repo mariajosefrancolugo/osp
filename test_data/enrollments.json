@@ -5,7 +5,8 @@
         "section": "01",
         "term": "SP",
         "year": 2011,
-        "student": "jmoorin1"
+        "student": "jmoorin1",
+        "status": "A"
     },
     {
         "prefix": "ENG",
@@ -13,7 +14,8 @@
         "section": "01",
         "term": "SP",
         "year": 2011,
-        "student": "jmoorin1"
+        "student": "jmoorin1",
+        "status": "A"
     },
     {
         "prefix": "MAT",
@@ -21,7 +23,8 @@
         "section": "02",
         "term": "SP",
         "year": 2011,
-        "student": "jmoorin1"
+        "student": "jmoorin1",
+        "status": "A"
     },
     {
         "prefix": "CIS",
@@ -29,7 +32,8 @@
         "section": "02",
         "term": "SP",
         "year": 2011,
-        "student": "sbs2b769"
+        "student": "sbs2b769",
+        "status": "A"
     },
     {
         "prefix": "ENG",
@@ -37,7 +41,8 @@
         "section": "02",
         "term": "SP",
         "year": 2011,
-        "student": "sbs2b769"
+        "student": "sbs2b769",
+        "status": "A"
     },
     {
         "prefix": "MAT",
@@ -45,7 +50,8 @@
         "section": "01",
         "term": "SP",
         "year": 2011,
-        "student": "sbs2b769"
+        "student": "sbs2b769",
+        "status": "A"
     },
     {
         "prefix": "CIS",
@@ -53,7 +59,8 @@
         "section": "07",
         "term": "SP",
         "year": 2011,
-        "student": "cme55a4d"
+        "student": "cme55a4d",
+        "status": "A"
     },
     {
         "prefix": "ENG",
@@ -61,7 +68,8 @@
         "section": "03",
         "term": "SP",
         "year": 2011,
-        "student": "cme55a4d"
+        "student": "cme55a4d",
+        "status": "A"
     },
     {
         "prefix": "MAT",
@@ -69,7 +77,8 @@
         "section": "10",
         "term": "SP",
         "year": 2011,
-        "student": "cme55a4d"
+        "student": "cme55a4d",
+        "status": "A"
     },
     {
         "prefix": "CIS",
@@ -77,7 +86,8 @@
         "section": "03",
         "term": "SP",
         "year": 2011,
-        "student": "kingle00"
+        "student": "kingle00",
+        "status": "A"
     },
     {
         "prefix": "ENG",
@@ -85,7 +95,8 @@
         "section": "01",
         "term": "SP",
         "year": 2011,
-        "student": "kingle00"
+        "student": "kingle00",
+        "status": "A"
     },
     {
         "prefix": "MAT",
@@ -93,7 +104,8 @@
         "section": "21",
         "term": "SP",
         "year": 2011,
-        "student": "kingle00"
+        "student": "kingle00",
+        "status": "A"
     },
     {
         "prefix": "CIS",
@@ -101,7 +113,8 @@
         "section": "03",
         "term": "SP",
         "year": 2011,
-        "student": "lis636de"
+        "student": "lis636de",
+        "status": "A"
     },
     {
         "prefix": "ENG",
@@ -109,7 +122,8 @@
         "section": "01",
         "term": "SP",
         "year": 2011,
-        "student": "lis636de"
+        "student": "lis636de",
+        "status": "A"
     },
     {
         "prefix": "MAT",
@@ -117,6 +131,7 @@
         "section": "21",
         "term": "SP",
         "year": 2011,
-        "student": "lis636de"
+        "student": "lis636de",
+        "status": "A"
     }
 ]

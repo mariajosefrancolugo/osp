@@ -23,6 +23,14 @@ class Section(models.Model):
     instructor = models.ForeignKey(User)
 
 
+STATUS_CHOICES = (
+    ('A', 'Active'),
+    ('DFNP', 'Dropped for Non-Payment'),
+    ('DBS', 'Dropped by Student'),
+    ('DBI', 'Dropped by Instructor'),
+)
+
 class Enrollment(models.Model):
     student = models.ForeignKey(User)
     section = models.ForeignKey(Section)
+    status = models.CharField(max_length=255, choices=STATUS_CHOICES)
