@@ -2,6 +2,7 @@ import base64
 
 from django.conf import settings
 from django.contrib.auth.models import User, Group
+from django.utils import simplejson as json
 
 def check_credentials(request_metadata):
     # Check for existence of credentials in request metadata
@@ -14,11 +15,14 @@ def check_credentials(request_metadata):
         # Check credentials against those stored in the app's settings
         if (credentials[0] != settings.API_USERNAME or
             credentials[1] != settings.API_PASSWORD):
-            raise ValueError('Invalid credentials')
+            raise Exception('Invalid credentials')
     else:
-        raise ValueError('Missing credentials')
+        raise Exception('Missing credentials')
 
-def load_users(data, groups):
+def load_users(raw_post_data, groups):
+    # Convert JSON data to Python object
+    data = json.loads(raw_post_data)
+
     # Store references to user groups
     g = []
     for group in groups:
@@ -60,4 +64,5 @@ def load_users(data, groups):
         user.save()
 
     # Return statistics on user account creation and modification
-    return (users_updated, users_created, users_deactivated, users_activated)
+    return (len(data), users_updated, users_created, users_deactivated,
+        users_activated)
