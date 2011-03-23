@@ -16,6 +16,10 @@ data_types = [
         'json': 'courses.json',
         'url': '/courses/import/',
     },
+    {
+        'json': 'sections.json',
+        'url': '/sections/import/',
+    },
 ]
 
 for data_type in data_types:

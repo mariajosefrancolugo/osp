@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.utils import simplejson as json
 from django.views.decorators.csrf import csrf_exempt
@@ -59,7 +60,6 @@ def import_courses(request):
         data = json.loads(request.raw_post_data)
 
         # Let's keep a count of how many new and updated objects we have
-        # Also, how many user accounts we activate or deactivate
         courses_updated = 0
         courses_created = 0
 
@@ -99,32 +99,49 @@ def import_sections(request):
         data = json.loads(request.raw_post_data)
 
         # Let's keep a count of how many new and updated objects we have
-        # Also, how many user accounts we activate or deactivate
-        courses_updated = 0
-        courses_created = 0
+        sections_updated = 0
+        sections_created = 0
 
         # Start a cached list of courses
-        courses = []
+        courses = {}
 
-        # Find the related course object for the section
         for s in data:
             try:
-                course = Course.objects.get(prefix=c['prefix'],
-                    number=c['number'])
-                courses[course.prefix + course.number] = course
+                section = Section.objects.get(section=s['section'],
+                    term=s['term'], year=s['year'], course__prefix=s['prefix'],
+                    course__number=s['number'])
+                sections_updated += 1
             except:
-                course = Course(prefix=c['prefix'], number=c['number'])
-                courses_created += 1
+                # Find the related course object for the section
+                if courses.has_key(s['prefix'] + s['number']):
+                    course = courses[s['prefix'] + s['number']]
+                else:
+                    try:
+                        course = Course.objects.get(prefix=s['prefix'],
+                            number=s['number'])
+                        courses[course.prefix + course.number] = course
+                    except:
+                        raise Exception('Course %s%s does not exist' %
+                            (s['prefix'], s['number']))
 
-            # Ensure that metadata for course is up-to-date
-            course.title= c['title']
-            course.credit_hours = c['credit_hours']
+                section = Section(course=course, section=s['section'],
+                    term=s['term'], year=s['year'])
+                sections_created += 1
 
-            course.save()
+            try:
+                instructor = User.objects.get(username=s['instructor'])
+            except:
+                raise Exception('Instructor %s does not exist' %
+                    s['instructor'])
 
-        status.append('Received %d course records' % len(data))
-        status.append('Updated %d course objects' % courses_updated)
-        status.append('Created %d course objects' % courses_created)
+            # Ensure that metadata for section is up-to-date
+            section.instructor = instructor
+
+            section.save()
+
+        status.append('Received %d section records' % len(data))
+        status.append('Updated %d section objects' % sections_updated)
+        status.append('Created %d section objects' % sections_created)
     else:
         status.append('Invalid request')
 
