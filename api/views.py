@@ -89,7 +89,7 @@ def import_courses(request):
 
 @csrf_exempt
 def import_sections(request):
-    status = ['Starting course import...']
+    status = ['Starting section import...']
 
     if request.method == 'POST':
         # Check credentials and throw exception if invalid or non-existent
@@ -106,6 +106,8 @@ def import_sections(request):
         courses = {}
 
         for s in data:
+            # Django's ORM is amazing.
+            # Finding (try) or creating (except) the section object
             try:
                 section = Section.objects.get(section=s['section'],
                     term=s['term'], year=s['year'], course__prefix=s['prefix'],
@@ -113,6 +115,10 @@ def import_sections(request):
                 sections_updated += 1
             except:
                 # Find the related course object for the section
+                #
+                # We keep a cache that we check first, and then hit the DB
+                # if we don't find it in the cache. If we don't find it in
+                # the DB, we throw an exception.
                 if courses.has_key(s['prefix'] + s['number']):
                     course = courses[s['prefix'] + s['number']]
                 else:
@@ -128,6 +134,8 @@ def import_sections(request):
                     term=s['term'], year=s['year'])
                 sections_created += 1
 
+            # Find the related instructor user object for the section
+            # Throw an exception if we can't find it
             try:
                 instructor = User.objects.get(username=s['instructor'])
             except:
@@ -149,4 +157,75 @@ def import_sections(request):
 
 @csrf_exempt
 def import_enrollments(request):
-    pass
+    status = ['Starting enrollment import...']
+
+    if request.method == 'POST':
+        # Check credentials and throw exception if invalid or non-existent
+        check_credentials(request.META)
+
+        # Convert JSON data to Python object
+        data = json.loads(request.raw_post_data)
+
+        # Let's keep a count of how many new and updated objects we have
+        enrollments_updated = 0
+        enrollments_created = 0
+
+        # Start a cached list of courses
+        sections = {}
+
+        for e in data:
+            # Find or create the enrollment object
+            try:
+                section = Section.objects.get(
+                    course__prefix=e['prefix'],
+                    course__number=e['number'], section=e['section'],
+                    term=e['term'], year=e['year'])
+                enrollment = Enrollment.objects.get(section=section,
+                    student__username=e['student'])
+                enrollments_updated += 1
+            except:
+                # Find the related section object for the section
+                #
+                # We keep a cache that we check first, and then hit the DB
+                # if we don't find it in the cache. If we don't find it in
+                # the DB, we throw an exception.
+                section_key = ('%s%s-%s-%s-%s' % (e['prefix'], e['number'],
+                    e['section'], e['year'], e['term']))
+
+                if (sections.has_key(section_key)):
+                    section = sections[section_key]
+                else:
+                    try:
+                        section = Section.objects.get(
+                            course__prefix=e['prefix'],
+                            course__number=e['number'], section=e['section'],
+                            term=e['term'], year=e['year'])
+                        sections[section_key] = section
+                    except:
+                        raise Exception('Section %s does not exist' %
+                            section_key)
+
+                # Find the related student user object for the enrollment
+                # Throw an exception if we can't find it
+                try:
+                    student = User.objects.get(username=e['student'])
+                except:
+                    raise Exception('Student %s does not exist' %
+                        e['student'])
+
+                enrollment = Enrollment(student=student, section=section)
+                enrollments_created += 1
+
+
+            # Ensure that metadata for enrollment is up-to-date
+            enrollment.status = e['status']
+
+            enrollment.save()
+
+        status.append('Received %d enrollment records' % len(data))
+        status.append('Updated %d enrollment objects' % enrollments_updated)
+        status.append('Created %d enrollment objects' % enrollments_created)
+    else:
+        status.append('Invalid request')
+
+    return HttpResponse('\n'.join(status), mimetype='text/plain')
