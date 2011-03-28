@@ -6,23 +6,23 @@ creds = base64.encodestring('test:test')[:-1]
 data_types = [
     {
         'json': 'instructors.json',
-        'url': '/instructors/import/',
+        'url': '/instructor/import/',
     },
     {
         'json': 'students.json',
-        'url': '/students/import/',
+        'url': '/student/import/',
     },
     {
         'json': 'courses.json',
-        'url': '/courses/import/',
+        'url': '/course/import/',
     },
     {
         'json': 'sections.json',
-        'url': '/sections/import/',
+        'url': '/section/import/',
     },
     {
         'json': 'enrollments.json',
-        'url': '/enrollments/import/',
+        'url': '/enrollment/import/',
     },
 ]
 
