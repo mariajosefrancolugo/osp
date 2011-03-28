@@ -1,10 +1,8 @@
 import os
 
 from django import forms
-from django.utils import simplejson as json
 
-APP_ROOT = os.path.dirname(os.path.realpath(__file__))
-DATA_ROOT = os.path.join(APP_ROOT, 'data')
+from osp.assessments.utils import load_assessment_data
 
 
 class PersonalityTypeForm(forms.Form):
@@ -12,10 +10,7 @@ class PersonalityTypeForm(forms.Form):
         super(PersonalityTypeForm, self).__init__(*args, **kwargs)
 
         # Get statements from JSON data file and convert to Python object
-        f = file(os.path.join(DATA_ROOT, 'personality_type_statements.json'))
-        data = f.read()
-        data = json.loads(data)
-        f.close()
+        data = load_assessment_data('personality_type_statements.json')
 
         # Create fields for each statement
         #
@@ -42,11 +37,8 @@ class LearningStyleForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(LearningStyleForm, self).__init__(*args, **kwargs)
 
-        # Get statements from JSON data file and convert to Python object
-        f = file(os.path.join(DATA_ROOT, 'learning_style_questions.json'))
-        data = f.read()
-        data = json.loads(data)
-        f.close()
+        # Get questions from JSON data file and convert to Python object
+        data = load_assessment_data('learning_style_questions.json')
 
         # Create fields for each question
         #
