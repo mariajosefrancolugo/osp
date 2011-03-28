@@ -13,7 +13,9 @@ def personality_type_results(request):
     pass
 
 def learning_style(request):
-    pass
+    form = forms.LearningStyleForm()
+    return direct_to_template(request, 'assessments/learning_style.html',
+        {'form': form})
 
 def learning_style_results(request):
     pass

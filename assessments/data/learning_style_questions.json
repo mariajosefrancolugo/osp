@@ -1,0 +1,122 @@
+[
+    {
+        "style": "K",
+        "question": "Do you like to reach out and touch things when you are shopping?"
+    },
+    {
+        "style": "V",
+        "question": "Do you have to ask teachers to repeat instructions for you?"
+    },
+    {
+        "style": "A",
+        "question": "Do you follow spoken directions better than written directions?"
+    },
+    {
+        "style": "K",
+        "question": "Do you talk too fast and use you hands to communicate what you are saying?"
+    },
+    {
+        "style": "V",
+        "question": "Do you pay close attention to teacher's expressions on their face or their body language?"
+    },
+    {
+        "style": "A",
+        "question": "Would you prefer to listen to your teacher explain a lesson rather than to read it in a textbook?"
+    },
+    {
+        "style": "K",
+        "question": "Are you constantly moving things - tapping a pencil or jingling change in your pocket?"
+    },
+    {
+        "style": "V",
+        "question": "Do you remember things best by writing things down several times and by drawing pictures and diagrams?"
+    },
+    {
+        "style": "A",
+        "question": "Do you understand your lessons better when you read them aloud?"
+    },
+    {
+        "style": "K",
+        "question": "Are you good at playing sports?"
+    },
+    {
+        "style": "A",
+        "question": "Would you rather listen to the news on the radio than read it in the newspaper?"
+    },
+    {
+        "style": "V",
+        "question": "Do you turn the radio or TV up really loud?"
+    },
+    {
+        "style": "K",
+        "question": "Do you like to take things apart and put them back together?"
+    },
+    {
+        "style": "A",
+        "question": "Do you sing, hum or whistle a lot to yourself?"
+    },
+    {
+        "style": "V",
+        "question": "Do you understand lessons better if your teacher uses a flipchart, whiteboard or overhead projector?"
+    },
+    {
+        "style": "K",
+        "question": "Do you like to stand up while you are working reading or doing homework?"
+    },
+    {
+        "style": "A",
+        "question": "Do you dislike reading from a computer screen especially when the backgrounds are fuzzy?"
+    },
+    {
+        "style": "V",
+        "question": "Are you good at making graphs, charts and other visual displays?"
+    },
+    {
+        "style": "K",
+        "question": "Do you like to have music playing while you are studying?"
+    },
+    {
+        "style": "A",
+        "question": "Do you need your teacher to explain diagrams, graphs, or maps?"
+    },
+    {
+        "style": "V",
+        "question": "Can you understand or follow directions on a map?"
+    },
+    {
+        "style": "K",
+        "question": "Do you like any of the following: making things, arts and crafts. building things?"
+    },
+    {
+        "style": "A",
+        "question": "Do you like talking to others?"
+    },
+    {
+        "style": "V",
+        "question": "Do you remember things by picturing them in your head?"
+    },
+    {
+        "style": "A",
+        "question": "Do you use musical jingles to help you learn things? (For example: In 1942, Columbus sailed the ocean blue)"
+    },
+    {
+        "style": "K",
+        "question": "Do you like to chew gum or eat while you are studying?"
+    },
+    {
+        "style": "V",
+        "question": "Do you follow written instructions better than spoken instructions?"
+    },
+    {
+        "style": "A",
+        "question": "Do you like to tell jokes or stories to demonstrate a point?"
+    },
+    {
+        "style": "K",
+        "question": "Do you prefer to do things yourself rather than reading or watching what someone else has done?"
+    },
+    {
+        "style": "V",
+        "question": "When you listen to music, do you get the words to the song wrong?"
+    }
+]
