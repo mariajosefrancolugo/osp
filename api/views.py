@@ -106,7 +106,6 @@ def import_sections(request):
         courses = {}
 
         for s in data:
-            # Django's ORM is amazing.
             # Finding (try) or creating (except) the section object
             try:
                 section = Section.objects.get(section=s['section'],
