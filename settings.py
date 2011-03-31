@@ -54,36 +54,64 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 # This needs to be changed for each individual installation
 SECRET_KEY = 'Chac-8#haCa_Ra-e?-e+ucrur=gEFRasejayasaC?meMe!AC-a'
 
-AUTHENTICATION_BACKENDS = (
+# Determine which authentication backend we'll be using
+# Choices are 'CAS' and 'LDAP'
+AUTHENTICATION_BACKEND = 'CAS'
+
+MIDDLEWARE_CLASSES = [
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+]
+
+LDAP_AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
-)
+]
+
+CAS_AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'django_cas.backends.CASBackend',
+]
+
+if AUTHENTICATION_BACKEND == 'CAS':
+    AUTHENTICATION_BACKENDS = CAS_AUTHENTICATION_BACKENDS
+    MIDDLEWARE_CLASSES.append('django_cas.middleware.CASMiddleware')
+elif AUTHENTICATION_BACKEND == 'LDAP':
+    AUTHENTICATION_BACKENDS = LDAP_AUTHENTICATION_BACKENDS
+
+# Generic django.contrib.auth settings
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+LOGIN_REDIRECT_URL = '/'
 
 # LDAP authentication backend settings
-AUTH_LDAP_SERVER_URI = 'ldap://localhost:5000'
-AUTH_LDAP_BIND_DOMAIN = 'cpcc'
-AUTH_LDAP_BIND_DN = 'sa152'
-AUTH_LDAP_BIND_PASSWORD = 'LOA327z4'
-AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=AllUsers,dc=cpcc,dc=edu',
-    ldap.SCOPE_SUBTREE, '(sAMAccountName=%(user)s)')
+# Please see http://packages.python.org/django-auth-ldap/ for documentation
+AUTH_LDAP_SERVER_URI = 'ldap://'
+AUTH_LDAP_BIND_DN = ''
+AUTH_LDAP_BIND_PASSWORD = ''
+AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=,dc=cpcc,dc=edu',
+    ldap.SCOPE_SUBTREE, '(uid=%(user)s)')
 AUTH_LDAP_USER_ATTR_MAP = {
     'first_name': 'givenName',
     'last_name': 'sn',
     'email': 'mail'
 }
 
+# CAS authentication backend settings
+# Please see http://code.google.com/p/django-cas/ for documentation
+CAS_VERSION = '1'
+CAS_SERVER_URL = 'https://cas.cpcc.edu/cas/'
+CAS_IGNORE_REFERER = True
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-)
+# CPCC's use of CAS single sign-on requires special middleware
 
 ROOT_URLCONF = 'osp.urls'
 

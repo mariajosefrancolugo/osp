@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 PERSONALITY_TYPE_CHOICES = (
     ('ENFP', 'Extraverted Intuitive Feeling Perceiving'),
     ('INFP', 'Introverted Intuitive Feeling Perceiving'),
@@ -32,17 +33,10 @@ class PersonalityTypeResult(models.Model):
     date_taken = models.DateTimeField(auto_now_add=True)
 
 
-LEARNING_STYLE_CHOICES = (
-    ('K', 'Kinesthetic'),
-    ('V', 'Visual'),
-    ('A', 'Auditory'),
-)
-
 class LearningStyleResult(models.Model):
     student = models.ForeignKey(User)
     answers = models.TextField()
-    learning_style = models.CharField(max_length=1,
-        choices=LEARNING_STYLE_CHOICES)
+    learning_style = models.CharField(max_length=255)
     kinesthetic_score = models.IntegerField()
     visual_score = models.IntegerField()
     auditory_score = models.IntegerField()
