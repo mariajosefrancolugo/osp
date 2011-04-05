@@ -1,0 +1,15 @@
+{% extends "base_student.html" %}
+
+{% block body %}
+{% for description in descriptions %}
+{{ description }}
+<h1>{{ description.style }} Learner</h1>
+{{ description.description|safe }}
+<h2>Some Famous {{ description.style }} Learners</h2>
+<ul>
+{% for person in description.famous %}
+  <li>{{ person }}</li>
+{% endfor %}
+</ul>
+{% endfor %}
+{% endblock %}
