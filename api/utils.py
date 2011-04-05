@@ -50,6 +50,7 @@ def load_users(raw_post_data, groups):
         user.email = u['email']
 
         # Make sure that user is in the appropriate groups
+        user.groups.clear()
         for group in g:
             user.groups.add(group)
 

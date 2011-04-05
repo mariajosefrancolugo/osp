@@ -2,55 +2,10 @@
 
 html, body
 {
-    margin: 0;
-    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#header
+.errorlist
 {
-    height: 35px;
-    background: #0b486b;
-    font-weight: bold;
-    color: #cff09e;
-}
-#header-inner
-{
-    margin: auto;
-    width: 960px;
-}
-#header a
-{
-    color: #cff09e;
-    text-decoration: none;
-}
-#header #osp-link
-{
-    display: block;
-    float: left;
-    padding: 8px 15px 7px 0;
-}
-#header #search
-{
-    float: left;
-    margin: 5px 0 0 10px;
-}
-#header #search input
-{
-    padding: 3px;
-    border: 1px solid #000;
-    width: 200px;
-    font-size: 11px;
-    color: #777;
-}
-#header #logout-link
-{
-    display: block;
-    float: right;
-    padding: 10px 15px;
-    font-size: 11px;
-}
-#header #logout-link:hover
-{
-    background: #053c5c;
+    color: #ff0000;
 }

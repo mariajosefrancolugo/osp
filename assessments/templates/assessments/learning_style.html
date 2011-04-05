@@ -1,1 +1,10 @@
-{{ form }}
+{% extends "base_student.html" %}
+
+{% block body %}
+<h1>Learning Style Assessment</h1>
+<form action="" method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" name="submit" id="id_submit" value="Submit" />
+</form>
+{% endblock %}

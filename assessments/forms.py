@@ -2,7 +2,7 @@ import os
 
 from django import forms
 
-from osp.assessments.utils import load_assessment_data
+from osp.assessments.utils import load_json_data
 
 
 class PersonalityTypeForm(forms.Form):
@@ -10,7 +10,7 @@ class PersonalityTypeForm(forms.Form):
         super(PersonalityTypeForm, self).__init__(*args, **kwargs)
 
         # Get statements from JSON data file and convert to Python object
-        data = load_assessment_data('personality_type_statements.json')
+        data = load_json_data('personality_type_statements.json')
 
         # Create fields for each statement
         #
@@ -38,7 +38,7 @@ class LearningStyleForm(forms.Form):
         super(LearningStyleForm, self).__init__(*args, **kwargs)
 
         # Get questions from JSON data file and convert to Python object
-        data = load_assessment_data('learning_style_questions.json')
+        data = load_json_data('learning_style_questions.json')
 
         # Create fields for each question
         #

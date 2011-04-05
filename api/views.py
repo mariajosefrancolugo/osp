@@ -36,7 +36,7 @@ def import_students(request):
         check_credentials(request.META)
 
         # Load users into local database using utility method
-        stats = load_users(request.raw_post_data, ['Students', 'Employees'])
+        stats = load_users(request.raw_post_data, ['Students'])
 
         status.append('Received %d student records' % stats[0])
         status.append('Updated %d user objects' % stats[1])
