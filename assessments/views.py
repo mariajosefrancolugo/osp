@@ -144,5 +144,5 @@ def learning_style_results(request, result_id):
             '%s.json' % style.lower())))
 
     return direct_to_template(request,
-        'assessments/personality_type_results.html',
+        'assessments/learning_style_results.html',
         {'result': result, 'descriptions': descriptions})
