@@ -111,8 +111,6 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
-# CPCC's use of CAS single sign-on requires special middleware
-
 ROOT_URLCONF = 'osp.urls'
 
 TEMPLATE_DIRS = (
@@ -126,15 +124,21 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
-    'osp.core',
-    'osp.surveys',
     'osp.assessments',
-    'osp.visits',
+    'osp.core',
+    'osp.profiles',
     'osp.reports',
+    'osp.surveys',
+    'osp.visits',
 )
 
 # API credentials
 API_USERNAME = 'test'
 API_PASSWORD = 'test'
 
-DEBUG_PROPAGATE_EXCEPTIONS = True
+# Debug setting to dump tracebacks into development server console
+# DEBUG_PROPAGATE_EXCEPTIONS = True
+
+# Current year and term
+CURRENT_TERM = 'SP'
+CURRENT_YEAR = 2011

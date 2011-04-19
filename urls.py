@@ -6,11 +6,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^api/', include('osp.api.urls')),
-    #(r'^survey/', include('osp.surveys.urls')),
     (r'^assessment/', include('osp.assessments.urls', namespace='assessment',
         app_name='assessment')),
     #(r'^note/', include('osp.notes.urls')),
+    (r'^profile/', include('osp.profiles.urls', namespace='profile',
+        app_name='profile')),
     #(r'^report/', include('osp.reports.urls')),
+    #(r'^survey/', include('osp.surveys.urls')),
     (r'^', include('osp.core.urls', namespace='core', app_name='core')),
 
     (r'^admin/', include(admin.site.urls)),

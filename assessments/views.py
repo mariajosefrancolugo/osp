@@ -1,7 +1,6 @@
 import os
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.utils import simplejson as json
@@ -53,16 +52,14 @@ def personality_type(request):
 
 @login_required
 def personality_type_results(request, result_id):
-    if not request.user.groups.filter(
-        name__in=['Students', 'Counselors', 'Instructors']):
+    if not request.user.groups.filter(name__in=['Students', 'Employees']):
         return HttpResponseForbidden()
 
     # Get personality type test results
     result = PersonalityTypeResult.objects.get(pk=result_id)
 
     # Make sure the logged-in user should have access to these results
-    if (not request.user.groups.filter(
-        name__in=['Counselors', 'Instructors']) and
+    if (not request.user.groups.filter(name='Employees') and
         result.student != request.user):
         return HttpResponseForbidden()
 
@@ -100,7 +97,6 @@ def learning_style(request):
             if aud >= kin and aud >= vis:
                 styles.append('auditory')
             styles = ', '.join(styles)
-            print styles
 
             # Save results
             result = LearningStyleResult(
@@ -124,16 +120,14 @@ def learning_style(request):
 
 @login_required
 def learning_style_results(request, result_id):
-    if not request.user.groups.filter(
-        name__in=['Students', 'Counselors', 'Instructors']):
+    if not request.user.groups.filter(name__in=['Students', 'Employees']):
         return HttpResponseForbidden()
 
     # Get learning style test results
     result = LearningStyleResult.objects.get(pk=result_id)
 
     # Make sure the logged-in user should have access to these results
-    if (not request.user.groups.filter(
-        name__in=['Counselors', 'Instructors']) and
+    if (not request.user.groups.filter(name='Employees') and
         result.student != request.user):
         return HttpResponseForbidden()
 
