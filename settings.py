@@ -83,6 +83,7 @@ elif AUTHENTICATION_BACKEND == 'LDAP':
     AUTHENTICATION_BACKENDS = LDAP_AUTHENTICATION_BACKENDS
 
 # Generic django.contrib.auth settings
+AUTH_PROFILE_MODULE = 'core.UserProfile'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'

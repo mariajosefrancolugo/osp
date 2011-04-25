@@ -55,26 +55,19 @@
     <h2>Personality Type</h2>
     <dl>
       <dt>{{ latest_ptr.personality_type.0 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:75,25&chdl=Extraverted|Introverted&chp=0" alt="Chart" /></dd>
+      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.0.0 == 'E' %}{{ pt_scores.0.1 }},{{ pt_scores.0.2 }}{% else %}{{ pt_scores.0.2 }},{{ pt_scores.0.1 }}{% endif %}&chdl=Extraverted|Introverted&chp=0" alt="Chart" /></dd>
       <dt>{{ latest_ptr.personality_type.1 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:75,25&chdl=Extraverted|Introverted&chp=0" alt="Chart" /></dd>
+      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.1.0 == 'S' %}{{ pt_scores.1.1 }},{{ pt_scores.1.2 }}{% else %}{{ pt_scores.1.2 }},{{ pt_scores.1.1 }}{% endif %}&chdl=Sensing|Intuitive&chp=0" alt="Chart" /></dd>
       <dt>{{ latest_ptr.personality_type.2 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:75,25&chdl=Extraverted|Introverted&chp=0" alt="Chart" /></dd>
+      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.2.0 == 'T' %}{{ pt_scores.2.1 }},{{ pt_scores.2.2 }}{% else %}{{ pt_scores.2.2 }},{{ pt_scores.2.1 }}{% endif %}&chdl=Thinking|Feeling&chp=0" alt="Chart" /></dd>
       <dt>{{ latest_ptr.personality_type.3 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:75,25&chdl=Extraverted|Introverted&chp=0" alt="Chart" /></dd>
+      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.3.0 == 'J' %}{{ pt_scores.3.1 }},{{ pt_scores.3.2 }}{% else %}{{ pt_scores.3.2 }},{{ pt_scores.3.1 }}{% endif %}&chdl=Judging|Perceiving&chp=0" alt="Chart" /></dd>
     </dl>
     <p><a href="#">view personality type details</a></p>
   </li>
   <li>
     <h2>Learning Style</h2>
-    <dl>
-      <dt>Auditory</dt>
-      <dd><div class="progress-bar" data-score="{{ latest_lsr.auditory_score }}"></div></dd>
-      <dt>Kinesthetic</dt>
-      <dd><div class="progress-bar" data-score="{{ latest_lsr.kinesthetic_score }}"></div></dd>
-      <dt>Visual</dt>
-      <dd><div class="progress-bar" data-score="{{ latest_lsr.visual_score }}"></div></dd>
-    </dl>
+    <p><img src="http://chart.apis.google.com/chart?chxl=0:|Auditory|Kinesthetic|Visual&chxr=0,0,0&chxt=y&chbh=a&chs=450x200&cht=bhs&chco=4D89F9&chds=0,10&chd=t:{{ latest_lsr.auditory_score }},{{ latest_lsr.kinesthetic_score }},{{ latest_lsr.visual_score }}" alt="Chart" /></p>
     <p><a href="#">view learning style details</a></p>
   </li>
 </ul>

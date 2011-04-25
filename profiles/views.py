@@ -24,11 +24,16 @@ def profile(request, username):
         section__year__exact=settings.CURRENT_YEAR
     )
 
+    latest_ptr = None
+    pt_scores = None
+    latest_lsr = None
     try:
         latest_ptr = student.personalitytyperesult_set.latest('date_taken')
         pt_analysis = jungian.TypeAnalysis(
             json.loads(latest_ptr.answers), 4, 100)
-        print pt_analysis.computedScores
+        pt_scores = []
+        for score in pt_analysis.computedScores:
+            pt_scores.append((score[0], score[1], (1 - score[1])))
         latest_lsr = student.learningstyleresult_set.latest('date_taken')
     except PersonalityTypeResult.DoesNotExist, LearningStyleResult.DoesNotExist:
         pass
@@ -42,7 +47,7 @@ def profile(request, username):
         'student': student,
         'current_enrollments': current_enrollments,
         'latest_ptr': latest_ptr,
-        'pt_analysis': pt_analysis,
+        'pt_scores': pt_scores,
         'latest_lsr': latest_lsr,
         'base_template': base_template
     })
