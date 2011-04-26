@@ -2,28 +2,24 @@
 
 {% block styles %}
 {{ block.super }}
-<style type="text/css">
-    #name
-    {
-        margin-top: 57px;
-    }
-    #navigation ul li a
-    {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-</style>
+    <link rel="stylesheet" href="{% url static "css/base_student.css" %}" type="text/css" />
 {% endblock %}
 
 {% block header %}
 {{ block.super }}
 <div id="navigation">
   <div id="navigation-left"></div>
-  <ul>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Survey</a></li>
-    <li><a href="#">Assessments</a></li>
-    <li class="last">{% if user.is_authenticated %}<a href="{% url logout %}">Sign Out</a>{% else %}<a href="{% url login %}">Sign In</a>{% endif %}</li>
+  <ul class="menu">
+    <li class="menu-item"><a href="#" class="menu-link">Profile</a></li>
+    <li class="menu-item"><a href="#" class="menu-link">Survey</a></li>
+    <li class="menu-item">
+      <a href="#" class="menu-link">Assessments</a>
+      <ul class="submenu">
+        <li class="submenu-item"><a href="{% url assessment:personality-type %}">Personality Type</a></li>
+        <li class="submenu-item"><a href="{% url assessment:learning-style %}">Learning Style</a></li>
+      </ul>
+    </li>
+    <li class="menu-item last">{% if user.is_authenticated %}<a href="{% url logout %}" class="menu-link">Sign Out</a>{% else %}<a href="{% url login %}" class="menu-link">Sign In</a>{% endif %}</li>
   </ul>
   <div id="navigation-right"></div>
 </div>

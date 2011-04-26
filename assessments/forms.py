@@ -1,5 +1,3 @@
-import os
-
 from django import forms
 
 from osp.assessments.utils import load_json_data
