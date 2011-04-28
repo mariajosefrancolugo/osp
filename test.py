@@ -13,10 +13,6 @@ data_types = [
         'url': '/student/import/',
     },
     {
-        'json': 'courses.json',
-        'url': '/course/import/',
-    },
-    {
         'json': 'sections.json',
         'url': '/section/import/',
     },

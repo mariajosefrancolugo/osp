@@ -10,11 +10,12 @@ from osp.assessments.forms import PersonalityTypeForm, LearningStyleForm
 from osp.assessments.lib import jungian
 from osp.assessments.models import PersonalityTypeResult, LearningStyleResult
 from osp.assessments.utils import load_json_data
+from osp.core.middleware.http import Http403
 
 @login_required
 def personality_type(request):
     if not request.user.groups.filter(name='Students'):
-        return HttpResponseForbidden()
+        raise Http403
 
     if request.method == 'POST':
         form = PersonalityTypeForm(request.POST)
@@ -53,7 +54,7 @@ def personality_type(request):
 @login_required
 def personality_type_results(request, result_id):
     if not request.user.groups.filter(name__in=['Students', 'Employees']):
-        return HttpResponseForbidden()
+        raise Http403
 
     # Get personality type test results
     result = PersonalityTypeResult.objects.get(pk=result_id)
@@ -61,7 +62,7 @@ def personality_type_results(request, result_id):
     # Make sure the logged-in user should have access to these results
     if (not request.user.groups.filter(name='Employees') and
         result.student != request.user):
-        return HttpResponseForbidden()
+        raise Http403
 
     # Get description of personality type from JSON data
     description = load_json_data(os.path.join('personality_types',
@@ -74,7 +75,7 @@ def personality_type_results(request, result_id):
 @login_required
 def learning_style(request):
     if not request.user.groups.filter(name='Students'):
-        return HttpResponseForbidden()
+        raise Http403
 
     if request.method == 'POST':
         form = LearningStyleForm(request.POST)
@@ -121,7 +122,7 @@ def learning_style(request):
 @login_required
 def learning_style_results(request, result_id):
     if not request.user.groups.filter(name__in=['Students', 'Employees']):
-        return HttpResponseForbidden()
+        raise Http403
 
     # Get learning style test results
     result = LearningStyleResult.objects.get(pk=result_id)
@@ -129,7 +130,7 @@ def learning_style_results(request, result_id):
     # Make sure the logged-in user should have access to these results
     if (not request.user.groups.filter(name='Employees') and
         result.student != request.user):
-        return HttpResponseForbidden()
+        raise Http403
 
     # Get description of learning style(s) from JSON data
     descriptions = []

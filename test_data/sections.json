@@ -3,216 +3,270 @@
         "prefix": "CIS",
         "number": "110",
         "section": "01",
-        "instructor": "msa0636e",
+        "instructors": ["msa0636e", "mjl2167e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Introduction to Computers",
+        "credit_hours": 3.0
     },
     {
         "prefix": "CIS",
         "number": "110",
         "section": "03",
-        "instructor": "bdr2705e",
+        "instructors": ["bdr2705e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Introduction to Computers",
+        "credit_hours": 3.0
     },
     {
         "prefix": "CIS",
         "number": "110",
         "section": "06",
-        "instructor": "hpf9575e",
+        "instructors": ["hpf9575e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Introduction to Computers",
+        "credit_hours": 3.0
     },
     {
         "prefix": "CIS",
         "number": "111",
         "section": "01",
-        "instructor": "mia6980e",
+        "instructors": ["mia6980e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Basic PC Literacy",
+        "credit_hours": 2.0
     },
     {
         "prefix": "CIS",
         "number": "111",
         "section": "02",
-        "instructor": "nkf1407e",
+        "instructors": ["nkf1407e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Basic PC Literacy",
+        "credit_hours": 2.0
     },
     {
         "prefix": "CIS",
         "number": "111",
         "section": "07",
-        "instructor": "mel2930e",
+        "instructors": ["mel2930e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Basic PC Literacy",
+        "credit_hours": 2.0
     },
     {
         "prefix": "CIS",
         "number": "115",
         "section": "01",
-        "instructor": "mhj4514e",
+        "instructors": ["mhj4514e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Intro to Prog & Logic",
+        "credit_hours": 3.0
     },
     {
         "prefix": "CIS",
         "number": "115",
         "section": "06",
-        "instructor": "mwc9725e",
+        "instructors": ["mwc9725e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Intro to Prog & Logic",
+        "credit_hours": 3.0
     },
     {
         "prefix": "CIS",
         "number": "115",
         "section": "09",
-        "instructor": "bhl3584e",
+        "instructors": ["bhl3584e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Intro to Prog & Logic",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "111",
         "section": "01",
-        "instructor": "sjx5867e",
+        "instructors": ["sjx5867e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Expository Writing",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "111",
         "section": "02",
-        "instructor": "bsg5927e",
+        "instructors": ["bsg5927e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Expository Writing",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "111",
         "section": "03",
-        "instructor": "reb2180e",
+        "instructors": ["reb2180e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Expository Writing",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "112",
         "section": "01",
-        "instructor": "trw8420e",
+        "instructors": ["trw8420e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Argument-Based Research",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "112",
         "section": "03",
-        "instructor": "bem5051e",
+        "instructors": ["bem5051e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Argument-Based Research",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "112",
         "section": "06",
-        "instructor": "hkp8301e",
+        "instructors": ["hkp8301e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Argument-Based Research",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "113",
         "section": "02",
-        "instructor": "abp4810e",
+        "instructors": ["abp4810e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Literature-Based Research",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "113",
         "section": "12",
-        "instructor": "mla9141e",
+        "instructors": ["mla9141e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Literature-Based Research",
+        "credit_hours": 3.0
     },
     {
         "prefix": "ENG",
         "number": "113",
         "section": "13",
-        "instructor": "gjh4185e",
+        "instructors": ["gjh4185e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Literature-Based Research",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "115",
         "section": "01",
-        "instructor": "cra1467e",
+        "instructors": ["cra1467e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Mathematical Models",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "115",
         "section": "02",
-        "instructor": "hql1739e",
+        "instructors": ["hql1739e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Mathematical Models",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "115",
         "section": "21",
-        "instructor": "ate4692e",
+        "instructors": ["ate4692e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Mathematical Models",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "121",
         "section": "01",
-        "instructor": "mrc1021e",
+        "instructors": ["mrc1021e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Algebra/Trigonometry I",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "121",
         "section": "10",
-        "instructor": "ksx8018e",
+        "instructors": ["ksx8018e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Algebra/Trigonometry I",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "121",
         "section": "20",
-        "instructor": "bri7752e",
+        "instructors": ["bri7752e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Algebra/Trigonometry I",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "140",
         "section": "01",
-        "instructor": "wvl5745e",
+        "instructors": ["wvl5745e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Survey of Mathematics",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "140",
         "section": "02",
-        "instructor": "hsx4991e",
+        "instructors": ["hsx4991e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Survey of Mathematics",
+        "credit_hours": 3.0
     },
     {
         "prefix": "MAT",
         "number": "140",
         "section": "05",
-        "instructor": "jbx7103e",
+        "instructors": ["jbx7103e"],
         "term": "SP",
-        "year": 2011
+        "year": 2011,
+        "title": "Survey of Mathematics",
+        "credit_hours": 3.0
     }
 ]

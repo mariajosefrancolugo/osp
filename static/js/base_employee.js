@@ -9,4 +9,15 @@ $(function() {
             $(this).val('search for student');
         }
     });
+
+    $('#id_query').autocomplete({
+        source: base_url + 'search/',
+        minLength: 2,
+        select: function(event, ui) {
+            location.href = base_url + 'profile/' + ui.item.id;
+        },
+        position: {
+            offset: '0 3'
+        }
+    });
 });

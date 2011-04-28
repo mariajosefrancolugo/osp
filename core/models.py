@@ -6,6 +6,9 @@ class UserProfile(models.Model):
     gpa = models.FloatField()
 
 
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+
+
 class StudentGroup(models.Model):
     owner = models.ForeignKey(User, related_name='owned_student_groups')
     name = models.CharField(max_length=255)
@@ -13,19 +16,15 @@ class StudentGroup(models.Model):
         related_name='student_group_memberships')
 
 
-class Course(models.Model):
+class Section(models.Model):
     prefix = models.CharField(max_length=255)
     number = models.CharField(max_length=255)
-    title = models.CharField(max_length=255)
-    credit_hours = models.FloatField()
-
-
-class Section(models.Model):
-    course = models.ForeignKey(Course)
     section = models.CharField(max_length=255)
     term = models.CharField(max_length=255)
     year = models.IntegerField()
-    instructor = models.ForeignKey(User)
+    title = models.CharField(max_length=255)
+    credit_hours = models.FloatField()
+    instructors = models.ManyToManyField(User)
 
 
 STATUS_CHOICES = (
@@ -43,10 +42,12 @@ GRADE_CHOICES = (
     ('D', 'D'),
     ('F', 'F'),
     ('W', 'W'),
+    ('I', 'I'),
+    ('N/A', 'N/A'),
 )
 
 class Enrollment(models.Model):
     student = models.ForeignKey(User)
     section = models.ForeignKey(Section)
     status = models.CharField(max_length=4, choices=STATUS_CHOICES)
-    grade = models.CharField(max_length=1, choices=GRADE_CHOICES)
+    grade = models.CharField(max_length=3, choices=GRADE_CHOICES)

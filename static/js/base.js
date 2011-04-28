@@ -1,4 +1,5 @@
 $(function() {
+    var divider = "url('" + base_url + "static/img/navigation_divider.png')";
     $('#navigation ul li:has(ul)').hover(function() {
         $(this).addClass('has-submenu');
         $(this).prev('li').children('a.menu-link').css('background-image', 'none');

@@ -1,19 +1,8 @@
 {% extends base_template %}
 
-{% block scripts %}
-{{ block.super }}
-<script type="text/javascript">
-  $(function() {
-      $('.progress-bar').each(function(i) {
-          var score = ($(this).data('score') * 10);
-          $(this).progressbar({value: score});
-      });
-  });
-</script>
-{% endblock %}
-
 {% block body %}
-<h1>Currently Enrollments</h1>
+<h1>{{ student.get_full_name }}</h1>
+<h2>Currently Enrollments</h2>
 {% if current_enrollments %}
 <table>
   <thead>
@@ -39,7 +28,7 @@
 <p><em>Student is not currently enrolled in any courses</em></p>
 {% endif %}
 <p><a href="#">view enrollment history</a></p>
-<h1>Survey Results</h1>
+<h2>Survey Results</h2>
 {% if student.surveyresult_set.all %}
 <ul>
   {# for survey in student.surveyresult_set.all #}
@@ -49,10 +38,11 @@
 {% else %}
 <p><em>Student has not completed any surveys</em></p>
 {% endif %}
-<h1>Assessment Results</h1>
+<h2>Assessment Results</h2>
 <ul>
   <li>
-    <h2>Personality Type</h2>
+    <h3>Personality Type</h2>
+    {% if latest_ptr %}
     <dl>
       <dt>{{ latest_ptr.personality_type.0 }}</dt>
       <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.0.0 == 'E' %}{{ pt_scores.0.1 }},{{ pt_scores.0.2 }}{% else %}{{ pt_scores.0.2 }},{{ pt_scores.0.1 }}{% endif %}&chdl=Extraverted|Introverted&chp=0" alt="Chart" /></dd>
@@ -64,11 +54,18 @@
       <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.3.0 == 'J' %}{{ pt_scores.3.1 }},{{ pt_scores.3.2 }}{% else %}{{ pt_scores.3.2 }},{{ pt_scores.3.1 }}{% endif %}&chdl=Judging|Perceiving&chp=0" alt="Chart" /></dd>
     </dl>
     <p><a href="#">view personality type details</a></p>
+    {% else %}
+    <p><em>Student has not completed the personality type assessment</em></p>
+    {% endif %}
   </li>
   <li>
-    <h2>Learning Style</h2>
+    <h3>Learning Style</h2>
+    {% if latest_lsr %}
     <p><img src="http://chart.apis.google.com/chart?chxl=0:|Auditory|Kinesthetic|Visual&chxr=0,0,0&chxt=y&chbh=a&chs=450x200&cht=bhs&chco=4D89F9&chds=0,10&chd=t:{{ latest_lsr.auditory_score }},{{ latest_lsr.kinesthetic_score }},{{ latest_lsr.visual_score }}" alt="Chart" /></p>
     <p><a href="#">view learning style details</a></p>
+    {% else %}
+    <p><em>Student has not completed the learning style assessment</em></p>
+    {% endif %}
   </li>
 </ul>
 {% endblock %}

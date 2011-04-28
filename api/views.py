@@ -4,7 +4,7 @@ from django.utils import simplejson as json
 from django.views.decorators.csrf import csrf_exempt
 
 from osp.api.utils import check_credentials, load_users
-from osp.core.models import Course, Section, Enrollment
+from osp.core.models import Section, Enrollment
 
 @csrf_exempt
 def import_instructors(request):
@@ -49,45 +49,6 @@ def import_students(request):
     return HttpResponse('\n'.join(status), mimetype='text/plain')
 
 @csrf_exempt
-def import_courses(request):
-    status = ['Starting course import...']
-
-    if request.method == 'POST':
-        # Check credentials and throw exception if invalid or non-existent
-        check_credentials(request.META)
-
-        # Convert JSON data to Python object
-        data = json.loads(request.raw_post_data)
-
-        # Let's keep a count of how many new and updated objects we have
-        courses_updated = 0
-        courses_created = 0
-
-        # Find or create course objects for each course
-        for c in data:
-            try:
-                course = Course.objects.get(prefix=c['prefix'],
-                    number=c['number'])
-                courses_updated += 1
-            except:
-                course = Course(prefix=c['prefix'], number=c['number'])
-                courses_created += 1
-
-            # Ensure that metadata for course is up-to-date
-            course.title= c['title']
-            course.credit_hours = c['credit_hours']
-
-            course.save()
-
-        status.append('Received %d course records' % len(data))
-        status.append('Updated %d course objects' % courses_updated)
-        status.append('Created %d course objects' % courses_created)
-    else:
-        status.append('Invalid request')
-
-    return HttpResponse('\n'.join(status), mimetype='text/plain')
-
-@csrf_exempt
 def import_sections(request):
     status = ['Starting section import...']
 
@@ -102,49 +63,31 @@ def import_sections(request):
         sections_updated = 0
         sections_created = 0
 
-        # Start a cached list of courses
-        courses = {}
-
         for s in data:
             # Finding (try) or creating (except) the section object
             try:
-                section = Section.objects.get(section=s['section'],
-                    term=s['term'], year=s['year'], course__prefix=s['prefix'],
-                    course__number=s['number'])
+                section = Section.objects.get(prefix=s['prefix'],
+                    number=s['number'], section=s['section'], term=s['term'],
+                    year=s['year'])
                 sections_updated += 1
             except:
-                # Find the related course object for the section
-                #
-                # We keep a cache that we check first, and then hit the DB
-                # if we don't find it in the cache. If we don't find it in
-                # the DB, we throw an exception.
-                if courses.has_key(s['prefix'] + s['number']):
-                    course = courses[s['prefix'] + s['number']]
-                else:
-                    try:
-                        course = Course.objects.get(prefix=s['prefix'],
-                            number=s['number'])
-                        courses[course.prefix + course.number] = course
-                    except:
-                        raise Exception('Course %s%s does not exist' %
-                            (s['prefix'], s['number']))
-
-                section = Section(course=course, section=s['section'],
-                    term=s['term'], year=s['year'])
+                section = Section(prefix=s['prefix'], number=s['number'],
+                    section=s['section'], term=s['term'], year=s['year'])
                 sections_created += 1
 
-            # Find the related instructor user object for the section
-            # Throw an exception if we can't find it
-            try:
-                instructor = User.objects.get(username=s['instructor'])
-            except:
-                raise Exception('Instructor %s does not exist' %
-                    s['instructor'])
+            # Find the related instructor user object(s) for the section
+            instructors = User.objects.filter(username__in=s['instructors'])
 
-            # Ensure that metadata for section is up-to-date
-            section.instructor = instructor
+            # Update metadata for section
+            section.title= s['title']
+            section.credit_hours = s['credit_hours']
 
+            # Save the section
             section.save()
+
+            # Assign instructor user objects to section
+            section.instructors.clear()
+            [section.instructors.add(i) for i in instructors]
 
         status.append('Received %d section records' % len(data))
         status.append('Updated %d section objects' % sections_updated)
@@ -175,10 +118,9 @@ def import_enrollments(request):
         for e in data:
             # Find or create the enrollment object
             try:
-                section = Section.objects.get(
-                    course__prefix=e['prefix'],
-                    course__number=e['number'], section=e['section'],
-                    term=e['term'], year=e['year'])
+                section = Section.objects.get(prefix=e['prefix'],
+                    number=e['number'], section=e['section'], term=e['term'],
+                    year=e['year'])
                 enrollment = Enrollment.objects.get(section=section,
                     student__username=e['student'])
                 enrollments_updated += 1
@@ -195,9 +137,8 @@ def import_enrollments(request):
                     section = sections[section_key]
                 else:
                     try:
-                        section = Section.objects.get(
-                            course__prefix=e['prefix'],
-                            course__number=e['number'], section=e['section'],
+                        section = Section.objects.get(prefix=e['prefix'],
+                            number=e['number'], section=e['section'],
                             term=e['term'], year=e['year'])
                         sections[section_key] = section
                     except:
@@ -218,6 +159,9 @@ def import_enrollments(request):
 
             # Ensure that metadata for enrollment is up-to-date
             enrollment.status = e['status']
+
+            # This will need to change later
+            enrollment.grade = 'N/A'
 
             enrollment.save()
 

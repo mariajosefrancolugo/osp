@@ -4,5 +4,6 @@ from osp.core import views
 
 urlpatterns = patterns('',
     (r'^$', views.index, {}, 'index'),
+    (r'^search/$', views.search, {}, 'search'),
     (r'^logout/$', 'django.contrib.auth.views.logout', {}, 'logout'),
 )

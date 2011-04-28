@@ -64,6 +64,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'osp.core.middleware.http.Http403Middleware',
 ]
 
 LDAP_AUTHENTICATION_BACKENDS = [
@@ -118,6 +119,15 @@ TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, 'templates'),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+    'osp.core.context_processors.base_template',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,7 +148,7 @@ API_USERNAME = 'test'
 API_PASSWORD = 'test'
 
 # Debug setting to dump tracebacks into development server console
-# DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # Current year and term
 CURRENT_TERM = 'SP'
