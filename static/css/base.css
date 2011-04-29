@@ -5,6 +5,7 @@ html, body
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    color: #333;
 }
 input, select, textarea
 {
@@ -59,10 +60,16 @@ ul.ui-autocomplete
     background: #fff;
     border: 1px solid #cdcdcd;
     border-right: 1px solid #d6d6d6;
+    border-top: none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
     border-radius: 0;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
     cursor: pointer;
 }
 ul.ui-autocomplete li.ui-menu-item a
@@ -211,4 +218,33 @@ form.assessment ul
 {
     list-style: none;
     padding: 0;
+}
+
+#personality-type
+{
+    list-style: none;
+    margin: 0 5px;
+    padding: 0;
+}
+#personality-type li
+{
+    float: left;
+    margin-right: 10px;
+    width: 230px;
+    height: 225px;
+    background: url('../img/small_tile_background.png') no-repeat;
+}
+#personality-type li.last
+{
+    margin-right: 0;
+}
+#personality-type li h4
+{
+    margin-bottom: 0;
+    text-align: center;
+}
+#personality-type .chart
+{
+    margin: 0 auto;
+    width: 175px;
 }

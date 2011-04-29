@@ -1,5 +1,32 @@
 {% extends base_template %}
 
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1', {packages: ['corechart']});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Category');
+    data.addColumn('number', 'Score');
+    data.addRows(2);
+    data.setValue(0, 0, 'Extraverted');
+    data.setValue(1, 0, 'Introverted');
+    {% if pt_scores.0.0 == 'E' %}
+    data.setValue(0, 1, {{ pt_scores.0.1 }});
+    data.setValue(1, 1, {{ pt_scores.0.2 }});
+    {% else %}
+    data.setValue(0, 1, {{ pt_scores.0.2 }});
+    data.setValue(1, 1, {{ pt_scores.0.1 }});
+    {% endif %}
+
+    var chart = new google.visualization.PieChart(document.getElementById('personality-type-chart-1'));
+    chart.draw(data, {width: 175, height: 175, legend: 'none', backgroundColor: '#ededee'});
+  }
+</script>
+{% endblock %}
+
 {% block body %}
 <h1>{{ student.get_full_name }}</h1>
 <h2>Currently Enrollments</h2>
@@ -16,9 +43,9 @@
   <tbody>
     {% for enrollment in current_enrollments %}
     <tr>
-      <td>{{ enrollment.section.course.prefix }}{{ enrollment.section.course.number }}-{{ enrollment.section.section }}</td>
-      <td>{{ enrollment.section.course.title }}</td>
-      <td>{{ enrollment.section.course.credit_hours }}</td>
+      <td>{{ enrollment.section.prefix }}{{ enrollment.section.number }}-{{ enrollment.section.section }}</td>
+      <td>{{ enrollment.section.title }}</td>
+      <td>{{ enrollment.section.credit_hours }}</td>
       <td>{{ enrollment.get_status_display }}</td>
     </tr>
     {% endfor %}
@@ -31,41 +58,43 @@
 <h2>Survey Results</h2>
 {% if student.surveyresult_set.all %}
 <ul>
-  {# for survey in student.surveyresult_set.all #}
+  {% for survey in student.surveyresult_set.all %}
   <li>{{ survey.date_taken|date:"F jS, Y" }} (<a href="#">view results</a>)</li>
-  {# endfor #}
+  {% endfor %}
 </ul>
 {% else %}
 <p><em>Student has not completed any surveys</em></p>
 {% endif %}
 <h2>Assessment Results</h2>
-<ul>
+<h3>Personality Type</h2>
+{% if latest_ptr %}
+<ul id="personality-type">
   <li>
-    <h3>Personality Type</h2>
-    {% if latest_ptr %}
-    <dl>
-      <dt>{{ latest_ptr.personality_type.0 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.0.0 == 'E' %}{{ pt_scores.0.1 }},{{ pt_scores.0.2 }}{% else %}{{ pt_scores.0.2 }},{{ pt_scores.0.1 }}{% endif %}&chdl=Extraverted|Introverted&chp=0" alt="Chart" /></dd>
-      <dt>{{ latest_ptr.personality_type.1 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.1.0 == 'S' %}{{ pt_scores.1.1 }},{{ pt_scores.1.2 }}{% else %}{{ pt_scores.1.2 }},{{ pt_scores.1.1 }}{% endif %}&chdl=Sensing|Intuitive&chp=0" alt="Chart" /></dd>
-      <dt>{{ latest_ptr.personality_type.2 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.2.0 == 'T' %}{{ pt_scores.2.1 }},{{ pt_scores.2.2 }}{% else %}{{ pt_scores.2.2 }},{{ pt_scores.2.1 }}{% endif %}&chdl=Thinking|Feeling&chp=0" alt="Chart" /></dd>
-      <dt>{{ latest_ptr.personality_type.3 }}</dt>
-      <dd><img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.3.0 == 'J' %}{{ pt_scores.3.1 }},{{ pt_scores.3.2 }}{% else %}{{ pt_scores.3.2 }},{{ pt_scores.3.1 }}{% endif %}&chdl=Judging|Perceiving&chp=0" alt="Chart" /></dd>
-    </dl>
-    <p><a href="#">view personality type details</a></p>
-    {% else %}
-    <p><em>Student has not completed the personality type assessment</em></p>
-    {% endif %}
+    <h4>{{ latest_ptr.personality_type.0 }}</h4>
+    <div id="personality-type-chart-1" class="chart"></div>
   </li>
   <li>
-    <h3>Learning Style</h2>
-    {% if latest_lsr %}
-    <p><img src="http://chart.apis.google.com/chart?chxl=0:|Auditory|Kinesthetic|Visual&chxr=0,0,0&chxt=y&chbh=a&chs=450x200&cht=bhs&chco=4D89F9&chds=0,10&chd=t:{{ latest_lsr.auditory_score }},{{ latest_lsr.kinesthetic_score }},{{ latest_lsr.visual_score }}" alt="Chart" /></p>
-    <p><a href="#">view learning style details</a></p>
-    {% else %}
-    <p><em>Student has not completed the learning style assessment</em></p>
-    {% endif %}
+    <h4>{{ latest_ptr.personality_type.1 }}</h4>
+    <img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.1.0 == 'S' %}{{ pt_scores.1.1 }},{{ pt_scores.1.2 }}{% else %}{{ pt_scores.1.2 }},{{ pt_scores.1.1 }}{% endif %}&chdl=Sensing|Intuitive&chp=0" alt="Chart" />
+  </li>
+  <li>
+    <h4>{{ latest_ptr.personality_type.2 }}</h4>
+    <img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.2.0 == 'T' %}{{ pt_scores.2.1 }},{{ pt_scores.2.2 }}{% else %}{{ pt_scores.2.2 }},{{ pt_scores.2.1 }}{% endif %}&chdl=Thinking|Feeling&chp=0" alt="Chart" />
+  </li>
+  <li class="last">
+    <h4>{{ latest_ptr.personality_type.3 }}</h4>
+    <img src="http://chart.apis.google.com/chart?chs=225x175&cht=p&chd=t:{% if pt_scores.3.0 == 'J' %}{{ pt_scores.3.1 }},{{ pt_scores.3.2 }}{% else %}{{ pt_scores.3.2 }},{{ pt_scores.3.1 }}{% endif %}&chdl=Judging|Perceiving&chp=0" alt="Chart" />
   </li>
 </ul>
+<p><a href="#">view personality type details</a></p>
+{% else %}
+<p><em>Student has not completed the personality type assessment</em></p>
+{% endif %}
+<h3>Learning Style</h2>
+{% if latest_lsr %}
+<p><img src="http://chart.apis.google.com/chart?chxl=0:|Auditory|Kinesthetic|Visual&chxr=0,0,0&chxt=y&chbh=a&chs=450x200&cht=bhs&chco=4D89F9&chds=0,10&chd=t:{{ latest_lsr.auditory_score }},{{ latest_lsr.kinesthetic_score }},{{ latest_lsr.visual_score }}" alt="Chart" /></p>
+<p><a href="#">view learning style details</a></p>
+{% else %}
+<p><em>Student has not completed the learning style assessment</em></p>
+{% endif %}
 {% endblock %}
