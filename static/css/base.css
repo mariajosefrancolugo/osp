@@ -240,7 +240,7 @@ form.assessment ul
 }
 #personality-type li h4
 {
-    margin-bottom: 0;
+    margin: 20px 0 0 0;
     text-align: center;
 }
 #personality-type .chart
