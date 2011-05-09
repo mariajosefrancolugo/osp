@@ -126,6 +126,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.contrib.messages.context_processors.messages',
     'osp.core.context_processors.base_template',
+    'osp.core.context_processors.classes',
 )
 
 INSTALLED_APPS = (
@@ -139,6 +140,7 @@ INSTALLED_APPS = (
     'osp.core',
     'osp.profiles',
     'osp.reports',
+    'osp.rosters',
     'osp.surveys',
     'osp.visits',
 )
@@ -150,6 +152,9 @@ API_PASSWORD = 'test'
 # Debug setting to dump tracebacks into development server console
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-# Current year and term
+# Current/previous year and term
 CURRENT_TERM = 'SP'
 CURRENT_YEAR = 2011
+
+PREVIOUS_TERM = 'FA'
+PREVIOUS_YEAR = 2010

@@ -2,87 +2,14 @@
 
 {% block scripts %}
 {{ block.super }}
-{% if latest_ptr %}
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-  google.load('visualization', '1', {packages: ['corechart']});
-  google.setOnLoadCallback(drawChart);
-  function drawChart() {
-    // Extraverted/Introverted Chart
-    var data_1 = new google.visualization.DataTable();
-    data_1.addColumn('string', 'Category');
-    data_1.addColumn('number', 'Score');
-    data_1.addRows(2);
-    data_1.setValue(0, 0, 'Extraverted');
-    data_1.setValue(1, 0, 'Introverted');
-    {% if pt_scores.0.0 == 'E' %}
-    data_1.setValue(0, 1, {{ pt_scores.0.1 }});
-    data_1.setValue(1, 1, {{ pt_scores.0.2 }});
-    {% else %}
-    data_1.setValue(0, 1, {{ pt_scores.0.2 }});
-    data_1.setValue(1, 1, {{ pt_scores.0.1 }});
-    {% endif %}
-    var chart_1 = new google.visualization.PieChart(document.getElementById('personality-type-chart-1'));
-    chart_1.draw(data_1, {width: 175, height: 175, legend: 'none', backgroundColor: '#ededee'});
-
-    // Sensing/Intuitive Chart
-    var data_2 = new google.visualization.DataTable();
-    data_2.addColumn('string', 'Category');
-    data_2.addColumn('number', 'Score');
-    data_2.addRows(2);
-    data_2.setValue(0, 0, 'Sensing');
-    data_2.setValue(1, 0, 'Intuitive');
-    {% if pt_scores.1.0 == 'S' %}
-    data_2.setValue(0, 1, {{ pt_scores.1.1 }});
-    data_2.setValue(1, 1, {{ pt_scores.1.2 }});
-    {% else %}
-    data_2.setValue(0, 1, {{ pt_scores.1.2 }});
-    data_2.setValue(1, 1, {{ pt_scores.1.1 }});
-    {% endif %}
-    var chart_2 = new google.visualization.PieChart(document.getElementById('personality-type-chart-2'));
-    chart_2.draw(data_2, {width: 175, height: 175, legend: 'none', backgroundColor: '#ededee'});
-
-    // Thinking/Feeling Chart
-    var data_3 = new google.visualization.DataTable();
-    data_3.addColumn('string', 'Category');
-    data_3.addColumn('number', 'Score');
-    data_3.addRows(2);
-    data_3.setValue(0, 0, 'Thinking');
-    data_3.setValue(1, 0, 'Feeling');
-    {% if pt_scores.2.0 == 'T' %}
-    data_3.setValue(0, 1, {{ pt_scores.2.1 }});
-    data_3.setValue(1, 1, {{ pt_scores.2.2 }});
-    {% else %}
-    data_3.setValue(0, 1, {{ pt_scores.2.2 }});
-    data_3.setValue(1, 1, {{ pt_scores.2.1 }});
-    {% endif %}
-    var chart_3 = new google.visualization.PieChart(document.getElementById('personality-type-chart-3'));
-    chart_3.draw(data_3, {width: 175, height: 175, legend: 'none', backgroundColor: '#ededee'});
-
-    // Judging/Perceiving Chart
-    var data_4 = new google.visualization.DataTable();
-    data_4.addColumn('string', 'Category');
-    data_4.addColumn('number', 'Score');
-    data_4.addRows(2);
-    data_4.setValue(0, 0, 'Judging');
-    data_4.setValue(1, 0, 'Perceiving');
-    {% if pt_scores.3.0 == 'J' %}
-    data_4.setValue(0, 1, {{ pt_scores.3.1 }});
-    data_4.setValue(1, 1, {{ pt_scores.3.2 }});
-    {% else %}
-    data_4.setValue(0, 1, {{ pt_scores.3.2 }});
-    data_4.setValue(1, 1, {{ pt_scores.3.1 }});
-    {% endif %}
-    var chart_4 = new google.visualization.PieChart(document.getElementById('personality-type-chart-4'));
-    chart_4.draw(data_4, {width: 175, height: 175, legend: 'none', backgroundColor: '#ededee'});
-  }
-</script>
+{% if latest_ptr or latest_lsr %}
+{% include "profiles/profile_charts_script.html" %}
 {% endif %}
 {% endblock %}
 
 {% block body %}
 <h1>{{ student.get_full_name }}</h1>
-<h2>Currently Enrollments</h2>
+<h2>Current Enrollments</h2>
 {% if current_enrollments %}
 <table>
   <thead>
@@ -95,11 +22,11 @@
   </thead>
   <tbody>
     {% for enrollment in current_enrollments %}
-    <tr>
-      <td>{{ enrollment.section.prefix }}{{ enrollment.section.number }}-{{ enrollment.section.section }}</td>
-      <td>{{ enrollment.section.title }}</td>
-      <td>{{ enrollment.section.credit_hours }}</td>
-      <td>{{ enrollment.get_status_display }}</td>
+    <tr class="{% cycle "odd" "even" %}">
+      <td style="width: 15%;">{{ enrollment.section.prefix }}{{ enrollment.section.number }}-{{ enrollment.section.section }}</td>
+      <td style="width: 45%;">{{ enrollment.section.title }}</td>
+      <td style="width: 15%;">{{ enrollment.section.credit_hours }}</td>
+      <td style="width: 25%;">{{ enrollment.get_status_display }}</td>
     </tr>
     {% endfor %}
   </tbody>
@@ -107,19 +34,23 @@
 {% else %}
 <p><em>Student is not currently enrolled in any courses</em></p>
 {% endif %}
-<p><a href="#">view enrollment history</a></p>
-<h2>Survey Results</h2>
-{% if student.surveyresult_set.all %}
-<ul>
-  {% for survey in student.surveyresult_set.all %}
-  <li>{{ survey.date_taken|date:"F jS, Y" }} (<a href="#">view results</a>)</li>
-  {% endfor %}
-</ul>
-{% else %}
-<p><em>Student has not completed any surveys</em></p>
-{% endif %}
-<h2>Assessment Results</h2>
-<h3>Personality Type</h2>
+<div id="learning-style">
+  <h2>Learning Style</h2>
+  <div class="large-tile">
+  {% if latest_lsr %}
+  <div id="learning-style-chart"></div>
+  {% else %}
+  <p><em>Student has not completed the learning style assessment</em></p>
+  {% endif %}
+  </div>
+</div>
+<div id="survey-results">
+  <h2>Survey Results</h2>
+  <div class="large-tile">
+    <p><em>Student has not completed any surveys</em></p>
+  </div>
+</div>
+<h2 style="clear: both;">Personality Type</h2>
 {% if latest_ptr %}
 <ul id="personality-type">
   <li>
@@ -139,15 +70,7 @@
     <div id="personality-type-chart-4" class="chart"></div>
   </li>
 </ul>
-<p><a href="#">view personality type details</a></p>
 {% else %}
 <p><em>Student has not completed the personality type assessment</em></p>
-{% endif %}
-<h3>Learning Style</h2>
-{% if latest_lsr %}
-<p><img src="http://chart.apis.google.com/chart?chxl=0:|Auditory|Kinesthetic|Visual&chxr=0,0,0&chxt=y&chbh=a&chs=450x200&cht=bhs&chco=4D89F9&chds=0,10&chd=t:{{ latest_lsr.auditory_score }},{{ latest_lsr.kinesthetic_score }},{{ latest_lsr.visual_score }}" alt="Chart" /></p>
-<p><a href="#">view learning style details</a></p>
-{% else %}
-<p><em>Student has not completed the learning style assessment</em></p>
 {% endif %}
 {% endblock %}

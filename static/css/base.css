@@ -3,13 +3,39 @@
 html, body
 {
     margin: 0;
-    padding: 0;
+    padding: 0 0 25px 0;
     font-family: Arial, Helvetica, sans-serif;
     color: #333;
 }
+
 input, select, textarea
 {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2
+{
+    font-weight: normal;
+    color: #546d9e;
+}
+
+table
+{
+    width: 100%;
+}
+table th
+{
+    padding: 5px 10px;
+    background: #dfdfdf;
+    text-align: left;
+}
+table td
+{
+    padding: 5px 10px;
+}
+table tr.even
+{
+    background: #f1f1f1;
 }
 
 .errorlist
@@ -201,10 +227,18 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
 {
     background: #eee;
 }
+#navigation ul.menu li.menu-item ul.submenu li.submenu-item em
+{
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 10px;
+}
 
 #body
 {
-    margin: 25px auto;
+    margin: 50px auto;
     width: 960px;
 }
 
@@ -218,6 +252,28 @@ form.assessment ul
 {
     list-style: none;
     padding: 0;
+}
+
+#survey-results, #learning-style
+{
+    float: left;
+    margin: 25px 0;
+}
+#learning-style
+{
+    margin-right: 42px;
+}
+
+.large-tile
+{
+    padding: 10px 25px;
+    width: 409px;
+    height: 226px;
+    background: url('../img/large_tile_background.png') no-repeat;
+}
+.large-tile p
+{
+    margin: 25px 0;
 }
 
 #personality-type

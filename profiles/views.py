@@ -1,15 +1,15 @@
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import simplejson as json
 from django.views.generic.simple import direct_to_template
 
 from osp.assessments.lib import jungian
-from osp.assessments.models import PersonalityTypeResult, LearningStyleResult
 from osp.core.middleware.http import Http403
 
+@login_required
 def profile(request, username):
-    if not request.user.groups.filter(
-        name__in=['Students', 'Employees']):
+    if not request.user.groups.filter(name__in=['Students', 'Employees']):
         raise Http403
 
     student = User.objects.get(username__iexact=username)
@@ -24,19 +24,24 @@ def profile(request, username):
         section__year__exact=settings.CURRENT_YEAR
     )
 
-    latest_ptr = None
-    pt_scores = None
-    latest_lsr = None
     try:
         latest_ptr = student.personalitytyperesult_set.latest('date_taken')
+    except:
+        latest_ptr = None
+    try:
+        latest_lsr = student.learningstyleresult_set.latest('date_taken')
+    except:
+        latest_lsr = None
+
+    if latest_ptr:
         pt_analysis = jungian.TypeAnalysis(
             json.loads(latest_ptr.answers), 4, 100)
         pt_scores = []
         for score in pt_analysis.computedScores:
             pt_scores.append((score[0], score[1], (1 - score[1])))
-        latest_lsr = student.learningstyleresult_set.latest('date_taken')
-    except PersonalityTypeResult.DoesNotExist, LearningStyleResult.DoesNotExist:
-        pass
+    else:
+        pt_scores = None
+
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,
