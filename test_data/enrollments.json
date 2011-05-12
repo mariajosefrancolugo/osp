@@ -9,6 +9,15 @@
         "status": "A"
     },
     {
+        "prefix": "CIS",
+        "number": "110",
+        "section": "01",
+        "term": "SP",
+        "year": 2011,
+        "student": "kingle00",
+        "status": "A"
+    },
+    {
         "prefix": "ENG",
         "number": "111",
         "section": "01",

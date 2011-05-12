@@ -3,7 +3,31 @@
 {% block scripts %}
 {{ block.super }}
 {% if latest_ptr or latest_lsr %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% include "profiles/profile_charts_script.html" %}
+<script type="text/javascript">
+$(function() {
+    var window_options = {
+      autoOpen: false,
+      height: 500,
+      width: 750,
+      modal: true,
+      resizable: false
+    }
+
+    $('a.modal').each(function() {
+      if($(this).attr('ref') == 'ls-window') {
+        $('#ls-window').dialog(window_options).load(base_url + 'assessment/learning-style/results/{{ latest_lsr.id }}/');
+      } else if($(this).attr('ref') == 'pt-window') {
+        $('#pt-window').dialog(window_options).load(base_url + 'assessment/personality-type/results/{{ latest_ptr.id }}/');
+      }
+    });
+
+    $('a.modal').click(function() {
+        $('#' + $(this).attr('ref')).dialog('open');
+    });
+});
+</script>
 {% endif %}
 {% endblock %}
 
@@ -35,7 +59,12 @@
 <p><em>Student is not currently enrolled in any courses</em></p>
 {% endif %}
 <div id="learning-style">
-  <h2>Learning Style</h2>
+  <h2>
+    Learning Style
+    {% if latest_lsr %}
+    <a href="javascript:;" class="modal" ref="ls-window">view learning style details</a>
+    {% endif %}
+  </h2>
   <div class="large-tile">
   {% if latest_lsr %}
   <div id="learning-style-chart"></div>
@@ -43,6 +72,7 @@
   <p><em>Student has not completed the learning style assessment</em></p>
   {% endif %}
   </div>
+  <div id="ls-window"></div>
 </div>
 <div id="survey-results">
   <h2>Survey Results</h2>
@@ -50,7 +80,12 @@
     <p><em>Student has not completed any surveys</em></p>
   </div>
 </div>
-<h2 style="clear: both;">Personality Type</h2>
+<h2 style="clear: both;">
+  Personality Type
+  {% if latest_ptr %}
+  <a href="javascript:;" class="modal" ref="pt-window">view personality type details</a>
+  {% endif %}
+</h2>
 {% if latest_ptr %}
 <ul id="personality-type">
   <li>
@@ -73,4 +108,5 @@
 {% else %}
 <p><em>Student has not completed the personality type assessment</em></p>
 {% endif %}
+<div id="pt-window"></div>
 {% endblock %}

@@ -158,3 +158,25 @@ CURRENT_YEAR = 2011
 
 PREVIOUS_TERM = 'FA'
 PREVIOUS_YEAR = 2010
+
+# Customize enrollment statuses here
+# Be sure to leave the "Active" status, as certain application functions
+# depend on it
+ENROLLMENT_STATUS_CHOICES = (
+    ('A', 'Active'),
+    ('DFNP', 'Dropped for Non-Payment'),
+    ('DBS', 'Dropped by Student'),
+    ('DBI', 'Dropped by Instructor'),
+    ('C', 'Complete'),
+)
+
+ENROLLMENT_GRADE_CHOICES = (
+    ('A', 'A'),
+    ('B', 'B'),
+    ('C', 'C'),
+    ('D', 'D'),
+    ('F', 'F'),
+    ('W', 'W'),
+    ('I', 'I'),
+    ('N/A', 'N/A'),
+)

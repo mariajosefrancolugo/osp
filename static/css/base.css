@@ -13,10 +13,23 @@ input, select, textarea
     font-family: Arial, Helvetica, sans-serif;
 }
 
+a
+{
+    color: #017fbe;
+    font-weight: bold;
+}
+
 h1, h2
 {
     font-weight: normal;
     color: #546d9e;
+}
+h2 a
+{
+    float: right;
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
 table
@@ -303,4 +316,9 @@ form.assessment ul
 {
     margin: 0 auto;
     width: 175px;
+}
+
+.ui-widget
+{
+    font-family: Arial, Helvetica, sans-serif;
 }

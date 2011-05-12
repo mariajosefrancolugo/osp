@@ -1,19 +1,22 @@
-from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    gpa = models.FloatField()
+    gpa = models.FloatField(blank=True, null=True)
 
+    def get_profile_url(self):
+        return reverse('profile:profile', args=[self.user.username])
+
+    def get_latest_personality_type_assessment_results(self):
+        return self.user.personalitytyperesult_set.latest('date_taken')
+
+    def get_latest_learning_style_assessment_results(self):
+        return self.user.learningstyleresult_set.latest('date_taken')
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
-
-
-class StudentGroup(models.Model):
-    owner = models.ForeignKey(User, related_name='owned_student_groups')
-    name = models.CharField(max_length=255)
-    members = models.ManyToManyField(User,
-        related_name='student_group_memberships')
 
 
 class Section(models.Model):
@@ -24,30 +27,19 @@ class Section(models.Model):
     year = models.IntegerField()
     title = models.CharField(max_length=255)
     credit_hours = models.FloatField()
-    instructors = models.ManyToManyField(User)
+    instructors = models.ManyToManyField(User, blank=True, null=True)
 
+    def __unicode__(self):
+        return '%s%s-%s' % (self.prefix, self.number, self.section)
 
-STATUS_CHOICES = (
-    ('A', 'Active'),
-    ('DFNP', 'Dropped for Non-Payment'),
-    ('DBS', 'Dropped by Student'),
-    ('DBI', 'Dropped by Instructor'),
-    ('C', 'Complete'),
-)
+    def get_active_enrollments(self):
+        return self.enrollment_set.filter(status='A')
 
-GRADE_CHOICES = (
-    ('A', 'A'),
-    ('B', 'B'),
-    ('C', 'C'),
-    ('D', 'D'),
-    ('F', 'F'),
-    ('W', 'W'),
-    ('I', 'I'),
-    ('N/A', 'N/A'),
-)
 
 class Enrollment(models.Model):
-    student = models.ForeignKey(User)
+    student = models.ForeignKey(User, blank=True, null=True)
     section = models.ForeignKey(Section)
-    status = models.CharField(max_length=4, choices=STATUS_CHOICES)
-    grade = models.CharField(max_length=3, choices=GRADE_CHOICES)
+    status = models.CharField(max_length=255,
+        choices=settings.ENROLLMENT_STATUS_CHOICES)
+    grade = models.CharField(max_length=255,
+        choices=settings.ENROLLMENT_GRADE_CHOICES)

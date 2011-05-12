@@ -68,8 +68,12 @@ def personality_type_results(request, result_id):
     description = load_json_data(os.path.join('personality_types',
         '%s.json' % result.personality_type.lower()))
 
-    return direct_to_template(request,
-        'assessments/personality_type_results.html',
+    if request.is_ajax():
+        template = 'assessments/personality_type_results_ajax.html'
+    else:
+        template = 'assessments/personality_type_results.html'
+
+    return direct_to_template(request, template,
         {'result': result, 'description': description})
 
 @login_required
@@ -138,6 +142,10 @@ def learning_style_results(request, result_id):
         descriptions.append(load_json_data(os.path.join('learning_styles',
             '%s.json' % style.lower())))
 
-    return direct_to_template(request,
-        'assessments/learning_style_results.html',
+    if request.is_ajax():
+        template = 'assessments/learning_style_results_ajax.html'
+    else:
+        template = 'assessments/learning_style_results.html'
+
+    return direct_to_template(request, template,
         {'result': result, 'descriptions': descriptions})

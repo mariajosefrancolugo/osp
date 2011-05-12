@@ -16,7 +16,7 @@
       <ul class="submenu">
         {% if classes %}
         {% for class in classes %}
-        <li class="submenu-item"><a href="#">{{ class.prefix }}{{ class.number }}-{{ class.section }}</a></li>
+        <li class="submenu-item"><a href="{% url roster:roster class.id %}">{{ class }}</a></li>
         {% endfor %}
         {% else %}
         <li class="submenu-item"><em>you are not currently teaching any classes</em></li>
