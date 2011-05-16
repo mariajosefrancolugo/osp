@@ -3,8 +3,37 @@
 {% block scripts %}
 {{ block.super }}
 {% if latest_ptr or latest_lsr %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="{% url static "js/visits.js" %}"></script>
+{% include "profiles/profile_charts_script.html" %}
+<script type="text/javascript">
+$(function() {
+    var window_options = {
+      autoOpen: false,
+      height: 500,
+      width: 750,
+      modal: true,
+      resizable: false
+    }
+
+    $('a.modal').each(function() {
+      if($(this).attr('ref') == 'ls-window') {
+        $('#ls-window').dialog(window_options).load(base_url + 'assessment/learning-style/results/{{ latest_lsr.id }}/');
+      } else if($(this).attr('ref') == 'pt-window') {
+        $('#pt-window').dialog(window_options).load(base_url + 'assessment/personality-type/results/{{ latest_ptr.id }}/');
+      }
+    });
+
+    $('a.modal').click(function() {
+        $('#' + $(this).attr('ref')).dialog('open');
+    });
+});
+</script>
 {% include "profiles/profile_scripts.html" %}
 {% endif %}
+<script type="text/javascript">
+var student = "{{ student.username }}";
+</script>
 {% endblock %}
 
 {% block body %}
@@ -84,5 +113,13 @@
 {% else %}
 <p style="clear: both;"><em>Student has not completed the personality type assessment</em></p>
 {% endif %}
+<div style="clear: both;"></div>
+<h2 style="clear: both;">
+  Visits
+  <a href="{% url visits:submit-visit student.username %}">submit new visit</a>
+</h2>
+<div id="visits" style="height: 318px;">
+{% include "visits/visits.html" %}
+</div>
 <div id="pt-window"></div>
 {% endblock %}
