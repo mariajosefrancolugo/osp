@@ -21,15 +21,11 @@ a
 
 h1, h2
 {
+    margin: 15px 0;
+    padding: 5px 0;
     font-weight: normal;
     color: #546d9e;
-}
-h2 a
-{
-    float: right;
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
+    white-space: nowrap;
 }
 
 table
@@ -271,6 +267,7 @@ form.assessment ul
 {
     float: left;
     margin: 25px 0;
+    width: 459px;
 }
 #learning-style
 {
@@ -332,4 +329,16 @@ form.assessment ul
 {
     float: left;
     width: 50%;
+}
+
+h2.float-left
+{
+    float: left;
+}
+a.float-right
+{
+    float: right;
+    display: block;
+    margin-top: 25px;
+    font-size: 14px;
 }

@@ -35,13 +35,13 @@
 <p><em>Student is not currently enrolled in any courses</em></p>
 {% endif %}
 <div id="learning-style">
-  <h2>
+  <h2 class="float-left">
     Learning Style
-    {% if latest_lsr %}
-    <a href="javascript:;" class="modal" ref="ls-window">view learning style details</a>
-    {% endif %}
   </h2>
-  <div class="large-tile">
+  {% if latest_lsr %}
+  <a href="javascript:;" class="modal float-right" ref="ls-window">view learning style details</a>
+  {% endif %}
+  <div class="large-tile" style="clear: both;">
   {% if latest_lsr %}
   <div id="learning-style-chart"></div>
   {% else %}
@@ -56,14 +56,14 @@
     <p><em>Student has not completed any surveys</em></p>
   </div>
 </div>
-<h2 style="clear: both;">
+<h2 class="float-left" style="clear: both;">
   Personality Type
-  {% if latest_ptr %}
-  <a href="javascript:;" class="modal" ref="pt-window">view personality type details</a>
-  {% endif %}
 </h2>
 {% if latest_ptr %}
-<ul id="personality-type">
+<a href="javascript:;" class="modal float-right" ref="pt-window">view personality type details</a>
+{% endif %}
+{% if latest_ptr %}
+<ul id="personality-type" style="clear: both;">
   <li>
     <h4>{{ latest_ptr.personality_type.0 }}</h4>
     <div id="personality-type-chart-1" class="chart"></div>
@@ -82,7 +82,7 @@
   </li>
 </ul>
 {% else %}
-<p><em>Student has not completed the personality type assessment</em></p>
+<p style="clear: both;"><em>Student has not completed the personality type assessment</em></p>
 {% endif %}
 <div id="pt-window"></div>
 {% endblock %}

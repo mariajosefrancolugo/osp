@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.views.generic.simple import direct_to_template
 
 from osp.core.middleware.http import Http403
 from osp.core.models import Section
 
+@login_required
 def roster(request, section_id):
     if not request.user.groups.filter(name='Employees'):
         raise Http403
