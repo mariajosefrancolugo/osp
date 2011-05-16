@@ -16,7 +16,7 @@
       <td style="width: 10%;">{{ visit.get_campus_display }}</td>
       <td style="width: 20%;">{{ visit.get_contact_type_display }}</td>
       <td style="width: 30%;">{{ visit.get_reason_display }}</td>
-      <td style="width: 15%;"><a href="{% url visits:visit student.username visit.id %}">{{ visit.date_submitted }}</a></td>
+      <td style="width: 15%;"><a href="{% url visits:visit student.username visit.id %}">{{ visit.date_submitted|date:"M d Y" }}</a></td>
     <tr>
     {% endfor %}
   </tbody>
