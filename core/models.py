@@ -10,11 +10,17 @@ class UserProfile(models.Model):
     def get_profile_url(self):
         return reverse('profile:profile', args=[self.user.username])
 
-    def get_latest_personality_type_assessment_results(self):
-        return self.user.personalitytyperesult_set.latest('date_taken')
+    def get_latest_pta_results(self):
+        try:
+            return self.user.personalitytyperesult_set.latest('date_taken')
+        except:
+            return None
 
-    def get_latest_learning_style_assessment_results(self):
-        return self.user.learningstyleresult_set.latest('date_taken')
+    def get_latest_lsa_results(self):
+        try:
+            return self.user.learningstyleresult_set.latest('date_taken')
+        except:
+            return None
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 

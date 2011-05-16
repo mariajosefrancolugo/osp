@@ -3,31 +3,7 @@
 {% block scripts %}
 {{ block.super }}
 {% if latest_ptr or latest_lsr %}
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-{% include "profiles/profile_charts_script.html" %}
-<script type="text/javascript">
-$(function() {
-    var window_options = {
-      autoOpen: false,
-      height: 500,
-      width: 750,
-      modal: true,
-      resizable: false
-    }
-
-    $('a.modal').each(function() {
-      if($(this).attr('ref') == 'ls-window') {
-        $('#ls-window').dialog(window_options).load(base_url + 'assessment/learning-style/results/{{ latest_lsr.id }}/');
-      } else if($(this).attr('ref') == 'pt-window') {
-        $('#pt-window').dialog(window_options).load(base_url + 'assessment/personality-type/results/{{ latest_ptr.id }}/');
-      }
-    });
-
-    $('a.modal').click(function() {
-        $('#' + $(this).attr('ref')).dialog('open');
-    });
-});
-</script>
+{% include "profiles/profile_scripts.html" %}
 {% endif %}
 {% endblock %}
 

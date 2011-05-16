@@ -322,3 +322,14 @@ form.assessment ul
 {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+#class-chart
+{
+    float: left;
+    width: 50%;
+}
+#chart-explanation
+{
+    float: left;
+    width: 50%;
+}
