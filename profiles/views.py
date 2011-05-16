@@ -3,9 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import simplejson as json
 from django.views.generic.simple import direct_to_template
+from django.core.paginator import Paginator
 
 from osp.assessments.lib import jungian
 from osp.core.middleware.http import Http403
+from osp.visits.models import Visit
 
 @login_required
 def profile(request, username):
@@ -42,6 +44,17 @@ def profile(request, username):
     else:
         pt_scores = None
 
+    visits = Visit.objects.filter(student=student)
+    if not request.user.groups.filter(name='Counselors'):
+        visits = visits.filter(private=False)
+    if visits:
+        paginator = Paginator(visits, 5)
+        page = paginator.page(1)
+        visits = page.object_list
+    else:
+        paginator = False
+        page = False
+    
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,
@@ -49,4 +62,7 @@ def profile(request, username):
         'latest_ptr': latest_ptr,
         'pt_scores': pt_scores,
         'latest_lsr': latest_lsr,
+        'visits': visits,
+        'paginator': paginator,
+        'page': page,
     })

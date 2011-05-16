@@ -1,0 +1,37 @@
+<div id="visits-animate">
+<table>
+  <thead>
+    <tr>
+      <th>Submitter</th>
+      <th>Campus</th>
+      <th>Contact Type</th>
+      <th>Reason</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for visit in visits %}
+    <tr class="{% cycle "odd" "even" %}">
+      <td style="width: 25%;">{{ visit.submitter.first_name }} {{ visit.submitter.last_name }}</td>
+      <td style="width: 10%;">{{ visit.get_campus_display }}</td>
+      <td style="width: 20%;">{{ visit.get_contact_type_display }}</td>
+      <td style="width: 30%;">{{ visit.get_reason_display }}</td>
+      <td style="width: 15%;"><a href="{% url visits:visit student.username visit.id %}">{{ visit.date_submitted }}</a></td>
+    <tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div id="visit-paging" page="{{ page.number }}" style="width: 100%; text-align: center;">
+{% if page.has_previous %}
+  <a href="javascript:;" id="visit-page-first" page="1">&laquo&laquo</a> <a href="javascript:;" id="visit_page_previous" page="{{ page.previous_page_number }}">&laquo</a>
+{% else %}
+  <span class="inactive-link">&laquo&laquo &laquo</span>
+{% endif %}
+{% if page.has_next %}
+  <a href="javascript:;" id="visit-page-next" page="{{ page.next_page_number }}">&raquo</a> <a href="javascript:;" id="visit-page-last" page="{{ paginator.num_pages }}">&raquo&raquo</a>
+{% else %}
+  <span class="inactive-link">&raquo &raquo&raquo</span>
+{% endif %}
+</div>
+</div>

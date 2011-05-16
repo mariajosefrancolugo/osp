@@ -180,3 +180,65 @@ ENROLLMENT_GRADE_CHOICES = (
     ('I', 'I'),
     ('N/A', 'N/A'),
 )
+VISIT_CAMPUS_CHOICES = (
+    ('CE', 'Central'),
+    ('LE', 'Levine'),
+    ('CA', 'Cato'),
+    ('NO', 'North'),
+    ('HA', 'Harper'),
+    ('WE', 'West'),
+)
+VISIT_CONTACT_TYPE_CHOICES = (
+    ('IN', 'In Person'),
+    ('EM', 'Email'),
+    ('TE', 'Telephone'),
+    ('ON', 'Online'),
+    ('GR', 'Group Session'),
+)
+VISIT_REASON_CHOICES = (
+    ('NEWA', 'New Student Admission'),
+    ('ACAD', 'Academic Advising'),
+    ('CNSL', 'Counseling'),
+    ('PECO', 'Personal Counseling'),
+    ('ERLY', 'Early Alert Referral'),
+    ('GRAD', 'Graduation Assessment Review'),
+    ('CACO', 'Career Counseling'),
+    ('WORK', 'Workshops, class presentations'),
+    ('A111', 'ACA 111'),
+    ('A118', 'ACA 118'),
+    ('COCO', 'College Connection'), # LOL Coco
+    ('ERLC', 'Early Alert Counseling'),
+    ('DAIN', 'Disability Intake'),
+    ('DACO', 'Disability Counseling'),
+    ('FAAD', 'Faculty Advising'),
+    ('ACWA', 'Academic Warning'),
+    ('ACPR', 'Academic Probation'),
+    ('1ACS', 'First Academic Suspension'),
+    ('FACS', 'Final Academic Suspension'),
+)
+VISIT_DEPARTMENT_CHOICES = (
+    ('AA', 'Academic Advising'), # Alcoholics Anonymous
+    ('CS', 'Career Services'),
+    ('CO', 'Counseling Services'),
+    ('DS', 'Disability Services'),
+    ('FA', 'Faculty'),
+    ('SS', 'Student Success Center'),
+    ('TE', 'Transcript Evaluation'),
+    ('TR', 'Transfer Resource Center'),
+    ('AS', 'Advising / Student Success Center'),
+    ('DC', 'Disability Counseling'),
+    ('VR', 'Veterans Resource Center'),
+)
+VISIT_CAREER_SERVICES_OUTCOME_CHOICES = (
+    ('NC', 'No Contact'),
+    ('EM', 'Email'),
+    ('PH', 'Phone'),
+    ('SA', 'Scheduled Appointment with CS'),
+    ('NS', 'No Show for Appointment'),
+    ('TC', 'Took Career Assessment(s)'),
+    ('MC', 'Met with Career Counselor'),
+    ('CD', 'Career Decision in Process'),
+    ('CP', 'Career and Program Decision Completed'),
+    ('RP', 'Referred for Program Update'),
+    ('PU', 'Program Updated'),
+)
