@@ -1,0 +1,61 @@
+{% extends base_template %}
+ 
+{% block scripts %}
+{{ block.super }}
+{% endblock %}
+
+{% block body %}
+<h1>{{ student.get_full_name }}</h1>
+<h2>New Visit</h2>
+<form action="{% url visit:submit-visit student.id %}" method="post">
+{% csrf_token %}
+<fieldset style="width: 47%; display: block; float: left; height: 90px;">
+<div class="field" style="display: block; float: left; width: 50%; font-size: 13px; margin: 5px 0;">
+  <label for="id_campus" style="font-weight: bold; margin: 5px 0;">Campus</label>
+  <br />
+  {{ form.campus }}
+</div>
+<div class="field" style="display: block; float: left; width: 49%; font-size: 13px; margin: 5px 0;">
+  <label for="id_contact_type" style="font-weight: bold;">Contact Type</label>
+  <br />
+  {{ form.contact_type }}
+</div>
+<div class="field" style="display: block; float: left; width: 99%; font-size: 13px; margin: 5px 0;">
+  <label for="id_department" style="font-weight: bold;">Department</label>
+  <br />
+  {{ form.department }}
+</div>
+</fieldset>
+<fieldset style="width: 47%; display: block;  float: left; height: 90px;">
+<div class="field" style="display: block; float: left; width: 50%; font-size: 13px; margin: 5px 0;">
+  <label for="id_reason" style="font-weight: bold;">Reason for Visit</label>
+  {{ form.reason }}
+</div>
+<div class="field" style="display: block; float: left; width: 40%; font-size: 13px; margin: 5px 0;">
+  <label for="id_undecided_financial_aid" style="font-weight: bold;">Undecided Financial Aid</label>
+  <select id="id_undecided_financial_aid" name="undecided_financial_aid">
+    <option {% if not form.data.undecided_financial_aid %}selected="selected"{% endif %} value="">---</option>
+    <option {% ifequal form.data.undecided_financial_aid "Yes" %}selected="selected"{% endifequal %} value="Yes">Yes</option>
+    <option {% ifequal form.data.undecided_financial_aid "No" %}selected="selected"{% endifequal %} value="No">No</option>
+  </select>
+</div>
+<div class="field" style="display: block; float: left; width: 100%; font-size: 13px; margin: 5px 0;">
+  <label for="id_career_services_outcome" style="font-weight: bold;">Career Services Outcome</label>
+  <br />
+  {{ form.career_services_outcome }}
+</div>
+</fieldset>
+<div style="clear: both;"></div>
+<h2>Note</h2>
+<div class="field" style="font-size: 13px;">
+  <textarea id="id_note" name="note" rows="13" style="width: 100%;">{{ form.data.note }}</textarea>
+</div>
+{% if can_privatize %}
+<div class="field" style="display: block; float: left; width: 17%; font-size: 13px;">
+  <label for="id_private">Make Private</label>
+  {{ form.private }}
+</div>
+{% endif %}
+<input style="float: right;" type="submit" name="submit" value="Submit" />
+</form>
+{% endblock %}

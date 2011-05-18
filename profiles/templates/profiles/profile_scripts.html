@@ -1,0 +1,115 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+$(function() {
+    var window_options = {
+      autoOpen: false,
+      height: 500,
+      width: 750,
+      modal: true,
+      resizable: false
+    }
+
+    $('a.modal').each(function() {
+      if($(this).attr('ref') == 'ls-window') {
+        $('#ls-window').dialog(window_options).load(base_url + 'assessment/learning-style/results/{{ latest_lsr.id }}/');
+      } else if($(this).attr('ref') == 'pt-window') {
+        $('#pt-window').dialog(window_options).load(base_url + 'assessment/personality-type/results/{{ latest_ptr.id }}/');
+      }
+    });
+
+    $('a.modal').click(function() {
+        $('#' + $(this).attr('ref')).dialog('open');
+    });
+});
+</script>
+<script type="text/javascript">
+  google.load('visualization', '1', {packages: ['corechart']});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+  {% if latest_ptr %}
+  // Extraverted/Introverted Chart
+  var data_1 = new google.visualization.DataTable();
+  data_1.addColumn('string', 'Category');
+  data_1.addColumn('number', 'Score');
+  data_1.addRows(2);
+  data_1.setValue(0, 0, 'Extraverted');
+  data_1.setValue(1, 0, 'Introverted');
+  {% if pt_scores.0.0 == 'E' %}
+  data_1.setValue(0, 1, {{ pt_scores.0.1 }});
+  data_1.setValue(1, 1, {{ pt_scores.0.2 }});
+  {% else %}
+  data_1.setValue(0, 1, {{ pt_scores.0.2 }});
+  data_1.setValue(1, 1, {{ pt_scores.0.1 }});
+  {% endif %}
+  var chart_1 = new google.visualization.PieChart(document.getElementById('personality-type-chart-1'));
+  chart_1.draw(data_1, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+
+  // Sensing/Intuitive Chart
+  var data_2 = new google.visualization.DataTable();
+  data_2.addColumn('string', 'Category');
+  data_2.addColumn('number', 'Score');
+  data_2.addRows(2);
+  data_2.setValue(0, 0, 'Sensing');
+  data_2.setValue(1, 0, 'Intuitive');
+  {% if pt_scores.1.0 == 'S' %}
+  data_2.setValue(0, 1, {{ pt_scores.1.1 }});
+  data_2.setValue(1, 1, {{ pt_scores.1.2 }});
+  {% else %}
+  data_2.setValue(0, 1, {{ pt_scores.1.2 }});
+  data_2.setValue(1, 1, {{ pt_scores.1.1 }});
+  {% endif %}
+  var chart_2 = new google.visualization.PieChart(document.getElementById('personality-type-chart-2'));
+  chart_2.draw(data_2, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+
+  // Thinking/Feeling Chart
+  var data_3 = new google.visualization.DataTable();
+  data_3.addColumn('string', 'Category');
+  data_3.addColumn('number', 'Score');
+  data_3.addRows(2);
+  data_3.setValue(0, 0, 'Thinking');
+  data_3.setValue(1, 0, 'Feeling');
+  {% if pt_scores.2.0 == 'T' %}
+  data_3.setValue(0, 1, {{ pt_scores.2.1 }});
+  data_3.setValue(1, 1, {{ pt_scores.2.2 }});
+  {% else %}
+  data_3.setValue(0, 1, {{ pt_scores.2.2 }});
+  data_3.setValue(1, 1, {{ pt_scores.2.1 }});
+  {% endif %}
+  var chart_3 = new google.visualization.PieChart(document.getElementById('personality-type-chart-3'));
+  chart_3.draw(data_3, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+
+  // Judging/Perceiving Chart
+  var data_4 = new google.visualization.DataTable();
+  data_4.addColumn('string', 'Category');
+  data_4.addColumn('number', 'Score');
+  data_4.addRows(2);
+  data_4.setValue(0, 0, 'Judging');
+  data_4.setValue(1, 0, 'Perceiving');
+  {% if pt_scores.3.0 == 'J' %}
+  data_4.setValue(0, 1, {{ pt_scores.3.1 }});
+  data_4.setValue(1, 1, {{ pt_scores.3.2 }});
+  {% else %}
+  data_4.setValue(0, 1, {{ pt_scores.3.2 }});
+  data_4.setValue(1, 1, {{ pt_scores.3.1 }});
+  {% endif %}
+  var chart_4 = new google.visualization.PieChart(document.getElementById('personality-type-chart-4'));
+  chart_4.draw(data_4, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+  {% endif %}
+
+  {% if latest_lsr %}
+  // Learning Styles Chart
+  var ls_data = new google.visualization.DataTable();
+  ls_data.addColumn('string', 'Style');
+  ls_data.addColumn('number', 'Score');
+  ls_data.addRows(3);
+  ls_data.setValue(0, 0, 'Auditory');
+  ls_data.setValue(1, 0, 'Kinesthetic');
+  ls_data.setValue(2, 0, 'Visual');
+  ls_data.setValue(0, 1, {{ latest_lsr.auditory_score }});
+  ls_data.setValue(1, 1, {{ latest_lsr.kinesthetic_score }});
+  ls_data.setValue(2, 1, {{ latest_lsr.visual_score }});
+  var ls_chart = new google.visualization.BarChart(document.getElementById('learning-style-chart'));
+  ls_chart.draw(ls_data, {width: 400, height: 200, legend: 'none', backgroundColor: '#ededee'});
+  {% endif %}
+  }
+</script>

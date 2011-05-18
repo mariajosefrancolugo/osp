@@ -1,0 +1,47 @@
+{% extends base_template %}
+
+{% block scripts %}
+{{ block.super }}
+{% if section.get_active_enrollments %}
+{% include "rosters/roster_scripts.html" %}
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<h1>{{ section }}: {{ section.title }}</h1>
+<h2>Statistics</h2>
+{% if section.get_active_enrollments %}
+<div id="class-chart"></div>
+<div id="chart-explanation">
+  <p>This graph shows the number of students in this class who fall into each of the three learning styles: auditory, kinesthetic, and visual.</p>
+  <p>It is worth noting that, often times, all students in a given class do not take the learning style assessment. Therefore, this graph may not reflect the breakdown of the entire class, but rather a small sampling of the class.</p>
+</div>
+{% else %}
+<p><em>No statistics available for this class</em></p>
+{% endif %}
+<h2 style="clear: both;">Roster</h2>
+{% if section.get_active_enrollments %}
+<table>
+  <thead>
+    <tr>
+      <th style="width: 5%;"></th>
+      <th style="width: 45%;">Student</th>
+      <th style="width: 25%;">Personality Type</th>
+      <th style="width: 25%;">Learning Style</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for enrollment in section.get_active_enrollments %}
+    <tr class="{% cycle "odd" "even" %}">
+      <td style="text-align: center;"><input type="checkbox" name="students" id="id_students" value="{{ enrollment.student.id }}" /></td>
+      <td><a href="{{ enrollment.student.profile.get_profile_url }}">{{ enrollment.student.get_full_name }}</a></td>
+      <td>{{ enrollment.student.profile.get_latest_pta_results.personality_type }}</td>
+      <td>{{ enrollment.student.profile.get_latest_lsa_results.learning_style }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p><em>No students enrolled in this class</em></p>
+{% endif %}
+{% endblock %}
