@@ -159,9 +159,8 @@ CURRENT_YEAR = 2011
 PREVIOUS_TERM = 'FA'
 PREVIOUS_YEAR = 2010
 
-# Customize enrollment statuses here
-# Be sure to leave the "Active" status, as certain application functions
-# depend on it
+# Customize enrollment statuses here. Be sure to leave the "Active"
+# status, as certain application functions depend on it.
 ENROLLMENT_STATUS_CHOICES = (
     ('A', 'Active'),
     ('DFNP', 'Dropped for Non-Payment'),
@@ -182,11 +181,11 @@ ENROLLMENT_GRADE_CHOICES = (
 )
 VISIT_CAMPUS_CHOICES = (
     ('CE', 'Central'),
-    ('LE', 'Levine'),
+    ('LV', 'Levine'),
     ('CA', 'Cato'),
     ('NO', 'North'),
-    ('HA', 'Harper'),
-    ('WE', 'West'),
+    ('HP', 'Harper'),
+    ('HA', 'Harris'),
 )
 VISIT_CONTACT_TYPE_CHOICES = (
     ('IN', 'In Person'),
