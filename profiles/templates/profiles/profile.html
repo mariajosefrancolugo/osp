@@ -7,7 +7,7 @@
 {% include "profiles/profile_scripts.html" %}
 {% endif %}
 <script type="text/javascript">
-var student = "{{ student.username }}";
+var student = "{{ student.id }}";
 </script>
 {% endblock %}
 
@@ -94,7 +94,7 @@ var student = "{{ student.username }}";
 <h2 class="float-left" style="clear: both;">
   Visits
 </h2>
-<a class="float-right" href="{% url visits:submit-visit student.username %}">submit new visit</a>
+<a class="float-right" href="{% url visits:submit-visit student.id %}">submit new visit</a>
 <div style="clear: both;"></div>
 <div id="visits" style="height: 222px;">
 {% include "visits/visits.html" %}

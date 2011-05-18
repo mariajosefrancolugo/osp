@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<h1><a style="color: #546D9E; font-weight: normal; text-decoration: none;" href="{% url profile:profile student.username %}">{{ student.get_full_name }}</a></h1>
+<h1><a style="color: #546D9E; font-weight: normal; text-decoration: none;" href="{% url profile:profile student.id %}">{{ student.get_full_name }}</a></h1>
 <h2>Visit #{{ visit.id }}</h2>
 <fieldset style="width: 47%; display: block; float: left; height: 90px;">
 <div style="display: block; float: left; width: 50%; font-size: 13px; margin: 5px 0;">
