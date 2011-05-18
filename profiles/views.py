@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 
 from osp.assessments.lib import jungian
 from osp.core.middleware.http import Http403
-from osp.visits.models import Visit
+from osp.visit.models import Visit
 
 @login_required
 def profile(request, user_id):

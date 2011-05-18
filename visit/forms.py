@@ -1,5 +1,5 @@
 from django import forms
-from osp.visits.models import Visit
+from osp.visit.models import Visit
 
 class VisitForm(forms.ModelForm):
     class Meta:

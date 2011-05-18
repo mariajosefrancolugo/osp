@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import *
-
-from osp.visits import views
+from osp.visit import views
 
 urlpatterns = patterns('',
     (r'^(?P<user_id>[\w.@+-]+)/page/(?P<page>[\d]+)/', views.visits, {}, 'visits'),

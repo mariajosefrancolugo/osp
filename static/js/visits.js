@@ -1,6 +1,6 @@
 function visit_paging(page) {
     $.ajax({
-        url: base_url + 'visits/' + student + '/page/' + page + '/',
+        url: base_url + 'visit/' + student + '/page/' + page + '/',
         success: function(data) {
             $("div#visits-animate").fadeOut('fast', function() {
                     $("div#visits-animate").html(data);

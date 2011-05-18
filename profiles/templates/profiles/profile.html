@@ -94,10 +94,10 @@ var student = "{{ student.id }}";
 <h2 class="float-left" style="clear: both;">
   Visits
 </h2>
-<a class="float-right" href="{% url visits:submit-visit student.id %}">submit new visit</a>
+<a class="float-right" href="{% url visit:submit-visit student.id %}">submit new visit</a>
 <div style="clear: both;"></div>
 <div id="visits" style="height: 222px;">
-{% include "visits/visits.html" %}
+{% include "visit/visits.html" %}
 </div>
 <div id="pt-window"></div>
 {% endblock %}

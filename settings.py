@@ -142,7 +142,7 @@ INSTALLED_APPS = (
     'osp.reports',
     'osp.rosters',
     'osp.surveys',
-    'osp.visits',
+    'osp.visit',
 )
 
 # API credentials
