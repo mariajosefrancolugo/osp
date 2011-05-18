@@ -1,0 +1,57 @@
+{% extends base_template %}
+ 
+{% block scripts %}
+{{ block.super }}
+{% endblock %}
+
+{% block body %}
+<h1><a style="color: #546D9E; font-weight: normal; text-decoration: none;" href="{% url profile:profile student.id %}">{{ student.get_full_name }}</a></h1>
+<h2>Visit #{{ visit.id }}</h2>
+<fieldset style="width: 47%; display: block; float: left; height: 90px;">
+<div style="display: block; float: left; width: 50%; font-size: 13px; margin: 5px 0;">
+  <label for="id_campus" style="font-weight: bold; margin: 5px 0;">Campus</label>
+  <br />
+  {{ visit.get_campus_display }}
+</div>
+<div style="display: block; float: left; width: 49%; font-size: 13px; margin: 5px 0;">
+  <label for="id_contact_type" style="font-weight: bold;">Contact Type</label>
+  <br />
+  {{ visit.get_contact_type_display }}
+</div>
+<div class="field" style="display: block; float: left; width: 99%; font-size: 13px; margin: 5px 0;">
+  <label for="id_department" style="font-weight: bold;">Department</label>
+  <br />
+  {{ visit.get_department_display }}
+</div>
+</fieldset>
+<fieldset style="width: 47%; display: block;  float: left; height: 90px;">
+<div style="display: block; float: left; width: 50%; font-size: 13px; margin: 5px 0;">
+  <label for="id_reason" style="font-weight: bold;">Reason for Visit</label>
+  <br />
+  {{ visit.get_reason_display }}
+</div>
+<div style="display: block; float: left; width: 40%; font-size: 13px; margin: 5px 0;">
+  <label for="id_undecided_financial_aid" style="font-weight: bold;">Undecided Financial Aid</label>
+  <br />
+  {{ visit.undecided_financial_aid }}
+  </div>
+<div class="field" style="display: block; float: left; width: 100%; font-size: 13px; margin: 5px 0;">
+  <label for="id_career_services_outcome" style="font-weight: bold;">Career Services Outcome</label>
+  <br />
+  {{ visit.get_career_services_outcome_display }}
+</div>
+</fieldset>
+<div style="clear: both;"></div>
+<h2>Note</h2>
+<div style="font-size: 13px;">
+  <p id="id_note" name="note" style="width: 100%;">{{ visit.note }}</p>
+</div>
+{% if visit.private %}
+<div style="display: block; float: left; width: 17%; font-size: 13px;">
+  <p>This Visit is Private</p>
+</div>
+{% endif %}
+<div style="float: right;">
+  <p>Submitted by {{ visit.submitter.get_full_name }} on {{ visit.date_submitted }}</p>
+</div>
+{% endblock %}

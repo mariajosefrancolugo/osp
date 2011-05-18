@@ -1,0 +1,12 @@
+{% extends base_template %}
+
+{% block body %}
+<h1>{{ description.long_name }}</h1>
+{{ description.description|safe }}
+<h2>Some Famous {{ description.type }}s</h2>
+<ul>
+{% for person in description.famous %}
+  <li>{{ person }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
