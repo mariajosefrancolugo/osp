@@ -17,7 +17,7 @@ from osp.core.middleware.http import Http403
 # TODO: Create view to serve empty form, serve error'd form, and save valid form
 #       and redirect to the visit itself OR show as submitted.
 @login_required
-def submit_visit(request, username):
+def submit_visit(request, user_id):
     """
         Check permissions before doing anything and point people to the door
         as needed. For those so allowed, return a blank form.
@@ -29,7 +29,7 @@ def submit_visit(request, username):
     if not request.user.groups.filter(name='Employees'):
         raise Http403
     
-    student = get_object_or_404(User, username=username)
+    student = get_object_or_404(User, id=user_id)
     if request.user.groups.filter(name='Counselors'):
         can_privatize = True
     else:
@@ -44,7 +44,7 @@ def submit_visit(request, username):
             print "Yep"
             visit = form.save()
             return redirect('visits:visit',
-                username=student.username,
+                user_id=student.id,
                 visit_id=visit.id)
         print form.errors
     else:
@@ -56,13 +56,13 @@ def submit_visit(request, username):
 
 # TODO: Create view to show individual visit information.
 @login_required
-def visit(request, username, visit_id):
+def visit(request, user_id, visit_id):
     """
         Check permissions before doing anything, and point people to the door
         as needed. For those so allowed, return a view of the visit.
     """
     visit = get_object_or_404(Visit, id=visit_id)
-    student = get_object_or_404(User, username=username)
+    student = get_object_or_404(User, id=user_id)
     if not request.user.groups.filter(name='Employees') or (visit.private and not request.user.groups.filter(name='Counselors')):
         raise Http403
     
@@ -73,7 +73,7 @@ def visit(request, username, visit_id):
 # TODO: Create method to return all visits? Some method of permissioning and
 #       returning some meaningful message in the case of lack of permission.
 @login_required
-def visits(request, username, page):
+def visits(request, user_id, page):
     """
         Check permissions before doing anything, and point people to the door
         as needed. I'm a broken record. For those so allowed, return all the
@@ -81,7 +81,7 @@ def visits(request, username, page):
     """
     if not request.user.groups.filter(name='Employees'):
         raise Http403
-    student = get_object_or_404(User, username=username)
+    student = get_object_or_404(User, id=user_id)
     visits = Visit.objects.filter(student=student)
     if not request.user.groups.filter(name='Counselors'):
         visits = visits.filter(private=False)
