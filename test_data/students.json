@@ -1,5 +1,6 @@
 [
     {
+	"id_number": "3611660",
         "username": "jmoorin1",
         "first_name": "Jonathan",
         "last_name": "Mooring",
@@ -7,6 +8,7 @@
         "is_active": true
     },
     {
+	"id_number": "3495955",
         "username": "sbs2b769",
         "first_name": "Scott",
         "last_name": "Sheffield",
@@ -14,6 +16,7 @@
         "is_active": true
     },
     {
+	"id_number": "0081048",
         "username": "cme55a4d",
         "first_name": "Christopher",
         "last_name": "Emery",
@@ -21,6 +24,7 @@
         "is_active": true
     },
     {
+	"id_number": "3508952",
         "username": "kingle00",
         "first_name": "Kenneth",
         "last_name": "Ingle",
@@ -28,10 +32,19 @@
         "is_active": true
     },
     {
+	"id_number": "3051182",
         "username": "lis636de",
         "first_name": "Lucia",
         "last_name": "Siochi",
         "email": "lis636de@email.cpcc.edu",
+        "is_active": true
+    },
+    {
+	"id_number": "3543076",
+        "username": "",
+        "first_name": "Stephen",
+        "last_name": "Swanson",
+        "email": "",
         "is_active": true
     }
 ]

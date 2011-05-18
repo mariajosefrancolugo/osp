@@ -5,10 +5,12 @@ from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
+    has_account = models.BooleanField()
+    id_number = models.CharField(max_length=255, blank=True)
     gpa = models.FloatField(blank=True, null=True)
 
     def get_profile_url(self):
-        return reverse('profile:profile', args=[self.user.username])
+        return reverse('profile:profile', args=[self.user.id])
 
     def get_latest_pta_results(self):
         try:
@@ -33,7 +35,7 @@ class Section(models.Model):
     year = models.IntegerField()
     title = models.CharField(max_length=255)
     credit_hours = models.FloatField()
-    instructors = models.ManyToManyField(User, blank=True, null=True)
+    instructors = models.ManyToManyField(User)
 
     def __unicode__(self):
         return '%s%s-%s' % (self.prefix, self.number, self.section)
@@ -43,7 +45,7 @@ class Section(models.Model):
 
 
 class Enrollment(models.Model):
-    student = models.ForeignKey(User, blank=True, null=True)
+    student = models.ForeignKey(User)
     section = models.ForeignKey(Section)
     status = models.CharField(max_length=255,
         choices=settings.ENROLLMENT_STATUS_CHOICES)

@@ -10,11 +10,11 @@ from osp.core.middleware.http import Http403
 from osp.visits.models import Visit
 
 @login_required
-def profile(request, username):
+def profile(request, user_id):
     if not request.user.groups.filter(name__in=['Students', 'Employees']):
         raise Http403
 
-    student = User.objects.get(username__iexact=username)
+    student = User.objects.get(pk=user_id)
 
     # Make sure the logged-in user should have access to this profile
     if (not request.user.groups.filter(name='Employees') and
@@ -54,7 +54,7 @@ def profile(request, username):
     else:
         paginator = False
         page = False
-    
+
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,

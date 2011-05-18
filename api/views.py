@@ -4,7 +4,7 @@ from django.utils import simplejson as json
 from django.views.decorators.csrf import csrf_exempt
 
 from osp.api.utils import check_credentials, load_users
-from osp.core.models import Section, Enrollment
+from osp.core.models import UserProfile, Section, Enrollment
 
 @csrf_exempt
 def import_instructors(request):
@@ -76,7 +76,11 @@ def import_sections(request):
                 sections_created += 1
 
             # Find the related instructor user object(s) for the section
-            instructors = User.objects.filter(username__in=s['instructors'])
+            users = UserProfile.objects.filter(
+                id_number__in=s['instructors'],
+                user__groups__name='Instructors'
+            )
+            instructors = [u.user for u in users]
 
             # Update metadata for section
             section.title= s['title']
@@ -121,8 +125,12 @@ def import_enrollments(request):
                 section = Section.objects.get(prefix=e['prefix'],
                     number=e['number'], section=e['section'], term=e['term'],
                     year=e['year'])
+                student = UserProfile.objects.get(
+                    id_number=e['student'],
+                    user__groups__name='Students'
+                ).user
                 enrollment = Enrollment.objects.get(section=section,
-                    student__username=e['student'])
+                    student=student)
                 enrollments_updated += 1
             except:
                 # Find the related section object for the section
@@ -148,7 +156,10 @@ def import_enrollments(request):
                 # Find the related student user object for the enrollment
                 # Throw an exception if we can't find it
                 try:
-                    student = User.objects.get(username=e['student'])
+                    student = UserProfile.objects.get(
+                        id_number=e['student'],
+                        user__groups__name='Students'
+                    ).user
                 except:
                     raise Exception('Student %s does not exist' %
                         e['student'])

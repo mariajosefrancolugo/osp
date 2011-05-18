@@ -27,7 +27,7 @@ for data_type in data_types:
     data = f.read()
     f.close()
 
-    req = urllib2.Request('http://localhost:8001/api%s' % data_type['url'])
+    req = urllib2.Request('http://localhost:8000/api%s' % data_type['url'])
     req.add_header('Authorization', 'Basic %s' % creds)
     req.add_header('Content-type', 'application/json')
     req.add_data(data)
