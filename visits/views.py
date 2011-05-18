@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from cpsite import ods # Candidate for Removal
 from cpsite.decorators import groups_required
 from django.contrib.auth.models import User, Group
-from osp.visit.models import Visit
-from osp.visit.forms import VisitForm
+from osp.visits.models import Visit
+from osp.visits.forms import VisitForm
 from osp.core.middleware.http import Http403
 
 
@@ -50,7 +50,7 @@ def submit_visit(request, user_id):
     else:
         form = VisitForm()
 
-    return direct_to_template(request, 'visit/visit.html',
+    return direct_to_template(request, 'visits/visit.html',
         {'form': form, 'student': student, 'can_privatize': can_privatize})
 
 
@@ -66,7 +66,7 @@ def visit(request, user_id, visit_id):
     if not request.user.groups.filter(name='Employees') or (visit.private and not request.user.groups.filter(name='Counselors')):
         raise Http403
     
-    return direct_to_template(request, 'visit/visit_detail.html',
+    return direct_to_template(request, 'visits/visit_detail.html',
         {'visit': visit, 'student': student}) 
 
 
@@ -96,7 +96,7 @@ def visits(request, user_id, page):
         page = paginator.page(page)
     visits = page.object_list
     
-    return direct_to_template(request, 'visit/visits.html',
+    return direct_to_template(request, 'visits/visits.html',
         {'visits': visits, 'page': page, 'paginator': paginator, 'student': student})
 
 # TASKS:

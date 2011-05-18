@@ -97,7 +97,13 @@ var student = "{{ student.id }}";
 <a class="float-right" href="{% url visit:submit-visit student.id %}">submit new visit</a>
 <div style="clear: both;"></div>
 <div id="visits" style="height: 222px;">
-{% include "visit/visits.html" %}
+{% if visits %}
+{% include "visits/visits.html" %}
+{% else %}
+<p style="clear: both;">
+  <em>Student has not completed any surveys</em>
+</p>
+{% endif %}
 </div>
 <div id="pt-window"></div>
 {% endblock %}

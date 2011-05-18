@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     (r'^roster/', include('osp.rosters.urls', namespace='roster',
         app_name='roster')),
     #(r'^survey/', include('osp.surveys.urls')),
-    (r'^visit/', include('osp.visit.urls', namespace='visit',
+    (r'^visit/', include('osp.visits.urls', namespace='visit',
         app_name='visit')),
     (r'^', include('osp.core.urls', namespace='core', app_name='core')),
 
