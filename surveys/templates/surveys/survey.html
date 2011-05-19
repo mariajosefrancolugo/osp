@@ -1,5 +1,16 @@
 {% extends base_template %}
 
 {% block body %}
-{{ form }}
+<h1>Survey</h1>
+<form action="" method="POST" class="survey">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="field">
+    {{ field.errors }}
+    {{ field.label }}
+    <br />{{ field }}
+  </div>
+  {% endfor %}
+  <input type="submit" name="submit" id="id_submit" value="Submit" />
+</form>
 {% endblock %}
