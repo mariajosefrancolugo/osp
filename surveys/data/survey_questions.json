@@ -1,35 +1,35 @@
 [
     {
-        "question": "How much time do you hate to study each week?",
+        "question": "How much time do you have to study each week?",
         "type": "select",
         "answers": [
-            "0 hours",
-            "1-2 hours",
-            "3-5 hours",
-            "6-10 hours",
-            "11-25 hours",
-            "26+ hours"
+            ["0", "0 hours"],
+            ["1-2 hours", "1-2 hours"],
+            ["3-5 hours", "3-5 hours"],
+            ["6-10 hours", "6-10 hours"],
+            ["11-25 hours", "11-25 hours"],
+            ["26+ hours", "26+ hours"]
         ]
     },
     {
         "question": "How many hours per week do you normally work or plan to work?",
         "type": "radio",
         "answers": [
-	    "40+",
-	    "21-39",
-	    "1-20",
-            "not planning to work"
+	    ["40+", "40+"],
+	    ["21-39", "21-39"],
+	    ["1-20", "1-20"],
+            ["not planning to work", "not planning to work"]
         ]
     },
     {
         "question": "Which of the following is your favorite academic study area?",
         "type": "radio",
         "answers": [
-	    "English",
-	    "Math",
-	    "Science",
-            "Social Sciences (such as history or psychology",
-            "Fine Arts (such as art or drama)"
+	    ["English", "English"],
+	    ["Math", "Math"],
+	    ["Science", "Science"],
+            ["Social Sciences", "Social Sciences (such as history or psychology"],
+            ["Fine Arts", "Fine Arts (such as art or drama)"]
         ]
     },
     {
@@ -40,11 +40,11 @@
         "question": "Which of the following is your least favorite academic study area?",
         "type": "radio",
         "answers": [
-	    "English",
-	    "Math",
-	    "Science",
-            "Social Sciences (such as history or psychology",
-            "Fine Arts (such as art or drama)"
+	    ["English", "English"],
+	    ["Math", "Math"],
+	    ["Science", "Science"],
+            ["Social Sciences", "Social Sciences (such as history or psychology"],
+            ["Fine Arts", "Fine Arts (such as art or drama)"]
         ]
     },
     {
@@ -55,102 +55,102 @@
         "question": "What is the highest level of education attained by your parent or guardian?",
         "type": "radio",
         "answers": [
-            "Less than high school diploma",
-            "High school diploma",
-            "Associate's Degree (two years)",
-            "Bachelor's Degree (four years)",
-            "Graduate degree (master's or higher)"
+            ["Less than high school diploma", "Less than high school diploma"],
+            ["High school diploma", "High school diploma"],
+            ["Associate's Degree", "Associate's Degree (two years)"],
+            ["Bachelor's Degree", "Bachelor's Degree (four years)"],
+            ["Graduate Degree", "Graduate degree (master's or higher)"]
         ]
     },
     {
         "question": "Have you completed your financial aid application at the school?",
         "type": "radio",
         "answers": [
-            "Yes",
-            "No"
+            ["Yes", "Yes"],
+            ["No", "No"]
         ]
     },
     {
         "question": "What is your main education goal at the school?",
         "type": "select",
         "answers": [
-            "complete a technical degree which does not transfer (AAS)",
-            "complete a college transfer degree and transfer (AA, AS, AFA)",
-            "complete a diploma program",
-            "complete a certificate program",
-            "complete a few courses and then transfer to another institution",
-            "complete courses for personal reasons other than transfer",
-            "not sure"
+            ["technical degree which does not transfer", "complete a technical degree which does not transfer (AAS)"],
+            ["college transfer degree and transfer", "complete a college transfer degree and transfer (AA, AS, AFA)"],
+            ["diploma program", "complete a diploma program"],
+            ["certificate program", "complete a certificate program"],
+            ["complete a few courses and then transfer to another institution", "complete a few courses and then transfer to another institution"],
+            ["complete courses for personal reasons other than transfer", "complete courses for personal reasons other than transfer"],
+            ["not sure", "not sure"]
         ]
     },
     {
         "question": "How confident are you that you will be successful in accomplishing your main educational goal at the school?",
         "type": "select",
         "answers": [
-            "very unsure",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "extremely sure"
+            ["very unsure", "very unsure"],
+            ["1", "1"],
+            ["2", "2"],
+            ["3", "3"],
+            ["4", "4"],
+            ["5", "5"],
+            ["extremely sure", "extremely sure"]
         ]
     },
     {
         "question": "What is your goal for this term? (select all that apply)",
         "type": "checkbox",
         "answers": [
-            "Complete all my courses with a \"C\" or better",
-            "Decide on a program of study",
-            "Make friends",
-            "Improve skills",
-            "Learn about campus resources",
-            "Participate in student activities"
+            ["complete all courses with C or higher", "Complete all my courses with a \"C\" or better"],
+            ["decide on program of study", "Decide on a program of study"],
+            ["make friends", "Make friends"],
+            ["improve skills", "Improve skills"],
+            ["learn about campus resources", "Learn about campus resources"],
+            ["participate in student activities", "Participate in student activities"]
         ]
     },
     {
         "question": "Are you a veteran of the United States Military?",
         "type": "radio",
         "answers": [
-            "Yes",
-            "No"
+            ["Yes", "Yes"],
+            ["No", "No"]
         ]
     },
     {
         "question": "Are you eligible for Veteran's Administration (VA) benefits?",
         "type": "radio",
         "answers": [
-            "Yes",
-            "No"
+            ["Yes", "Yes"],
+            ["No", "No"]
         ]
     },
     {
         "question": "Which services do you need or think you may need at the school? (select all that apply)",
         "type": "checkbox",
         "answers": [
-            "Counseling",
-            "Financial Assistance",
-            "Disability Services",
-            "Tutoring Services"
+            ["Counseling", "Counseling"],
+            ["Financial Assistance", "Financial Assistance"],
+            ["Disability Services", "Disability Services"],
+            ["Tutoring Services", "Tutoring Services"]
         ]
     },
     {
         "question": "What was the primary reason for leaving the school prior to the completion of your stated educational goal?",
         "type": "select",
         "answers": [
-            "left area",
-            "child care problem",
-            "class(es) needed unavailable",
-            "death",
-            "employment conflict",
-            "family problem",
-            "financial problem",
-            "health problem",
-            "instruction not helpful",
-            "lack of interest",
-            "location of class(es)",
-            "transfer to other college",
-            "transportation problem"
+            ["left area", "left area"],
+            ["child care problem", "child care problem"],
+            ["class(es) needed unavailable", "class(es) needed unavailable"],
+            ["death", "death"],
+            ["employment conflict", "employment conflict"],
+            ["family problem", "family problem"],
+            ["financial problem", "financial problem"],
+            ["health problem", "health problem"],
+            ["instruction not helpful", "instruction not helpful"],
+            ["lack of interest", "lack of interest"],
+            ["location of class(es)", "location of class(es)"],
+            ["transfer to other college", "transfer to other college"],
+            ["transportation problem", "transportation problem"]
         ]
     }
 ]

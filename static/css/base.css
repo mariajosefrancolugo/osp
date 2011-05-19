@@ -257,10 +257,15 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
     width: 960px;
 }
 
-form.assessment ul
+form.assessment ul, form.survey ul
 {
     list-style: none;
     padding: 0;
+}
+
+div.field
+{
+    margin: 10px 0;
 }
 
 #survey-results, #learning-style
