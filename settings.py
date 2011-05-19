@@ -56,7 +56,7 @@ SECRET_KEY = 'Chac-8#haCa_Ra-e?-e+ucrur=gEFRasejayasaC?meMe!AC-a'
 
 # Determine which authentication backend we'll be using
 # Choices are 'CAS' and 'LDAP'
-AUTHENTICATION_BACKEND = 'CAS'
+AUTHENTICATION_BACKEND = 'LDAP'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
@@ -94,7 +94,7 @@ LOGIN_REDIRECT_URL = '/'
 AUTH_LDAP_SERVER_URI = 'ldap://'
 AUTH_LDAP_BIND_DN = ''
 AUTH_LDAP_BIND_PASSWORD = ''
-AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=,dc=cpcc,dc=edu',
+AUTH_LDAP_USER_SEARCH = LDAPSearch('ou=,dc=,dc=edu',
     ldap.SCOPE_SUBTREE, '(uid=%(user)s)')
 AUTH_LDAP_USER_ATTR_MAP = {
     'first_name': 'givenName',
@@ -105,7 +105,7 @@ AUTH_LDAP_USER_ATTR_MAP = {
 # CAS authentication backend settings
 # Please see http://code.google.com/p/django-cas/ for documentation
 CAS_VERSION = '1'
-CAS_SERVER_URL = 'https://cas.cpcc.edu/cas/'
+CAS_SERVER_URL = 'https://'
 CAS_IGNORE_REFERER = True
 
 TEMPLATE_LOADERS = (
@@ -145,12 +145,9 @@ INSTALLED_APPS = (
     'osp.visits',
 )
 
-# API credentials
-API_USERNAME = 'test'
-API_PASSWORD = 'test'
-
-# Debug setting to dump tracebacks into development server console
-DEBUG_PROPAGATE_EXCEPTIONS = True
+# API credentials. This should be a randomly generated username and password.
+API_USERNAME = '2rUph4cu'
+API_PASSWORD = 'phayekE3'
 
 # Current/previous year and term
 CURRENT_TERM = 'SP'
@@ -202,10 +199,10 @@ VISIT_REASON_CHOICES = (
     ('ERLY', 'Early Alert Referral'),
     ('GRAD', 'Graduation Assessment Review'),
     ('CACO', 'Career Counseling'),
-    ('WORK', 'Workshops, class presentations'),
+    ('WORK', 'Workshops, Class Presentations'),
     ('A111', 'ACA 111'),
     ('A118', 'ACA 118'),
-    ('COCO', 'College Connection'), # LOL Coco
+    ('COCO', 'College Connection'),
     ('ERLC', 'Early Alert Counseling'),
     ('DAIN', 'Disability Intake'),
     ('DACO', 'Disability Counseling'),
@@ -216,7 +213,7 @@ VISIT_REASON_CHOICES = (
     ('FACS', 'Final Academic Suspension'),
 )
 VISIT_DEPARTMENT_CHOICES = (
-    ('AA', 'Academic Advising'), # Alcoholics Anonymous
+    ('AA', 'Academic Advising'),
     ('CS', 'Career Services'),
     ('CO', 'Counseling Services'),
     ('DS', 'Disability Services'),
@@ -232,7 +229,7 @@ VISIT_CAREER_SERVICES_OUTCOME_CHOICES = (
     ('NC', 'No Contact'),
     ('EM', 'Email'),
     ('PH', 'Phone'),
-    ('SA', 'Scheduled Appointment with CS'),
+    ('SA', 'Scheduled Appointment with Career Services'),
     ('NS', 'No Show for Appointment'),
     ('TC', 'Took Career Assessment(s)'),
     ('MC', 'Met with Career Counselor'),
