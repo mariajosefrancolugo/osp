@@ -10,7 +10,7 @@
 {% block body %}
 <h1>{{ section }}: {{ section.title }}</h1>
 <h2>Statistics</h2>
-{% if section.get_active_enrollments %}
+{% if ls_count.auditory > 0 or ls_count.kinesthetic > 0 or ls_count.visual > 0 %}
 <div id="class-chart"></div>
 <div id="chart-explanation">
   <p>This graph shows the number of students in this class who fall into each of the three learning styles: auditory, kinesthetic, and visual.</p>
