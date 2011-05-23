@@ -348,3 +348,18 @@ a.float-right
     margin-top: 25px;
     font-size: 14px;
 }
+
+div.survey-answer
+{
+    padding: 10px 15px;
+}
+
+div.survey-answer.even
+{
+    background: #f1f1f1;
+}
+
+div.survey-answer p.question
+{
+    font-weight: bold;
+}

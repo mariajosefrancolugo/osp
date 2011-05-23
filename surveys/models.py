@@ -8,5 +8,9 @@ class Result(models.Model):
 
 class Answer(models.Model):
     result = models.ForeignKey(Result)
+    order = models.IntegerField()
     question = models.TextField()
     answer = models.CharField(max_length=255)
+
+    class Meta(object):
+        ordering = ('order',)

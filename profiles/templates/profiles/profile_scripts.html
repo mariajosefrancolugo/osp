@@ -14,6 +14,8 @@ $(function() {
         $('#ls-window').dialog(window_options).load(base_url + 'assessment/learning-style/results/{{ latest_lsr.id }}/');
       } else if($(this).attr('ref') == 'pt-window') {
         $('#pt-window').dialog(window_options).load(base_url + 'assessment/personality-type/results/{{ latest_ptr.id }}/');
+      } else if($(this).attr('ref') == 'survey-window') {
+        $('#survey-window').dialog(window_options).load(base_url + 'survey/results/' + $(this).data('result-id') + '/');
       }
     });
 
