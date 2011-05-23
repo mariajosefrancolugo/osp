@@ -56,11 +56,18 @@ var student = "{{ student.id }}";
 </div>
 <div id="survey-results">
   <h2 class="float-left">Survey Results</h2>
-  <!--
-  <div class="large-tile">
+  {% if student.result_set.all %}
+  <div class="large-tile" style="clear: both;">
+    <ul>
+      {% for result in student.result_set.all %}
+      <li>{{ result.date_taken|date:"F j, Y" }} <a href="javascript:;" class="modal" ref="survey-window" data-result-id="{{ result.id }}">view details</a></li>
+      {% endfor %}
+    </ul>
   </div>
-  -->
+  {% else %}
   <p style="clear: both;"><em>Student has not completed any surveys</em></p>
+  {% endif %}
+  <div id="survey-window"></div>
 </div>
 <h2 class="float-left" style="clear: both;">
   Personality Type

@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.views.generic.simple import direct_to_template
-from django.core.paginator import Paginator
 
 from osp.assessments.lib import jungian
 from osp.core.middleware.http import Http403
@@ -14,7 +15,7 @@ def profile(request, user_id):
     if not request.user.groups.filter(name__in=['Students', 'Employees']):
         raise Http403
 
-    student = User.objects.get(pk=user_id)
+    student = get_object_or_404(User, pk=user_id, groups__name='Students')
 
     # Make sure the logged-in user should have access to this profile
     if (not request.user.groups.filter(name='Employees') and
@@ -26,14 +27,8 @@ def profile(request, user_id):
         section__year__exact=settings.CURRENT_YEAR
     )
 
-    try:
-        latest_ptr = student.personalitytyperesult_set.latest('date_taken')
-    except:
-        latest_ptr = None
-    try:
-        latest_lsr = student.learningstyleresult_set.latest('date_taken')
-    except:
-        latest_lsr = None
+    latest_ptr = student.profile.get_latest_pta_results()
+    latest_lsr = student.profile.get_latest_lsa_results()
 
     if latest_ptr:
         pt_analysis = jungian.TypeAnalysis(
