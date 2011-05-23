@@ -87,7 +87,8 @@ def load_users(raw_post_data, groups):
         profile = UserProfile.objects.get_or_create(user=user)[0]
         profile.has_account = has_account
         profile.id_number = u['id_number']
-        # user.profile.gpa = u['gpa']
+        profile.phone_number = u['phone_number']
+        # profile.gpa = u['gpa']
 
         user.save()
         profile.save()
