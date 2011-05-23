@@ -5,6 +5,7 @@
         "first_name": "Jonathan",
         "last_name": "Mooring",
         "email": "jmoorin1@email.cpcc.edu",
+        "phone_number": "704-555-5555",
         "is_active": true
     },
     {
@@ -13,6 +14,7 @@
         "first_name": "Scott",
         "last_name": "Sheffield",
         "email": "sbs2b769@email.cpcc.edu",
+        "phone_number": "704-555-5555",
         "is_active": true
     },
     {
@@ -21,6 +23,7 @@
         "first_name": "Christopher",
         "last_name": "Emery",
         "email": "cme55a4d@email.cpcc.edu",
+        "phone_number": "704-555-5555",
         "is_active": true
     },
     {
@@ -29,6 +32,7 @@
         "first_name": "Kenneth",
         "last_name": "Ingle",
         "email": "kingle00@email.cpcc.edu",
+        "phone_number": "704-555-5555",
         "is_active": true
     },
     {
@@ -37,6 +41,7 @@
         "first_name": "Lucia",
         "last_name": "Siochi",
         "email": "lis636de@email.cpcc.edu",
+        "phone_number": "704-555-5555",
         "is_active": true
     },
     {
@@ -45,6 +50,7 @@
         "first_name": "Stephen",
         "last_name": "Swanson",
         "email": "",
+        "phone_number": "704-555-5555",
         "is_active": true
     }
 ]

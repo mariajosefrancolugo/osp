@@ -7,6 +7,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     has_account = models.BooleanField()
     id_number = models.CharField(max_length=255, blank=True)
+    phone_number = models.CharField(max_length=255, blank=True)
     gpa = models.FloatField(blank=True, null=True)
 
     def get_profile_url(self):
