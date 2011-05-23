@@ -7,7 +7,7 @@
   {% for field in form %}
   <div class="field">
     {{ field.errors }}
-    {{ field.label }}
+    <strong>{{ field.label }}</strong>
     <br />{{ field }}
   </div>
   {% endfor %}
