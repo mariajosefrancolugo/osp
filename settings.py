@@ -156,6 +156,10 @@ CURRENT_YEAR = 2011
 PREVIOUS_TERM = 'FA'
 PREVIOUS_YEAR = 2010
 
+# Mail server settings
+EMAIL_HOST = ''
+EMAIL_PORT = 25
+
 # Customize enrollment statuses here. Be sure to leave the "Active"
 # status, as certain application functions depend on it.
 ENROLLMENT_STATUS_CHOICES = (

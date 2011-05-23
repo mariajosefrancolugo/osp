@@ -15,21 +15,23 @@ class SurveyForm(forms.Form):
         data = json.loads(data)
         f.close()
 
-        i = 0
+        i = 1
         for question in data:
+            label = question['question']
+            if question.has_key('answers'):
+                choices = [(x, x) for x in question['answers']]
+
             if question['type'] == 'text':
-                field = forms.CharField(label=question['question'],
-                    required=False)
+                field = forms.CharField(label=label, required=False)
             elif question['type'] == 'select':
-                field = forms.ChoiceField(label=question['question'],
-                    choices=question['answers'], required=False)
-            elif question['type'] == 'radio':
-                field = forms.ChoiceField(label=question['question'],
-                    choices=question['answers'], widget=forms.RadioSelect,
+                choices.insert(0, ('', ''))
+                field = forms.ChoiceField(label=label, choices=choices,
                     required=False)
+            elif question['type'] == 'radio':
+                field = forms.ChoiceField(label=label, choices=choices,
+                    widget=forms.RadioSelect, required=False)
             elif question['type'] == 'checkbox':
-                field = forms.MultipleChoiceField(label=question['question'],
-                    choices=question['answers'],
+                field = forms.MultipleChoiceField(label=label, choices=choices,
                     widget=forms.CheckboxSelectMultiple, required=False)
 
             self.fields['question_%d' % i] = field
