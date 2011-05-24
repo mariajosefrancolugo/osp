@@ -6,8 +6,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.simple import direct_to_template
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
-from cpsite import ods # Candidate for Removal
-from cpsite.decorators import groups_required
 from django.contrib.auth.models import User, Group
 from osp.visits.models import Visit
 from osp.visits.forms import VisitForm

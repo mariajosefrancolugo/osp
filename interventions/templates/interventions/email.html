@@ -1,0 +1,8 @@
+{% load lastfirst %}Intervention is needed for the following students:
+{% for student in students %}
+{{ student.get_full_name|last_first|ljust:"36" }}{{ student.email|default:"No email address"|ljust:"27" }}{{ student.profile.phone_number|default:"No phone number" }}{% endfor %}
+Comments:
+
+
+Thank you,
+{{ staff.get_full_name }}
