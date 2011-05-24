@@ -5,7 +5,7 @@ from datetime import datetime
 
 class Visit(models.Model):
     student = models.ForeignKey(User, related_name='visit_students')
-    campus = models.CharField(max_length=2, choices=settings.VISIT_CAMPUS_CHOICES, help_text="")
+    campus = models.CharField(max_length=2, choices=settings.CAMPUS_CHOICES, help_text="")
     contact_type = models.CharField(max_length=2, choices=settings.VISIT_CONTACT_TYPE_CHOICES, help_text="")
     reason = models.CharField(max_length=4, choices=settings.VISIT_REASON_CHOICES, help_text="")
     department = models.CharField(max_length=2, choices=settings.VISIT_DEPARTMENT_CHOICES, help_text="")

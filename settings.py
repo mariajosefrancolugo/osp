@@ -11,6 +11,7 @@ TEMPLATE_DEBUG = DEBUG
 # Administrators who should receive Python tracebacks for errors
 ADMINS = (
     ('Jon Mooring', 'jon.mooring@cpcc.edu'),
+    ('Scott Sheffield', 'scott.sheffield@cpcc.edu'),
 )
 
 MANAGERS = ADMINS
@@ -143,6 +144,7 @@ INSTALLED_APPS = (
     'osp.rosters',
     'osp.surveys',
     'osp.visits',
+    'osp.interventions',
 )
 
 # API credentials. This should be a randomly generated username and password.
@@ -156,9 +158,12 @@ CURRENT_YEAR = 2011
 PREVIOUS_TERM = 'FA'
 PREVIOUS_YEAR = 2010
 
-# Mail server settings
-EMAIL_HOST = ''
-EMAIL_PORT = 25
+ALERT_REFERRAL_EMAIL = 'AlertReferral@cpcc.edu'
+
+DEBUG_USERS = (
+    ('Jon Mooring', 'jon.mooring@cpcc.edu'),
+    ('Scott Sheffield', 'scott.sheffield@cpcc.edu'),
+)
 
 # Customize enrollment statuses here. Be sure to leave the "Active"
 # status, as certain application functions depend on it.
@@ -180,7 +185,7 @@ ENROLLMENT_GRADE_CHOICES = (
     ('I', 'I'),
     ('N/A', 'N/A'),
 )
-VISIT_CAMPUS_CHOICES = (
+CAMPUS_CHOICES = (
     ('CE', 'Central'),
     ('LV', 'Levine'),
     ('CA', 'Cato'),

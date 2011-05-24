@@ -4,6 +4,7 @@
 {{ block.super }}
 {% if section.get_active_enrollments %}
 {% include "rosters/roster_scripts.html" %}
+<script type="text/javascript" src="{% url static 'js/intervention.js' %}"></script>
 {% endif %}
 {% endblock %}
 
@@ -21,6 +22,7 @@
 {% endif %}
 <h2 style="clear: both;">Roster</h2>
 {% if section.get_active_enrollments %}
+<form id="roster-form">
 <table>
   <thead>
     <tr>
@@ -41,6 +43,10 @@
     {% endfor %}
   </tbody>
 </table>
+<input type="hidden" name="section_id" value="{{ section.id }}" />
+</form>
+<a id="compose" class="modal float-right" ref="ci-window" style="margin-top: 8px;" href="javascript:;">Compose Intervention</a>
+<div id="ci-window"></div>
 {% else %}
 <p><em>No students enrolled in this class</em></p>
 {% endif %}
