@@ -23,6 +23,7 @@
 <h2 style="clear: both;">Roster</h2>
 {% if section.get_active_enrollments %}
 <form id="roster-form">
+{% csrf_token %}
 <table>
   <thead>
     <tr>
