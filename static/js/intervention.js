@@ -17,7 +17,7 @@ $(function() {
     $('a#compose').button();
     $('a#compose').click(function() {
         var form_data = $('form#roster-form').serializeArray();
-        if (form_data.length > 1) {
+        if (form_data.length > 2) {
             $('#ci-window').dialog(window_options).load(base_url + 'intervention/compose/', form_data, function() {
               $('a#intervention-submit').button();
               $('a#intervention-submit').click(function() {
