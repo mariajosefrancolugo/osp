@@ -25,6 +25,7 @@ def submit_intervention(request):
             intervention = form.save(commit=False)
             intervention.staff = request.user
             intervention.section = get_object_or_404(Section, id=request.POST['section_id'])
+            intervention.message = newline_to_br(intervention.message)
             intervention.save()
             for student_id in request.POST['students'].split(','):
                 intervention.students.add(get_object_or_404(User, id=int(student_id)))
@@ -52,4 +53,11 @@ def compose_intervention(request):
     else:
         return redirect('roster:roster', section_id=section.id)
 
-        
+def newline_to_br(text):
+    return_text = ''
+    for char in text:
+        if char == '\n':
+            return_text = return_text + '<br>'
+        else:
+            return_text = return_text + char
+    return return_text
