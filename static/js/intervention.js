@@ -14,8 +14,8 @@ $(function() {
       resizable: false
     } 
 
-    $('a#compose').button();
-    $('a#compose').click(function() {
+    $('a#compose-intervention').button();
+    $('a#compose-intervention').click(function() {
         var form_data = $('form#roster-form').serializeArray();
         if (form_data.length > 2) {
             $('#ci-window').dialog(window_options).load(base_url + 'intervention/compose/', form_data, function() {
@@ -29,30 +29,30 @@ $(function() {
                       }
                       else if (data == "fail") {
                           var reasons_unchecked = true;
-                          $('input[id^=id_reasons]').each(function(index) {
+                          $('#ci-window input[id^=id_reasons]').each(function(index) {
                               if ($(this).is(":checked")) {
                                   reasons_unchecked = false;
                               }
                           });
                           if (reasons_unchecked) {
                               if (!reason_red) {
-                                  $('legend').append(red_asterisk);
+                                  $('#ci-window legend').append(red_asterisk);
                                   reason_red = true;
                               }
                           }
-                          if ($('select#id_campus option:selected').val() == '') {
+                          if ($('#ci-window select#id_campus option:selected').val() == '') {
                               if (!campus_red) {
-                                  $('label[for=id_campus]').append(red_asterisk);
+                                  $('#ci-window label[for=id_campus]').append(red_asterisk);
                                   campus_red = true;
                               }
                           }
-                          if ($('input#id_subject').val() == '') {
+                          if ($('#ci-window input#id_subject').val() == '') {
                               if (!subject_red) {
-                                  $('label[for=id_subject').append(red_asterisk);
+                                  $('#ci-window label[for=id_subject').append(red_asterisk);
                                   subject_red = true;
                               }
                           }
-                          if ($('textarea#id_message').val() == '') {
+                          if ($('#ci-window textarea#id_message').val() == '') {
                               if (!message_red) {
                                   $('h3').append(red_asterisk);
                                   message_red = true;
@@ -60,7 +60,7 @@ $(function() {
                           }
                           if (reason_red || campus_red || subject_red || message_red) {
                               if (!errored) {
-                                  $('a#intervention-submit').before(error_message);
+                                  $('#ci-window a#intervention-submit').before(error_message);
                                   errored = true;
                               }
                           }

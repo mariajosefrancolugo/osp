@@ -1,0 +1,19 @@
+{% block content %}
+<form id="notification-form" action="{% url roster:submit-notification %}" method="post">
+{% csrf_token %}
+<div class="field" style="font-size: 13px;">
+  <label for="id_subject" style="font-weight: bold; margin: 5px 0;">Subject</label>
+  <br style="clear: both;">
+  <input type="text" maxlength="255" style="width: 100%;" value="{% if form.instance.subject %}{{ form.instance.subject }}{% else %}{{ form.data.subject }}{% endif %}" name="subject" id="id_subject">
+</div>
+<h3>Message</h3>
+<div class="field" style="font-size: 13px;">
+  <textarea id="id_message" name="message" rows="13" style="width: 100%;">{% if form.instance.message %}{{ form.instance.message }}{% else %}{{ form.data.message }}{% endif %}</textarea>
+</div>
+<input type="hidden" name="section_id" value="{{ section.id }}" />
+<input type="hidden" name="students" value="{% for student in students %}{{student.id}}{% if not forloop.last %},{% endif %}{%endfor%}" />
+<input style="display: none;" type="submit" name="submit" value="Submit" />
+<a style="float: right;" id="notification-submit" href="javascript:;">Submit</a>
+</form>
+
+{% endblock %}
