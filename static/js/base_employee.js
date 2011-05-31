@@ -21,5 +21,11 @@ $(function() {
         position: {
             offset: '0 -1'
         }
-    });
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+			return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( "<a>" + item.label + "<br>" + '<em style=\"color: grey;\">' + item.desc  + "</em>" + "</a>" )
+				.appendTo( ul );
+		}
+    
 });

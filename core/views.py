@@ -35,6 +35,7 @@ def search(request):
     for student in students:
         response.append({
             'value': '%s %s' % (student.first_name, student.last_name),
-            'id': student.id
+            'id': student.id,
+            'desc': student.email,
         })
     return HttpResponse(json.dumps(response), mimetype='application/json')
