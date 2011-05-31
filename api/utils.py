@@ -1,29 +1,40 @@
-import base64
-
 from django.conf import settings
 from django.contrib.auth.models import User, Group
 from django.utils import simplejson as json
 
 from osp.core.models import UserProfile
 
-def check_credentials(request_metadata):
-    # Check for existence of credentials in request metadata
-    if request_metadata.has_key('HTTP_AUTHORIZATION'):
-        # Break down and decode provided credentials
-        authorization = request_metadata['HTTP_AUTHORIZATION']
-        authorization = authorization.replace('Basic ', '')
-        credentials = base64.decodestring(authorization).split(':')
-
-        # Check credentials against those stored in the app's settings
-        if (credentials[0] != settings.API_USERNAME or
-            credentials[1] != settings.API_PASSWORD):
-            raise Exception('Invalid credentials')
+def validate_credentials(request,
+                         authorized_hosts,
+                         authorized_key,
+                         provided_key):
+    if not provided_key:
+        raise Exception('Missing authorization key')
+    host_received = ''
+    if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+        host_received = request.META['HTTP_X_FORWARDED_FOR']
+    elif request.META.has_key('REMOTE_ADDR'):
+        host_received = request.META['REMOTE_ADDR']
     else:
-        raise Exception('Missing credentials')
+        raise Exception("Missing IP address")
+    if host_received.strip() in authorized_hosts:
+        if authorized_key != provided_key:
+            print provided_key
+            print authorized_key
+            raise Exception("Invalid authorization key")
+        return_status = True
+    else:
+        raise Exception("Unauthorized IP address")
+    return
 
-def load_users(raw_post_data, groups):
+def load_users(request, user_type, groups):
     # Convert JSON data to Python object
-    data = json.loads(raw_post_data)
+    data = json.loads(request.raw_post_data)
+
+    validate_credentials(request,
+                         settings.API_ALLOWED_HOSTS,
+                         settings.API_KEY,
+                         data[0]['api_key'])
 
     # Store references to user groups
     g = []
@@ -38,7 +49,7 @@ def load_users(raw_post_data, groups):
     users_activated = 0
 
     # Find or create user objects for each user
-    for u in data:
+    for u in data[0][user_type]:
         if u['username']:
             username = u['username']
             has_account = True
@@ -94,5 +105,8 @@ def load_users(raw_post_data, groups):
         profile.save()
 
     # Return statistics on user account creation and modification
-    return (len(data), users_updated, users_created, users_deactivated,
-        users_activated)
+    return (len(data[0][user_type]),
+            users_updated,
+            users_created,
+            users_deactivated,
+            users_activated)
