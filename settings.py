@@ -147,16 +147,15 @@ INSTALLED_APPS = (
     'osp.interventions',
 )
 
-# API credentials. This should be a randomly generated username and password.
-API_USERNAME = '2rUph4cu'
-API_PASSWORD = 'phayekE3'
+# API settings
+# Add IP addresses of servers that will be pushing data to API_ALLOWED_HOSTS
+# Generate a random string for the API_KEY and keep it safe
+API_ALLOWED_HOSTS = []
+API_KEY = ''
 
-# Current/previous year and term
-CURRENT_TERM = 'SP'
+# Current year and term
+CURRENT_TERM = 'su'
 CURRENT_YEAR = 2011
-
-PREVIOUS_TERM = 'FA'
-PREVIOUS_YEAR = 2010
 
 ALERT_REFERRAL_EMAIL = 'AlertReferral@cpcc.edu'
 
