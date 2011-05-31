@@ -1,0 +1,27 @@
+{% extends base_template %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript" src="{% url static 'js/report_form.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+{% block content %}
+<h3>{{ report_type }} Report</h3>
+<p>{{ error }}</p>
+<form id="report-form" action="{% if learning %}{% url report:learning-styles-report %}{% else %}{% url report:personality-type-report %}{% endif %}" method="post">
+{% csrf_token %}
+<div class="field third" style="font-size: 13px; float: left; width: 20%;">
+  <label for="from" style="font-weight: bold; margin: 5px 0;">From</label>
+  <br style="clear: both;">
+  <input type="text" name="from" id="id_from">
+</div>
+<div class="field third" style="font-size: 13px; float: left; width: 20%;">
+  <label for="to" style="font-weight: bold; margin: 5px 0;">To</label>
+  <br style="clear: both;">
+  <input style="width: 200px" type="text" name="to" id="id_to">
+</div>
+<input style="float: left; position: relative; top: 40px;" type="submit" name="submit" value="Submit" />
+</form>
+{% endblock %}
+{% endblock %}

@@ -21,7 +21,8 @@ urlpatterns = patterns('',
     (r'^visit/', include('osp.visits.urls', namespace='visit',
         app_name='visit')),
     (r'^', include('osp.core.urls', namespace='core', app_name='core')),
-
+    (r'^report/', include('osp.reports.urls', namespace='report',
+        app_name='report')),
     (r'^admin/', include(admin.site.urls)),
 )
 
