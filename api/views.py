@@ -166,19 +166,19 @@ def import_enrollments(request):
             year=settings.CURRENT_YEAR
         ).distinct().select_related()
         all_users = UserProfile.objects.filter(
-            user__groups__name='Instructors'
+            user__groups__name='Students'
         ).distinct().select_related()
         all_enrollments = Enrollment.objects.filter(
             section__term=settings.CURRENT_TERM,
-            section__year=settings.CURRENT_YEAR
+            section__year__exact=settings.CURRENT_YEAR
         ).distinct().select_related()
 
         for e in data:
             section_exists = True
             try:
-                section = all_sections.objects.filter(prefix=e['prefix'],
-                                                      number=e['number'],
-                                                      section=e['section'])[0]
+                section = all_sections.filter(prefix=e['prefix'],
+                                              number=e['number'],
+                                              section=e['section'])[0]
             except IndexError:
                 status.append('Section (%s%s-%s) does not exist' % (
                     e['prefix'],
@@ -210,15 +210,15 @@ def import_enrollments(request):
                     enrollments_updated += 1
 
 
-            # Only update metadata for enrollment if changed
-            if (enrollment.status != e['status']
-                or enrollment.grade != 'N/A'):
-                enrollment.status = e['status']
-                enrollment.grade = 'N/A'
+                # Only update metadata for enrollment if changed
+                if (enrollment.status != e['status']
+                    or enrollment.grade != 'N/A'):
+                    enrollment.status = e['status']
+                    enrollment.grade = 'N/A'
 
-                enrollment.save()
-            elif new_enrollment:
-                enrollment.save()
+                    enrollment.save()
+                elif new_enrollment:
+                    enrollment.save()
 
         status.append('Received %d enrollment records' % len(data))
         status.append('Updated %d enrollment objects' % enrollments_updated)
