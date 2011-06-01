@@ -8,8 +8,7 @@ from osp.core.models import UserProfile, Section, Enrollment
 
 @csrf_exempt
 def import_instructors(request):
-    status = ['Starting instructor import...']
-
+    status = []
     if request.method == 'POST':
         # Convert JSON data to Python object
         data = json.loads(request.raw_post_data)
@@ -32,8 +31,7 @@ def import_instructors(request):
 
 @csrf_exempt
 def import_students(request):
-    status = ['Starting student import...']
-
+    status = []
     if request.method == 'POST':
         # Convert JSON data to Python object
         data = json.loads(request.raw_post_data)
@@ -56,8 +54,7 @@ def import_students(request):
 
 @csrf_exempt
 def import_sections(request):
-    status = ['Starting section import...']
-
+    status = []
     if request.method == 'POST':
         # Convert JSON data to Python object
         data = json.loads(request.raw_post_data)
@@ -141,8 +138,7 @@ def import_sections(request):
 
 @csrf_exempt
 def import_enrollments(request):
-    status = ['Starting enrollment import...']
-
+    status = []
     if request.method == 'POST':
         # Convert JSON data to Python object
         data = json.loads(request.raw_post_data)

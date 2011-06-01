@@ -2,27 +2,23 @@ from django.contrib.auth.models import User, Group
 
 from osp.core.models import UserProfile
 
-def validate_credentials(request,
-                         authorized_hosts,
-                         authorized_key,
-                         provided_key):
+def validate_credentials(request, authorized_hosts, valid_key, provided_key):
     if not provided_key:
         raise Exception('Missing authorization key')
-    host_received = ''
+
     if request.META.has_key('HTTP_X_FORWARDED_FOR'):
         host_received = request.META['HTTP_X_FORWARDED_FOR']
     elif request.META.has_key('REMOTE_ADDR'):
         host_received = request.META['REMOTE_ADDR']
     else:
         raise Exception("Missing host IP address")
+
     if host_received.strip() in authorized_hosts:
-        if authorized_key != provided_key:
-            print provided_key
-            print authorized_key
+        if valid_key != provided_key:
             raise Exception("Invalid authorization key")
-        return_status = True
     else:
         raise Exception("Unauthorized host IP address")
+
     return
 
 def load_users(data, groups):
@@ -50,9 +46,9 @@ def load_users(data, groups):
         # temporary username based on their ID number
         else:
             if 'Students' in groups:
-                username = str(u['id_number']) + 's'
+                username = '%ss' % u['id_number']
             elif 'Employees' in groups:
-                username = str(u['id_number']) + 'e'
+                username = '%se' % u['id_number']
             has_account = False
 
         # Get the existing user object or create a new one
@@ -76,11 +72,13 @@ def load_users(data, groups):
         if (user.username != username
             or user.first_name != u['first_name']
             or user.last_name != u['last_name']
-            or user.email != u['email']):
+            or user.email != u['email']
+            or user.is_active != u['is_active']):
             user.username = username
             user.first_name = u['first_name']
             user.last_name = u['last_name']
             user.email = u['email']
+            user.is_active = u['is_active']
 
             user.save()
         elif new_user:
@@ -90,12 +88,6 @@ def load_users(data, groups):
         [user.groups.add(group)
          for group in g
          if group not in user.groups.all()]
-
-        # Adjust user's account status as necessary
-        if user.is_active and not u['is_active']:
-            user.is_active = False
-        elif not user.is_active and u['is_active']:
-            user.is_active = True
 
         # Check if anything changed before updating the profile object
         if (profile.has_account != has_account
