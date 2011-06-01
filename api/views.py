@@ -75,11 +75,10 @@ def import_sections(request):
         # objects from the database
         all_sections = Section.objects.filter(
             term=settings.CURRENT_TERM,
-            year=settings.CURRENT_YEAR
-        ).distinct().select_related()
+            year=settings.CURRENT_YEAR)
         all_users = UserProfile.objects.filter(
             user__groups__name='Instructors'
-        ).distinct().select_related()
+        ).select_related()
 
         for s in data:
             # Get the existing section object or create a new one
@@ -159,15 +158,13 @@ def import_enrollments(request):
         # their associated objects from the database
         all_sections = Section.objects.filter(
             term=settings.CURRENT_TERM,
-            year=settings.CURRENT_YEAR
-        ).distinct().select_related()
+            year=settings.CURRENT_YEAR)
         all_users = UserProfile.objects.filter(
             user__groups__name='Students'
-        ).distinct().select_related()
+        ).select_related()
         all_enrollments = Enrollment.objects.filter(
             section__term=settings.CURRENT_TERM,
-            section__year__exact=settings.CURRENT_YEAR
-        ).distinct().select_related()
+            section__year__exact=settings.CURRENT_YEAR)
 
         for e in data:
             section_exists = True
@@ -179,8 +176,7 @@ def import_enrollments(request):
                 status.append('Section (%s%s-%s) does not exist' % (
                     e['prefix'],
                     e['number'],
-                    e['section'])
-                )
+                    e['section']))
                 section_exists = False
 
             student_exists = True
