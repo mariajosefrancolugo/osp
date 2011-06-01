@@ -147,6 +147,10 @@ INSTALLED_APPS = (
     'osp.interventions',
 )
 
+# Mail server settings
+EMAIL_HOST = '.edu'
+EMAIL_PORT = 25
+
 # API settings
 # Add IP addresses of servers that will be pushing data to API_ALLOWED_HOSTS
 # Generate a random string for the API_KEY and keep it safe
