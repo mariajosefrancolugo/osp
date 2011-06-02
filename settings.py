@@ -171,11 +171,17 @@ DEBUG_USERS = (
 # Customize enrollment statuses here. Be sure to leave the "Active"
 # status, as certain application functions depend on it.
 ENROLLMENT_STATUS_CHOICES = (
-    ('A', 'Active'),
-    ('DFNP', 'Dropped for Non-Payment'),
-    ('DBS', 'Dropped by Student'),
-    ('DBI', 'Dropped by Instructor'),
-    ('C', 'Complete'),
+    ('N', 'New'),
+    ('A', 'Add'),
+    ('D', 'Dropped'),
+    ('W', 'Withdrawn'),
+    ('X', 'Deleted'),
+    ('C', 'Cancelled'),
+    ('PR', 'Preliminary Equiv. Eval.'),
+    ('TR', 'Transfer Equiv. Eval.'),
+    ('NC', 'Noncourse Equivalency'),
+    ('NP', 'Non-payment'),
+    ('XT', 'External Transfer Equiv.'),
 )
 
 ENROLLMENT_GRADE_CHOICES = (
