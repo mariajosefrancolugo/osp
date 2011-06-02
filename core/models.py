@@ -42,7 +42,7 @@ class Section(models.Model):
         return '%s%s-%s' % (self.prefix, self.number, self.section)
 
     def get_active_enrollments(self):
-        return self.enrollment_set.filter(status='A')
+        return self.enrollment_set.filter(status__in=['N', 'A'])
 
 
 class Enrollment(models.Model):
