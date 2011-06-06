@@ -14,8 +14,10 @@ $(function() {
         $(this).children('ul').hide();
     });
 
+    // Style form buttons
     $('input[type=button], input[type=submit], input[type=reset]').button();
 
+    // Style error messages
     $('.error').each(function() {
         $(this).addClass('ui-state-error ui-corner-all');
         $(this).append('<span class="ui-icon ui-icon-alert"></span>');
