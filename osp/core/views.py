@@ -12,7 +12,7 @@ def index(request):
     if request.user.groups.filter(name='Employees'):
         return direct_to_template(request, 'core/index_employee.html', {})
     elif request.user.groups.filter(name='Students'):
-        return direct_to_template(request, 'core/index_student.html', {})
+        return redirect('profile:profile', user_id=request.user.id)
     else:
         raise Http403
 

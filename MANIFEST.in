@@ -6,6 +6,7 @@ include MANIFEST.in
 recursive-include docs *
 recursive-include scripts *
 recursive-include tests *
+recursive-include osp/static *
 recursive-include osp/templates *
 recursive-include osp/assessments/data *
 recursive-include osp/assessments/templates *
