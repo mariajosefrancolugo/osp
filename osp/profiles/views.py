@@ -40,6 +40,10 @@ def profile(request, user_id):
         pt_scores = None
 
     visits = Visit.objects.filter(student=student)
+    if not request.user.groups.filter(name='Counselors') or not request.user.groups.filter(name='Instructors'):
+        not_student = False
+    else:
+        not_student = True
     if not request.user.groups.filter(name='Counselors'):
         visits = visits.filter(private=False)
     if visits:
@@ -53,6 +57,7 @@ def profile(request, user_id):
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,
+        'not_student': not_student,
         'current_enrollments': current_enrollments,
         'latest_ptr': latest_ptr,
         'pt_scores': pt_scores,

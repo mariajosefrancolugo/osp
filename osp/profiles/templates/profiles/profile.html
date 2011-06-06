@@ -98,6 +98,7 @@ var student = "{{ student.id }}";
 <p style="clear: both;"><em>Student has not completed the personality type assessment</em></p>
 {% endif %}
 <div style="clear: both;"></div>
+{% if not_student %}
 <h2 class="float-left" style="clear: both;">
   Visits
 </h2>
@@ -112,5 +113,6 @@ var student = "{{ student.id }}";
 </p>
 {% endif %}
 </div>
+{% endif %}
 <div id="pt-window"></div>
 {% endblock %}
