@@ -59,12 +59,12 @@ label
     color: #ff0000;
 }
 
-.error
+.error, .notification
 {
     padding: 10px 15px;
     font-size: 13px;
 }
-.error .ui-icon
+.error .ui-icon, .notification .ui-icon
 {
     float: left;
     margin-right: 10px;
