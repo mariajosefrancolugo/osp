@@ -1,0 +1,10 @@
+Installing OSP can be as simple as running the following command from a
+terminal session in the root directory of the application:
+
+    sudo python setup.py install
+
+However, we recommend that you install OSP within a Python virtualenv
+in order to keep your environment entirely self-contained. More
+information on how to do this can be found in
+docs/installing_and_configuring_virtualenv.rst or in the Google Code
+wiki documentation.
