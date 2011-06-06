@@ -15,4 +15,9 @@ $(function() {
     });
 
     $('input[type=button], input[type=submit], input[type=reset]').button();
+
+    $('.error').each(function() {
+        $(this).addClass('ui-state-error ui-corner-all');
+        $(this).append('<span class="ui-icon ui-icon-alert"></span>');
+    });
 });
