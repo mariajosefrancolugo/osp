@@ -15,5 +15,4 @@ $(function() {
     });
 
     $('input[type=button], input[type=submit], input[type=reset]').button();
-    $('select').selectmenu({style: 'dropdown', menuWidth: 'auto'});
 });
