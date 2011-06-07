@@ -74,12 +74,13 @@ def personality_type_report(request):
         from_date = request.POST.get('from')
         to_date = request.POST.get('to')
         
+        results = False
         if re.match('\d{2}/\d{2}/\d{4}', from_date) and re.match('\d{2}/\d{2}/\d{4}', to_date):
             from_date = from_date.split('/')
             from_date = datetime(int(from_date[2]), int(from_date[0]), int(from_date[1]))
             to_date = to_date.split('/')
             to_date = datetime(int(to_date[2]), int(to_date[0]), int(to_date[1]))
-        results = PersonalityTypeResult.objects.filter(date_taken__range=(datetime.combine(from_date, time.min), datetime.combine(to_date, time.max)))
+            results = PersonalityTypeResult.objects.filter(date_taken__range=(datetime.combine(from_date, time.min), datetime.combine(to_date, time.max)))
         if results:
             filename = ('personality_type-%s-%s.xls' % (from_date.strftime('%Y%m%d'), to_date.strftime('%Y%m%d')))
             wb = xlwt.Workbook()
