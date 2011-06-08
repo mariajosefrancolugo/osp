@@ -101,6 +101,4 @@ def load_users(data, groups):
             profile.save()
 
     # Return statistics on user account creation and modification
-    return (len(data),
-            users_updated,
-            users_created)
+    return (len(data), users_updated, users_created)

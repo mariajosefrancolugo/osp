@@ -30,11 +30,11 @@ def profile(request, user_id):
     latest_lsr = student.profile.get_latest_lsa_results()
 
     if latest_ptr:
-        pt_analysis = jungian.TypeAnalysis(
-            json.loads(latest_ptr.answers), 4, 100)
-        pt_scores = []
-        for score in pt_analysis.computedScores:
-            pt_scores.append((score[0], score[1], (1 - score[1])))
+        pt_analysis = jungian.TypeAnalysis(args=json.loads(latest_ptr.answers),
+                                           likert=4,
+                                           scale=100)
+        pt_scores = [(s[0], s[1], (1 - s[1]))
+                     for s in pt_analysis.graphScores]
     else:
         pt_scores = None
 
