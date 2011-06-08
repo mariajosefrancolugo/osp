@@ -46,18 +46,21 @@ var student = "{{ student.id }}";
   <a href="javascript:;" class="modal float-right" ref="ls-window">view learning style details</a>
   {% endif %}
   {% if latest_lsr %}
-  <div class="large-tile" style="clear: both;">
+  <div class="clear"></div>
+  <div class="large-tile">
     <div id="learning-style-chart"></div>
   </div>
   {% else %}
-  <p style="clear: both;"><em>Student has not completed the learning style assessment</em></p>
+  <div class="clear"></div>
+  <p><em>Student has not completed the learning style assessment</em></p>
   {% endif %}
   <div id="ls-window"></div>
 </div>
 <div id="survey-results">
   <h2 class="float-left">Survey Results</h2>
   {% if student.result_set.all %}
-  <div class="large-tile" style="clear: both;">
+  <div class="clear"></div>
+  <div class="large-tile">
     <ul>
       {% for result in student.result_set.all %}
       <li>{{ result.date_taken|date:"F j, Y" }} <a href="javascript:;" class="modal" ref="survey-window" data-result-id="{{ result.id }}">view details</a></li>
@@ -65,18 +68,21 @@ var student = "{{ student.id }}";
     </ul>
   </div>
   {% else %}
-  <p style="clear: both;"><em>Student has not completed any surveys</em></p>
+  <div class="clear"></div>
+  <p><em>Student has not completed any surveys</em></p>
   {% endif %}
   <div id="survey-window"></div>
 </div>
-<h2 class="float-left" style="clear: both;">
+<div class="clear"></div>
+<h2 class="float-left">
   Personality Type
 </h2>
 {% if latest_ptr %}
 <a href="javascript:;" class="modal float-right" ref="pt-window">view personality type details</a>
 {% endif %}
 {% if latest_ptr %}
-<ul id="personality-type" style="clear: both;">
+<div class="clear"></div>
+<ul id="personality-type">
   <li>
     <h4>{{ latest_ptr.personality_type.0 }}</h4>
     <div id="personality-type-chart-1" class="chart"></div>
@@ -95,20 +101,22 @@ var student = "{{ student.id }}";
   </li>
 </ul>
 {% else %}
-<p style="clear: both;"><em>Student has not completed the personality type assessment</em></p>
+<div class="clear"></div>
+<p><em>Student has not completed the personality type assessment</em></p>
 {% endif %}
-<div style="clear: both;"></div>
 {% if not_student %}
-<h2 class="float-left" style="clear: both;">
+<div class="clear"></div>
+<h2 class="float-left">
   Visits
 </h2>
 <a class="float-right" href="{% url visit:submit-visit student.id %}">submit new visit</a>
-<div style="clear: both;"></div>
+<div class="clear"></div>
 <div id="visits" style="min-height: 225px;">
 {% if visits %}
 {% include "visits/visits.html" %}
 {% else %}
-<p style="clear: both;">
+<div class="clear"></div>
+<p>
   <em>Student has not had any visits</em>
 </p>
 {% endif %}
