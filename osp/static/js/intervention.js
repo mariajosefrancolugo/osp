@@ -14,45 +14,44 @@ $(function() {
       resizable: false
     } 
 
-    $('a#compose-intervention').button();
-    $('a#compose-intervention').click(function() {
+    $('#id_intervene').click(function() {
         var form_data = $('form#roster-form').serializeArray();
         if (form_data.length > 2) {
-            $('#ci-window').dialog(window_options).load(base_url + 'intervention/compose/', form_data, function() {
+            $('#intervention-window').dialog(window_options).load(base_url + 'intervention/compose/', form_data, function() {
               $('a#intervention-submit').button();
               $('a#intervention-submit').click(function() {
                   var form_data_2 = $('form#intervention-form').serializeArray();
                   $.post(base_url + 'intervention/submit/', form_data_2, function(data) {
                       if (data == "success") {
-                          $('#ci-window').dialog("close");
-                          $('#ci-window').html('');
+                          $('#intervention-window').dialog("close");
+                          $('#intervention-window').html('');
                       }
                       else if (data == "fail") {
                           var reasons_unchecked = true;
-                          $('#ci-window input[id^=id_reasons]').each(function(index) {
+                          $('#intervention-window input[id^=id_reasons]').each(function(index) {
                               if ($(this).is(":checked")) {
                                   reasons_unchecked = false;
                               }
                           });
                           if (reasons_unchecked) {
                               if (!reason_red) {
-                                  $('#ci-window legend').append(red_asterisk);
+                                  $('#intervention-window legend').append(red_asterisk);
                                   reason_red = true;
                               }
                           }
-                          if ($('#ci-window select#id_campus option:selected').val() == '') {
+                          if ($('#intervention-window select#id_campus option:selected').val() == '') {
                               if (!campus_red) {
-                                  $('#ci-window label[for=id_campus]').append(red_asterisk);
+                                  $('#intervention-window label[for=id_campus]').append(red_asterisk);
                                   campus_red = true;
                               }
                           }
-                          if ($('#ci-window input#id_subject').val() == '') {
+                          if ($('#intervention-window input#id_subject').val() == '') {
                               if (!subject_red) {
-                                  $('#ci-window label[for=id_subject').append(red_asterisk);
+                                  $('#intervention-window label[for=id_subject').append(red_asterisk);
                                   subject_red = true;
                               }
                           }
-                          if ($('#ci-window textarea#id_message').val() == '') {
+                          if ($('#intervention-window textarea#id_message').val() == '') {
                               if (!message_red) {
                                   $('h3').append(red_asterisk);
                                   message_red = true;
@@ -60,7 +59,7 @@ $(function() {
                           }
                           if (reason_red || campus_red || subject_red || message_red) {
                               if (!errored) {
-                                  $('#ci-window a#intervention-submit').before(error_message);
+                                  $('#intervention-window a#intervention-submit').before(error_message);
                                   errored = true;
                               }
                           }

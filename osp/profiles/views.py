@@ -26,13 +26,14 @@ def profile(request, user_id):
         section__term=settings.CURRENT_TERM,
         section__year__exact=settings.CURRENT_YEAR)
 
-    latest_ptr = student.profile.get_latest_pta_results()
-    latest_lsr = student.profile.get_latest_lsa_results()
+    latest_pta_result = student.profile.get_latest_pta_results()
+    latest_lsa_result = student.profile.get_latest_lsa_results()
 
-    if latest_ptr:
-        pt_analysis = jungian.TypeAnalysis(args=json.loads(latest_ptr.answers),
-                                           likert=4,
-                                           scale=100)
+    if latest_pta_result:
+        pt_analysis = jungian.TypeAnalysis(
+            args=json.loads(latest_pta_result.answers),
+            likert=4,
+            scale=100)
         pt_scores = [(s[0], s[1], (1 - s[1]))
                      for s in pt_analysis.graphScores]
     else:
@@ -59,9 +60,9 @@ def profile(request, user_id):
         'student': student,
         'can_view_visits': can_view_visits,
         'current_enrollments': current_enrollments,
-        'latest_ptr': latest_ptr,
+        'latest_pta_result': latest_pta_result,
         'pt_scores': pt_scores,
-        'latest_lsr': latest_lsr,
+        'latest_lsa_result': latest_lsa_result,
         'visits': visits,
         'paginator': paginator,
         'page': page,

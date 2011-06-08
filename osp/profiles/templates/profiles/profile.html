@@ -2,13 +2,24 @@
 
 {% block scripts %}
 {{ block.super }}
-<script type="text/javascript" src="{% url static "js/visits.js" %}"></script>
-{% if latest_ptr or latest_lsr %}
-{% include "profiles/profile_scripts.html" %}
-{% endif %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 var student = "{{ student.id }}";
+var latest_lsa_result = {
+  'id': '{{ latest_lsa_result.id }}',
+  'auditory_score': {{ latest_lsa_result.auditory_score }},
+  'kinesthetic_score': {{ latest_lsa_result.kinesthetic_score }},
+  'visual_score': {{ latest_lsa_result.visual_score }}
+}
+var latest_pta_result_id = '{{ latest_pta_result.id }}'
+var pt_scores = [
+  ['{{ pt_scores.0.0 }}', {{ pt_scores.0.1 }}, {{ pt_scores.0.2 }}],
+  ['{{ pt_scores.1.0 }}', {{ pt_scores.1.1 }}, {{ pt_scores.1.2 }}],
+  ['{{ pt_scores.2.0 }}', {{ pt_scores.2.1 }}, {{ pt_scores.2.2 }}],
+  ['{{ pt_scores.3.0 }}', {{ pt_scores.3.1 }}, {{ pt_scores.3.2 }}]
+]
 </script>
+<script type="text/javascript" src="{% url static "js/profile.js" %}"></script>
 {% endblock %}
 
 {% block body %}
