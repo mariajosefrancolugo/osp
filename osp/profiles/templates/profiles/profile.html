@@ -2,7 +2,6 @@
 
 {% block scripts %}
 {{ block.super }}
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 var student = "{{ student.id }}";
 var latest_lsa_result = {
@@ -19,6 +18,9 @@ var pt_scores = [
   ['{{ pt_scores.3.0 }}', {{ pt_scores.3.1 }}, {{ pt_scores.3.2 }}]
 ]
 </script>
+{% if latest_pta_result or latest_lsa_result %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endif %}
 <script type="text/javascript" src="{% url static "js/profile.js" %}"></script>
 {% endblock %}
 
