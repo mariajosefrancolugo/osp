@@ -60,6 +60,19 @@ label
     font-weight: bold;
 }
 
+.clear
+{
+    clear: both;
+}
+.clear-left
+{
+    clear: left;
+}
+.clear-right
+{
+    clear: right;
+}
+
 .errorlist
 {
     color: #ff0000;
@@ -304,6 +317,10 @@ div.field
 {
     margin-right: 42px;
 }
+#survey-results ul
+{
+    margin: 10px 0;
+}
 
 .large-tile
 {
@@ -379,12 +396,14 @@ div.survey-answer
 {
     padding: 5px 15px;
 }
-
 div.survey-answer.even
 {
     background: #f1f1f1;
 }
-
+div.survey-answer p
+{
+    margin: 5px 0;
+}
 div.survey-answer p.question
 {
     font-weight: bold;
