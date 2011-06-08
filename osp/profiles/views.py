@@ -18,14 +18,13 @@ def profile(request, user_id):
     student = get_object_or_404(User, pk=user_id, groups__name='Students')
 
     # Make sure the logged-in user should have access to this profile
-    if (not request.user.groups.filter(name='Employees') and
-        student != request.user):
+    if (not request.user.groups.filter(name='Employees')
+        and student != request.user):
         raise Http403
 
     current_enrollments = student.enrollment_set.filter(
         section__term=settings.CURRENT_TERM,
-        section__year__exact=settings.CURRENT_YEAR
-    )
+        section__year__exact=settings.CURRENT_YEAR)
 
     latest_ptr = student.profile.get_latest_pta_results()
     latest_lsr = student.profile.get_latest_lsa_results()
@@ -40,10 +39,11 @@ def profile(request, user_id):
         pt_scores = None
 
     visits = Visit.objects.filter(student=student)
-    if not request.user.groups.filter(name='Counselors') or not request.user.groups.filter(name='Instructors'):
-        not_student = False
+    if (not request.user.groups.filter(name='Counselors')
+        or not request.user.groups.filter(name='Instructors')):
+        can_view_visits = False
     else:
-        not_student = True
+        can_view_visits = True
     if not request.user.groups.filter(name='Counselors'):
         visits = visits.filter(private=False)
     if visits:
@@ -57,7 +57,7 @@ def profile(request, user_id):
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,
-        'not_student': not_student,
+        'can_view_visits': can_view_visits,
         'current_enrollments': current_enrollments,
         'latest_ptr': latest_ptr,
         'pt_scores': pt_scores,
