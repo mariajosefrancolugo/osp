@@ -12,35 +12,34 @@ $(function() {
       resizable: false
     } 
 
-    $('a#compose-notification').button();
-    $('a#compose-notification').click(function() {
+    $('#id_contact').click(function() {
         var form_data = $('form#roster-form').serializeArray();
         if (form_data.length > 2) {
-            $('#cn-window').dialog(window_options).load(base_url + 'roster/compose/', form_data, function() {
+            $('#contact-window').dialog(window_options).load(base_url + 'roster/compose/', form_data, function() {
               $('a#notification-submit').button();
               $('a#notification-submit').click(function() {
                   var form_data_2 = $('form#notification-form').serializeArray();
                   $.post(base_url + 'roster/submit/', form_data_2, function(data) {
                       if (data == "success") {
-                          $('#cn-window').dialog("close");
-                          $('#cn-window').html('');
+                          $('#contact-window').dialog("close");
+                          $('#contact-window').html('');
                       }
                       else if (data == "fail") {
-                          if ($('#cn-window input#id_subject').val() == '') {
+                          if ($('#contact-window input#id_subject').val() == '') {
                               if (!subject_red) {
-                                  $('#cn-window label[for=id_subject').append(red_asterisk);
+                                  $('#contact-window label[for=id_subject').append(red_asterisk);
                                   subject_red = true;
                               }
                           }
-                          if ($('#cn-window textarea#id_message').val() == '') {
+                          if ($('#contact-window textarea#id_message').val() == '') {
                               if (!message_red) {
-                                  $('#cn-window h3').append(red_asterisk);
+                                  $('#contact-window h3').append(red_asterisk);
                                   message_red = true;
                               }
                           }
                           if (reason_red || campus_red || subject_red || message_red) {
                               if (!errored) {
-                                  $('#cn-window a#notification-submit').before(error_message);
+                                  $('#contact-window a#notification-submit').before(error_message);
                                   errored = true;
                               }
                           }
