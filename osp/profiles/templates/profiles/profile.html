@@ -104,7 +104,7 @@ var student = "{{ student.id }}";
 </h2>
 <a class="float-right" href="{% url visit:submit-visit student.id %}">submit new visit</a>
 <div style="clear: both;"></div>
-<div id="visits" style="height: 222px;">
+<div id="visits" style="min-height: 225px;">
 {% if visits %}
 {% include "visits/visits.html" %}
 {% else %}
