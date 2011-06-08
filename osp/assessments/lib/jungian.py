@@ -101,14 +101,16 @@ class TypeAnalysis(object):
          )
       self.computedScores = map(algo, self.computedScores)
 
-      # We want our computed scores to look like percentages instead of
+      # We want our graph scores to look like percentages instead of
       # "how far over 50% in one direction are you?"
-      new_computed_scores = []
+      self.graphScores = [(s[0],
+                           (s[1] + float(self.scale)) / (float(self.scale) * 2))
+                          for s in self.computedScores]
       # for score in seven_years_ago:
-      for score in self.computedScores:
-          new_score = (score[1] + float(self.scale)) / (float(self.scale) * 2)
-          new_computed_scores.append((score[0], new_score))
-      self.computedScores = new_computed_scores
+      # for score in self.computedScores:
+      #     new_score = (score[1] + float(self.scale)) / (float(self.scale) * 2)
+      #     graph_scores.append((score[0], new_score))
+      # self.graphScores = graph_scores
 
    def type(self):
       return "".join([t for (t, s) in self.computedScores])
