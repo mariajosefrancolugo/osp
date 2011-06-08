@@ -23,12 +23,11 @@ def search(request):
     # Ridiculously long query because we have to concatenate the first and
     # last name fields in order to filter on full name
     students = User.objects.filter(groups__name='Students').extra(
-        where=[
-            "(`auth_user`.`first_name` LIKE %s  OR `auth_user`.`last_name` "
-            "LIKE %s OR concat(`auth_user`.`first_name`, ' ', "
-            "`auth_user`.`last_name`) LIKE %s)"
-        ],
-        params=['%s%%' % query] * 3
+        where=["""(`auth_user`.`first_name` LIKE %s
+                   OR `auth_user`.`last_name` LIKE %s
+                   OR concat(`auth_user`.`first_name`, ' ', `auth_user`.`last_name`) LIKE %s
+                   OR `auth_user`.`email` LIKE %s)"""],
+        params=['%s%%' % query] * 4
     ).distinct()
 
     response = []
