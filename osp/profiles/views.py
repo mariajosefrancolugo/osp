@@ -23,6 +23,7 @@ def profile(request, user_id):
         raise Http403
 
     current_enrollments = student.enrollment_set.filter(
+        status__in=settings.ACTIVE_ENROLLMENT_STATUSES,
         section__term=settings.CURRENT_TERM,
         section__year__exact=settings.CURRENT_YEAR)
 

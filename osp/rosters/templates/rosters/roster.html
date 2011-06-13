@@ -3,7 +3,17 @@
 {% block scripts %}
 {{ block.super }}
 {% if section.get_active_enrollments %}
-{% include "rosters/roster_scripts.html" %}
+<script type="text/javascript">
+  var ls_count = {
+    'auditory': {{ ls_count.auditory }},
+    'kinesthetic': {{ ls_count.kinesthetic }},
+    'visual': {{ ls_count.visual }}
+  }
+</script>
+{% if ls_count.auditory > 0 or ls_count.kinesthetic > 0 or ls_count.visual > 0 %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endif %}
+<script type="text/javascript" src="{% url static 'js/roster.js' %}"></script>
 <script type="text/javascript" src="{% url static 'js/intervention.js' %}"></script>
 <script type="text/javascript" src="{% url static 'js/notification.js' %}"></script>
 {% endif %}
