@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-
 PERSONALITY_TYPE_CHOICES = (
     ('ENFP', 'Extraverted Intuitive Feeling Perceiving'),
     ('INFP', 'Introverted Intuitive Feeling Perceiving'),

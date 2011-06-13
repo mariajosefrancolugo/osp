@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
-from datetime import datetime
 
 class Visit(models.Model):
     student = models.ForeignKey(User, related_name='visits')
@@ -20,10 +19,3 @@ class Visit(models.Model):
     note = models.TextField()
     private = models.BooleanField()
     date_submitted = models.DateTimeField(auto_now_add=True)
-
-    def save(self):
-        if not self.id:
-            self.date_submitted = datetime.today()
-        super(Visit, self).save()
-
-
