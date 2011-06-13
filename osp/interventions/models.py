@@ -5,15 +5,9 @@ from datetime import datetime
 from osp.core.models import Section
 from osp.interventions.notifications import email_user
 
-class Reason(models.Model):
-    text = models.CharField(max_length=255, blank=False)
-
-    def __unicode__(self):
-        return self.text
-
 class Intervention(models.Model):
     students = models.ManyToManyField(User)
-    reasons = models.ManyToManyField(Reason)
+    reasons = models.CharField(max_length=255)
     date_submitted = models.DateTimeField(editable=False)
     campus = models.CharField(max_length=2, choices=settings.CAMPUS_CHOICES)
     staff = models.ForeignKey(User, related_name='intervention_staff')

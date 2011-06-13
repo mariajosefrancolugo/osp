@@ -1,44 +1,25 @@
 {% block content %}
 <form id="intervention-form" action="{% url intervention:submit-intervention %}" method="post">
 {% csrf_token %}
-<fieldset class="reasons">
-      <legend>Reason for Referal</legend>
-      <div style="width:45%; float:left;">
-        <label for="id_reasons_0"><input type="checkbox" id="id_reasons_0" value="1" name="reasons"> Excessive Tardiness/Absenteeism</label>
-        <br style="clear: both;">
-        <label for="id_reasons_1"><input type="checkbox" id="id_reasons_1" value="2" name="reasons"> Failing Test/Quiz Scores</label>
-        <br style="clear: both;">
-        <label for="id_reasons_2"><input type="checkbox" id="id_reasons_2" value="3" name="reasons"> Missing Assignments</label>
-        <br style="clear: both;">
-      </div>
-      <div style="width:48%; float:left;">
-        <label for="id_reasons_3"><input type="checkbox" id="id_reasons_3" value="4" name="reasons"> Needs Personal or Social Counseling</label>
-        <br style="clear: both;">
-        <label for="id_reasons_4"><input type="checkbox" id="id_reasons_4" value="5" name="reasons"> Needs Career Exploration</label>
-        <br style="clear: both;">
-        <label for="id_reasons_5"><input type="checkbox" id="id_reasons_5" value="6" name="reasons"> Tutoring - Academic Learning Center</label>
-        <br style="clear: both;">
-      </div>
-      <br style="clear: both;">
-</fieldset>
-<div class="field" style="display: block; float: left; width: 50%; font-size: 13px; margin: 5px 0;">
-  <label for="id_campus" style="font-weight: bold; margin: 5px 0;">Campus</label>
+{{ form.reasons }}
+<div class="campus-field">
+  <label for="id_campus">Campus</label>
   <br />
   {{ form.campus }}
 </div>
 <br style="clear: both;">
-<div class="field" style="font-size: 13px;">
-  <label for="id_subject" style="font-weight: bold; margin: 5px 0;">Subject</label>
+<div class="field">
+  <label for="id_subject">Subject</label>
   <br style="clear: both;">
-  <input type="text" maxlength="255" style="width: 100%;" value="{% if form.instance.subject %}{{ form.instance.subject }}{% else %}{{ form.data.subject }}{% endif %}" name="subject" id="id_subject">
+  <input type="text" maxlength="255" class="full-width" value="{% if form.instance.subject %}{{ form.instance.subject }}{% else %}{{ form.data.subject }}{% endif %}" name="subject" id="id_subject">
 </div>
 <h3>Message</h3>
-<div class="field" style="font-size: 13px;">
-  <textarea id="id_message" name="message" rows="13" style="width: 100%;">{% if form.instance.message %}{{ form.instance.message }}{% else %}{{ form.data.message }}{% endif %}</textarea>
+<div class="field">
+  <textarea id="id_message" name="message" rows="13" class="full-width">{% if form.instance.message %}{{ form.instance.message }}{% else %}{{ form.data.message }}{% endif %}</textarea>
 </div>
 <input type="hidden" name="section_id" value="{{ section.id }}" />
 <input type="hidden" name="students" value="{% for student in students %}{{student.id}}{% if not forloop.last %},{% endif %}{%endfor%}" />
-<input style="display: none;" type="submit" name="submit" value="Submit" />
+<input type="hidden" type="submit" name="submit" value="Submit" />
 <a style="float: right;" id="intervention-submit" href="javascript:;">Submit</a>
 </form>
 
