@@ -5,9 +5,11 @@ from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    has_account = models.BooleanField()
     id_number = models.CharField(max_length=255, blank=True)
     phone_number = models.CharField(max_length=255, blank=True)
+
+    def __unicode__(self):
+        return self.user.username
 
     def get_profile_url(self):
         return reverse('profile:profile', args=[self.user.id])
@@ -51,3 +53,9 @@ class Enrollment(models.Model):
     section = models.ForeignKey(Section)
     status = models.CharField(max_length=255,
         choices=settings.ENROLLMENT_STATUS_CHOICES)
+
+    def __unicode__(self):
+        return '%s | %s | %s %d' % (self.section,
+                                    self.student.username,
+                                    self.section.term,
+                                    self.section.year)

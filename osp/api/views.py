@@ -203,11 +203,8 @@ def import_enrollments(request):
 
 
                 # Only update metadata for enrollment if changed
-                if (enrollment.status != e['status']
-                    or enrollment.grade != 'N/A'):
+                if enrollment.status != e['status']:
                     enrollment.status = e['status']
-                    enrollment.grade = 'N/A'
-
                     enrollment.save()
                 elif new_enrollment:
                     enrollment.save()
