@@ -41,7 +41,6 @@ def load_users(data, groups):
         # Check if the user has a user account
         if u['username']:
             username = u['username']
-            has_account = True
         # If the user does not have a user account, assign them a
         # temporary username based on their ID number
         else:
@@ -49,7 +48,6 @@ def load_users(data, groups):
                 username = '%ss' % u['id_number']
             elif 'Employees' in groups:
                 username = '%se' % u['id_number']
-            has_account = False
 
         # Get the existing user object or create a new one
         new_user = False
@@ -90,13 +88,10 @@ def load_users(data, groups):
          if group not in user.groups.all()]
 
         # Check if anything changed before updating the profile object
-        if (profile.has_account != has_account
-            or profile.id_number != u['id_number']
+        if (profile.id_number != u['id_number']
             or profile.phone_number != u['phone_number']):
-            profile.has_account = has_account
             profile.id_number = u['id_number']
             profile.phone_number = u['phone_number']
-            # profile.gpa = u['gpa']
 
             profile.save()
 
