@@ -437,3 +437,34 @@ dl#visit-details dd
 {
     font-size: 13px;
 }
+div.campus-field 
+{
+    display: block;
+    float: left;
+    width: 50%;
+    font-size: 13px;
+    margin: 5px 0;
+}
+div.campus-field label
+{
+    font-weight: bold;
+    margin: 5px 0;
+}
+div.field
+{
+    font-size: 13px;
+}
+div.field label
+{
+    font-weight: bold;
+    margin: 5px 0;
+}
+.full-width
+{
+    width: 100%;
+}
+.half
+{
+    width:46%; 
+    float:left;
+}

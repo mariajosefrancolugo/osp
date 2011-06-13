@@ -258,3 +258,12 @@ VISIT_CAREER_SERVICES_OUTCOME_CHOICES = (
     ('RP', 'Referred for Program Update'),
     ('PU', 'Program Updated'),
 )
+INTERVENTION_REASONS = (
+    'Excessive Tardiness/Absenteeism',
+    'Failing Test/Quiz Scores',
+    'Missing Assignments',
+    'Needs Personal or Social Counseling',
+    'Needs Career Exploration',
+    'Tutoring - Academic Learning Center',
+)
+INTERVENTION_REASONS = [(r, r) for r in INTERVENTION_REASONS]

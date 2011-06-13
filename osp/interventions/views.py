@@ -26,6 +26,7 @@ def submit_intervention(request):
             intervention.staff = request.user
             intervention.section = get_object_or_404(Section, id=request.POST['section_id'])
             intervention.message = newline_to_br(intervention.message)
+            intervention.reasons = ','.join(form.data.getlist('reasons'))
             intervention.save()
             for student_id in request.POST['students'].split(','):
                 intervention.students.add(get_object_or_404(User, id=int(student_id)))
