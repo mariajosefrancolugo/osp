@@ -159,6 +159,13 @@ EMAIL_PORT = 25
 API_ALLOWED_HOSTS = []
 API_KEY = ''
 
+# Different possible term values
+TERM_CHOICES = [
+    ('fa', 'Fall'),
+    ('sp', 'Spring'),
+    ('su', 'Summer'),
+]
+
 # Current year and term
 CURRENT_TERM = 'su'
 CURRENT_YEAR = 2011
@@ -170,8 +177,6 @@ DEBUG_USERS = (
     ('Scott Sheffield', 'scott.sheffield@cpcc.edu'),
 )
 
-# Customize enrollment statuses here. Be sure to leave the "Active"
-# status, as certain application functions depend on it.
 ENROLLMENT_STATUS_CHOICES = (
     ('N', 'New'),
     ('A', 'Add'),
@@ -185,17 +190,8 @@ ENROLLMENT_STATUS_CHOICES = (
     ('NP', 'Non-payment'),
     ('XT', 'External Transfer Equiv.'),
 )
+ACTIVE_ENROLLMENT_STATUSES = ['N', 'A']
 
-ENROLLMENT_GRADE_CHOICES = (
-    ('A', 'A'),
-    ('B', 'B'),
-    ('C', 'C'),
-    ('D', 'D'),
-    ('F', 'F'),
-    ('W', 'W'),
-    ('I', 'I'),
-    ('N/A', 'N/A'),
-)
 CAMPUS_CHOICES = (
     ('CE', 'Central'),
     ('LV', 'Levine'),

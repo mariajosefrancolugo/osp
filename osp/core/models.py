@@ -8,7 +8,6 @@ class UserProfile(models.Model):
     has_account = models.BooleanField()
     id_number = models.CharField(max_length=255, blank=True)
     phone_number = models.CharField(max_length=255, blank=True)
-    gpa = models.FloatField(blank=True, null=True)
 
     def get_profile_url(self):
         return reverse('profile:profile', args=[self.user.id])
@@ -42,7 +41,9 @@ class Section(models.Model):
         return '%s%s-%s' % (self.prefix, self.number, self.section)
 
     def get_active_enrollments(self):
-        return self.enrollment_set.filter(status__in=['N', 'A'])
+        from django.conf import settings
+        return self.enrollment_set.filter(
+            status__in=settings.ACTIVE_ENROLLMENT_STATUSES)
 
 
 class Enrollment(models.Model):
@@ -50,5 +51,3 @@ class Enrollment(models.Model):
     section = models.ForeignKey(Section)
     status = models.CharField(max_length=255,
         choices=settings.ENROLLMENT_STATUS_CHOICES)
-    grade = models.CharField(max_length=255,
-        choices=settings.ENROLLMENT_GRADE_CHOICES)
