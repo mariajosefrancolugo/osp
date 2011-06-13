@@ -28,16 +28,16 @@ def submit_visit(request, user_id):
         can_privatize = False
 
     if request.method == 'POST':
-        post = request.POST.copy()
-        post['student'] = student.id
-        post['submitter'] = request.user.id
-        form = VisitForm(post)
+        form = VisitForm(request.POST)
         if form.is_valid():
-            visit = form.save()
+            visit = form.save(commit=False)
+            visit.student = student
+            visit.submitter = request.user
+            visit.save()
             return redirect('visit:visit',
                             user_id=student.id,
                             visit_id=visit.id)
-        print form.errors
+
     else:
         form = VisitForm()
 

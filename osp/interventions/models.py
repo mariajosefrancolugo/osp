@@ -27,6 +27,6 @@ class Intervention(models.Model):
         for student in self.students.all():
             if student.email:
                 message = "%s,<br>" % student.get_full_name() + message 
-                email_user(student, subject, message)
+                email_user(settings.OSP_EMAIL, student.email, subject, message)
         # Send email to settings.ALERT_REFERRAL_EMAIL
-        email_user(self.staff, self.subject, self.message)
+        email_user(settings.OSP_EMAIL, settings.ALERT_REFERRAL_EMAIL, self.subject, self.message)
