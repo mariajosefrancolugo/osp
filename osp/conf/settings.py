@@ -171,6 +171,7 @@ CURRENT_TERM = 'su'
 CURRENT_YEAR = 2011
 
 ALERT_REFERRAL_EMAIL = 'AlertReferral@cpcc.edu'
+OSP_EMAIL = 'osp@cpcc.edu'
 
 DEBUG_USERS = (
     ('Jon Mooring', 'jon.mooring@cpcc.edu'),
