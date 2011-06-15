@@ -46,7 +46,7 @@ $(function() {
     });
 });
 
-if (latest_pta_result_id !== '' && latest_lsa_result.id !== '') {
+if (latest_pta_result_id !== '' || latest_lsa_result.id !== '') {
     google.load('visualization', '1', {packages: ['corechart']});
     google.setOnLoadCallback(drawCharts);
 }

@@ -1,4 +1,7 @@
-import simplejson as json
+try:
+    import json
+except ImportError:
+    import simplejson as json
 import urllib2
 
 API_HOST = 'http://localhost:8000'
