@@ -10,7 +10,7 @@ var latest_lsa_result = {
   'kinesthetic_score': parseInt({{ latest_lsa_result.kinesthetic_score }}),
   'visual_score': parseInt({{ latest_lsa_result.visual_score }})
 }
-var latest_pta_result_id = '{{ latest_pta_result.id }}'
+var latest_pta_result_id = '{{ latest_pta_result.id }}';
 var pt_scores = [
   ['{{ pt_scores.0.0 }}', parseFloat({{ pt_scores.0.1 }}), parseFloat({{ pt_scores.0.2 }})],
   ['{{ pt_scores.1.0 }}', parseFloat({{ pt_scores.1.1 }}), parseFloat({{ pt_scores.1.2 }})],
