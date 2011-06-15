@@ -72,7 +72,10 @@ def load_users(data, groups):
             profile = UserProfile.objects.create(user=user)
             users_created += 1
         else:
-            profile = all_users.filter(user=user)[0]
+            try:
+                profile = all_users.filter(user=user)[0]
+            except IndexError:
+                profile = UserProfile.objects.create(user=user)
             users_updated += 1
 
         # Check if anything changed before updating the user object
