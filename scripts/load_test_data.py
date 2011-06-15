@@ -1,39 +1,60 @@
-import base64
+import simplejson as json
 import urllib2
 
-creds = base64.encodestring('test:test')[:-1]
+API_HOST = 'http://localhost:8000'
+API_KEY = 'test'
 
-data_types = [
+DATA_FEEDS = [
     {
-        'json': 'instructors.json',
+        'type': 'instructors',
+        'file': 'instructors.json',
         'url': '/instructor/import/',
     },
     {
-        'json': 'students.json',
+        'type': 'students',
+        'file': 'students.json',
         'url': '/student/import/',
     },
     {
-        'json': 'sections.json',
+        'type': 'sections',
+        'file': 'sections.json',
         'url': '/section/import/',
     },
     {
-        'json': 'enrollments.json',
+        'type': 'enrollments',
+        'file': 'enrollments.json',
         'url': '/enrollment/import/',
     },
 ]
 
-for data_type in data_types:
-    f = file('test_data/%s' % data_type['json'])
+for feed in DATA_FEEDS:
+    # Open JSON file, read contents, close JSON file
+    f = file('test_data/%s' % feed['file'])
     data = f.read()
     f.close()
 
-    req = urllib2.Request('http://localhost:8000/api%s' % data_type['url'])
-    req.add_header('Authorization', 'Basic %s' % creds)
+    # 1. Convert JSON to Python list
+    # 2. Add some extra attributes
+    # 3. Convert Python list to JSON
+    data = json.loads(data)
+    data = json.dumps([{
+        'api_key': API_KEY,
+        feed['type']: data
+    }])
+
+    # Open HTTP request to API
+    req = urllib2.Request('%s/api%s' % (API_HOST, feed['url']))
+
+    # Attach Content-type header and POST data
     req.add_header('Content-type', 'application/json')
     req.add_data(data)
 
+    # Make request and read response
     res = urllib2.urlopen(req)
     out = res.read()
+
+    # Close HTTP connection
     res.close()
 
+    # Print response from API
     print out
