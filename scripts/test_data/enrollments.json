@@ -1,146 +1,38 @@
 [
     {
-        "prefix": "CIS",
-        "number": "110",
-        "section": "01",
-        "term": "SP",
-        "year": 2011,
-        "student": "3611660",
-        "status": "A"
-    },
-    {
-        "prefix": "CIS",
-        "number": "110",
-        "section": "01",
-        "term": "SP",
-        "year": 2011,
-        "student": "3508952",
-        "status": "A"
-    },
-    {
         "prefix": "ENG",
-        "number": "111",
+        "number": "101",
         "section": "01",
-        "term": "SP",
+        "term": "su",
         "year": 2011,
-        "student": "3611660",
-        "status": "A"
+        "student": "0000004",
+        "status": "N"
     },
     {
         "prefix": "MAT",
-        "number": "115",
-        "section": "02",
-        "term": "SP",
-        "year": 2011,
-        "student": "3611660",
-        "status": "A"
-    },
-    {
-        "prefix": "CIS",
-        "number": "115",
+        "number": "101",
         "section": "01",
-        "term": "SP",
+        "term": "su",
         "year": 2011,
-        "student": "3495955",
-        "status": "A"
+        "student": "0000004",
+        "status": "N"
     },
     {
         "prefix": "ENG",
-        "number": "113",
-        "section": "02",
-        "term": "SP",
-        "year": 2011,
-        "student": "3495955",
-        "status": "A"
-    },
-    {
-        "prefix": "MAT",
-        "number": "140",
+        "number": "101",
         "section": "01",
-        "term": "SP",
+        "term": "su",
         "year": 2011,
-        "student": "3495955",
-        "status": "A"
+        "student": "0000005",
+        "status": "N"
     },
     {
         "prefix": "CIS",
-        "number": "111",
-        "section": "07",
-        "term": "SP",
-        "year": 2011,
-        "student": "0081048",
-        "status": "A"
-    },
-    {
-        "prefix": "ENG",
-        "number": "112",
-        "section": "03",
-        "term": "SP",
-        "year": 2011,
-        "student": "0081048",
-        "status": "A"
-    },
-    {
-        "prefix": "MAT",
-        "number": "121",
-        "section": "10",
-        "term": "SP",
-        "year": 2011,
-        "student": "0081048",
-        "status": "A"
-    },
-    {
-        "prefix": "CIS",
-        "number": "110",
-        "section": "03",
-        "term": "SP",
-        "year": 2011,
-        "student": "3508952",
-        "status": "A"
-    },
-    {
-        "prefix": "ENG",
-        "number": "112",
+        "number": "101",
         "section": "01",
-        "term": "SP",
+        "term": "su",
         "year": 2011,
-        "student": "3508952",
-        "status": "A"
-    },
-    {
-        "prefix": "MAT",
-        "number": "115",
-        "section": "21",
-        "term": "SP",
-        "year": 2011,
-        "student": "3508952",
-        "status": "A"
-    },
-    {
-        "prefix": "CIS",
-        "number": "110",
-        "section": "03",
-        "term": "SP",
-        "year": 2011,
-        "student": "3051182",
-        "status": "A"
-    },
-    {
-        "prefix": "ENG",
-        "number": "112",
-        "section": "01",
-        "term": "SP",
-        "year": 2011,
-        "student": "3051182",
-        "status": "A"
-    },
-    {
-        "prefix": "MAT",
-        "number": "115",
-        "section": "21",
-        "term": "SP",
-        "year": 2011,
-        "student": "3051182",
-        "status": "A"
+        "student": "0000006",
+        "status": "N"
     }
 ]

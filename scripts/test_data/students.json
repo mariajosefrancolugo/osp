@@ -1,56 +1,29 @@
 [
     {
-	"id_number": "3611660",
-        "username": "jmoorin1",
-        "first_name": "Jonathan",
-        "last_name": "Mooring",
-        "email": "jmoorin1@email.cpcc.edu",
-        "phone_number": "704-555-5555",
+        "id_number": "0000004",
+        "username": "jason.bourne",
+        "first_name": "Jason",
+        "last_name": "Bourne",
+        "email": "jason.bourne@example.edu",
+        "phone_number": "555-555-5555",
         "is_active": true
     },
     {
-	"id_number": "3495955",
-        "username": "sbs2b769",
-        "first_name": "Scott",
-        "last_name": "Sheffield",
-        "email": "sbs2b769@email.cpcc.edu",
-        "phone_number": "704-555-5555",
+        "id_number": "0000005",
+        "username": "harry.potter",
+        "first_name": "Harry",
+        "last_name": "Potter",
+        "email": "harry.potter@example.edu",
+        "phone_number": "555-555-5555",
         "is_active": true
     },
     {
-	"id_number": "0081048",
-        "username": "cme55a4d",
-        "first_name": "Christopher",
-        "last_name": "Emery",
-        "email": "cme55a4d@email.cpcc.edu",
-        "phone_number": "704-555-5555",
-        "is_active": true
-    },
-    {
-	"id_number": "3508952",
-        "username": "kingle00",
-        "first_name": "Kenneth",
-        "last_name": "Ingle",
-        "email": "kingle00@email.cpcc.edu",
-        "phone_number": "704-555-5555",
-        "is_active": true
-    },
-    {
-	"id_number": "3051182",
-        "username": "lis636de",
-        "first_name": "Lucia",
-        "last_name": "Siochi",
-        "email": "lis636de@email.cpcc.edu",
-        "phone_number": "704-555-5555",
-        "is_active": true
-    },
-    {
-	"id_number": "3543076",
-        "username": "",
-        "first_name": "Stephen",
-        "last_name": "Swanson",
-        "email": "",
-        "phone_number": "704-555-5555",
+        "id_number": "0000006",
+        "username": "peter.parker",
+        "first_name": "Peter",
+        "last_name": "Parker",
+        "email": "peter.parker@example.edu",
+        "phone_number": "555-555-5555",
         "is_active": true
     }
 ]
