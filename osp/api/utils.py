@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from django.db import IntegrityError
 
 from osp.core.models import UserProfile
 
@@ -54,8 +55,16 @@ def load_users(data, groups):
         try:
             user = all_users.filter(id_number=u['id_number'])[0].user
         except IndexError:
-            user = User.objects.create_user(username, u['email'])
-            new_user = True
+            try:
+                user = User.objects.create_user(username, u['email'])
+                new_user = True
+            except IntegrityError, (errno, strerror):
+                # If the user record already exists and just isn't in
+                # the correct group (and therefore not in the queryset
+                # we pulled earlier), grab it
+                # MySQL error # 1062 = duplicate entry
+                if errno == 1062:
+                    user = User.objects.get(username=username)
 
         # Increment counter for appropriate operation type
         # Get or create the user profile object associated with the user
