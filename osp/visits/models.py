@@ -5,10 +5,10 @@ from django.conf import settings
 class Visit(models.Model):
     student = models.ForeignKey(User, related_name='visits')
     submitter = models.ForeignKey(User, related_name='submitted_visits')
-    campus = models.CharField(max_length=2, choices=settings.CAMPUS_CHOICES)
-    contact_type = models.CharField(max_length=2,
+    campus = models.CharField(max_length=255, choices=settings.CAMPUS_CHOICES)
+    contact_type = models.CharField(max_length=255,
                                     choices=settings.VISIT_CONTACT_TYPE_CHOICES)
-    reason = models.CharField(max_length=4,
+    reason = models.CharField(max_length=255,
                               choices=settings.VISIT_REASON_CHOICES)
     department = models.CharField(max_length=255,
                                   choices=settings.VISIT_DEPARTMENT_CHOICES)
