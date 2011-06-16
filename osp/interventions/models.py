@@ -9,12 +9,12 @@ class Intervention(models.Model):
     students = models.ManyToManyField(User)
     reasons = models.CharField(max_length=255)
     date_submitted = models.DateTimeField(editable=False)
-    campus = models.CharField(max_length=2, choices=settings.CAMPUS_CHOICES)
+    campus = models.CharField(max_length=255, choices=settings.CAMPUS_CHOICES)
     staff = models.ForeignKey(User, related_name='intervention_staff')
     subject = models.CharField(max_length=255)
     message = models.TextField()
     section = models.ForeignKey(Section)
-    
+
     def save(self):
         if not self.id:
             self.date_submitted = datetime.today()
@@ -26,7 +26,6 @@ class Intervention(models.Model):
         subject = "Intervention for %s %s: %s - %s" % (self.section.prefix, self.section.number, self.section.section, self.section.title)
         for student in self.students.all():
             if student.email:
-                message = "%s,<br>" % student.get_full_name() + message 
+                message = "%s,<br>" % student.get_full_name() + message
                 email_user(settings.OSP_EMAIL, student.email, subject, message)
-        # Send email to settings.ALERT_REFERRAL_EMAIL
-        email_user(settings.OSP_EMAIL, settings.ALERT_REFERRAL_EMAIL, self.subject, self.message)
+        email_user(settings.OSP_EMAIL, settings.INTERVENTIONS_EMAIL, self.subject, self.message)
