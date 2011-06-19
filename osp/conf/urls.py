@@ -5,28 +5,33 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^api/', include('osp.api.urls')),
-    (r'^assessment/', include('osp.assessments.urls', namespace='assessment',
-        app_name='assessment')),
-    (r'^intervention/', include('osp.interventions.urls',
-        namespace='intervention', app_name='intervention')),
-    #(r'^note/', include('osp.notes.urls')),
-    (r'^profile/', include('osp.profiles.urls', namespace='profile',
-        app_name='profile')),
-    #(r'^report/', include('osp.reports.urls')),
-    (r'^roster/', include('osp.rosters.urls', namespace='roster',
-        app_name='roster')),
-    (r'^survey/', include('osp.surveys.urls', namespace='survey',
-        app_name='survey')),
-    (r'^visit/', include('osp.visits.urls', namespace='visit',
-        app_name='visit')),
-    (r'^report/', include('osp.reports.urls', namespace='report',
-        app_name='report')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^api/', include('osp.api.urls', namespace='api', app_name='api')),
+
+    (r'^assessment/',
+     include('osp.assessments.urls',
+             namespace='assessment',
+             app_name='assessment')),
+
+    (r'^intervention/',
+     include('osp.interventions.urls',
+             namespace='intervention',
+             app_name='intervention')),
+
+    (r'^profile/',
+     include('osp.profiles.urls', namespace='profile', app_name='profile')),
+    (r'^roster/',
+     include('osp.rosters.urls', namespace='roster', app_name='roster')),
+    (r'^survey/',
+     include('osp.surveys.urls', namespace='survey', app_name='survey')),
+    (r'^visit/',
+     include('osp.visits.urls', namespace='visit', app_name='visit')),
+    (r'^report/',
+     include('osp.reports.urls', namespace='report', app_name='report')),
     (r'^', include('osp.core.urls', namespace='core', app_name='core')),
 )
 
-if settings.AUTHENTICATION_BACKEND == 'CAS':
+if 'django_cas.middleware.CASMiddleware' in settings.MIDDLEWARE_CLASSES:
     urlpatterns += patterns('django_cas.views',
         (r'^login/$', 'login', {}, 'login'),
         (r'^logout/$', 'logout', {}, 'logout'),
@@ -37,7 +42,13 @@ else:
         (r'^logout/$', 'logout', {}, 'logout'),
     )
 
-urlpatterns += patterns('',
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-     {'document_root': settings.STATIC_ROOT}, 'static'),
-)
+if settings.DEBUG:
+    MEDIA_URL = settings.MEDIA_URL
+    if settings.MEDIA_URL.startswith('/'):
+        MEDIA_URL = MEDIA_URL[1:]
+
+    urlpatterns += patterns('',
+        (r'^%s(?P<path>.*)$' % MEDIA_URL,
+         'django.views.static.serve',
+         {'document_root': settings.MEDIA_ROOT}),
+    )

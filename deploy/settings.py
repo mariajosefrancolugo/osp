@@ -3,7 +3,7 @@ from osp.conf.settings import *
 # Unique key used for salting passwords
 SECRET_KEY = 'Chac-8#haCa_Ra-e?-e+ucrur=gEFRasejayasaC?meMe!AC-a'
 
-# Debug should be False in production, True in development
+# DEBUG should be False in production, True in development
 DEBUG = False
 
 # List of administrators who should receive error reports
@@ -35,7 +35,7 @@ TIME_ZONE = 'America/New_York'
 MEDIA_URL = '/media/'
 
 # The URL path at which admin media is being served
-ADMIN_MEDIA_PREFIX = '/admin-media/'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 
 # Uncomment the following lines if you are using the LDAP backend

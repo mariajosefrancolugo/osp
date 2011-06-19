@@ -1,5 +1,8 @@
 from django.conf import settings
 
+def media_url(request):
+    return {'MEDIA_URL': settings.MEDIA_URL}
+
 def base_template(request):
     if request.user.groups.filter(name='Students'):
         return {'base_template': 'base_student.html'}

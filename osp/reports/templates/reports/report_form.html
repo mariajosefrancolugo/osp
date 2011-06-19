@@ -2,7 +2,7 @@
 
 {% block scripts %}
 {{ block.super }}
-<script type="text/javascript" src="{% url static 'js/report_form.js' %}"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/report_form.js"></script>
 {% endblock %}
 
 {% block body %}
