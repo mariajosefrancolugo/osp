@@ -31,11 +31,14 @@ DATABASES = {
 # Server time zone
 TIME_ZONE = 'America/New_York'
 
+# Used if you are hosting OSP off the top level (e.g. http://example.edu/osp/)
+URL_PREFIX = '/osp'
+
 # The URL path at which media is being served
-MEDIA_URL = '/media/'
+MEDIA_URL = URL_PREFIX + '/media/'
 
 # The URL path at which admin media is being served
-ADMIN_MEDIA_PREFIX = '/media/admin/'
+ADMIN_MEDIA_PREFIX = URL_PREFIX + '/media/admin/'
 
 
 # Uncomment the following lines if you are using the LDAP backend
@@ -58,7 +61,7 @@ ADMIN_MEDIA_PREFIX = '/media/admin/'
 #     'last_name': 'sn',
 #     'email': 'mail'
 # }
-# LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = URL_PREFIX + '/'
 
 
 # Uncomment the following lines if you are using the CAS backend
@@ -71,12 +74,12 @@ ADMIN_MEDIA_PREFIX = '/media/admin/'
 # CAS_VERSION = '1'
 # CAS_SERVER_URL = 'https://cas.example.edu'
 # CAS_IGNORE_REFERER = True
-# CAS_REDIRECT_URL = '/'
+# CAS_REDIRECT_URL = URL_PREFIX + '/'
 
 
 # The URL paths for login and logout pages
-LOGIN_URL = '/login/'
-LOGOUT_URL = '/logout/'
+LOGIN_URL = URL_PREFIX + '/login/'
+LOGOUT_URL = URL_PREFIX + '/logout/'
 
 # SMTP mail server configuration settings
 EMAIL_HOST = 'smtp.example.edu'
@@ -134,7 +137,6 @@ CAMPUS_CHOICES = [
     'Harper',
     'Harris',
 ]
-CAMPUS_CHOICES = [(x, x) for x in CAMPUS_CHOICES]
 
 # List of contact types for visits
 VISIT_CONTACT_TYPE_CHOICES = [
@@ -144,7 +146,6 @@ VISIT_CONTACT_TYPE_CHOICES = [
     'Online',
     'Group Session',
 ]
-VISIT_CONTACT_TYPE_CHOICES = [(x, x) for x in VISIT_CONTACT_TYPE_CHOICES]
 
 # List of reasons for visits
 VISIT_REASON_CHOICES = [
@@ -168,7 +169,6 @@ VISIT_REASON_CHOICES = [
     'First Academic Suspension',
     'Final Academic Suspension',
 ]
-VISIT_REASON_CHOICES = [(x, x) for x in VISIT_REASON_CHOICES]
 
 # List of departments for visits
 VISIT_DEPARTMENT_CHOICES = [
@@ -184,7 +184,6 @@ VISIT_DEPARTMENT_CHOICES = [
     'Disability Counseling',
     'Veterans Resource Center',
 ]
-VISIT_DEPARTMENT_CHOICES = [(x, x) for x in VISIT_DEPARTMENT_CHOICES]
 
 # List of Career Services outcomes for visits
 VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [
@@ -200,8 +199,6 @@ VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [
     'Referred for Program Update',
     'Program Updated',
 ]
-VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [(x, x) for x in
-                                         VISIT_CAREER_SERVICES_OUTCOME_CHOICES]
 
 # List of intervention reasons
 INTERVENTION_REASONS = [
@@ -212,4 +209,12 @@ INTERVENTION_REASONS = [
     'Needs Career Exploration',
     'Tutoring - Academic Learning Center',
 ]
+
+# Re-structure the choices lists for Django's sake
+CAMPUS_CHOICES = [(x, x) for x in CAMPUS_CHOICES]
+VISIT_CONTACT_TYPE_CHOICES = [(x, x) for x in VISIT_CONTACT_TYPE_CHOICES]
+VISIT_REASON_CHOICES = [(x, x) for x in VISIT_REASON_CHOICES]
+VISIT_DEPARTMENT_CHOICES = [(x, x) for x in VISIT_DEPARTMENT_CHOICES]
+VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [(x, x) for x in
+                                         VISIT_CAREER_SERVICES_OUTCOME_CHOICES]
 INTERVENTION_REASONS = [(r, r) for r in INTERVENTION_REASONS]
