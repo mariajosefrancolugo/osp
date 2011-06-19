@@ -2,7 +2,7 @@
 
 {% block styles %}
 {{ block.super }}
-    <link rel="stylesheet" href="{% url static "css/base_student.css" %}" type="text/css" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/base_student.css" type="text/css" />
 {% endblock %}
 
 {% block header %}

@@ -2,7 +2,7 @@
 
 {% block scripts %}
 {{ block.super }}
-<script type="text/javascript" src="{% url static "js/base_employee.js" %}"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/base_employee.js"></script>
 {% endblock %}
 
 {% block header %}

@@ -21,7 +21,7 @@ var pt_scores = [
 {% if latest_pta_result or latest_lsa_result %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% endif %}
-<script type="text/javascript" src="{% url static "js/profile.js" %}"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/profile.js"></script>
 {% endblock %}
 
 {% block body %}

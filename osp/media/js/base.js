@@ -1,6 +1,6 @@
 $(function() {
     // Hard-coded paths aren't great... Maybe re-work this in the future
-    var divider = "url('" + base_url + "static/img/navigation_divider.png')";
+    var divider = "url('" + media_url + "img/navigation_divider.png')";
 
     $('#navigation ul.menu li:has(ul.submenu)').hover(function() {
         $(this).addClass('has-submenu');

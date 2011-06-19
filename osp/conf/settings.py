@@ -13,7 +13,6 @@ USE_I18N = True
 USE_L10N = True
 
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
-STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
@@ -43,6 +42,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.contrib.messages.context_processors.messages',
+    'osp.core.context_processors.media_url',
     'osp.core.context_processors.base_template',
     'osp.core.context_processors.classes',
 ]
