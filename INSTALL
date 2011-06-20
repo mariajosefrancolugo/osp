@@ -1,0 +1,18 @@
+1. Download the setup script
+
+   $ wget http://osp.googlecode.com/files/OSP-1.0b3_setup.sh
+
+
+2. Make the setup script executable
+
+   $ chmod +x OSP-1.0b3_setup.sh
+
+
+3. Run the setup script
+
+   $ ./OSP-1.0b3_setup.sh
+
+
+For far more detailed installation documentation, including an
+explanation of each step in the setup script, visit
+http://code.google.com/p/osp/wiki/Installation.

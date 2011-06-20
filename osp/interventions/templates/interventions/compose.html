@@ -1,0 +1,26 @@
+{% block content %}
+<form id="intervention-form" action="{% url intervention:submit-intervention %}" method="post">
+{% csrf_token %}
+{{ form.reasons }}
+<div class="campus-field">
+  <label for="id_campus">Campus</label>
+  <br />
+  {{ form.campus }}
+</div>
+<br style="clear: both;">
+<div class="field">
+  <label for="id_subject">Subject</label>
+  <br style="clear: both;">
+  <input type="text" maxlength="255" class="full-width" value="{% if form.instance.subject %}{{ form.instance.subject }}{% else %}{{ form.data.subject }}{% endif %}" name="subject" id="id_subject">
+</div>
+<h3>Message</h3>
+<div class="field">
+  <textarea id="id_message" name="message" rows="13" class="full-width">{% if form.instance.message %}{{ form.instance.message }}{% else %}{{ form.data.message }}{% endif %}</textarea>
+</div>
+<input type="hidden" name="section_id" value="{{ section.id }}" />
+<input type="hidden" name="students" value="{% for student in students %}{{student.id}}{% if not forloop.last %},{% endif %}{%endfor%}" />
+<input type="hidden" type="submit" name="submit" value="Submit" />
+<a style="float: right;" id="intervention-submit" href="javascript:;">Submit</a>
+</form>
+
+{% endblock %}

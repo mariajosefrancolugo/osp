@@ -1,0 +1,69 @@
+{% extends base_template %}
+
+{% block scripts %}
+{{ block.super }}
+{% if section.get_active_enrollments %}
+<script type="text/javascript">
+  var ls_count = {
+    'auditory': {{ ls_count.auditory }},
+    'kinesthetic': {{ ls_count.kinesthetic }},
+    'visual': {{ ls_count.visual }}
+  }
+</script>
+{% if ls_count.auditory > 0 or ls_count.kinesthetic > 0 or ls_count.visual > 0 %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endif %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/roster.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/intervention.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/notification.js"></script>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<h1>{{ section }}: {{ section.title }}</h1>
+<h2>Statistics</h2>
+{% if ls_count.auditory > 0 or ls_count.kinesthetic > 0 or ls_count.visual > 0 %}
+<div id="class-chart"></div>
+<div id="chart-explanation">
+  <p>This graph shows the number of students in this class who fall into each of the three learning styles: auditory, kinesthetic, and visual.</p>
+  <p>It is worth noting that, often times, all students in a given class do not take the learning style assessment. Therefore, this graph may not reflect the breakdown of the entire class, but rather a small sampling of the class.</p>
+</div>
+{% else %}
+<p><em>No statistics available for this class</em></p>
+{% endif %}
+<h2 style="clear: both;">Roster</h2>
+{% if section.get_active_enrollments %}
+<form id="roster-form">
+  {% csrf_token %}
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%;"></th>
+        <th style="width: 45%;">Student</th>
+        <th style="width: 25%;">Personality Type</th>
+        <th style="width: 25%;">Learning Style</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for enrollment in section.get_active_enrollments %}
+      <tr class="{% cycle "odd" "even" %}">
+        <td style="text-align: center;"><input type="checkbox" name="students" id="id_students" value="{{ enrollment.student.id }}" /></td>
+        <td><a href="{{ enrollment.student.profile.get_profile_url }}">{{ enrollment.student.get_full_name }}</a></td>
+        <td>{{ enrollment.student.profile.get_latest_pta_results.personality_type }}</td>
+        <td>{{ enrollment.student.profile.get_latest_lsa_results.learning_style }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <input type="hidden" id="id_section_id" name="section_id" value="{{ section.id }}" />
+  <p style="text-align: right;">
+    <input type="button" id="id_contact" name="contact" value="Contact" />
+    <input type="button" id="id_intervene" name="intervene" value="Intervene" />
+  </p>
+</form>
+{% else %}
+<p><em>No students enrolled in this class</em></p>
+{% endif %}
+<div id="contact-window"></div>
+<div id="intervention-window"></div>
+{% endblock %}
