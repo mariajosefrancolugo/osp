@@ -22,6 +22,9 @@ sys.path[:0] = new_sys_path
 # Add the app code to the path
 sys.path.append('/opt/django/osp')
 
+# Add wsgi directory to path
+sys.path.append('/opt/wsgi')
+
 # Now do DJANGO_SETTINGS_MODULE and create the WSGI app.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'osp_settings'
 import django.core.handlers.wsgi
