@@ -1,16 +1,17 @@
-1. Download the setup script
+1. Download the source tarball
 
-   $ wget http://osp.googlecode.com/files/OSP-1.0b3_setup.sh
-
-
-2. Make the setup script executable
-
-   $ chmod +x OSP-1.0b3_setup.sh
+   $ wget http://osp.googlecode.com/files/OSP-1.0b3.tar.gz
 
 
-3. Run the setup script
+2. Extract the contents
 
-   $ ./OSP-1.0b3_setup.sh
+   $ tar xvzf OSP-1.0b3.tar.gz
+
+
+2. Run the setup script
+
+   $ cd osp
+   $ ./scripts/setup.sh
 
 
 For far more detailed installation documentation, including an
