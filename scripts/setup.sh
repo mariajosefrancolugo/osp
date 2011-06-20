@@ -63,9 +63,9 @@ sudo chown -R $USER:$USER /opt/django
 
 if [ ! -d "/opt/django/osp" ]
 then
-    # Clone OSP repository
-    cd /opt/django
-    hg clone https://osp.googlecode.com/hg/ osp
+    mkdir /opt/django/osp
+    cd ..
+    cp -R * /opt/django/osp
 fi
 
 # Collect information from the user to create the MySQL database for OSP
