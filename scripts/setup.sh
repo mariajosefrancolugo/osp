@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check to make sure this script is being run from the correct directory
+if [ ! -e "scripts/setup.sh" ]
+then
+    echo "You must run this script from the root directory"
+    exit 2
+fi
+
 # Upgrade all core packages
 sudo apt-get update
 sudo apt-get upgrade
@@ -64,7 +71,6 @@ sudo chown -R $USER:$USER /opt/django
 if [ ! -d "/opt/django/osp" ]
 then
     mkdir /opt/django/osp
-    cd ..
     cp -R * /opt/django/osp
 fi
 
