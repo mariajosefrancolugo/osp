@@ -3,9 +3,7 @@ include AUTHORS
 include INSTALL
 include LICENSE
 include MANIFEST.in
-recursive-include docs *
 recursive-include scripts *
-recursive-include tests *
 recursive-include osp/media *
 recursive-include osp/templates *
 recursive-include osp/assessments/data *
