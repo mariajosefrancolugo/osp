@@ -11,3 +11,8 @@
 3. Run the setup script
 
    $ ./OSP-1.0b3_setup.sh
+
+
+For far more detailed installation documentation, including an
+explanation of each step in the setup script, visit
+http://code.google.com/p/osp/wiki/Installation.
