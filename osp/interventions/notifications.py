@@ -1,7 +1,4 @@
-import datetime
 from django.conf import settings
-from django.contrib.auth.models import User
-from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 
 def email_user(from_user, to_user, subject, body):

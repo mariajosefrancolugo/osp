@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -21,4 +22,7 @@ class Notification(models.Model):
         # Send student emails letting them know
         for student in self.students.all():
             if student.email:
-                email_user(student, self.subject, self.message)
+                email_user(settings.OSP_EMAIL,
+                           student.email,
+                           self.subject,
+                           self.message)
