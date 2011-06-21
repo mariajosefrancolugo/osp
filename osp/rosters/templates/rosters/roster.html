@@ -47,7 +47,7 @@
     <tbody>
       {% for enrollment in section.get_active_enrollments %}
       <tr class="{% cycle "odd" "even" %}">
-        <td style="text-align: center;"><input type="checkbox" name="students" id="id_students" value="{{ enrollment.student.id }}" /></td>
+        <td style="text-align: center;"><input type="checkbox" name="students" id="id_students_{{ forloop.counter0 }}" value="{{ enrollment.student.id }}" /></td>
         <td><a href="{{ enrollment.student.profile.get_profile_url }}">{{ enrollment.student.get_full_name }}</a></td>
         <td>{{ enrollment.student.profile.get_latest_pta_results.personality_type }}</td>
         <td>{{ enrollment.student.profile.get_latest_lsa_results.learning_style }}</td>
