@@ -11,7 +11,7 @@ class Notification(models.Model):
     subject = models.CharField(max_length=255)
     message = models.TextField()
     section = models.ForeignKey(Section)
-    
+
     def save(self):
         if not self.id:
             self.date_submitted = datetime.today()
