@@ -19,6 +19,8 @@ fi
 
 if [ $UPGRADE_CORE == "y" ]
 then
+    echo ""
+
     # Upgrade all core packages
     sudo apt-get update
     sudo apt-get upgrade
@@ -37,6 +39,8 @@ fi
 
 if [ $INSTALL_SYSTEM_PREREQS == "y" ]
 then
+    echo ""
+
     # Install prerequisite packages
     sudo apt-get install apache2 build-essential libapache2-mod-wsgi libldap2-dev libmysqlclient-dev libsasl2-dev libssl-dev mercurial mysql-server python-dev  python-setuptools vim
 fi
@@ -56,9 +60,10 @@ if [ $SECURE_MYSQL == "y" ]
 then
     # Secure MySQL installation
     sudo mysql_secure_installation
+else
+    echo ""
 fi
 
-echo ""
 echo -n "Install virtualenv (via easy_install)? [Y/n] "
 read INSTALL_VIRTUALENV
 
@@ -71,6 +76,8 @@ fi
 
 if [ $INSTALL_VIRTUALENV == "y" ]
 then
+    echo ""
+
     # Install virtualenv
     sudo easy_install virtualenv virtualenvwrapper
 
@@ -107,6 +114,8 @@ fi
 
 if [ $INSTALL_PYTHON_PREREQS == "y" ]
 then
+    echo ""
+
     # Make sure we're inside the right virtualenv
     workon osp
 
@@ -158,6 +167,7 @@ fi
 if [ $CREATE_DATABASE == "y" ]
 then
     # Collect information from the user to create the MySQL database for OSP
+    echo ""
     echo "Collecting MySQL database information..."
     echo ""
     echo -n "Choose a MySQL database name: "
@@ -185,6 +195,7 @@ then
         fi
     done
     # Create MySQL database
+    echo ""
     echo ""
     echo "Prompting for MySQL root password..."
     echo ""
@@ -244,9 +255,10 @@ if [ $EDIT_SETTINGS == "y" ]
 then
     # Open Django settings file for editing
     vim /opt/wsgi/osp_settings.py
+else
+    echo ""
 fi
 
-echo ""
 echo -n "Create Django database tables and superuser account? [Y/n] "
 read DO_SYNCDB
 
@@ -259,6 +271,8 @@ fi
 
 if [ $DO_SYNCDB == "y" ]
 then
+    echo ""
+
     # Create the Django database tables and superuser account
     export PYTHONPATH=$PYTHONPATH:/opt/wsgi:/opt/django/osp
     django-admin.py syncdb --settings=osp_settings
@@ -302,9 +316,10 @@ if [ ! -L "/opt/django/osp/osp/media/admin" ]
 then
     # Symlink Django admin media directory into OSP media directory
     ln -s /opt/virtualenv/osp/lib/python2.6/site-packages/Django-1.2.5-py2.6.egg/django/contrib/admin/media /opt/django/osp/osp/media/admin
+else
+    echo ""
 fi
 
-echo ""
 echo "Restart Apache? [Y/n] "
 read RESTART_APACHE
 
