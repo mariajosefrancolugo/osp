@@ -46,7 +46,7 @@ then
 fi
 
 echo ""
-echo -n "Secure MySQL installation? [Y/n] "
+echo -n "Secure your MySQL installation? [Y/n] "
 read SECURE_MYSQL
 
 if [ "$SECURE_MYSQL" == "Y" ] || [ "$SECURE_MYSQL" == "y" ] || [ "$SECURE_MYSQL" == "" ]
