@@ -84,8 +84,8 @@ LOGOUT_URL = URL_PREFIX + '/logout/'
 # SMTP mail server configuration settings
 EMAIL_HOST = 'smtp.example.edu'
 EMAIL_PORT = 25
-EMAIL_USER = 'service_user'
-EMAIL_PASSWORD = 'service_password'
+EMAIL_HOST_USER = 'service_user'
+EMAIL_HOST_PASSWORD = 'service_password'
 
 # List of IP addresses for hosts allowed to push data to the API
 API_ALLOWED_HOSTS = []
@@ -112,30 +112,21 @@ CURRENT_YEAR = 2011
 
 # All potential enrollment status choices that could be received by the API
 ENROLLMENT_STATUS_CHOICES = [
-    ('N', 'New'),
-    ('A', 'Add'),
+    ('A', 'Active'),
     ('D', 'Dropped'),
     ('W', 'Withdrawn'),
     ('X', 'Deleted'),
     ('C', 'Cancelled'),
-    ('PR', 'Preliminary Equiv. Eval.'),
-    ('TR', 'Transfer Equiv. Eval.'),
-    ('NC', 'Noncourse Equivalency'),
     ('NP', 'Non-payment'),
-    ('XT', 'External Transfer Equiv.'),
 ]
 
 # Enrollment statuses which are considered "active"
-ACTIVE_ENROLLMENT_STATUSES = ['N', 'A']
+ACTIVE_ENROLLMENT_STATUSES = ['A',]
 
 # List of campuses for your school
 CAMPUS_CHOICES = [
-    'Central',
-    'Levine',
-    'Cato',
-    'North',
-    'Harper',
-    'Harris',
+    'Main',
+    'Uptown',
 ]
 
 # List of contact types for visits
@@ -157,11 +148,7 @@ VISIT_REASON_CHOICES = [
     'Graduation Assessment Review',
     'Career Counseling',
     'Workshops, Class Presentations',
-    'ACA 111',
-    'ACA 118',
-    'College Connection',
     'Early Alert Counseling',
-    'Disability Intake',
     'Disability Counseling',
     'Faculty Advising',
     'Academic Warning',
@@ -172,17 +159,8 @@ VISIT_REASON_CHOICES = [
 
 # List of departments for visits
 VISIT_DEPARTMENT_CHOICES = [
-    'Academic Advising',
-    'Career Services',
-    'Counseling Services',
-    'Disability Services',
-    'Faculty',
-    'Student Success Center',
-    'Transcript Evaluation',
-    'Transfer Resource Center',
-    'Advising / Student Success Center',
-    'Disability Counseling',
-    'Veterans Resource Center',
+    'Advising',
+    'Counseling',
 ]
 
 # List of Career Services outcomes for visits
@@ -207,7 +185,7 @@ INTERVENTION_REASONS = [
     'Missing Assignments',
     'Needs Personal or Social Counseling',
     'Needs Career Exploration',
-    'Tutoring - Academic Learning Center',
+    'Needs Tutoring',
 ]
 
 # Re-structure the choices lists for Django's sake
