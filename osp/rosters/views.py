@@ -1,15 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.simple import direct_to_template
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
-from django.template.loader import render_to_string
-from django.conf import settings
-from django.contrib.auth.models import User, Group
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 from osp.rosters.models import Notification
 from osp.rosters.forms import NotificationForm
 from osp.interventions.views import newline_to_br
-from osp.core.middleware.http import Http403
 from osp.core.middleware.http import Http403
 from osp.core.models import Section
 
@@ -40,7 +37,7 @@ def roster(request, section_id):
 def submit_notification(request):
     if not request.user.groups.filter(name='Instructors'):
         raise Http403
-    
+
     if request.method == 'POST':
         form = NotificationForm(request.POST)
         if form.is_valid():
