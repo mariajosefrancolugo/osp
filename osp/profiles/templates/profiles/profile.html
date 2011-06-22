@@ -4,21 +4,21 @@
 {{ block.super }}
 <script type="text/javascript">
 var student = "{{ student.id }}";
-var latest_lsa_result = {
-  'id': '{{ latest_lsa_result.id }}',
-  'auditory_score': parseInt({{ latest_lsa_result.auditory_score }}),
-  'kinesthetic_score': parseInt({{ latest_lsa_result.kinesthetic_score }}),
-  'visual_score': parseInt({{ latest_lsa_result.visual_score }})
+var latest_learning_style_result = {
+  'id': '{{ latest_learning_style_result.id }}',
+  'auditory_score': parseInt({{ latest_learning_style_result.auditory_score }}),
+  'kinesthetic_score': parseInt({{ latest_learning_style_result.kinesthetic_score }}),
+  'visual_score': parseInt({{ latest_learning_style_result.visual_score }})
 }
-var latest_pta_result_id = '{{ latest_pta_result.id }}';
-var pt_scores = [
-  ['{{ pt_scores.0.0 }}', parseFloat({{ pt_scores.0.1 }}), parseFloat({{ pt_scores.0.2 }})],
-  ['{{ pt_scores.1.0 }}', parseFloat({{ pt_scores.1.1 }}), parseFloat({{ pt_scores.1.2 }})],
-  ['{{ pt_scores.2.0 }}', parseFloat({{ pt_scores.2.1 }}), parseFloat({{ pt_scores.2.2 }})],
-  ['{{ pt_scores.3.0 }}', parseFloat({{ pt_scores.3.1 }}), parseFloat({{ pt_scores.3.2 }})]
+var latest_personality_type_result_id = '{{ latest_personality_type_result.id }}';
+var personality_type_scores = [
+  ['{{ personality_type_scores.0.0 }}', parseFloat({{ personality_type_scores.0.1 }}), parseFloat({{ personality_type_scores.0.2 }})],
+  ['{{ personality_type_scores.1.0 }}', parseFloat({{ personality_type_scores.1.1 }}), parseFloat({{ personality_type_scores.1.2 }})],
+  ['{{ personality_type_scores.2.0 }}', parseFloat({{ personality_type_scores.2.1 }}), parseFloat({{ personality_type_scores.2.2 }})],
+  ['{{ personality_type_scores.3.0 }}', parseFloat({{ personality_type_scores.3.1 }}), parseFloat({{ personality_type_scores.3.2 }})]
 ]
 </script>
-{% if latest_pta_result or latest_lsa_result %}
+{% if latest_personality_type_result or latest_learning_style_result %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% endif %}
 <script type="text/javascript" src="{{ MEDIA_URL }}js/profile.js"></script>

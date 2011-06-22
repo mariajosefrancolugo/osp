@@ -27,27 +27,39 @@ def profile(request, user_id):
         section__term=settings.CURRENT_TERM,
         section__year__exact=settings.CURRENT_YEAR)
 
-    latest_pta_result = student.profile.get_latest_pta_results()
-    latest_lsa_result = student.profile.get_latest_lsa_results()
+    try:
+        latest_personality_type_result = (
+            student.personalitytyperesult_set.latest('date_taken'))
+    except:
+        latest_personality_type_result = None
+    try:
+        latest_learning_style_result = (
+            student.learningstyleresult_set.latest('date_taken'))
+    except:
+        latest_learning_style_result = None
 
-    if latest_pta_result:
-        pt_analysis = jungian.TypeAnalysis(
-            args=json.loads(latest_pta_result.answers),
+    if latest_personality_type_result:
+        personality_type_analysis = jungian.TypeAnalysis(
+            args=json.loads(latest_personality_type_result.answers),
             likert=4,
             scale=100)
-        pt_scores = [(s[0], s[1], (1 - s[1]))
-                     for s in pt_analysis.graphScores]
+        personality_type_scores = [
+            (score[0], score[1], (1 - score[1]))
+            for score in personality_type_analysis.graphScores]
     else:
-        pt_scores = None
+        personality_type_scores = None
 
-    visits = Visit.objects.filter(student=student)
     if (not request.user.groups.filter(name='Counselors')
         or not request.user.groups.filter(name='Instructors')):
         can_view_visits = False
+        visits = None
     else:
         can_view_visits = True
-    if not request.user.groups.filter(name='Counselors'):
-        visits = visits.filter(private=False)
+        visits = Visit.objects.filter(student=student)
+
+        if not request.user.groups.filter(name='Counselors'):
+            visits = visits.filter(private=False)
+
     if visits:
         paginator = Paginator(visits, 5)
         page = paginator.page(1)
@@ -59,11 +71,11 @@ def profile(request, user_id):
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,
-        'can_view_visits': can_view_visits,
         'current_enrollments': current_enrollments,
-        'latest_pta_result': latest_pta_result,
-        'pt_scores': pt_scores,
-        'latest_lsa_result': latest_lsa_result,
+        'latest_personality_type_result': latest_personality_type_result,
+        'personality_type_scores': personality_type_scores,
+        'latest_learning_style_result': latest_learning_style_result,
+        'can_view_visits': can_view_visits,
         'visits': visits,
         'paginator': paginator,
         'page': page,
