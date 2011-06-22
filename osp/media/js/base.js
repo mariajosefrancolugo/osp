@@ -1,12 +1,12 @@
-$(function() {
-    var default_window_options = {
-      autoOpen: false,
-      width: 750,
-      height: 450,
-      modal: true,
-      resizable: false
-    }
+var default_window_options = {
+    autoOpen: false,
+    width: 750,
+    height: 450,
+    modal: true,
+    resizable: false
+}
 
+$(function() {
     // Hard-coded paths aren't great... Maybe re-work this in the future
     var divider = "url('" + media_url + "img/navigation_divider.png')";
 
