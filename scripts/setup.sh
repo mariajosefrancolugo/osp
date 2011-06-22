@@ -310,14 +310,14 @@ if [ $EDIT_APACHE_CONFIG == "y" ]
 then
     # Open Django settings file for editing
     sudo vim /etc/apache2/sites-available/default
+else
+    echo ""
 fi
 
 if [ ! -L "/opt/django/osp/osp/media/admin" ]
 then
     # Symlink Django admin media directory into OSP media directory
     ln -s /opt/virtualenv/osp/lib/python2.6/site-packages/Django-1.2.5-py2.6.egg/django/contrib/admin/media /opt/django/osp/osp/media/admin
-else
-    echo ""
 fi
 
 echo "Restart Apache? [Y/n] "
