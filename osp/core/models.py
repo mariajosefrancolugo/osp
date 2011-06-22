@@ -45,7 +45,8 @@ class Section(models.Model):
     def get_active_enrollments(self):
         from django.conf import settings
         return self.enrollment_set.filter(
-            status__in=settings.ACTIVE_ENROLLMENT_STATUSES)
+            status__in=settings.ACTIVE_ENROLLMENT_STATUSES
+        ).order_by('student__last_name')
 
 
 class Enrollment(models.Model):
