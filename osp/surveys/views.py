@@ -28,7 +28,7 @@ def survey(request):
                         ans = ', '.join(request.POST.getlist(question))
                     answer.answer = ans
                     answer.save()
-            return redirect(request.user.profile.get_profile_url())
+            return redirect('profile:profile', request.user.id)
     else:
         form = SurveyForm()
 
