@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.db import models
 
 class UserProfile(models.Model):
@@ -10,9 +9,6 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.user.username
-
-    def get_profile_url(self):
-        return reverse('profile:profile', args=[self.user.id])
 
     def get_latest_pta_results(self):
         try:

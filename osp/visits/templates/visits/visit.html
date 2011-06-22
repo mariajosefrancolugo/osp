@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<p class="small-text" style="float: right;"><a href="{{ student.profile.get_profile_url }}">Return to Student Profile</a></p>
+<p class="small-text" style="float: right;"><a href="{% url profile:profile student.id %}">Return to Student Profile</a></p>
 <h1>{{ student.get_full_name }}</h1>
 <h2>New Visit</h2>
 <form action="{% url visit:submit-visit student.id %}" method="POST" class="ui-form">

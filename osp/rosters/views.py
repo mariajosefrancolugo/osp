@@ -21,16 +21,21 @@ def roster(request, section_id):
         raise Http403
 
     # Calculate learning style totals for class
-    ls_count = {'auditory': 0, 'kinesthetic': 0, 'visual': 0}
+    learning_styles = {'auditory': 0, 'kinesthetic': 0, 'visual': 0}
     for enrollment in section.get_active_enrollments():
-        lsr = enrollment.student.profile.get_latest_lsa_results()
-        if lsr:
-            learning_styles = lsr.learning_style.split(', ')
-            for ls in learning_styles:
-                ls_count[ls] += 1
+        try:
+            result = enrollment.student.learningstyleresult_set.latest(
+                         'date_taken')
+        except:
+            result = None
+
+        if result:
+            styles = result.learning_style.split(', ')
+            for style in styles:
+                learning_styles[style] += 1
 
     return direct_to_template(request, 'rosters/roster.html',
-        {'section': section, 'ls_count': ls_count})
+        {'section': section, 'learning_styles': learning_styles})
 
 
 @login_required
