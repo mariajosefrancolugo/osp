@@ -20,22 +20,46 @@ def roster(request, section_id):
     if not section.instructors.filter(username=request.user.username):
         raise Http403
 
-    # Calculate learning style totals for class
-    learning_styles = {'auditory': 0, 'kinesthetic': 0, 'visual': 0}
+    students = []
+    learning_style_counts = {'auditory': 0, 'kinesthetic': 0, 'visual': 0}
     for enrollment in section.get_active_enrollments():
+        # Grab learning style and personality type for each student
         try:
-            result = enrollment.student.learningstyleresult_set.latest(
-                         'date_taken')
+            personality_type_result = (
+                enrollment.student.personalitytyperesult_set.latest(
+                    'date_taken'))
         except:
-            result = None
+            personality_type_result = None
+        try:
+            learning_style_result = (
+                enrollment.student.learningstyleresult_set.latest('date_taken'))
+        except:
+            learning_style_result = None
 
-        if result:
-            styles = result.learning_style.split(', ')
+        personality_type = (personality_type_result.personality_type
+                            if personality_type_result
+                            else '')
+        learning_style = (learning_style_result.learning_style
+                          if learning_style_result
+                          else '')
+
+        students.append({
+            'id': enrollment.student.id,
+            'full_name': enrollment.student.get_full_name(),
+            'personality_type': personality_type,
+            'learning_style': learning_style,
+        })
+
+        # Calculate learning style totals for class
+        if learning_style_result:
+            styles = learning_style_result.learning_style.split(', ')
             for style in styles:
-                learning_styles[style] += 1
+                learning_style_counts[style] += 1
 
-    return direct_to_template(request, 'rosters/roster.html',
-        {'section': section, 'learning_styles': learning_styles})
+    return direct_to_template(request, 'rosters/roster.html', {
+        'section': section,
+        'students': students,
+        'learning_style_counts': learning_style_counts})
 
 
 @login_required

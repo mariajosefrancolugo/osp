@@ -4,13 +4,13 @@
 {{ block.super }}
 {% if section.get_active_enrollments %}
 <script type="text/javascript">
-  var learning_styles = {
-    'auditory': {{ learning_styles.auditory }},
-    'kinesthetic': {{ learning_styles.kinesthetic }},
-    'visual': {{ learning_styles.visual }}
+  var learning_style_counts = {
+    'auditory': parseInt({{ learning_style_counts.auditory }}),
+    'kinesthetic': parseInt({{ learning_style_counts.kinesthetic }}),
+    'visual': parseInt({{ learning_style_counts.visual }})
   }
 </script>
-{% if learning_styles.auditory > 0 or learning_styles.kinesthetic > 0 or learning_styles.visual > 0 %}
+{% if learning_style_counts.auditory > 0 or learning_style_counts.kinesthetic > 0 or learning_style_counts.visual > 0 %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% endif %}
 <script type="text/javascript" src="{{ MEDIA_URL }}js/roster.js"></script>
@@ -22,7 +22,7 @@
 {% block body %}
 <h1>{{ section }}: {{ section.title }}</h1>
 <h2>Statistics</h2>
-{% if learning_styles.auditory > 0 or learning_styles.kinesthetic > 0 or learning_styles.visual > 0 %}
+{% if learning_style_counts.auditory > 0 or learning_style_counts.kinesthetic > 0 or learning_style_counts.visual > 0 %}
 <div id="class-chart"></div>
 <div id="chart-explanation">
   <p>This graph shows the number of students in this class who fall into each of the three learning styles: auditory, kinesthetic, and visual.</p>
@@ -44,12 +44,12 @@
       </tr>
     </thead>
     <tbody>
-      {% for enrollment in section.get_active_enrollments %}
+      {% for student in students %}
       <tr class="{% cycle "odd" "even" %}">
-        <td style="text-align: center;"><input type="checkbox" name="students" id="id_students_{{ forloop.counter0 }}" value="{{ enrollment.student.id }}" /></td>
-        <td><a href="{% url profile:profile enrollment.student.id %}">{{ enrollment.student.get_full_name }}</a></td>
-        <td>{{ enrollment.student.profile.get_latest_pta_results.personality_type }}</td>
-        <td>{{ enrollment.student.profile.get_latest_lsa_results.learning_style }}</td>
+        <td style="text-align: center;"><input type="checkbox" name="students" id="id_students_{{ forloop.counter0 }}" value="{{ student.id }}" /></td>
+        <td><a href="{% url profile:profile student.id %}">{{ student.full_name }}</a></td>
+        <td>{{ student.personality_type }}</td>
+        <td>{{ student.learning_style }}</td>
       </tr>
       {% endfor %}
     </tbody>
