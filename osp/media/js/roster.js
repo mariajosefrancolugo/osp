@@ -40,21 +40,25 @@ $(function() {
     ]);
 
     $('#id_contact').click(function() {
-        var data = $('#roster-form').serializeArray();
-        $.get(base_url + 'notification/contact/', data, function(data) {
-            $('#contact-window').html(data);
-        });
+        if($('input[name=students]:checked').length > 0) {
+            var data = $('#roster-form').serializeArray();
+            $.get(base_url + 'notification/contact/', data, function(data) {
+                $('#contact-window').html(data);
+            });
 
-        $('#contact-window').dialog('open');
+            $('#contact-window').dialog('open');
+        }
     });
 
     $('#id_intervene').click(function() {
-        var data = $('#roster-form').serializeArray();
-        $.get(base_url + 'notification/intervene/', data, function(data) {
-            $('#intervention-window').html(data);
-        });
+        if($('input[name=students]:checked').length > 0) {
+            var data = $('#roster-form').serializeArray();
+            $.get(base_url + 'notification/intervene/', data, function(data) {
+                $('#intervention-window').html(data);
+            });
 
-        $('#intervention-window').dialog('open');
+            $('#intervention-window').dialog('open');
+        }
     });
 });
 
