@@ -1,3 +1,63 @@
+$(function() {
+    $('#contact-window').dialog(default_window_options);
+    $('#contact-window').dialog('option', 'buttons', [
+        {
+            text: 'Submit',
+            click: function() {
+                var data = $('#contact-form').serializeArray();
+                $.post(base_url + 'notification/contact/',
+                       data,
+                       function(data) {
+                    if(data.status == 'success') {
+                        $('#contact-window').dialog('close');
+                    } else if(data.status == 'fail') {
+                        $('#contact-window').html(data.template);
+                        applyNotificationStyles();
+                    }
+                }, 'json');
+            }
+        }
+    ]);
+
+    $('#intervention-window').dialog(default_window_options);
+    $('#intervention-window').dialog('option', 'buttons', [
+        {
+            text: 'Submit',
+            click: function() {
+                var data = $('#intervention-form').serializeArray();
+                $.post(base_url + 'notification/intervene/',
+                       data,
+                       function(data) {
+                    if(data.status == 'success') {
+                        $('#intervention-window').dialog('close');
+                    } else if(data.status == 'fail') {
+                        $('#intervention-window').html(data.template);
+                        applyNotificationStyles();
+                    }
+                }, 'json');
+            }
+        }
+    ]);
+
+    $('#id_contact').click(function() {
+        var data = $('#roster-form').serializeArray();
+        $.get(base_url + 'notification/contact/', data, function(data) {
+            $('#contact-window').html(data);
+        });
+
+        $('#contact-window').dialog('open');
+    });
+
+    $('#id_intervene').click(function() {
+        var data = $('#roster-form').serializeArray();
+        $.get(base_url + 'notification/intervene/', data, function(data) {
+            $('#intervention-window').html(data);
+        });
+
+        $('#intervention-window').dialog('open');
+    });
+});
+
 if (learning_style_counts.auditory > 0 || learning_style_counts.kinesthetic > 0 || learning_style_counts.visual > 0) {
     google.load('visualization', '1', {packages: ['corechart']});
     google.setOnLoadCallback(drawChart);

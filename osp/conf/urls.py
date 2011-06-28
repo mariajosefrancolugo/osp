@@ -7,17 +7,14 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^api/', include('osp.api.urls', namespace='api', app_name='api')),
-
     (r'^assessment/',
      include('osp.assessments.urls',
              namespace='assessment',
              app_name='assessment')),
-
-    (r'^intervention/',
-     include('osp.interventions.urls',
-             namespace='intervention',
-             app_name='intervention')),
-
+    (r'^notification/',
+     include('osp.notifications.urls',
+             namespace='notification',
+             app_name='notification')),
     (r'^profile/',
      include('osp.profiles.urls', namespace='profile', app_name='profile')),
     (r'^roster/',

@@ -6,6 +6,17 @@ var default_window_options = {
     resizable: false
 }
 
+function applyNotificationStyles() {
+    $('.error').each(function() {
+        $(this).addClass('ui-state-error ui-corner-all');
+        $(this).prepend('<span class="ui-icon ui-icon-alert"></span>');
+    });
+    $('.notification').each(function() {
+        $(this).addClass('ui-state-highlight ui-corner-all');
+        $(this).prepend('<span class="ui-icon ui-icon-info"></span>');
+    });
+}
+
 $(function() {
     // Hard-coded paths aren't great... Maybe re-work this in the future
     var divider = "url('" + media_url + "img/navigation_divider.png')";
@@ -26,12 +37,5 @@ $(function() {
     $('input[type=button], input[type=submit], input[type=reset]').button();
 
     // Style error and notification messages
-    $('.error').each(function() {
-        $(this).addClass('ui-state-error ui-corner-all');
-        $(this).prepend('<span class="ui-icon ui-icon-alert"></span>');
-    });
-    $('.notification').each(function() {
-        $(this).addClass('ui-state-highlight ui-corner-all');
-        $(this).prepend('<span class="ui-icon ui-icon-info"></span>');
-    });
+    applyNotificationStyles();
 });

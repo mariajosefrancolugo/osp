@@ -78,6 +78,13 @@ label
     color: #ff0000;
 }
 
+.field-error
+{
+    padding: 10px 15px;
+    background: #fcf0f0;
+    border: 1px solid #e2d0d0;
+}
+
 .error, .notification
 {
     padding: 10px 15px;
@@ -296,10 +303,19 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
     width: 960px;
 }
 
-form.assessment ul, form.survey ul
+form.assessment ul, form.survey ul, #intervention-form ul
 {
     list-style: none;
     padding: 0;
+}
+#intervention-form ul li label
+{
+    font-weight: normal;
+}
+#intervention-form input[type="text"], #intervention-form textarea,
+#contact-form input[type="text"], #contact-form textarea
+{
+    width: 500px;
 }
 
 div.field

@@ -56,10 +56,10 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'osp.assessments',
     'osp.core',
+    'osp.notifications',
     'osp.profiles',
     'osp.reports',
     'osp.rosters',
     'osp.surveys',
     'osp.visits',
-    'osp.interventions',
 ]
