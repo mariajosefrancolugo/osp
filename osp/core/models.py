@@ -23,6 +23,9 @@ class Section(models.Model):
     credit_hours = models.FloatField()
     instructors = models.ManyToManyField(User)
 
+    class Meta(object):
+        ordering = ('prefix', 'number', 'section',)
+
     def __unicode__(self):
         return '%s%s-%s' % (self.prefix, self.number, self.section)
 
@@ -30,7 +33,7 @@ class Section(models.Model):
         from django.conf import settings
         return self.enrollment_set.filter(
             status__in=settings.ACTIVE_ENROLLMENT_STATUSES
-        ).order_by('student__last_name')
+        ).order_by('student__last_name', 'student__first_name')
 
 
 class Enrollment(models.Model):

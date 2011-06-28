@@ -1,25 +1,54 @@
-function visit_paging(page) {
-    $.ajax({
-        url: base_url + 'visit/' + student + '/page/' + page + '/',
-        success: function(data) {
-            $("div#visits-animate").fadeOut('fast', function() {
-                    $("div#visits-animate").html(data);
-                });
-            $("div#visits-animate").fadeIn('fast', function() {
-                $("div#visit-paging a").each(function(index) {
-                    $(this).click(function() {
-                        visit_paging($(this).attr("page"));
-                    });
-                });
-            });
-        }
+function refreshVisits(page) {
+    $.get(base_url + 'visit/' + student_id + '/all/' + page + '/',
+          function(data) {
+        $('#visits-animate').fadeOut('fast', function() {
+            $(this).html(data);
+            $(this).fadeIn('fast');
+        });
     });
 }
 
 $(function() {
-    $("div#visit-paging a").each(function(index) {
-        $(this).click(function() {
-            visit_paging($(this).attr("page"));
+    $('#visit-paging a').live('click', function() {
+        refreshVisits($(this).data('page'));
+    });
+
+    $('#view-visit-window').dialog(default_window_options);
+    $('#log-visit-window').dialog(default_window_options);
+    $('#log-visit-window').dialog('option', 'buttons', [
+        {
+            text: 'Submit',
+            click: function() {
+                var data = $('#visit-form').serializeArray();
+                $.post(base_url + 'visit/' + student_id + '/log/',
+                       data,
+                       function(data) {
+                    if(data.status == 'success') {
+                        refreshVisits(1);
+                        $('#log-visit-window').dialog('close');
+                    } else if(data.status == 'fail') {
+                        $('#log-visit-window').html(data.template);
+                        applyNotificationStyles();
+                    }
+                }, 'json');
+            }
+        }
+    ]);
+
+    $('#log-visit').click(function() {
+        $.get(base_url + 'visit/' + student_id + '/log/', function(data) {
+            $('#log-visit-window').html(data);
+            $('#log-visit-window').dialog('open');
+        });
+    });
+
+    $('.view-visit').click(function() {
+        $.get(base_url + 'visit/' + student_id + '/view/' +
+              $(this).data('visit'),
+              function(data) {
+            $('#view-visit-window').html(data);
+            applyNotificationStyles();
+            $('#view-visit-window').dialog('open');
         });
     });
 

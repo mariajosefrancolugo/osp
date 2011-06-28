@@ -28,7 +28,7 @@ def search(request):
                    OR concat(`auth_user`.`first_name`, ' ', `auth_user`.`last_name`) LIKE %s
                    OR `auth_user`.`email` LIKE %s)"""],
         params=['%s%%' % query] * 4
-    ).distinct()
+    ).order_by('last_name', 'first_name').distinct()
 
     response = []
     for student in students:

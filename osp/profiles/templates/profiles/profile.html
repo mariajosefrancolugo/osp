@@ -3,7 +3,7 @@
 {% block scripts %}
 {{ block.super }}
 <script type="text/javascript">
-var student = "{{ student.id }}";
+var student_id = "{{ student.id }}";
 var latest_learning_style_result = {
   'id': '{{ latest_learning_style_result.id }}',
   'auditory_score': parseInt({{ latest_learning_style_result.auditory_score }}),
@@ -41,18 +41,7 @@ var personality_type_scores = [
 {% include "profiles/profile_personality_type.html" %}
 {% if can_view_visits %}
 <div class="clear"></div>
-<h2 class="float-left">
-  Visits
-</h2>
-<a href="{% url visit:submit-visit student.id %}" class="float-right">submit new visit</a>
-<div class="clear"></div>
-<div id="visits" style="min-height: 225px;">
-  {% if visits %}
-  {% include "visits/visits.html" %}
-  {% else %}
-  <div class="clear"></div>
-  <p><em>Student has not had any visits</em></p>
-  {% endif %}
-</div>
+<h2 class="float-left">Visits</h2>
+{% include "profiles/profile_visits.html" %}
 {% endif %}
 {% endblock %}

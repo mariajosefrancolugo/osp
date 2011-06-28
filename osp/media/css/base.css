@@ -39,6 +39,10 @@ table
 {
     width: 100%;
 }
+.ui-dialog table
+{
+    width: 97%;
+}
 table th
 {
     padding: 5px 10px;
@@ -76,6 +80,12 @@ label
 .errorlist
 {
     color: #ff0000;
+}
+
+.inactive-link
+{
+    color: #777;
+    font-style: italic;
 }
 
 .field-error
@@ -312,8 +322,7 @@ form.assessment ul, form.survey ul, #intervention-form ul
 {
     font-weight: normal;
 }
-#intervention-form input[type="text"], #intervention-form textarea,
-#contact-form input[type="text"], #contact-form textarea
+.ui-dialog textarea, #contact-form input[type="text"]
 {
     width: 500px;
 }
@@ -475,12 +484,13 @@ div.field label
     font-weight: bold;
     margin: 5px 0;
 }
-.full-width
+div.field.checkbox label
 {
-    width: 100%;
+    font-weight: normal;
+    display: inline;
 }
-.half
+
+#visit-paging
 {
-    width:46%; 
-    float:left;
+    margin: 10px 0;
 }
