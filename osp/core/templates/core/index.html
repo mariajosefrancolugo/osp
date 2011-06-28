@@ -1,0 +1,33 @@
+{% extends base_template %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/core.js"></script>
+{% endblock %}
+
+{% block body %}
+<h2>Overview</h2>
+<h2>What You Can Do, and How to Do It</h2>
+<div id="procedures" class="accordion">
+  <h3><a href="#">View the list of classes that you are teaching</a></h3>
+  <div>
+    <p>Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.</p>
+    <p>A list of the classes you are currently teaching will be listed under the ‘Classes’ menu.</p>
+  </div>
+  <h3><a href="#">View the distribution of learning styles across the students in a class</a></h3>
+  <div>
+    <p>Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.</p>
+    <p>A list of the classes you are currently teaching will be listed under the ‘Classes’ menu.</p>
+    <p>Click on the desired class.</p>
+    <p>Information about the class will be displayed, with the distribution of learning styles at the top.</p>
+  </div>
+  <h3><a href="#">View a list of students in a class</a></h3>
+  <div>
+    <p>Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.</p>
+    <p>A list of the classes you are currently teaching will be listed under the ‘Classes’ menu.</p>
+    <p>Click on the desired class.</p>
+    <p>Information about the class will be displayed, with the class roster starting near the top.</p>
+    <p>The class roster includes the students’ names, learning styles, and personality types.</p>
+  </div>
+</div>
+{% endblock %}

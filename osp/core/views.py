@@ -10,7 +10,7 @@ from osp.core.middleware.http import Http403
 @login_required
 def index(request):
     if request.user.groups.filter(name='Employees'):
-        return direct_to_template(request, 'core/index_employee.html', {})
+        return direct_to_template(request, 'core/index.html', {})
     elif request.user.groups.filter(name='Students'):
         return redirect('profile:profile', user_id=request.user.id)
     else:
@@ -25,7 +25,8 @@ def search(request):
     students = User.objects.filter(groups__name='Students').extra(
         where=["""(`auth_user`.`first_name` LIKE %s
                    OR `auth_user`.`last_name` LIKE %s
-                   OR concat(`auth_user`.`first_name`, ' ', `auth_user`.`last_name`) LIKE %s
+                   OR concat(`auth_user`.`first_name`, ' ',
+                             `auth_user`.`last_name`) LIKE %s
                    OR `auth_user`.`email` LIKE %s)"""],
         params=['%s%%' % query] * 4
     ).order_by('last_name', 'first_name').distinct()
