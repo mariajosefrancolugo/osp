@@ -19,3 +19,6 @@ class Visit(models.Model):
     note = models.TextField()
     private = models.BooleanField()
     date_submitted = models.DateTimeField(auto_now_add=True)
+
+    class Meta(object):
+        ordering = ('-date_submitted',)

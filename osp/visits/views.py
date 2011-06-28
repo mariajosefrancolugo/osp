@@ -1,7 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.template import RequestContext
+from django.template.loader import render_to_string
+from django.utils import simplejson as json
 from django.views.generic.simple import direct_to_template
 
 from osp.core.middleware.http import Http403
@@ -9,19 +13,14 @@ from osp.visits.models import Visit
 from osp.visits.forms import VisitForm
 
 @login_required
-def submit_visit(request, user_id):
-    """
-        Check permissions before doing anything and point people to the door
-        as needed. For those so allowed, return a blank form.
-        If the form submitted is invalid, return the form again, filled in both
-        with the data from the user and the pertinent errors.
-        Finally, when the form is successfully and authoritatively submitted,
-        return some kind of confirmation.
-    """
+def log(request, user_id):
+    template = 'visits/log.html'
+
     if not request.user.groups.filter(name='Employees'):
         raise Http403
 
     student = get_object_or_404(User, id=user_id)
+
     if request.user.groups.filter(name='Counselors'):
         can_privatize = True
     else:
@@ -34,45 +33,43 @@ def submit_visit(request, user_id):
             visit.student = student
             visit.submitter = request.user
             visit.save()
-            return redirect('visit:visit',
-                            user_id=student.id,
-                            visit_id=visit.id)
 
+            return HttpResponse(json.dumps({'status': 'success'}),
+                                content_type='application/json')
+        else:
+            return HttpResponse(json.dumps({
+                'status': 'fail',
+                'template': render_to_string(template, {
+                    'form': form,
+                    'student': student,
+                    'can_privatize': can_privatize}, RequestContext(request))
+            }), content_type='application/json')
     else:
         form = VisitForm()
 
-    return direct_to_template(request, 'visits/visit.html', {
-        'form': form,
-        'student': student,
-        'can_privatize': can_privatize})
+        return direct_to_template(request, template, {
+            'form': form,
+            'student': student,
+            'can_privatize': can_privatize})
 
 @login_required
-def visit(request, user_id, visit_id):
-    """
-        Check permissions before doing anything, and point people to the door
-        as needed. For those so allowed, return a view of the visit.
-    """
+def view(request, user_id, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
-    student = get_object_or_404(User, id=user_id)
     if (not request.user.groups.filter(name='Employees')
         or (visit.private
             and not request.user.groups.filter(name='Counselors'))):
         raise Http403
 
-    return direct_to_template(request, 'visits/visit_detail.html', {
-        'visit': visit,
-        'student': student})
+    return direct_to_template(request, 'visits/view.html', {
+        'visit': visit})
 
 @login_required
-def visits(request, user_id, page):
-    """
-        Check permissions before doing anything, and point people to the door
-        as needed. I'm a broken record. For those so allowed, return all the
-        visits for a specific student.
-    """
+def view_all(request, user_id, page):
     if not request.user.groups.filter(name='Employees'):
         raise Http403
+
     student = get_object_or_404(User, id=user_id)
+
     visits = Visit.objects.filter(student=student)
     if not request.user.groups.filter(name='Counselors'):
         visits = visits.filter(private=False)
@@ -87,8 +84,7 @@ def visits(request, user_id, page):
         page = paginator.page(page)
     visits = page.object_list
 
-    return direct_to_template(request, 'visits/visits.html', {
+    return direct_to_template(request, 'visits/view_all.html', {
         'visits': visits,
         'page': page,
-        'paginator': paginator,
-        'student': student})
+        'paginator': paginator})

@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from osp.visits import views
 
 urlpatterns = patterns('',
-    (r'^(?P<user_id>[\w.@+-]+)/page/(?P<page>[\d]+)/', views.visits, {}, 'visits'),
-    (r'^(?P<user_id>[\w.@+-]+)/new/', views.submit_visit, {}, 'submit-visit'),
-    (r'^(?P<user_id>[\w.@+-]+)/visit/(?P<visit_id>[\d]+)/', views.visit, {}, 'visit'),
+    (r'^(?P<user_id>\d+)/log/', views.log, {}, 'log'),
+    (r'^(?P<user_id>\d+)/all/(?P<page>\d+)/', views.view_all, {}, 'view-all'),
+    (r'^(?P<user_id>\d+)/view/(?P<visit_id>\d+)/', views.view, {}, 'view'),
 )
