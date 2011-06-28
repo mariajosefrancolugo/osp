@@ -33,6 +33,9 @@ def notify(request,
     for student_id in student_list:
         students.append(get_object_or_404(User, id=int(student_id)))
 
+    if not students:
+        raise Http403
+
     if request.method == 'POST':
         if notification_type == 'contact':
             form = ContactForm(request.POST)
