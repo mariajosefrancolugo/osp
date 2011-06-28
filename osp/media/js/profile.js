@@ -42,9 +42,9 @@ $(function() {
         });
     });
 
-    $('.view-visit').click(function() {
+    $('.view-visit').live('click', function() {
         $.get(base_url + 'visit/' + student_id + '/view/' +
-              $(this).data('visit'),
+              $(this).data('visit') + '/',
               function(data) {
             $('#view-visit-window').html(data);
             applyNotificationStyles();

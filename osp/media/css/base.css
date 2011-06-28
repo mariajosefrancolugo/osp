@@ -447,7 +447,7 @@ dl#visit-details dt
     float: left;
     margin: 0 0 5px;
     padding: 0;
-    width: 25%;
+    width: 24%;
     font-weight: bold;
 }
 dl#visit-details dd
@@ -455,7 +455,7 @@ dl#visit-details dd
     float: left;
     margin: 0 0 5px;
     padding: 0;
-    width: 75%;
+    width: 73%;
 }
 
 .small-text
