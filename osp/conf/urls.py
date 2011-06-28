@@ -41,7 +41,7 @@ else:
 
 if settings.DEBUG:
     MEDIA_URL = settings.MEDIA_URL
-    if settings.MEDIA_URL.startswith('/'):
+    if MEDIA_URL.startswith('/'):
         MEDIA_URL = MEDIA_URL[1:]
 
     urlpatterns += patterns('',
