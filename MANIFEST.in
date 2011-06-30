@@ -3,14 +3,13 @@ include AUTHORS
 include INSTALL
 include LICENSE
 include MANIFEST.in
-recursive-include scripts *
 recursive-include osp/media *
 recursive-include osp/templates *
 recursive-include osp/assessments/data *
 recursive-include osp/assessments/templates *
 recursive-include osp/core/fixtures *
 recursive-include osp/core/templates *
-recursive-include osp/interventions/templates *
+recursive-include osp/notifications/templates *
 recursive-include osp/profiles/templates *
 recursive-include osp/reports/templates *
 recursive-include osp/rosters/templates *
