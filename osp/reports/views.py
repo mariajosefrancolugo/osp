@@ -1,10 +1,7 @@
 from datetime import datetime, time
-import xlwt
-import re
 
 from django.contrib.auth.decorators import login_required
 from django.views.generic.simple import direct_to_template
-from django.http import HttpResponse
 
 from osp.core.middleware.http import Http403
 from osp.assessments.models import LearningStyleResult, PersonalityTypeResult
