@@ -108,6 +108,7 @@ label
 
 #header
 {
+    z-index: 2;
     height: 125px;
     background: #fff url('../img/header_background.png') bottom repeat-x;
 }
@@ -257,6 +258,7 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
 #navigation ul.menu li.menu-item ul.submenu
 {
     display: none;
+    z-index: 2;
     position: absolute;
     top: 36px;
     right: -1px;
@@ -303,6 +305,7 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
 
 #body
 {
+    z-index: 1;
     margin: 50px auto;
     width: 960px;
 }
