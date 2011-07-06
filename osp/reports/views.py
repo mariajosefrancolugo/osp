@@ -11,7 +11,7 @@ from osp.reports.utils import generate_xls_report
 @login_required
 def learning_styles_report(request):
     if (not request.user.groups.filter(name='Instructors')
-        or not request.user.groups.filter(name='Counselors')):
+        and not request.user.groups.filter(name='Counselors')):
         raise Http403
 
     if request.method == "POST":
@@ -53,7 +53,7 @@ def learning_styles_report(request):
 @login_required
 def personality_type_report(request):
     if (not request.user.groups.filter(name='Instructors')
-        or not request.user.groups.filter(name='Counselors')):
+        and not request.user.groups.filter(name='Counselors')):
         raise Http403
 
     if request.method == "POST":

@@ -32,6 +32,10 @@ $(function() {
         $(this).prev('li').children('a.menu-link').css('background-image', divider);
         $(this).children('ul').hide();
     });
+    
+    $('#navigation ul.submenu a').click(function() {
+        $(this).parents('ul.submenu').hide();
+    });
 
     // Style form buttons
     $('input[type=button], input[type=submit], input[type=reset]').button();
