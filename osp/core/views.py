@@ -17,7 +17,16 @@ def index(request):
         raise Http403
 
 @login_required
+def help(request):
+    if not request.user.groups.filter(name='Employees'):
+        raise Http403
+    return direct_to_template(request, 'core/help.html', {})
+
+@login_required
 def search(request):
+    if not request.user.groups.filter(name='Employees'):
+        raise Http403
+
     query = request.GET.get('term', '')
 
     # Ridiculously long query because we have to concatenate the first and
