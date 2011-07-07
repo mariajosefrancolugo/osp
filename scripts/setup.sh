@@ -42,7 +42,7 @@ then
     echo ""
 
     # Install prerequisite packages
-    sudo apt-get install apache2 build-essential libapache2-mod-wsgi libldap2-dev libmysqlclient-dev libsasl2-dev libssl-dev mercurial mysql-server python2.6-dev  python2.6-setuptools vim
+    sudo apt-get install apache2 build-essential libapache2-mod-wsgi libldap2-dev libmysqlclient-dev libsasl2-dev libssl-dev mercurial mysql-server python-dev  python-setuptools vim
 fi
 
 echo ""
