@@ -32,7 +32,7 @@ DATABASES = {
 TIME_ZONE = 'America/New_York'
 
 # Used if you are hosting OSP off the top level (e.g. http://example.edu/osp/)
-URL_PREFIX = '/osp'
+URL_PREFIX = ''
 
 # The URL path at which media is being served
 MEDIA_URL = URL_PREFIX + '/media/'
@@ -195,4 +195,4 @@ VISIT_REASON_CHOICES = [(x, x) for x in VISIT_REASON_CHOICES]
 VISIT_DEPARTMENT_CHOICES = [(x, x) for x in VISIT_DEPARTMENT_CHOICES]
 VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [(x, x) for x in
                                          VISIT_CAREER_SERVICES_OUTCOME_CHOICES]
-INTERVENTION_REASONS = [(r, r) for r in INTERVENTION_REASONS]
+INTERVENTION_REASONS = [(x, x) for x in INTERVENTION_REASONS]
