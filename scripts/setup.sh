@@ -276,6 +276,11 @@ then
     # Create the Django database tables and superuser account
     export PYTHONPATH=$PYTHONPATH:/opt/wsgi:/opt/django/osp
     django-admin.py syncdb --settings=osp_settings
+    django-admin.py migrate assessments --settings=osp_settings
+    django-admin.py migrate core --settings=osp_settings
+    django-admin.py migrate notifications --settings=osp_settings
+    django-admin.py migrate surveys --settings=osp_settings
+    django-admin.py migrate visits --settings=osp_settings
 fi
 
 echo ""
