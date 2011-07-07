@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.admin',
     'south',
+    'osp.api',
     'osp.assessments',
     'osp.core',
     'osp.notifications',
