@@ -321,6 +321,10 @@ form.assessment ul, form.survey ul, #intervention-form ul
     list-style: none;
     padding: 0;
 }
+form.assessment ul label, form.survey ul label
+{
+    font-weight: normal;
+}
 #intervention-form ul li label
 {
     font-weight: normal;
