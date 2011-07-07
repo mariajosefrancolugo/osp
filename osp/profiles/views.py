@@ -50,7 +50,7 @@ def profile(request, user_id):
         personality_type_scores = None
 
     if (not request.user.groups.filter(name='Counselors')
-        or not request.user.groups.filter(name='Instructors')):
+        and not request.user.groups.filter(name='Instructors')):
         can_view_visits = False
         visits = None
     else:
