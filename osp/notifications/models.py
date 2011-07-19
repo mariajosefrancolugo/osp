@@ -59,8 +59,8 @@ class Contact(models.Model):
         for student in self.students.all():
             if student.email:
                 message = linebreaks(self.message)
-                email_user(settings.OSP_EMAIL,
+                email_user(self.instructor.email,
                            student.email,
-                           self.instructor.email,
+                           None,
                            self.subject,
                            message)
