@@ -97,7 +97,7 @@ API_KEY = ''
 INTERVENTIONS_EMAIL = 'interventions@example.edu'
 
 # "From" email address for the application
-OSP_EMAIL = 'osp@example.edu'
+SERVER_EMAIL = 'osp@example.edu'
 
 # All potential term choices that could be received by the API
 TERM_CHOICES = [

@@ -24,7 +24,7 @@ class Intervention(models.Model):
             'notifications/email/intervention_alert_message.html',
             {'intervention': self, 'reasons': self.reasons.split(',')})
         # Send referral to settings.INTERVENTIONS_EMAIL
-        email_user(settings.OSP_EMAIL,
+        email_user(settings.SERVER_EMAIL,
                    settings.INTERVENTIONS_EMAIL,
                    self.instructor.email,
                    subject,
@@ -39,7 +39,7 @@ class Intervention(models.Model):
                 message = render_to_string(
                     'notifications/email/intervention_student_message.html',
                     {'student': student})
-                email_user(settings.OSP_EMAIL,
+                email_user(settings.SERVER_EMAIL,
                            student.email,
                            None,
                            subject,
