@@ -1,7 +1,6 @@
 import os
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.utils import simplejson as json
 from django.views.generic.simple import direct_to_template
