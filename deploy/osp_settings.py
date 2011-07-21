@@ -98,6 +98,7 @@ INTERVENTIONS_EMAIL = 'interventions@example.edu'
 
 # "From" email address for the application
 SERVER_EMAIL = 'osp@example.edu'
+DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
 # All potential term choices that could be received by the API
 TERM_CHOICES = [
