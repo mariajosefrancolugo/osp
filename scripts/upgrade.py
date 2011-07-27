@@ -12,8 +12,7 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
 
 def call_command(command):
-    command_pieces = [i.strip() for i in command.split(' ')]
-    process = subprocess.Popen(command_pieces,
+    process = subprocess.Popen(command.split(' '),
                                stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE)
     return process.communicate()
@@ -36,6 +35,10 @@ if __name__ == '__main__':
                       action='store', default='osp_settings',
                       help=('The name of your OSP settings module '
                             '(default: osp_settings)'))
+    parser.add_option('', '--wsgi-script', dest='wsgi_script',
+                      action='store', default='/opt/wsgi/osp.wsgi',
+                      help=('The path to your OSP WSGI script '
+                            '(default: /opt/wsgi/osp.wsgi)'))
     options, args = parser.parse_args()
 
     if not os.path.exists(options.osp_path):
@@ -62,7 +65,7 @@ if __name__ == '__main__':
         lines = tags.readlines()
         tags.close()
 
-        to_version = lines[-1].split(' ')[1]
+        to_version = lines[-1].split(' ')[1].strip()
         logging.info('Latest version: %s' % to_version)
 
     logging.info('Updating repository to the correct version of OSP')
@@ -156,3 +159,10 @@ if __name__ == '__main__':
     for app in apps:
         output, _ = call_command('django-admin.py migrate %s --settings=%s'
                                  % (app, options.settings_module))
+
+    logging.info('Touching OSP WSGI script')
+    output, _ = call_command('touch %s' % options.wsgi_script)
+
+    logging.info('Performing file system clean-up')
+    os.chdir('..')
+    output, _ = call_command('rm -rf osp')
