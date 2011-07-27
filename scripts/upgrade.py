@@ -163,9 +163,6 @@ if __name__ == '__main__':
         output, _ = call_command('django-admin.py migrate %s --settings=%s'
                                  % (app, options.settings_module))
 
-    logging.info('Touching OSP WSGI script')
-    output, _ = call_command('touch %s' % options.wsgi_script)
-
     logging.info('Performing file system clean-up')
     os.chdir('..')
     output, _ = call_command('rm -rf osp')
