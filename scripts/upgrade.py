@@ -120,7 +120,10 @@ if __name__ == '__main__':
         if add_files:
             logging.info('Adding new files to your OSP instance')
             for f in add:
-                shutil.copy(f, '%s/%s' % (options.osp_path, f))
+                f_path = '%s/%s' % (options.osp_path, f)
+                output, _ = call_command('mkdir -p %s'
+                                         % os.path.dirname(f_path))
+                shutil.copy(f, f_path)
 
     if remove:
         print('\nThe following files will be removed:\n\n%s'
