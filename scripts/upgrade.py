@@ -35,36 +35,12 @@ if __name__ == '__main__':
                       action='store', default='osp_settings',
                       help=('The name of your OSP settings module '
                             '(default: osp_settings)'))
-    parser.add_option('', '--virtualenv-name', dest='virtualenv_name',
-                      action='store', default='osp',
-                      help=('The path to your OSP virtual environment '
-                            '(default: osp)'))
-    parser.add_option('', '--virtualenv-path', dest='virtualenv_path',
-                      action='store', default='/opt/virtualenv/osp',
-                      help=('The path to your OSP virtual environment '
-                            '(default: /opt/virtualenv/osp)'))
-    parser.add_option('', '--python-version', dest='python_version',
-                      action='store', default='python2.6',
-                      help=('The version of Python your virtual '
-                            'environment uses (default: python2.6)'))
-    parser.add_option('', '--use-system-python', dest='use_system_python',
-                      action='store_true', default=False,
-                      help='Use system Python instead of virtualenv')
     options, args = parser.parse_args()
 
     if not os.path.exists(options.osp_path):
         raise Exception('The path "%s" does not exist' % options.osp_path)
     if not os.path.exists(options.settings_path):
         raise Exception('The path "%s" does not exist' % options.settings_path)
-    if not options.use_system_python:
-        if not os.path.exists(options.virtualenv_path):
-            raise Exception('The path "%s" does not exist'
-                            % options.virtualenv_path)
-        site_packages_path = ('%s/lib/%s/site-packages'
-                              % (options.virtualenv_path,
-                                 options.python_version))
-        if not os.path.exists(site_packages_path):
-            raise Exception('The path "%s" does not exist' % site_packages_path)
 
     if os.path.exists('./osp/.hg'):
         logging.info('Pulling latest changes to OSP repository')
@@ -158,7 +134,6 @@ if __name__ == '__main__':
             for f in remove:
                 output, _ = call_command('rm %s/%s' % (options.osp_path, f))
 
-    print replace
     if replace:
         print('\nThe following files will be replaced:\n\n%s'
               % '\n'.join(replace))
@@ -175,7 +150,6 @@ if __name__ == '__main__':
                 output, _ = call_command('cp %s %s' % (f, options.osp_path))
 
     logging.info('Migrating any database tables that have changed')
-    output, _ = call_command('workon %s' % options.virtualenv_name)
     sys.path.append(options.osp_path)
     sys.path.append(options.settings_path)
     apps = ['assessments', 'core', 'notifications', 'surveys', 'visits',]
