@@ -35,6 +35,10 @@ if __name__ == '__main__':
                       action='store', default='osp_settings',
                       help=('The name of your OSP settings module '
                             '(default: osp_settings)'))
+    parser.add_option('', '--virtualenv-name', dest='virtualenv_name',
+                      action='store', default='osp',
+                      help=('The path to your OSP virtual environment '
+                            '(default: osp)'))
     parser.add_option('', '--virtualenv-path', dest='virtualenv_path',
                       action='store', default='/opt/virtualenv/osp',
                       help=('The path to your OSP virtual environment '
@@ -154,6 +158,7 @@ if __name__ == '__main__':
             for f in remove:
                 output, _ = call_command('rm %s/%s' % (options.osp_path, f))
 
+    print replace
     if replace:
         print('\nThe following files will be replaced:\n\n%s'
               % '\n'.join(replace))
@@ -170,15 +175,7 @@ if __name__ == '__main__':
                 output, _ = call_command('cp %s %s' % (f, options.osp_path))
 
     logging.info('Migrating any database tables that have changed')
-    if not options.use_system_python:
-        prev_sys_path = list(sys.path)
-        site.addsitedir(site_packages_path)
-        new_sys_path = []
-        for item in list(sys.path):
-            if item not in prev_sys_path:
-                new_sys_path.append(item)
-                sys.path.remove(item)
-        sys.path[:0] = new_sys_path
+    output, _ = call_command('workon %s' % options.virtualenv_name)
     sys.path.append(options.osp_path)
     sys.path.append(options.settings_path)
     apps = ['assessments', 'core', 'notifications', 'surveys', 'visits',]
