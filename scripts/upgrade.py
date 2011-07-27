@@ -12,7 +12,8 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
 
 def call_command(command):
-    process = subprocess.Popen(command.split(' '),
+    command_pieces = [i.strip() for i in command.split(' ')]
+    process = subprocess.Popen(command_pieces,
                                stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE)
     return process.communicate()
@@ -116,7 +117,7 @@ if __name__ == '__main__':
         if add_files:
             logging.info('Adding new files to your OSP instance')
             for f in add:
-                shutil.copy(f, options.osp_path)
+                shutil.copy(f, '%s/%s' % (options.osp_path, f))
 
     if remove:
         print('\nThe following files will be removed:\n\n%s'
@@ -146,7 +147,7 @@ if __name__ == '__main__':
         if replace_files:
             logging.info('Replacing old files in your OSP instance')
             for f in replace:
-                shutil.copy(f, options.osp_path)
+                shutil.copy(f, '%s/%s' % (options.osp_path, f))
 
     logging.info('Migrating any database tables that have changed')
     sys.path.append(options.osp_path)
