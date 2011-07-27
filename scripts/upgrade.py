@@ -4,7 +4,7 @@ import logging
 import optparse
 import os
 import re
-import site
+import shutil
 import subprocess
 import sys
 
@@ -116,8 +116,7 @@ if __name__ == '__main__':
         if add_files:
             logging.info('Adding new files to your OSP instance')
             for f in add:
-                output, _ = call_command('cp %s %s' % (f, options.osp_path))
-
+                shutil.copy(f, options.osp_path)
 
     if remove:
         print('\nThe following files will be removed:\n\n%s'
@@ -132,7 +131,7 @@ if __name__ == '__main__':
         if remove_files:
             logging.info('Removing old files from your OSP instance')
             for f in remove:
-                output, _ = call_command('rm %s/%s' % (options.osp_path, f))
+                os.remove('%s/%s' % (options.osp_path, f))
 
     if replace:
         print('\nThe following files will be replaced:\n\n%s'
@@ -146,8 +145,8 @@ if __name__ == '__main__':
 
         if replace_files:
             logging.info('Replacing old files in your OSP instance')
-            for f in remove:
-                output, _ = call_command('cp %s %s' % (f, options.osp_path))
+            for f in replace:
+                shutil.copy(f, options.osp_path)
 
     logging.info('Migrating any database tables that have changed')
     sys.path.append(options.osp_path)
