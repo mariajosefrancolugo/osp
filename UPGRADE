@@ -1,0 +1,36 @@
+These instructions are primarily for installs configured using the
+setup.sh script. If you have installed OSP in a non-standard way, you
+will need to glean from this document what you can and apply it to your
+own environment.
+
+    1. Ensure that the WORKON_HOME environment variable is set and the
+       virtualenvwrapper.sh file is sourced in your ~/.bashrc or
+       equivalent (depending on your shell)
+
+       In ~/.bashrc, add the following lines:
+
+       export WORKON_HOME=/opt/virtualenv
+       source /usr/local/bin/virtualenvwrapper.sh
+
+    2. Ensure that South is installed in your virtualenv's site-packages
+   
+       $ workon osp
+       $ easy_install South
+
+    3. Download the upgrade script and make it executable
+
+       $ wget http://osp.googlecode.com/hg/scripts/upgrade.py
+       $ chmod +x upgrade.py
+
+    4. Ensure that there is not a directory named "osp" at the same
+       level as the upgrade script
+
+       $ rm -r osp
+
+    5. Run the upgrade script and answer the questions as prompted
+
+       $ ./upgrade.py
+
+    6. Restart Apache
+
+       $ sudo /etc/init.d/apache2 restart

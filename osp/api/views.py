@@ -30,6 +30,29 @@ def import_instructors(request):
     return HttpResponse('\n'.join(status), mimetype='text/plain')
 
 @csrf_exempt
+def import_counselors(request):
+    status = []
+    if request.method == 'POST':
+        # Convert JSON data to Python object
+        data = json.loads(request.raw_post_data)
+
+        validate_credentials(request,
+                             settings.API_ALLOWED_HOSTS,
+                             settings.API_KEY,
+                             data[0]['api_key'])
+
+        # Load users into local database using utility method
+        stats = load_users(data[0]['counselors'], ['Counselors', 'Employees'])
+
+        status.append('Received %d counselor records' % stats[0])
+        status.append('Updated %d user objects' % stats[1])
+        status.append('Created %d user objects' % stats[2])
+    else:
+        status.append('Invalid request')
+
+    return HttpResponse('\n'.join(status), mimetype='text/plain')
+
+@csrf_exempt
 def import_students(request):
     status = []
     if request.method == 'POST':

@@ -35,10 +35,6 @@ if __name__ == '__main__':
                       action='store', default='osp_settings',
                       help=('The name of your OSP settings module '
                             '(default: osp_settings)'))
-    parser.add_option('', '--wsgi-script', dest='wsgi_script',
-                      action='store', default='/opt/wsgi/osp.wsgi',
-                      help=('The path to your OSP WSGI script '
-                            '(default: /opt/wsgi/osp.wsgi)'))
     options, args = parser.parse_args()
 
     if not os.path.exists(options.osp_path):
