@@ -25,5 +25,23 @@
         "email": "francis.drake@example.edu",
         "phone_number": "555-555-5555",
         "is_active": true
+    },
+    {
+        "id_number": "0000004",
+        "username": "meriwether.lewis",
+        "first_name": "Meriwether",
+        "last_name": "Lewis",
+        "email": "meriwether.lewis@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000005",
+        "username": "william.clark",
+        "first_name": "William",
+        "last_name": "Clark",
+        "email": "william.clark@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
     }
 ]
