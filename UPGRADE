@@ -4,13 +4,16 @@ will need to glean from this document what you can and apply it to your
 own environment.
 
     1. Ensure that the WORKON_HOME environment variable is set and the
-       virtualenvwrapper.sh file is sourced in your ~/.bashrc or
-       equivalent (depending on your shell)
+       virtualenvwrapper.sh file is sourced in your bash config
 
-       In ~/.bashrc, add the following lines:
+       In ~/.bashrc, add the following lines and save:
 
        export WORKON_HOME=/opt/virtualenv
        source /usr/local/bin/virtualenvwrapper.sh
+       
+       Then, source your .bashrc file:
+       
+       $ source ~/.bashrc
 
     2. Ensure that South is installed in your virtualenv's site-packages
    
@@ -35,3 +38,4 @@ own environment.
     6. Restart Apache
 
        $ sudo /etc/init.d/apache2 restart
+

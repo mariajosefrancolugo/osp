@@ -3,36 +3,180 @@
         "prefix": "ENG",
         "number": "101",
         "section": "01",
-        "term": "su",
+        "term": "fa",
         "year": 2011,
-        "student": "0000004",
-        "status": "N"
-    },
-    {
-        "prefix": "MAT",
-        "number": "101",
-        "section": "01",
-        "term": "su",
-        "year": 2011,
-        "student": "0000004",
+        "student": "0000006",
         "status": "N"
     },
     {
         "prefix": "ENG",
         "number": "101",
         "section": "01",
-        "term": "su",
+        "term": "fa",
         "year": 2011,
-        "student": "0000005",
+        "student": "0000007",
         "status": "N"
     },
     {
-        "prefix": "CIS",
+        "prefix": "ENG",
         "number": "101",
         "section": "01",
-        "term": "su",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000008",
+        "status": "N"
+    },
+    {
+        "prefix": "ENG",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000009",
+        "status": "N"
+    },
+    {
+        "prefix": "ENG",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000010",
+        "status": "N"
+    },
+    {
+        "prefix": "ENG",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000011",
+        "status": "N"
+    },
+    {
+        "prefix": "ENG",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000012",
+        "status": "N"
+    },
+    {
+        "prefix": "ENG",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000013",
+        "status": "N"
+    },
+    {
+        "prefix": "ENG",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000014",
+        "status": "N"
+    },
+    {
+        "prefix": "ENG",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000015",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000016",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000017",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000018",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000019",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000020",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
         "year": 2011,
         "student": "0000006",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000007",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000008",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000009",
+        "status": "N"
+    },
+    {
+        "prefix": "MAT",
+        "number": "101",
+        "section": "01",
+        "term": "fa",
+        "year": 2011,
+        "student": "0000010",
         "status": "N"
     }
 ]
