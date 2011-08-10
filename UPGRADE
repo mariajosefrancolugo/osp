@@ -4,10 +4,12 @@ will need to glean from this document what you can and apply it to your
 own environment.
 
     1. Ensure that the WORKON_HOME environment variable is set and the
-       virtualenvwrapper.sh file is sourced in your bash config
+       virtualenvwrapper.sh file is sourced in your bash config. Also
+       make sure that you have the correct paths on your PYTHONPATH.
 
        In ~/.bashrc, add the following lines and save:
 
+       export PYTHONPATH=$PYTHONPATH:/opt/wsgi:/opt/django
        export WORKON_HOME=/opt/virtualenv
        source /usr/local/bin/virtualenvwrapper.sh
        
