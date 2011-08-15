@@ -3,7 +3,11 @@ from django.http import HttpResponse
 from django.utils import simplejson as json
 from django.views.decorators.csrf import csrf_exempt
 
-from osp.api.utils import validate_credentials, load_users
+from osp.api.utils import (validate_credentials,
+                           get_existing_users,
+                           get_existing_sections,
+                           get_existing_enrollments,
+                           load_users)
 from osp.core.models import UserProfile, Section, Enrollment
 
 @csrf_exempt
@@ -96,21 +100,21 @@ def import_sections(request):
 
         # Grab all existing sections and users as well as their associated
         # objects from the database
-        all_sections = Section.objects.filter(
-            term=settings.CURRENT_TERM,
-            year=settings.CURRENT_YEAR)
-        all_users = UserProfile.objects.filter(
-            user__groups__name='Instructors'
-        ).select_related()
+        existing_sections = get_existing_sections(settings.CURRENT_TERM,
+                                                  settings.CURRENT_YEAR)
+        existing_users = get_existing_users(['Instructors'])
 
         for s in data:
             # Get the existing section object or create a new one
+            key = '%s%s-%s-%s-%d' % (s['prefix'],
+                                     s['number'],
+                                     s['section'],
+                                     s['term'],
+                                     int(s['year']))
+            section = existing_sections.get(key)
+
             new_section = False
-            try:
-                section = all_sections.filter(prefix=s['prefix'],
-                                              number=s['number'],
-                                              section=s['section'])[0]
-            except IndexError:
+            if not section:
                 section = Section(prefix=s['prefix'],
                                   number=s['number'],
                                   section=s['section'],
@@ -138,10 +142,10 @@ def import_sections(request):
             # instructors to section
             section.instructors.clear()
             for i in s['instructors']:
+                instructor = existing_users.get(i)
+
                 instructor_exists = True
-                try:
-                    instructor = all_users.filter(id_number=i)[0].user
-                except IndexError:
+                if not instructor:
                     status.append('Instructor (ID number %s) '
                                   'does not exist' % i)
                     instructor_exists = False
@@ -179,43 +183,47 @@ def import_enrollments(request):
 
         # Grab all existing sections, users, and enrollments as well as
         # their associated objects from the database
-        all_sections = Section.objects.filter(
-            term=settings.CURRENT_TERM,
-            year=settings.CURRENT_YEAR)
-        all_users = UserProfile.objects.filter(
-            user__groups__name='Students'
-        ).select_related()
-        all_enrollments = Enrollment.objects.filter(
-            section__term=settings.CURRENT_TERM,
-            section__year__exact=settings.CURRENT_YEAR)
+        existing_sections = get_existing_sections(settings.CURRENT_TERM,
+                                                  settings.CURRENT_YEAR)
+        existing_users = get_existing_users(['Students'])
+        existing_enrollments = get_existing_enrollments(settings.CURRENT_TERM,
+                                                        settings.CURRENT_YEAR)
 
         for e in data:
+            key = '%s%s-%s-%s-%d' % (e['prefix'],
+                                     e['number'],
+                                     e['section'],
+                                     e['term'],
+                                     int(e['year']))
+            section = existing_sections.get(key)
+
             section_exists = True
-            try:
-                section = all_sections.filter(prefix=e['prefix'],
-                                              number=e['number'],
-                                              section=e['section'])[0]
-            except IndexError:
+            if not section:
                 status.append('Section (%s%s-%s) does not exist' % (
                     e['prefix'],
                     e['number'],
                     e['section']))
                 section_exists = False
 
+            student = existing_users.get(e['student'])
+
             student_exists = True
-            try:
-                student = all_users.filter(id_number=e['student'])[0].user
-            except IndexError:
+            if not student:
                 status.append('Student (ID number %s) '
                               'does not exist' % e['student'])
                 student_exists = False
 
             if section_exists and student_exists:
+                key = '%s-%s%s-%s-%s-%d' % (e['student'],
+                                            e['prefix'],
+                                            e['number'],
+                                            e['section'],
+                                            e['term'],
+                                            int(e['year']))
+                enrollment = existing_enrollments.get(key)
+
                 new_enrollment = False
-                try:
-                    enrollment = all_enrollments.filter(section=section,
-                                                        student=student)[0]
-                except IndexError:
+                if not enrollment:
                     enrollment = Enrollment(student=student, section=section)
                     new_enrollment = True
 
