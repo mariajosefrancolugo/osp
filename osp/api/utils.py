@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
 
-from osp.core.models import UserProfile
+from osp.core.models import UserProfile, Section, Enrollment
 
 def validate_credentials(request, authorized_hosts, valid_key, provided_key):
     if not provided_key:
@@ -22,9 +22,54 @@ def validate_credentials(request, authorized_hosts, valid_key, provided_key):
 
     return
 
+def get_existing_users(groups):
+    users = User.objects.filter(
+        groups__name__in=groups
+    ).distinct().select_related()
+
+    existing_users = {}
+    for user in users:
+        existing_users[user.profile.id_number] = user
+
+    return existing_users
+
+def get_existing_sections(term, year):
+    sections = Section.objects.filter(term=term, year=year).select_related()
+
+    existing_sections = {}
+    for section in sections:
+        key = '%s%s-%s-%s-%d' % (section.prefix,
+                                 section.number,
+                                 section.section,
+                                 section.term,
+                                 section.year)
+        existing_sections[key] = section
+
+    return existing_sections
+
+def get_existing_enrollments(term, year):
+    enrollments = Enrollment.objects.filter(
+        section__term=term, section__year__exact=int(year)
+    ).select_related()
+
+    existing_enrollments = {}
+    for enrollment in enrollments:
+        key = '%s-%s%s-%s-%s-%d' % (enrollment.student.profile.id_number,
+                                    enrollment.section.prefix,
+                                    enrollment.section.number,
+                                    enrollment.section.section,
+                                    enrollment.section.term,
+                                    enrollment.section.year)
+        existing_enrollments[key] = enrollment
+
+    return existing_enrollments
+
 def load_users(data, groups):
     # Store references to user groups
     g = Group.objects.filter(name__in=groups)
+    group_objs = []
+    for group in g:
+        group_objs.append(group)
 
     # Let's keep a count of how many new and updated objects we have
     # Also, how many user accounts we activate or deactivate
@@ -33,9 +78,7 @@ def load_users(data, groups):
 
     # Grab all existing users and their associated objects in the
     # specified groups from the database
-    all_users = UserProfile.objects.filter(
-        user__groups__name__in=groups
-    ).distinct().select_related()
+    existing_users = get_existing_users(groups)
 
     # Find or create user objects for each user
     for u in data:
@@ -51,10 +94,10 @@ def load_users(data, groups):
                 username = '%se' % u['id_number']
 
         # Get the existing user object or create a new one
+        user = existing_users.get(u['id_number'])
+
         new_user = False
-        try:
-            user = all_users.filter(id_number=u['id_number'])[0].user
-        except IndexError:
+        if not user:
             try:
                 user = User.objects.create_user(username, u['email'])
                 new_user = True
@@ -72,14 +115,7 @@ def load_users(data, groups):
             profile = UserProfile.objects.create(user=user)
             users_created += 1
         else:
-            try:
-                profile = all_users.filter(user=user)[0]
-            except IndexError:
-                try:
-                    profile = UserProfile.objects.create(user=user)
-                except IntegrityError, (errno, strerror):
-                    if errno == 1062:
-                        profile = UserProfile.objects.get(user=user)
+            profile = user.profile
             users_updated += 1
 
         # Check if anything changed before updating the user object
@@ -98,10 +134,14 @@ def load_users(data, groups):
         elif new_user:
             user.save()
 
+        group_memberships = []
+        for group in user.groups.all():
+            group_memberships.append(group)
+
         # Make sure that user is in the appropriate groups
         [user.groups.add(group)
-         for group in g
-         if group not in user.groups.all()]
+         for group in group_objs
+         if group not in group_memberships]
 
         # Check if anything changed before updating the profile object
         if (profile.id_number != u['id_number']
