@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h1>Sign In</h1>
 {% if form.errors %}
 <p class="error">Your username and password did not match. Please try again.</p>
 {% endif %}
+<h1>Sign In</h1>
 <form action="{% url login %}" method="POST" class="ui-form">
   {% csrf_token %}
   <div class="field">
