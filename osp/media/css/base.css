@@ -142,6 +142,10 @@ label
     font-size: 15px;
     color: #9a9b9c;
 }
+#id_query.ui-autocomplete-loading
+{
+    background: url('../img/indicator.gif') 10px center no-repeat;
+}
 
 ul.ui-autocomplete
 {
