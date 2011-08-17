@@ -9,7 +9,7 @@ from osp.reports.forms import DateRangeForm
 from osp.reports.utils import generate_xls_report
 
 @login_required
-def learning_styles_report(request):
+def learning_style_report(request):
     if (not request.user.groups.filter(name='Instructors')
         and not request.user.groups.filter(name='Counselors')):
         raise Http403
@@ -24,11 +24,11 @@ def learning_styles_report(request):
                 )
             )
             if results:
-                filename = ('learning_styles-%s-%s.xls'
+                filename = ('learning_style-%s-%s.xls'
                             % (form.cleaned_data['from_date'].strftime('%Y%m%d'),
                                form.cleaned_data['to_date'].strftime('%Y%m%d')))
                 columns = ('User Index', 'Student Username', 'Date Taken',
-                           'Learning Styles', 'Kinesthetic', 'Visual', 'Auditory')
+                           'Learning Style', 'Kinesthetic', 'Visual', 'Auditory')
                 rows = []
                 for result in results:
                     row = (result.student.id,
@@ -40,7 +40,7 @@ def learning_styles_report(request):
                            result.auditory_score)
                     rows.append(row)
 
-                return generate_xls_report(filename, 'Learning Styles Report', columns, rows)
+                return generate_xls_report(filename, 'Learning Style Report', columns, rows)
         return direct_to_template(request, 'reports/report_form.html', {
             'error': True,
             'learning': True,

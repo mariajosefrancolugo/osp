@@ -10,8 +10,8 @@
 <p class="error">No results found for the selected date range.</p>
 {% endif %}
 <p class="notification">Please select the range of dates that you would like for your report to include.</p>
-<h1>{% if learning %}Learning Styles{% else %}Personality Type{% endif %} Report</h1>
-<form action="{% if learning %}{% url report:learning-styles-report %}{% else %}{% url report:personality-type-report %}{% endif %}" method="POST" class="ui-form">
+<h1>{% if learning %}Learning Style{% else %}Personality Type{% endif %} Report</h1>
+<form action="{% if learning %}{% url report:learning-style-report %}{% else %}{% url report:personality-type-report %}{% endif %}" method="POST" class="ui-form">
   {% csrf_token %}
   <div class="field">
     <label for="id_from_date">Start Date</label>
