@@ -13,7 +13,7 @@ from osp.core.middleware.http import Http403
 
 @login_required
 def personality_type(request):
-    if not request.user.groups.filter(name='Students'):
+    if not request.user.groups.filter(name__in=['Students', 'Employees']):
         raise Http403
 
     if request.method == 'POST':
@@ -77,7 +77,7 @@ def personality_type_results(request, result_id):
 
 @login_required
 def learning_style(request):
-    if not request.user.groups.filter(name='Students'):
+    if not request.user.groups.filter(name__in=['Students', 'Employees']):
         raise Http403
 
     if request.method == 'POST':

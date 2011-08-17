@@ -319,6 +319,10 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
     margin: 0 auto;
     width: 960px;
 }
+#footer a
+{
+    color: #777;
+}
 
 form.assessment ul, form.survey ul, #intervention-form ul
 {
