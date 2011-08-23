@@ -100,6 +100,9 @@ INTERVENTIONS_EMAIL = 'interventions@example.edu'
 SERVER_EMAIL = 'osp@example.edu'
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
+# Regular expression to match your ERP ID number pattern
+ID_NUMBER_PATTERN = '\d{7}'
+
 # All potential term choices that could be received by the API
 TERM_CHOICES = [
     ('fa', 'Fall'),
