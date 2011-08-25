@@ -22,14 +22,15 @@ def validate_credentials(request, authorized_hosts, valid_key, provided_key):
 
     return
 
-def get_existing_users(groups):
-    users = User.objects.filter(
-        groups__name__in=groups
+def get_existing_users(groups, id_numbers):
+    user_profiles = UserProfile.objects.filter(
+        id_number__in=id_numbers,
+        user__groups__name__in=groups
     ).distinct().select_related()
 
     existing_users = {}
-    for user in users:
-        existing_users[user.profile.id_number] = user
+    for user_profile in user_profiles:
+        existing_users[user_profile.id_number] = user_profile.user
 
     return existing_users
 
@@ -76,9 +77,13 @@ def load_users(data, groups):
     users_updated = 0
     users_created = 0
 
+    id_numbers = []
+    for u in data:
+        id_numbers.append(u['id_number'])
+
     # Grab all existing users and their associated objects in the
     # specified groups from the database
-    existing_users = get_existing_users(groups)
+    existing_users = get_existing_users(groups, id_numbers)
 
     # Find or create user objects for each user
     for u in data:
