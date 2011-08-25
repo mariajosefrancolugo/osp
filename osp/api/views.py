@@ -102,7 +102,13 @@ def import_sections(request):
         # objects from the database
         existing_sections = get_existing_sections(settings.CURRENT_TERM,
                                                   settings.CURRENT_YEAR)
-        existing_users = get_existing_users(['Instructors'])
+
+        id_numbers = []
+        for s in data:
+            for i in s['instructors']:
+                id_numbers.append(i)
+
+        existing_users = get_existing_users(['Instructors'], id_numbers)
 
         for s in data:
             # Get the existing section object or create a new one
@@ -185,7 +191,12 @@ def import_enrollments(request):
         # their associated objects from the database
         existing_sections = get_existing_sections(settings.CURRENT_TERM,
                                                   settings.CURRENT_YEAR)
-        existing_users = get_existing_users(['Students'])
+
+        id_numbers = []
+        for e in data:
+            id_numbers.append(e['student'])
+
+        existing_users = get_existing_users(['Students'], id_numbers)
         existing_enrollments = get_existing_enrollments(settings.CURRENT_TERM,
                                                         settings.CURRENT_YEAR)
 
