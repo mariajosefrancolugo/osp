@@ -103,6 +103,9 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL
 # Regular expression to match your ERP ID number pattern
 ID_NUMBER_PATTERN = '\d{7}'
 
+# Create a student index to improve search speed
+INDEX_STUDENTS = True
+
 # All potential term choices that could be received by the API
 TERM_CHOICES = [
     ('fa', 'Fall'),
