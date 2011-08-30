@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -11,6 +12,22 @@ class UserProfile(models.Model):
         return self.user.username
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+
+
+class StudentIndex(models.Model):
+    student = models.OneToOneField(User)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    full_name = models.CharField(max_length=61)
+    email = models.CharField(max_length=75)
+    id_number = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.student.username
+
+if settings.INDEX_STUDENTS:
+    from osp.core.signals import update_index
+    post_save.connect(update_index, sender=User)
 
 
 class Section(models.Model):
