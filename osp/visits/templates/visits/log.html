@@ -36,6 +36,7 @@
   <div class="field checkbox{% if form.private.errors %} field-error{% endif %}">
     {{ form.private }}
     {{ form.private.label_tag }}
+    <div class="help-text">{{ form.private.help_text }}</div>
   </div>
   {% endif %}
 </form>
