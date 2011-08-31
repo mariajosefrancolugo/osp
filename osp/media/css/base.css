@@ -346,6 +346,13 @@ div.field
 {
     margin: 25px 0;
 }
+div.field div.help-text
+{
+    margin: 5px 0;
+    font-size: 11px;
+    color: #777;
+    font-style: italic;
+}
 
 #survey-results, #learning-style
 {
