@@ -104,7 +104,7 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL
 ID_NUMBER_PATTERN = '\d{7}'
 
 # Create a student index to improve search speed
-INDEX_STUDENTS = True
+INDEX_STUDENTS = False
 
 # All potential term choices that could be received by the API
 TERM_CHOICES = [
