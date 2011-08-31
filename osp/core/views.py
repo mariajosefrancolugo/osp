@@ -10,7 +10,7 @@ from django.utils import simplejson as json
 from django.views.generic.simple import direct_to_template
 
 from osp.core.middleware.http import Http403
-from osp.core.models import UserProfile, StudentIndex
+from osp.core.models import UserProfile
 
 @login_required
 def index(request):
@@ -36,6 +36,8 @@ def search(request):
 
     students = []
     if settings.INDEX_STUDENTS:
+        from osp.core.models import StudentIndex
+
         if re.match(settings.ID_NUMBER_PATTERN, term):
             try:
                 students = [StudentIndex.objects.filter(id_number=term)[0]]
