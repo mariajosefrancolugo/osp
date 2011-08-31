@@ -13,7 +13,17 @@ def email_user(from_user, to_user, bcc_user, subject, body):
             message.content_subtype = 'html'
             message.send()
     else:
-        message = EmailMessage(subject, body, from_user, [to_user], [bcc_user])
+        if bcc_user:
+            message = EmailMessage(subject,
+                                   body,
+                                   from_user,
+                                   [to_user],
+                                   [bcc_user])
+        else:
+            message = EmailMessage(subject,
+                                   body,
+                                   from_user,
+                                   [to_user])
         message.content_subtype = 'html'
         message.send()
     return
