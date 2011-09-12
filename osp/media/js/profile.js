@@ -1,7 +1,7 @@
 function refreshVisits(page) {
     $.get(base_url + 'visit/' + student_id + '/all/' + page + '/',
           function(data) {
-        $('#visits-animate').fadeOut('fast', function() {
+        $('#visits').fadeOut('fast', function() {
             $(this).html(data);
             $(this).fadeIn('fast');
         });
