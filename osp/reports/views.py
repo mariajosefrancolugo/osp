@@ -7,6 +7,7 @@ from osp.core.middleware.http import Http403
 from osp.assessments.models import LearningStyleResult, PersonalityTypeResult
 from osp.reports.forms import DateRangeForm
 from osp.reports.utils import generate_xls_report
+from osp.visits.models import Visit
 
 @login_required
 def learning_style_report(request):
@@ -89,6 +90,76 @@ def personality_type_report(request):
 
         return direct_to_template(request, 'reports/report_form.html', {
             'error': True,
+            'personality': True,
         })
 
-    return direct_to_template(request, 'reports/report_form.html', {})
+    return direct_to_template(request, 'reports/report_form.html', {
+        'personality': True,
+    })
+
+@login_required
+def visit_report(request):
+    if (not request.user.groups.filter(name='Instructors')
+        and not request.user.groups.filter(name='Counselors')):
+        raise Http403
+
+    if request.method == "POST":
+        form = DateRangeForm(request.POST)
+        if form.is_valid():
+            results = Visit.objects.filter(date_submitted__range=(
+                datetime.combine(form.cleaned_data['from_date'], time.min),
+                datetime.combine(form.cleaned_data['to_date'], time.max),
+            ), private=False)
+            if results:
+                filename = ('visit-%s-%s.xls' %
+                            (form.cleaned_data['from_date'].strftime('%Y%m%d'),
+                             form.cleaned_data['to_date'].strftime('%Y%m%d')))
+                columns = ('Visit Index',
+                           'Date Submitted',
+                           'Student ID Number',
+                           'Student First Name',
+                           'Student Last Name',
+                           'Undecided Financial Aid',
+                           'Note',
+                           'Reason',
+                           'Contact Type',
+                           'Campus',
+                           'Counselor Username',
+                           'Counselor First Name',
+                           'Counselor Last Name',
+                           'Department',
+                           'Career Services Outcome',
+                           'After Five',)
+                rows = []
+                for result in results:
+                    row = (result.id,
+                           result.date_submitted.strftime('%m/%d/%Y %h:%i'),
+                           result.student.profile.id_number,
+                           result.student.first_name,
+                           result.student.last_name,
+                           result.undecided_financial_aid,
+                           result.note,
+                           result.reason,
+                           result.contact_type,
+                           result.campus,
+                           result.submitter.username,
+                           result.submitter.first_name,
+                           result.submitter.last_name,
+                           result.department,
+                           result.career_services_outcome,
+                           True if result.date_submitted.hour > 16 else False,)
+                    rows.append(row)
+
+                return generate_xls_report(filename,
+                                           'Visit Report',
+                                           columns,
+                                           rows)
+
+        return direct_to_template(request, 'reports/report_form.html', {
+            'error': True,
+            'visit': True,
+        })
+
+    return direct_to_template(request, 'reports/report_form.html', {
+        'visit': True,
+    })

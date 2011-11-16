@@ -7,4 +7,5 @@ urlpatterns = patterns('',
         'learning-style-report'),
     (r'^personality-type/', views.personality_type_report, {},
         'personality-type-report'),
+    (r'^visit/', views.visit_report, {}, 'visit-report'),
 )
