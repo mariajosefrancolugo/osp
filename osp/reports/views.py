@@ -133,7 +133,7 @@ def visit_report(request):
                 rows = []
                 for result in results:
                     row = (result.id,
-                           result.date_submitted.strftime('%m/%d/%Y %h:%i'),
+                           result.date_submitted.strftime('%m/%d/%Y %H:%M'),
                            result.student.profile.id_number,
                            result.student.first_name,
                            result.student.last_name,
