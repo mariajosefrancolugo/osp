@@ -11,7 +11,7 @@
 {% endif %}
 <p class="notification">Please select the range of dates that you would like for your report to include.</p>
 <h1>{% if learning %}Learning Style {% endif %}{% if personality %}Personality Type {% endif %}{% if visit %}Visit {% endif %} Report</h1>
-<form action="{% if learning %}{% url report:learning-style-report %}{% else %}{% url report:personality-type-report %}{% endif %}" method="POST" class="ui-form">
+<form action="{% if learning %}{% url report:learning-style-report %}{% endif %}{% if personality %}{% url report:personality-type-report %}{% endif %}{% if visit %}{% url report:visit-report %}{% endif %}" method="POST" class="ui-form">
   {% csrf_token %}
   <div class="field">
     <label for="id_from_date">Start Date</label>
