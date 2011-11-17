@@ -137,7 +137,7 @@ def visit_report(request):
                            result.student.profile.id_number,
                            result.student.first_name,
                            result.student.last_name,
-                           result.undecided_financial_aid,
+                           'Yes' if result.undecided_financial_aid else 'No',
                            result.note,
                            result.reason,
                            result.contact_type,
@@ -147,7 +147,7 @@ def visit_report(request):
                            result.submitter.last_name,
                            result.department,
                            result.career_services_outcome,
-                           True if result.date_submitted.hour > 16 else False,)
+                           'Yes' if result.date_submitted.hour > 16 else 'No',)
                     rows.append(row)
 
                 return generate_xls_report(filename,
