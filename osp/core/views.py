@@ -56,7 +56,7 @@ def search(request):
             response.append({
                 'value': si.full_name,
                 'id': si.student.id,
-                'desc': si.email,
+                'desc': si.id_number,
             })
     else:
         if re.match(settings.ID_NUMBER_PATTERN, term):
@@ -83,6 +83,6 @@ def search(request):
             response.append({
                 'value': '%s %s' % (student.first_name, student.last_name),
                 'id': student.id,
-                'desc': student.email,
+                'desc': student.profile.id_number,
             })
     return HttpResponse(json.dumps(response), mimetype='application/json')

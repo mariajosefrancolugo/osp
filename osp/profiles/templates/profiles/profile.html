@@ -25,7 +25,8 @@ var personality_type_scores = [
 {% endblock %}
 
 {% block body %}
-<h1>{{ student.get_full_name }}</h1>
+<h1 class="profile"><a href="mailto: {{ student.email }}">{{ student.get_full_name }}</a></h1>
+<p id="id-number">ID Number: {{ student.profile.id_number }}</p>
 <h2>Current Enrollments</h2>
 {% include "profiles/profile_current_enrollments.html" %}
 <div id="learning-style">
