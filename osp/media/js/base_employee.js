@@ -1,17 +1,14 @@
 $(function() {
     // Hard-coded string... Maybe re-work this
     $('#id_query').focus(function() {
-        if($(this).val() == 'search for student') {
+        if ($(this).val() == 'search for student') {
             $(this).val('');
         }
-    });
-    $('#id_query').blur(function() {
-        if($(this).val() == '') {
+    }).blur(function() {
+        if ($(this).val() == '') {
             $(this).val('search for student');
         }
-    });
-
-    $('#id_query').autocomplete({
+    }).autocomplete({
         source: base_url + 'search/',
         minLength: 2,
         select: function(event, ui) {
@@ -21,11 +18,20 @@ $(function() {
         position: {
             offset: '0 -1'
         }
-    }).data( "autocomplete" )._renderItem = function( ul, item ) {
-			return $( "<li></li>" )
-				.data( "item.autocomplete", item )
-				.append( "<a>" + item.label + "<br>" + '<em style=\"color: grey;\">' + item.desc  + "</em>" + "</a>" )
-				.appendTo( ul );
-		}
+    }).bind('paste', null, function(e) {
+        if (!e.keyDown) {
+            $(this).trigger('keydown');
+        }
+    }).data('autocomplete')._renderItem = function(ul, item) {
+        return $('<li></li>')
+               .data('item.autocomplete', item)
+               .append('<a>' + item.label + '<br />' +
+                       '<em style="color: grey;">ID Number: ' + item.desc  +
+                       '</em>' + '</a>')
+               .appendTo(ul);
+    }
     
+    $('#header form').submit(function() {
+        return false;
+    });
 });

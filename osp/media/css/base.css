@@ -354,6 +354,23 @@ div.field div.help-text
     font-style: italic;
 }
 
+h1.profile
+{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+h1.profile a
+{
+    text-decoration: none;
+    color: #546d9e;
+}
+
+#id-number
+{
+    color: gray;
+    font-style: italic;
+}
+
 #survey-results, #learning-style
 {
     float: left;
