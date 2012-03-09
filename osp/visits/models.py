@@ -8,8 +8,7 @@ class Visit(models.Model):
     campus = models.CharField(max_length=255, choices=settings.CAMPUS_CHOICES)
     contact_type = models.CharField(max_length=255,
                                     choices=settings.VISIT_CONTACT_TYPE_CHOICES)
-    reason = models.CharField(max_length=255,
-                              choices=settings.VISIT_REASON_CHOICES)
+    reason = models.TextField()
     department = models.CharField(max_length=255,
                                   choices=settings.VISIT_DEPARTMENT_CHOICES)
     undecided_financial_aid = models.BooleanField()
