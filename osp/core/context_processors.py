@@ -4,10 +4,10 @@ def media_url(request):
     return {'MEDIA_URL': settings.MEDIA_URL}
 
 def base_template(request):
-    if request.user.groups.filter(name='Students'):
-        return {'base_template': 'base_student.html'}
-    elif request.user.groups.filter(name='Employees'):
+    if request.user.groups.filter(name='Employees'):
         return {'base_template': 'base_employee.html'}
+    elif request.user.groups.filter(name='Students'):
+        return {'base_template': 'base_student.html'}
     else:
         return {'base_template': 'base.html'}
 
