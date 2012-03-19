@@ -109,7 +109,7 @@ def visit_report(request):
             results = Visit.objects.filter(date_submitted__range=(
                 datetime.combine(form.cleaned_data['from_date'], time.min),
                 datetime.combine(form.cleaned_data['to_date'], time.max),
-            ), private=False)
+            ))
             if results:
                 filename = ('visit-%s-%s.xls' %
                             (form.cleaned_data['from_date'].strftime('%Y%m%d'),
@@ -138,7 +138,7 @@ def visit_report(request):
                            result.student.first_name,
                            result.student.last_name,
                            'Yes' if result.undecided_financial_aid else 'No',
-                           result.note,
+                           'Private note.' if result.private else result.note,
                            result.reason,
                            result.contact_type,
                            result.campus,
