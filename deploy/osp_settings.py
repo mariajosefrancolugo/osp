@@ -164,9 +164,6 @@ VISIT_REASON_CHOICES = [
     'Final Academic Suspension',
 ]
 
-# Separation character(s) to use when multiple reasons are selected for a visit
-VISIT_REASON_SEPARATOR = '; '
-
 # List of departments for visits
 VISIT_DEPARTMENT_CHOICES = [
     'Advising',
