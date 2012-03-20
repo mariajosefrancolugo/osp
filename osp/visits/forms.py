@@ -13,6 +13,10 @@ class VisitForm(forms.ModelForm):
         cleaned_data=self.cleaned_data
         if cleaned_data.has_key('reason'):
             # convert reason from list to string of comma separated values
-            reason_str = settings.VISIT_REASON_SEPARATOR.join(cleaned_data['reason'])
+            try:
+                reason_separator = settings.VISIT_REASON_SEPARATOR
+            except:
+                reason_separator = '; '
+            reason_str = reason_separator.join(cleaned_data['reason'])
             cleaned_data['reason'] = reason_str
         return cleaned_data
