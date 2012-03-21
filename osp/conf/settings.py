@@ -64,4 +64,5 @@ INSTALLED_APPS = [
     'osp.rosters',
     'osp.surveys',
     'osp.visits',
+    'osp.notes',
 ]
