@@ -36,6 +36,7 @@
     <thead>
       <tr>
         <th style="width: 5%;"></th>
+        <th style="width: 10%;">ID Number</th>
         <th style="width: 45%;">Student</th>
         <th style="width: 25%;">Personality Type</th>
         <th style="width: 25%;">Learning Style</th>
@@ -45,6 +46,7 @@
       {% for student in students %}
       <tr class="{% cycle "odd" "even" %}">
         <td style="text-align: center;"><input type="checkbox" name="students" id="id_students_{{ forloop.counter0 }}" value="{{ student.id }}" /></td>
+        <td>{{ student.sid }}</td>
         <td><a href="{% url profile:profile student.id %}">{{ student.full_name }}</a></td>
         <td>{{ student.personality_type }}</td>
         <td>{{ student.learning_style }}</td>
@@ -54,6 +56,7 @@
   </table>
   <input type="hidden" id="id_section_id" name="section_id" value="{{ section.id }}" />
   <p style="text-align: right;">
+    <input type="button" id="id_note" name="note" value=Note />
     <input type="button" id="id_contact" name="contact" value="Contact" />
     <input type="button" id="id_intervene" name="intervene" value="Intervene" />
   </p>

@@ -38,6 +38,28 @@ $(function() {
             }
         }
     ]);
+    
+    $('#note-window').dialog(default_window_options);
+    $('#note-window').dialog('option', 'buttons', [
+        {
+            text: 'Submit',
+            click: function() {
+                var data = $('#note-form').serializeArray();
+                $.post(base_url + 'note/add',
+                       data,
+                       function(data) {
+                    if(data.status == 'success') {
+                        $('#note-window').dialog('close');
+                    } else if(data.status == 'fail') {
+                        $('#note-window').html(data.template);
+                        applyNotificationStyles();
+                    }
+                }, 'json');
+            }
+        }
+    ]);
+    
+    
 
     $('#id_contact').click(function() {
         if($('input[name=students]:checked').length > 0) {
@@ -58,6 +80,20 @@ $(function() {
             });
         }
     });
+    
+    $('#id_note').click(function() {
+        if($('input[name=students]:checked').length > 0) {
+            var data = $('#roster-form').serializeArray();
+            $.get(base_url + 'notes/add/', data, 
+            
+            function(data) {
+                $('#note-window').html(data);
+                $('#note-window').dialog('open');
+            });
+        }
+    });
+    
+    
 });
 
 if (learning_style_counts.auditory > 0 || learning_style_counts.kinesthetic > 0 || learning_style_counts.visual > 0) {
