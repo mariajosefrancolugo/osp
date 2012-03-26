@@ -84,7 +84,7 @@ $(function() {
     $('#id_note').click(function() {
         if($('input[name=students]:checked').length > 0) {
             var data = $('#roster-form').serializeArray();
-            $.get(base_url + 'notes/add/', data, 
+            $.get(base_url + 'note/add/', data, 
             
             function(data) {
                 $('#note-window').html(data);

@@ -13,27 +13,37 @@ from osp.notes.models import Note
 from osp.notes.forms import NoteForm
 
 @login_required
-def add_note(request, user_id):
+def add_note(request):
     template = 'notes/add_note.html'
 
     if not request.user.groups.filter(name='Employees'):
         raise Http403
 
-    student = get_object_or_404(User, id=user_id)
-
+    #TODO Should instructors be able to privatize notes?
     if request.user.groups.filter(name='Counselors'):
         can_privatize = True
     else:
         can_privatize = False
 
+    students = []
+    student_list = (request.GET.getlist('students')
+                    if request.method == 'GET'
+                    else request.POST.get('students').split(','))
+    for student_id in student_list:
+        students.append(get_object_or_404(User, id=int(student_id)))
+
+    if not students:
+        raise Http403
+
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
             note = form.save(commit=False)
-            note.student = student
             note.submitter = request.user
             note.save()
-
+            for student_id in request.POST['students'].split(','):
+                note.students.add(get_object_or_404(User,
+                                                    id=int(student_id)))
             return HttpResponse(json.dumps({'status': 'success'}),
                                 content_type='application/json')
         else:
@@ -41,15 +51,14 @@ def add_note(request, user_id):
                 'status': 'fail',
                 'template': render_to_string(template, {
                 'form': form,
-                'student': student,
+                'students': students,
                 'can_privatize': can_privatize}, RequestContext(request))
             }), content_type='application/json')
     else:
         form = NoteForm()
-
         return direct_to_template(request, template, {
             'form': form,
-            'student': student,
+            'students': students,
             'can_privatize': can_privatize})
 
 @login_required
