@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 class Note(models.Model):
-    student = models.ForeignKey(User, related_name='notes')
+    students = models.ManyToManyField(User)
     submitter = models.ForeignKey(User, related_name='submitted_notes')
     note = models.TextField()
     private = models.BooleanField(help_text='Should be checked for notes '

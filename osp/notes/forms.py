@@ -6,4 +6,4 @@ class NoteForm(forms.ModelForm):
 
     class Meta:
         model = Note
-        exclude = ('student', 'submitter',)
+        exclude = ('students', 'submitter',)
