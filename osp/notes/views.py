@@ -79,7 +79,7 @@ def view_all(request, user_id, page):
 
     student = get_object_or_404(User, id=user_id)
 
-    notes = Note.objects.filter(student=student)
+    notes = Note.objects.filter(student__in=students)
     if not request.user.groups.filter(name='Counselors'):
         notes = notes.filter(private=False)
 
