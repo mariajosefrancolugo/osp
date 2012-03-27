@@ -45,7 +45,7 @@ $(function() {
             text: 'Submit',
             click: function() {
                 var data = $('#note-form').serializeArray();
-                $.post(base_url + 'note/add',
+                $.post(base_url + 'note/add/',
                        data,
                        function(data) {
                     if(data.status == 'success') {
@@ -84,7 +84,7 @@ $(function() {
     $('#id_note').click(function() {
         if($('input[name=students]:checked').length > 0) {
             var data = $('#roster-form').serializeArray();
-            $.get(base_url + 'note/add/', data, 
+            $.get(base_url + 'note/add', data, 
             
             function(data) {
                 $('#note-window').html(data);
