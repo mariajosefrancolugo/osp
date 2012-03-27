@@ -4,12 +4,11 @@ from osp.conf.settings import *
 SECRET_KEY = 'Chac-8#haCa_Ra-e?-e+ucrur=gEFRasejayasaC?meMe!AC-a'
 
 # DEBUG should be False in production, True in development
-DEBUG = False
+DEBUG = True
 
 # List of administrators who should receive error reports
 ADMINS = (
-    ('John Smith', 'john.smith@example.edu'),
-    ('Francis Drake', 'francis.drake@example.edu'),
+    ('Edmund Quintero', 'edmund.quintero@cpcc.edu'),
 )
 MANAGERS = ADMINS
 
@@ -22,7 +21,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'osp',
         'USER': 'osp',
-        'PASSWORD': '',
+        'PASSWORD': 'osp',
         'HOST': '',
         'PORT': '',
     }
@@ -88,10 +87,10 @@ EMAIL_HOST_USER = 'service_user'
 EMAIL_HOST_PASSWORD = 'service_password'
 
 # List of IP addresses for hosts allowed to push data to the API
-API_ALLOWED_HOSTS = []
+API_ALLOWED_HOSTS = ['10.0.2.15','127.0.0.1','127.0.1.1']
 
 # Authorization key for pushing data to the API
-API_KEY = ''
+API_KEY = 'test'
 
 # Email address that intervention requests are sent to
 INTERVENTIONS_EMAIL = 'interventions@example.edu'

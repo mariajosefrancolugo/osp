@@ -120,7 +120,7 @@ then
     workon osp
 
     # Install prerequisite Python packages
-    easy_install mysql-python==1.2.3 python-ldap==2.3.13 xlwt==0.7.2 django==1.2.5 django-auth-ldap==1.0.9 django-cas==2.0.3 south==0.7.3
+    easy_install mysql-python==1.2.3 python-ldap==2.3.13 xlwt==0.7.2 django==1.2.5 django-auth-ldap==1.0.18 django-cas==2.0.3 south==0.7.3
 fi
 
 
@@ -281,6 +281,7 @@ then
     django-admin.py migrate notifications --settings=osp_settings
     django-admin.py migrate surveys --settings=osp_settings
     django-admin.py migrate visits --settings=osp_settings
+    django-admin.py migrate notes --settings=osp_settings
 fi
 
 echo ""
