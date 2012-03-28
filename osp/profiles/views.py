@@ -80,3 +80,16 @@ def profile(request, user_id):
         'paginator': paginator,
         'page': page,
     })
+
+def activity(user_id):
+    from operator import attrgetter
+    from itertools import chain
+    student = get_object_or_404(User, pk=user_id, groups__name='Students')
+    visits = student.visits.all()
+    notes = student.note_set.all()
+    interventions = student.intervention_set.all()
+    contacts = student.contact_set.all()
+    activity = sorted(
+        chain(visits, notes, interventions, contacts),
+        key=attrgetter('date_submitted'), reverse=True)
+    return visits, notes, interventions, contacts, activity
