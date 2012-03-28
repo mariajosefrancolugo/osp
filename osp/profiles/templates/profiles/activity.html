@@ -1,0 +1,6 @@
+<div class="clear"></div>
+<div>
+{% for item in activity %}
+<p>{{ item.date_submitted }} {{ item.submitter }} {{ item.type }} {{ item.details }}</p>
+{% endfor %}
+</div>
