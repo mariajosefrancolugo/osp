@@ -10,6 +10,76 @@ from osp.assessments.lib import jungian
 from osp.core.middleware.http import Http403
 from osp.visits.models import Visit
 
+class Activity:
+    """
+        Class used to create an Activity object.
+    """
+    def __init__(self, model, id, type, details, date_submitted, submitter, private):
+        self.model = model
+        self.id = id
+        self.type = type
+        self.details = details
+        self.date_submitted = date_submitted
+        self.submitter = submitter
+        self.private = private
+
+    def __repr__(self):
+        return repr((self.model, self.id, self.type, self.details, self.date_submitted, self.submitter))
+
+def get_activity(request, student_id, can_view_private):
+    """
+       Returns the combined activity (visits, notes, intervents, contacts 
+       for the requested student.
+    """
+    from operator import attrgetter
+    student = get_object_or_404(User, pk=student_id, groups__name='Students')
+    if can_view_private:
+        visits = student.visits.all()
+        notes = student.note_set.all()
+    else:
+        visits = student.visits.filter(private=False)
+        notes = student.notes.filter(private=False)
+    interventions = student.intervention_set.all()
+    contacts = student.contact_set.all()
+    combined_activity = []
+    for visit in visits:
+        combined_activity.append(Activity('visit',
+                         visit.id,
+                         'Visit - ' + visit.contact_type,
+                         visit.reason,
+                         visit.date_submitted,
+                         visit.submitter,
+                         visit.private))
+    for note in notes:
+        combined_activity.append(Activity('note',
+                        note.id,
+                        'Note',
+                        note.note[:50],
+                        note.date_submitted,
+                        note.submitter,
+                        note.private))
+    for intervention in interventions:
+        combined_activity.append(Activity('intervention',
+                        intervention.id,
+                        'Intervention',
+                        intervention.reasons,
+                        intervention.date_submitted,
+                        intervention.instructor,
+                        False))
+    for contact in contacts:
+        combined_activity.append(Activity('contact',
+                        contact.id,
+                        'Contact',
+                        contact.message[:50],
+                        contact.date_submitted,
+                        contact.instructor,
+                        False))
+    activity = sorted(
+        combined_activity,
+        key=attrgetter('date_submitted'), reverse=True)
+    return visits, notes, interventions, contacts, activity
+
+
 @login_required
 def profile(request, user_id):
     if not request.user.groups.filter(name__in=['Students', 'Employees']):
@@ -52,22 +122,28 @@ def profile(request, user_id):
     if (not request.user.groups.filter(name='Counselors')
         and not request.user.groups.filter(name='Instructors')):
         can_view_visits = False
-        visits = None
+        #visits = None
+        activity = None
     else:
         can_view_visits = True
-        visits = Visit.objects.filter(student=student)
+        #visits = Visit.objects.filter(student=student)
+        can_view_private = True
 
         if not request.user.groups.filter(name='Counselors'):
-            visits = visits.filter(private=False)
+            #visits = visits.filter(private=False)
+            can_view_private = False
+        visits, notes, interventions, contacts, activity = get_activity(request, student.id, can_view_private)
 
-    if visits:
-        paginator = Paginator(visits, 5)
+    #if visits:
+    if activity:
+        paginator = Paginator(activity, 5)
         page = paginator.page(1)
-        visits = page.object_list
+        activity = page.object_list
     else:
         paginator = False
         page = False
-
+    print can_view_visits
+    print activity
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,
@@ -76,20 +152,7 @@ def profile(request, user_id):
         'personality_type_scores': personality_type_scores,
         'latest_learning_style_result': latest_learning_style_result,
         'can_view_visits': can_view_visits,
-        'visits': visits,
+        'activity': activity,
         'paginator': paginator,
         'page': page,
     })
-
-def activity(user_id):
-    from operator import attrgetter
-    from itertools import chain
-    student = get_object_or_404(User, pk=user_id, groups__name='Students')
-    visits = student.visits.all()
-    notes = student.note_set.all()
-    interventions = student.intervention_set.all()
-    contacts = student.contact_set.all()
-    activity = sorted(
-        chain(visits, notes, interventions, contacts),
-        key=attrgetter('date_submitted'), reverse=True)
-    return visits, notes, interventions, contacts, activity
