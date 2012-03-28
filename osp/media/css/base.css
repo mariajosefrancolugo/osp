@@ -1,5 +1,7 @@
 /* Global Stylesheet */
 
+
+
 html, body
 {
     margin: 0;
@@ -109,7 +111,7 @@ label
 #header
 {
     z-index: 2;
-    height: 125px;
+    height:80px;
     background: #fff url('../img/header_background.png') bottom repeat-x;
 }
 #header-inner
@@ -121,7 +123,7 @@ label
 #name
 {
     float: left;
-    margin: 80px 0 0 0;
+    margin: 25px 0 0 0;
     font-size: 23px;
 }
 
@@ -133,8 +135,9 @@ label
 
 #id_query
 {
+    z-index:1;
     float: right;
-    margin: 15px 0 0 0;
+    margin: -80px 0 0 0;
     padding: 5px 5px 5px 35px;
     background: url('../img/magnifying_glass_icon.png') 10px center no-repeat;
     border: 1px solid #d6d6d6;
@@ -142,6 +145,7 @@ label
     border-left: 1px solid #cdcdcd;
     font-size: 15px;
     color: #9a9b9c;
+    background-color:#ffffff;
 }
 #id_query.ui-autocomplete-loading
 {
@@ -193,7 +197,7 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
 {
     clear: right;
     float: right;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 #navigation div
 {
