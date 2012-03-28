@@ -8,7 +8,8 @@ DEBUG = True
 
 # List of administrators who should receive error reports
 ADMINS = (
-    ('Edmund Quintero', 'edmund.quintero@cpcc.edu'),
+    ('John Smith', 'john.smith@example.edu'),
+    ('Francis Drake', 'francis.drake@example.edu'),
 )
 MANAGERS = ADMINS
 
@@ -21,7 +22,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'osp',
         'USER': 'osp',
-        'PASSWORD': 'osp',
+        'PASSWORD': '',
         'HOST': '',
         'PORT': '',
     }
@@ -87,10 +88,10 @@ EMAIL_HOST_USER = 'service_user'
 EMAIL_HOST_PASSWORD = 'service_password'
 
 # List of IP addresses for hosts allowed to push data to the API
-API_ALLOWED_HOSTS = ['10.0.2.15','127.0.0.1','127.0.1.1']
+API_ALLOWED_HOSTS = []
 
 # Authorization key for pushing data to the API
-API_KEY = 'test'
+API_KEY = ''
 
 # Email address that intervention requests are sent to
 INTERVENTIONS_EMAIL = 'interventions@example.edu'
