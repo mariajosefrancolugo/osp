@@ -458,6 +458,7 @@ a.float-right
     float: right;
     display: block;
     margin-top: 25px;
+    padding-left:10px;
     font-size: 14px;
 }
 

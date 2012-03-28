@@ -15,11 +15,16 @@
 </table>
 <form id="note-form" class="ui-form" action="{% url note:add_note %}" method="POST">
   {% csrf_token %}
-  {% for field in form %}
-  <div class="field{% if field.errors %} field-error{% endif %}">
-    {{ field.label_tag }}
-    {{ field }}
+   <div class="field{% if form.note.errors %} field-error{% endif %}">
+    {{ form.note.label_tag }}
+    {{ form.note }}
+    {% if can_privatize %}
+    <div class="field checkbox{% if form.private.errors %} field-error{% endif %}">
+      {{ form.private }}
+      {{ form.private.label_tag }}
+      <div class="help-text">{{ form.private.help_text }}</div>
+      </div>
+  {% endif %}
   </div>
-  {% endfor %}
   <input type="hidden" id="id_students" name="students" value="{% for student in students %}{{student.id}}{% if not forloop.last %},{% endif %}{%endfor%}" />
 </form>

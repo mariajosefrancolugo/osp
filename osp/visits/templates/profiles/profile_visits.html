@@ -1,4 +1,8 @@
 <a href="javascript:;" id="log-visit" class="float-right">log a visit</a>
+<a href="javascript:;" id="id-note" class="float-right">add a note</a>
+<form id="visit_note-form">
+    <input type="hidden" name="students" id="id_students" value="{{ student.id }}" />
+</form>
 <div class="clear"></div>
 <div id="visits" style="min-height: 225px;">
   {% if visits %}
@@ -10,3 +14,5 @@
 </div>
 <div id="view-visit-window"></div>
 <div id="log-visit-window"></div>
+<div id="note-window"></div>
+

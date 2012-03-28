@@ -35,11 +35,40 @@ $(function() {
         }
     ]);
 
+   $('#note-window').dialog(default_window_options);
+      $('#note-window').dialog('option', 'buttons', [
+          {
+            text: 'Submit',
+            click: function() {
+                var data = $('#note-form').serializeArray();
+                $.post(base_url + 'note/add/',
+                       data,
+                       function(data) {
+                    if(data.status == 'success') {
+                        $('#note-window').dialog('close');
+                    } else if(data.status == 'fail') {
+                        $('#note-window').html(data.template);
+                        applyNotificationStyles();
+                    }
+                }, 'json');
+            }
+        }
+    ]);
+
     $('#log-visit').click(function() {
         $.get(base_url + 'visit/' + student_id + '/log/', function(data) {
             $('#log-visit-window').html(data);
             $('#log-visit-window').dialog('open');
         });
+    });
+
+    $('#id-note').click(function() {
+            var data = $('#visit_note-form').serializeArray();
+            $.get(base_url + 'note/add', data, 
+            function(data) {
+                $('#note-window').html(data);
+                $('#note-window').dialog('open');
+            });
     });
 
     $('.view-visit').live('click', function() {
