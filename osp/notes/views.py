@@ -18,8 +18,7 @@ def add_note(request):
 
     if not request.user.groups.filter(name='Employees'):
         raise Http403
-
-    #TODO Should instructors be able to privatize notes?
+    
     if request.user.groups.filter(name='Counselors'):
         can_privatize = True
     else:
@@ -34,7 +33,7 @@ def add_note(request):
 
     if not students:
         raise Http403
-
+    
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
