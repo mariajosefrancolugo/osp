@@ -1,0 +1,23 @@
+/* Custom Stylesheet */
+
+
+#custom_header
+{
+    height: 100px;
+    margin:0px;
+    background: #fff url('../img/banner.png');
+    background-repeat:no-repeat;
+    background-position:center; 
+    
+}
+
+#custom_logo
+{
+    padding-top: 30px;   
+}
+
+#custom_header_inner
+{
+    width: 960px;
+    margin: 0 auto;  
+}
