@@ -1,1 +1,7 @@
-
+{% if note.private %}
+<p class="notification">This Note is marked as private and is therefore only viewable by counseling staff</p>
+{% endif %}
+<h3>Notes</h3>
+<p>{{ note.note|linebreaks }}</p>
+<h3>Details</h3>
+<p><em>Submitted by {{ note.submitter.get_full_name }} on {{ note.date_submitted|date:"F j, Y" }}</em></p>
