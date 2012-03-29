@@ -13,6 +13,7 @@ $(function() {
         refreshVisits($(this).data('page'));
     });
 
+    $('#view-note-window').dialog(default_window_options);
     $('#view-visit-window').dialog(default_window_options);
     $('#log-visit-window').dialog(default_window_options);
     $('#log-visit-window').dialog('option', 'buttons', [
@@ -80,6 +81,18 @@ $(function() {
             $('#view-visit-window').dialog('open');
         });
     });
+
+    $('.view-note').live('click', function() {
+        $.get(base_url + 'note/' + student_id + '/view/' +
+              $(this).data('note') + '/',
+              function(data) {
+            $('#view-note-window').html(data);
+            applyNotificationStyles();
+            $('#view-note-window').dialog('open');
+        });
+    });
+
+
 
     $('a.modal').each(function() {
       if($(this).attr('ref') == 'learning-style-window') {
