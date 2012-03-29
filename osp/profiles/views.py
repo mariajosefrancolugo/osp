@@ -79,7 +79,6 @@ def get_activity(request, student_id, can_view_private):
         key=attrgetter('date_submitted'), reverse=True)
     return visits, notes, interventions, contacts, activity
 
-
 @login_required
 def profile(request, user_id):
     if not request.user.groups.filter(name__in=['Students', 'Employees']):

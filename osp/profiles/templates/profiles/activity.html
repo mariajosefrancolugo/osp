@@ -11,7 +11,15 @@
     <tbody>
       {% for item in activity %}
       <tr class="{% cycle "odd" "even" %}">
-      <td style="width: 20%;"><a href="javascript:;" class="view-{{ item.model }}" data-{{ item.model }}="{{ item.id }}">{{ item.date_submitted|date:"F j, Y" }}</a></td>
+      <td style="width: 20%;">
+        {% ifequal item.model "note" %}
+          <a href="javascript:;" class="view-{{ item.model }}" data-{{ item.model }}="{{ item.id }}">{{ item.date_submitted|date:"F j, Y" }}</a></td>
+        {% endifequal %}
+        {% ifequal item.model "visit" %}
+          <a href="javascript:;" class="view-{{ item.model }}" data-{{ item.model }}="{{ item.id }}">{{ item.date_submitted|date:"F j, Y" }}</a></td>
+        {% else %}
+        {{ item.date_submitted|date:"F j, Y" }}</td>
+        {% endifequal %}      
         <td style="width: 25%;">{{ item.submitter }}</td>
         <td style="width: 25%;">{{ item.type }}</td>
         {% if item.private %}

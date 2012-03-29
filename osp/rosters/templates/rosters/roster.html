@@ -37,9 +37,10 @@
       <tr>
         <th style="width: 5%;"></th>
         <th style="width: 10%;">ID Number</th>
-        <th style="width: 45%;">Student</th>
+        <th style="width: 30%;">Student</th>
         <th style="width: 25%;">Personality Type</th>
         <th style="width: 25%;">Learning Style</th>
+        <th style="width: 5%;">Activity</th>
       </tr>
     </thead>
     <tbody>
@@ -50,6 +51,7 @@
         <td><a href="{% url profile:profile student.id %}">{{ student.full_name }}</a></td>
         <td>{{ student.personality_type }}</td>
         <td>{{ student.learning_style }}</td>
+        <td></td>
       </tr>
       {% endfor %}
     </tbody>
