@@ -539,3 +539,9 @@ div.field.checkbox label
 {
     margin: 10px 0;
 }
+
+#roster-icon
+{
+    float: right;
+    padding-left:3px;
+}

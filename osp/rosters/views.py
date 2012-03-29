@@ -43,6 +43,8 @@ def roster(request, section_id):
             'full_name': enrollment.student.get_full_name(),
             'personality_type': personality_type,
             'learning_style': learning_style,
+            'interventions' : enrollment.student.intervention_set.count(),
+            'notes' : enrollment.student.note_set.count(),
         })
 
         # Calculate learning style totals for class
