@@ -38,7 +38,7 @@ def get_activity(request, student_id, can_view_private):
         notes = student.note_set.all()
     else:
         visits = student.visits.filter(private=False)
-        notes = student.notes.filter(private=False)
+        notes = student.note_set.filter(private=False)
     interventions = student.intervention_set.all()
     contacts = student.contact_set.all()
     combined_activity = []
