@@ -61,9 +61,9 @@ def notify(request,
                 for student_id in request.POST['students'].split(','):
                     intervention.students.add(get_object_or_404(
                         User, id=int(student_id)))
-
+                
                 intervention.email_intervention()
-
+                
             return HttpResponse(json.dumps({'status': 'success'}),
                                 content_type='application/json')
         else:
