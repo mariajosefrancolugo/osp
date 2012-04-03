@@ -155,3 +155,36 @@ def profile(request, user_id):
         'paginator': paginator,
         'page': page,
     })
+
+@login_required
+def view_all_activity(request, user_id, page):
+    if not request.user.groups.filter(name='Employees'):
+        raise Http403
+
+    student = get_object_or_404(User, id=user_id)
+
+    #visits = Visit.objects.filter(student=student)
+    #if not request.user.groups.filter(name='Counselors'):
+    #    visits = visits.filter(private=False)
+    
+    can_view_private = True
+
+    if not request.user.groups.filter(name='Counselors'):
+        can_view_private = False
+    visits, notes, interventions, contacts, activity = get_activity(request, student.id, can_view_private)
+
+
+    page = int(page)
+    paginator = Paginator(activity, 5)
+    if page > paginator.num_pages:
+        page = paginator.page(paginator.num_pages)
+    elif page < 1:
+        page = paginator.page(1)
+    else:
+        page = paginator.page(page)
+    activity = page.object_list
+
+    return direct_to_template(request, 'profiles/activity.html', {
+        'activity': activity,
+        'page': page,
+        'paginator': paginator})
