@@ -1,5 +1,5 @@
 function refreshVisits(page) {
-    $.get(base_url + 'visit/' + student_id + '/all/' + page + '/',
+    $.get(base_url + 'profile/' + student_id + '/all/' + page + '/',
           function(data) {
         $('#visits').fadeOut('fast', function() {
             $(this).html(data);
