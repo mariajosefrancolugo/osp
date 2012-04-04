@@ -121,7 +121,7 @@ label
 {
     z-index: 2;
     height:80px;
-    background: #fff url('../img/header_background.png') bottom repeat-x;
+    background: #fff;
 }
 #header-inner
 {
