@@ -49,11 +49,11 @@
         <td>{{ student.profile.id_number }}</td>
         <td><a href="{% url profile:profile student.id %}">{{ student.full_name }}</a>
             {% if student.notes > 0 or student.contacts > 0 or student.visits > 0 %}
-            <a href="{% url profile:profile student.id %}" title= "{% if student.notes > 0 %}Notes: {{ student.notes }} {% endif %}{% if student.contacts > 0 %}Contacts: {{ student.contacts }} {% endif %}{% if student.visits > 0 %} Visits: {{ student.visits }} {% endif %}"><img src="{{ MEDIA_URL }}img/information.png" alt="Information Icon" id="roster-icon"></a>
+            <a class="icons" href="{% url profile:profile student.id %}" title= "{% if student.notes > 0 %}Notes: {{ student.notes }} {% endif %}{% if student.contacts > 0 %} Contacts: {{ student.contacts }} {% endif %}{% if student.visits > 0 %} Visits: {{ student.visits }}{% endif %}"><img src="{{ MEDIA_URL }}img/information.png" alt="Information Icon" id="roster-icon"></a>
             {% endif %}
             {% if student.interventions > 0 %}
-            <a href="{% url profile:profile student.id %}" title="Interventions: {{ student.interventions }}"><img src="{{ MEDIA_URL }}img/warning.png" alt="Warning Icon" id="roster-icon"></a>
-            {% endif %}        
+            <a class="icons" href="{% url profile:profile student.id %}" title="Interventions: {{ student.interventions }}"><img src="{{ MEDIA_URL }}img/warning.png" alt="Warning Icon" id="roster-icon"></a>
+            {% endif %}    
         </td>
         <td>{{ student.personality_type }}</td>
         <td>{{ student.learning_style }}</td>
