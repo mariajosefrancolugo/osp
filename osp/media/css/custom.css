@@ -5,9 +5,7 @@
 {
     height: 100px;
     margin:0px;
-    background: #fff url('../img/banner.png');
-    background-repeat:no-repeat;
-    background-position:center; 
+    background: #fff url('../img/banner_bkgrd.png') bottom repeat-x;
     
 }
 
