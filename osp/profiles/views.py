@@ -141,8 +141,6 @@ def profile(request, user_id):
     else:
         paginator = False
         page = False
-    print can_view_visits
-    print activity
 
     return direct_to_template(request, 'profiles/profile.html', {
         'student': student,
