@@ -28,6 +28,15 @@ a
     font-weight: bold;
 }
 
+table tr.even a.icons
+{
+    color:#f1f1f1;
+}
+table tr.odd a.icons
+{
+    color:#fff;
+}
+
 h1, h2
 {
     margin: 15px 0;
