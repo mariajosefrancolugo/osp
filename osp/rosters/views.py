@@ -45,6 +45,9 @@ def roster(request, section_id):
             'learning_style': learning_style,
             'interventions' : enrollment.student.intervention_set.count(),
             'notes' : enrollment.student.note_set.count(),
+            'contacts' : enrollment.student.contact_set.count(),
+            'visits' : enrollment.student.visits.count(),
+
         })
 
         # Calculate learning style totals for class
