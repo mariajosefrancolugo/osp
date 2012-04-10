@@ -5,7 +5,6 @@ from django.views.generic.simple import direct_to_template
 from django.template import Template, Context
 from django.conf import settings
 
-from xlwt import *
 from osp.core.middleware.http import Http403
 from osp.assessments.models import LearningStyleResult, PersonalityTypeResult
 from osp.reports.forms import DateRangeForm
