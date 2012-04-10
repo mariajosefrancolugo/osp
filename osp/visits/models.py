@@ -16,7 +16,8 @@ class Visit(models.Model):
         max_length=255,
         choices=settings.VISIT_CAREER_SERVICES_OUTCOME_CHOICES,
         blank=True)
-    note = models.TextField()
+    note = models.TextField(help_text='Only the first %s characters will '
+                                      'be displayed when a report is requested.' % settings.NOTE_MAX_CHARS )
     private = models.BooleanField(help_text='Should be checked for visits '
                                             'that involve topics such as '
                                             'personal counseling')

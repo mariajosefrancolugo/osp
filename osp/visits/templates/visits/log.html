@@ -31,7 +31,7 @@
   <h3>Notes</h3>
   <div class="field{% if form.note.errors %} field-error{% endif %}">
     {{ form.note }}
-    <div class="help-text">Only the first 5000 characters will be displayed when a report is requested.</div>
+    <div class="help-text">{{ form.note.help_text }}</div>
   </div>
   {% if can_privatize %}
   <div class="field checkbox{% if form.private.errors %} field-error{% endif %}">
