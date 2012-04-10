@@ -20,7 +20,7 @@
         {% else %}
           {{ item.date_submitted|date:"F j, Y" }}</td>
         {% endifequal %}{% endifequal %}     
-        <td style="width: 25%;">{{ item.submitter }}</td>
+        <td style="width: 25%;">{{ item.submitter.get_full_name }}</td>
         <td style="width: 25%;">{{ item.type }}</td>
         {% if item.private %}
         <td style="width: 30%;">Private Note</td>
