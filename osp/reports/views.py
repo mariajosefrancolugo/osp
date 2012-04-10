@@ -168,7 +168,7 @@ def visit_report(request):
 
 def truncate(request, visit, value, arg):
     path = request.build_absolute_uri('../../profile/%s' % visit.student.id)
-    template = Template('More at %s' % path)
+    template = Template(' "More at %s "' % path)
     context = Context({'student': visit.student.id})
     try:
         length = int(arg)

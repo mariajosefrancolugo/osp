@@ -107,6 +107,7 @@ ID_NUMBER_PATTERN = '\d{7}'
 INDEX_STUDENTS = False
 
 # Number of characters in the note field of a visit to be displayed in a report.
+# WARNING: Do not Exceed 60000 characters.
 NOTE_MAX_CHARS = 5000
 
 # All potential term choices that could be received by the API
