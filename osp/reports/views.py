@@ -2,7 +2,10 @@ from datetime import datetime, time
 
 from django.contrib.auth.decorators import login_required
 from django.views.generic.simple import direct_to_template
+from django.template import Template, Context
+from django.conf import settings
 
+from xlwt import *
 from osp.core.middleware.http import Http403
 from osp.assessments.models import LearningStyleResult, PersonalityTypeResult
 from osp.reports.forms import DateRangeForm
@@ -138,7 +141,7 @@ def visit_report(request):
                            result.student.first_name,
                            result.student.last_name,
                            'Yes' if result.undecided_financial_aid else 'No',
-                           'Private note.' if result.private else result.note,
+                           'Private note.' if result.private else truncate(request, result, result.note, settings.NOTE_MAX_CHARS),
                            result.reason,
                            result.contact_type,
                            result.campus,
@@ -163,3 +166,18 @@ def visit_report(request):
     return direct_to_template(request, 'reports/report_form.html', {
         'visit': True,
     })
+
+def truncate(request, visit, value, arg):
+    path = request.build_absolute_uri('../../profile/%s' % visit.student.id)
+    template = Template('More at %s' % path)
+    context = Context({'student': visit.student.id})
+    try:
+        length = int(arg)
+    except ValueError: # invalid literal for int()
+        return value # Fail silently.
+    if not isinstance(value, basestring):
+        value = str(value)
+    if (len(value) > length):
+        return value[:length] + template.render(context)
+    else:
+        return value
