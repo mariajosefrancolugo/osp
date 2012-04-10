@@ -106,6 +106,9 @@ ID_NUMBER_PATTERN = '\d{7}'
 # Create a student index to improve search speed
 INDEX_STUDENTS = False
 
+# Number of characters in the note field of a visit to be displayed in a report.
+NOTE_MAX_CHARS = 5000
+
 # All potential term choices that could be received by the API
 TERM_CHOICES = [
     ('fa', 'Fall'),
@@ -203,3 +206,4 @@ VISIT_DEPARTMENT_CHOICES = [(x, x) for x in VISIT_DEPARTMENT_CHOICES]
 VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [(x, x) for x in
                                          VISIT_CAREER_SERVICES_OUTCOME_CHOICES]
 INTERVENTION_REASONS = [(x, x) for x in INTERVENTION_REASONS]
+

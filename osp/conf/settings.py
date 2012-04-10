@@ -66,3 +66,4 @@ INSTALLED_APPS = [
     'osp.visits',
     'osp.notes',
 ]
+
