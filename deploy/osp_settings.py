@@ -6,6 +6,11 @@ SECRET_KEY = 'Chac-8#haCa_Ra-e?-e+ucrur=gEFRasejayasaC?meMe!AC-a'
 # DEBUG should be False in production, True in development
 DEBUG = True
 
+# Expire session cookie when user quits the browser session if set
+# to True. (This will also log the user out of the application).
+# Note, the user must actually quit the browser and not just close the browser.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 # List of administrators who should receive error reports
 ADMINS = (
     ('John Smith', 'john.smith@example.edu'),
