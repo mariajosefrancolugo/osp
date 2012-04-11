@@ -46,6 +46,7 @@ $(function() {
                        data,
                        function(data) {
                     if(data.status == 'success') {
+                        refreshVisits(1);
                         $('#note-window').dialog('close');
                     } else if(data.status == 'fail') {
                         $('#note-window').html(data.template);
