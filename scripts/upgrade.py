@@ -155,7 +155,7 @@ if __name__ == '__main__':
     sys.path.append(options.osp_path)
     sys.path.append(options.settings_path)
     apps = ['osp.assessments', 'osp.core', 'osp.notifications', 'osp.surveys',
-            'osp.visits',]
+            'osp.visits','osp.notes',]
     for app in apps:
         output, _ = call_command('django-admin.py migrate %s --settings=%s'
                                  % (app, options.settings_module))
