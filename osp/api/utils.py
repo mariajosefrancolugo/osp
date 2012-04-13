@@ -1,3 +1,5 @@
+import sys
+
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
 
@@ -74,8 +76,11 @@ def load_users(data, groups):
 
     # Let's keep a count of how many new and updated objects we have
     # Also, how many user accounts we activate or deactivate
+    # And, a list of user records that threw exceptions and therefore
+    # were not properly saved.
     users_updated = 0
     users_created = 0
+    user_exceptions = []
 
     id_numbers = []
     for u in data:
@@ -87,74 +92,76 @@ def load_users(data, groups):
 
     # Find or create user objects for each user
     for u in data:
-        # Check if the user has a user account
-        if u['username']:
-            username = u['username']
-        # If the user does not have a user account, assign them a
-        # temporary username based on their ID number
-        else:
-            if 'Students' in groups:
-                username = '%ss' % u['id_number']
-            elif 'Employees' in groups:
-                username = '%se' % u['id_number']
+        try:
+            # Check if the user has a user account
+            if u['username']:
+                username = u['username']
+            # If the user does not have a user account, assign them a
+            # temporary username based on their ID number
+            else:
+                if 'Students' in groups:
+                    username = '%ss' % u['id_number']
+                elif 'Employees' in groups:
+                    username = '%se' % u['id_number']
 
-        # Get the existing user object or create a new one
-        user = existing_users.get(u['id_number'])
+            # Get the existing user object or create a new one
+            user = existing_users.get(u['id_number'])
 
-        new_user = False
-        if not user:
-            try:
-                user = User.objects.create_user(username, u['email'])
-                new_user = True
-            except IntegrityError, (errno, strerror):
-                # If the user record already exists and just isn't in
-                # the correct group (and therefore not in the queryset
-                # we pulled earlier), grab it
-                # MySQL error # 1062 = duplicate entry
-                if errno == 1062:
-                    user = User.objects.get(username=username)
+            new_user = False
+            if not user:
+                try:
+                    user = User.objects.create_user(username, u['email'])
+                    new_user = True
+                except IntegrityError, (errno, strerror):
+                    # If the user record already exists and just isn't in
+                    # the correct group (and therefore not in the queryset
+                    # we pulled earlier), grab it
+                    # MySQL error # 1062 = duplicate entry
+                    if errno == 1062:
+                        user = User.objects.get(username=username)
 
-        # Increment counter for appropriate operation type
-        # Get or create the user profile object associated with the user
-        if new_user:
-            profile = UserProfile.objects.create(user=user)
-            users_created += 1
-        else:
-            profile = user.profile
-            users_updated += 1
+            # Increment counter for appropriate operation type
+            # Get or create the user profile object associated with the user
+            if new_user:
+                profile = UserProfile.objects.create(user=user)
+                users_created += 1
+            else:
+                profile = user.profile
+                users_updated += 1
 
-        # Check if anything changed before updating the user object
-        if (user.username != username
-            or user.first_name != u['first_name']
-            or user.last_name != u['last_name']
-            or user.email != u['email']
-            or user.is_active != u['is_active']):
-            user.username = username
-            user.first_name = u['first_name']
-            user.last_name = u['last_name']
-            user.email = u['email']
-            user.is_active = u['is_active']
+            # Check if anything changed before updating the user object
+            if (user.username != username
+                or user.first_name != u['first_name']
+                or user.last_name != u['last_name']
+                or user.email != u['email']
+                or user.is_active != u['is_active']):
+                user.username = username
+                user.first_name = u['first_name']
+                user.last_name = u['last_name']
+                user.email = u['email']
+                user.is_active = u['is_active']
 
-            user.save()
-        elif new_user:
-            user.save()
+                user.save()
+            elif new_user:
+                user.save()
 
-        group_memberships = []
-        for group in user.groups.all():
-            group_memberships.append(group)
+            group_memberships = []
+            for group in user.groups.all():
+                group_memberships.append(group)
 
-        # Make sure that user is in the appropriate groups
-        [user.groups.add(group)
-         for group in group_objs
-         if group not in group_memberships]
+            # Make sure that user is in the appropriate groups
+            [user.groups.add(group)
+             for group in group_objs
+             if group not in group_memberships]
 
-        # Check if anything changed before updating the profile object
-        if (profile.id_number != u['id_number']
-            or profile.phone_number != u['phone_number']):
-            profile.id_number = u['id_number']
-            profile.phone_number = u['phone_number']
+            # Check if anything changed before updating the profile object
+            if (profile.id_number != u['id_number']
+                or profile.phone_number != u['phone_number']):
+                profile.id_number = u['id_number']
+                profile.phone_number = u['phone_number']
 
-            profile.save()
-
+                profile.save()
+        except:
+            user_exceptions.append('%s %s' % (sys.exc_info()[0], u))
     # Return statistics on user account creation and modification
-    return (len(data), users_updated, users_created)
+    return (len(data), users_updated, users_created, user_exceptions)

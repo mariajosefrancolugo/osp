@@ -28,6 +28,10 @@ def import_instructors(request):
         status.append('Received %d instructor records' % stats[0])
         status.append('Updated %d user objects' % stats[1])
         status.append('Created %d user objects' % stats[2])
+        if len(stats[3]) > 0:
+           status.append('Instructor records in error:')
+           for item in stats[3]:
+               status.append(item)
     else:
         status.append('Invalid request')
 
@@ -51,6 +55,10 @@ def import_counselors(request):
         status.append('Received %d counselor records' % stats[0])
         status.append('Updated %d user objects' % stats[1])
         status.append('Created %d user objects' % stats[2])
+        if len(stats[3]) > 0:
+           status.append('Counselor records in error:')
+           for item in stats[3]:
+               status.append(item)
     else:
         status.append('Invalid request')
 
@@ -74,6 +82,10 @@ def import_students(request):
         status.append('Received %d student records' % stats[0])
         status.append('Updated %d user objects' % stats[1])
         status.append('Created %d user objects' % stats[2])
+        if len(stats[3]) > 0:
+           status.append('Student records in error:')
+           for item in stats[3]:
+               status.append(item)
     else:
         status.append('Invalid request')
 
