@@ -1,3 +1,16 @@
+/*
+ * Function to clear the checkboxes in the roster form.
+ */
+function clearCheckBoxes() {
+    var students = document.forms["roster-form"];
+    for(n=0; n<students.elements.length; n++) {
+        if(students[i].type == "checkbox") {
+            students[i].checked = false;
+        }
+    }
+}
+
+
 $(function() {
     $('#contact-window').dialog(default_window_options);
     $('#contact-window').dialog('option', 'buttons', [
@@ -15,6 +28,7 @@ $(function() {
                         applyNotificationStyles();
                     }
                 }, 'json');
+                clearCheckBoxes();
             }
         }
     ]);
@@ -35,6 +49,7 @@ $(function() {
                         applyNotificationStyles();
                     }
                 }, 'json');
+                clearCheckBoxes();
             }
         }
     ]);
@@ -55,6 +70,7 @@ $(function() {
                         applyNotificationStyles();
                     }
                 }, 'json');
+                clearCheckBoxes();
             }
         }
     ]);
