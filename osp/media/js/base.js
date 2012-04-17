@@ -4,7 +4,7 @@ var default_window_options = {
     height: 450,
     modal: true,
     resizable: false,
-}
+};
 
 function applyNotificationStyles() {
     $('.error').each(function() {
