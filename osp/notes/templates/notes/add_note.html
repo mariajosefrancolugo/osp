@@ -1,0 +1,30 @@
+{% if form.errors %}
+<p class="error">Your form submission contains errors. Please correct the highlighted fields.</p>
+{% endif %}
+<p style="font-weight: bold;">Students</p>
+<table>
+  <tbody>
+    {% for student in students %}
+    <tr class="{% cycle "odd" "even" %}">
+      <td>{{ student.get_full_name }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.profile.phone_number }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<form id="note-form" class="ui-form" action="{% url note:add_note %}" method="POST">
+  {% csrf_token %}
+   <div class="field{% if form.note.errors %} field-error{% endif %}">
+    {{ form.note.label_tag }}
+    {{ form.note }}
+    {% if can_privatize %}
+    <div class="field checkbox{% if form.private.errors %} field-error{% endif %}">
+      {{ form.private }}
+      {{ form.private.label_tag }}
+      <div class="help-text">{{ form.private.help_text }}</div>
+      </div>
+  {% endif %}
+  </div>
+  <input type="hidden" id="id_students" name="students" value="{% for student in students %}{{student.id}}{% if not forloop.last %},{% endif %}{%endfor%}" />
+</form>

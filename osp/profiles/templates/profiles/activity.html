@@ -1,0 +1,51 @@
+<div id="visits-animate">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Submitter</th>
+        <th>Type</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in activity %}
+      <tr class="{% cycle "odd" "even" %}">
+      <td style="width: 20%;">
+        {% ifequal item.model "note" %}
+          <a href="javascript:;" class="view-{{ item.model }}" data-{{ item.model }}="{{ item.id }}">{{ item.date_submitted|date:"F j, Y" }}</a></td>
+       
+        {% else %}{% ifequal item.model "visit" %}
+          <a href="javascript:;" class="view-{{ item.model }}" data-{{ item.model }}="{{ item.id }}">{{ item.date_submitted|date:"F j, Y" }}</a></td>
+        {% else %}
+          {{ item.date_submitted|date:"F j, Y" }}</td>
+        {% endifequal %}{% endifequal %}     
+        <td style="width: 25%;">{{ item.submitter.get_full_name }}</td>
+        <td style="width: 25%;">{{ item.type }}</td>
+        {% if item.private %}
+        <td style="width: 30%;">Private Note</td>
+        {% else %}
+        <td style="width: 30%;">{{ item.details }}</td>
+        {% endif %}
+      <tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  <div id="visit-paging" style="width: 100%; text-align: center;">
+    <div style="float: left;">
+      {% if page.has_previous %}
+      <a href="javascript:;" id="visit-page-first" data-page="1">&laquo&laquo first</a> &nbsp;&nbsp;&nbsp; <a href="javascript:;" id="visit_page_previous" data-page="{{ page.previous_page_number }}">&laquo previous</a>
+      {% else %}
+      <span class="inactive-link">&laquo&laquo first &nbsp;&nbsp;&nbsp; &laquo previous</span>
+      {% endif %}
+    </div>
+    <div style="float: right;">
+      {% if page.has_next %}
+      <a href="javascript:;" id="visit-page-next" data-page="{{ page.next_page_number }}">next &raquo</a> &nbsp;&nbsp;&nbsp; <a href="javascript:;" id="visit-page-last" data-page="{{ paginator.num_pages }}">last &raquo&raquo</a>
+      {% else %}
+      <span class="inactive-link">next &raquo &nbsp;&nbsp;&nbsp; last &raquo&raquo</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
