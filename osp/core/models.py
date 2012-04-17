@@ -7,6 +7,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     id_number = models.CharField(max_length=255, blank=True)
     phone_number = models.CharField(max_length=255, blank=True)
+    additional_data = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.user.username
