@@ -84,6 +84,8 @@ $(function() {
                 $('#contact-window').html(data);
                 $('#contact-window').dialog('open');
             });
+        }else{
+            alert("Please select at least one student.");
         }
     });
 
@@ -94,6 +96,8 @@ $(function() {
                 $('#intervention-window').html(data);
                 $('#intervention-window').dialog('open');
             });
+        }else{
+            alert("Please select at least one student.");
         }
     });
     
@@ -106,6 +110,8 @@ $(function() {
                 $('#note-window').html(data);
                 $('#note-window').dialog('open');
             });
+        }else{
+            alert("Please select at least one student.");
         }
     });
     
