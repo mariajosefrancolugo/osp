@@ -19,9 +19,8 @@
     {{ form.note.label_tag }}
     {{ form.note }}
     {% if can_privatize %}
-    <div class="field checkbox{% if form.private.errors %} field-error{% endif %}">
+    <div class="field{% if form.private.errors %} field-error{% endif %}">
       {{ form.private }}
-      {{ form.private.label_tag }}
       <div class="help-text">{{ form.private.help_text }}</div>
       </div>
   {% endif %}
