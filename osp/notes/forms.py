@@ -7,3 +7,8 @@ class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         exclude = ('students', 'submitter',)
+        widgets = {
+            'private': forms.RadioSelect
+        }
+
+

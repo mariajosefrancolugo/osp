@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 
+BOOL_CHOICES = ((1, 'Private'), (0, 'Public'),(2, ''));
 class Visit(models.Model):
     student = models.ForeignKey(User, related_name='visits')
     submitter = models.ForeignKey(User, related_name='submitted_visits')
@@ -18,7 +19,7 @@ class Visit(models.Model):
         blank=True)
     note = models.TextField(help_text='Only the first %s characters will '
                                       'be displayed when a report is requested.' % settings.NOTE_MAX_CHARS )
-    private = models.BooleanField(help_text='Should be checked for visits '
+    private = models.BooleanField(default=2, choices=BOOL_CHOICES, help_text='Private should be checked for visits '
                                             'that involve topics such as '
                                             'personal counseling')
     date_submitted = models.DateTimeField(auto_now_add=True)
