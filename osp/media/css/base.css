@@ -567,3 +567,17 @@ div.field.checkbox label
 {
     display:none;
 }
+
+#profileDetails
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+#innerProfileDetails
+{
+    border-style: solid;
+    border-color: #dfdfdf;
+    margin-top:20px;
+    padding:10px;
+}
