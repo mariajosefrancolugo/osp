@@ -118,6 +118,8 @@ def profile(request, user_id):
     else:
         personality_type_scores = None
 
+    additional_data = student.userprofile.permitted_additional_data(request.user.groups.all())
+
     if (not request.user.groups.filter(name='Counselors')
         and not request.user.groups.filter(name='Instructors')):
         can_view_visits = False
@@ -148,6 +150,7 @@ def profile(request, user_id):
         'latest_personality_type_result': latest_personality_type_result,
         'personality_type_scores': personality_type_scores,
         'latest_learning_style_result': latest_learning_style_result,
+        'additional_data': additional_data,
         'can_view_visits': can_view_visits,
         'activity': activity,
         'paginator': paginator,
