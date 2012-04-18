@@ -142,6 +142,14 @@ label
     text-decoration: none;
 }
 
+#userName
+{
+    color: #017fbe;
+    font-size: 18px;
+    float:left;
+    margin: 0px;
+}
+
 #id_query
 {
     z-index:1;
