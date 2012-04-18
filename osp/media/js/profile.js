@@ -9,6 +9,7 @@ function refreshVisits(page) {
 }
 
 $(function() {
+
     $('#visit-paging a').live('click', function() {
         refreshVisits($(this).data('page'));
     });
@@ -60,17 +61,17 @@ $(function() {
     $('#log-visit').click(function() {
         $.get(base_url + 'visit/' + student_id + '/log/', function(data) {
             $('#log-visit-window').html(data);
-            $('#log-visit-window').dialog('open');
+            $('#log-visit-window').dialog('open'); 
         });
     });
 
     $('#id-note').click(function() {
-            var data = $('#visit_note-form').serializeArray();
-            $.get(base_url + 'note/add', data, 
-            function(data) {
-                $('#note-window').html(data);
-                $('#note-window').dialog('open');
-            });
+        var data = $('#visit_note-form').serializeArray();
+        $.get(base_url + 'note/add', data, 
+        function(data) {
+            $('#note-window').html(data);
+            $('#note-window').dialog('open');
+        });
     });
 
     $('.view-visit').live('click', function() {
@@ -92,8 +93,6 @@ $(function() {
             $('#view-note-window').dialog('open');
         });
     });
-
-
 
     $('a.modal').each(function() {
       if($(this).attr('ref') == 'learning-style-window') {

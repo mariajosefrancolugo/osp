@@ -10,6 +10,7 @@ class InterventionForm(forms.ModelForm):
         model = Intervention
         exclude = ('students', 'section', 'instructor',)
 
+
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact

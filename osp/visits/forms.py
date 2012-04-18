@@ -8,6 +8,9 @@ class VisitForm(forms.ModelForm):
     class Meta:
         model = Visit
         exclude = ('student', 'submitter',)
+        widgets = {
+            'private': forms.RadioSelect
+        }
 
     def clean(self):
         cleaned_data=self.cleaned_data
