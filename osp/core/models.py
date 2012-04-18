@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
+from django.utils import simplejson as json
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -11,6 +12,57 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
+    def deserialize_additional_data(self):
+        """
+           Value saved in additional_data is a json formatted string.
+           Return it as a dictionary.
+
+           Sample json format=
+           [{"category":"SAT Results",
+             "dataset":[{"groups_permitted":["Instructors","Counselors","Students"], "label":"Verbal", "value":600},
+                        {"groups_permitted":["Counselors","Instructors","Students"], "label":"Math", "value":500},
+                        {"groups_permitted":["Counselors", "Instructors","Students"], "label":"Essay", "value":9},
+                        {"groups_permitted":["Instructors","Counselors","Students"], "label":"Total", "value":"1100"}]
+            },
+            {"category":"Test cat 2",
+             "dataset":[{"groups_permitted":["Instructors"], "label":"Field One", "value":"I am a test value."},
+                        {"groups_permitted":["Students"], "label":"Field Two", "value":"I am a test value for field 2."},
+                        {"groups_permitted":["Instructors", "Counselors"], "label":"Field Three", "value":"Three"}"
+            ]}]
+        """
+        return json.loads(self.additional_data)
+
+    def permitted_additional_data(self,authenticated_user_groups):
+        """
+           Returns only the records from additional data that the authenticated user is
+           permitted to view based on their group membership.
+        """
+        permitted_data=[]
+        try:
+            # Deserialize additional_data. 
+            deserialized_data = self.deserialize_additional_data()
+            for category in deserialized_data:
+                return_dataset = []
+                for record in category['dataset']:
+                    # Cycle through the authenticated user's group membership
+                    # to see if any match the groups permitted to view this record.
+                    for group in authenticated_user_groups:
+                        if group in record['groups_permitted']:
+                           return_dataset.append(record)
+                           break
+                # If the authenticated user does not have permission to view any
+                # of the records in the dataset for the current category, then
+                # the category will not be included at all.
+                if len(return_dataset) > 0:
+                    permitted_data.append({"category":category['category'],
+                                           "dataset":return_dataset})
+        except:
+            # If a problem occurs processing the information in the 
+            # additional_data field, an empty list will be returned.
+            pass
+        return permitted_data
+        
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
