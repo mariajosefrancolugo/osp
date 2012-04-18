@@ -338,7 +338,7 @@ ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
     color: #777;
 }
 
-form.assessment ul, form.survey ul, #intervention-form ul
+form.assessment ul, form.survey ul, #intervention-form ul, #note-form ul, #visit-form ul
 {
     list-style: none;
     padding: 0;
@@ -555,5 +555,7 @@ div.field.checkbox label
     padding-left:3px;
 }
 
-
-
+#id_private_2
+{
+    display:none;
+}
