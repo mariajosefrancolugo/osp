@@ -34,7 +34,11 @@
             <div id="header-inner">
                 <p id="name"><a href="{% url core:index %}">Online Student Profile</a></p>
                 {% endblock %}
-            </div></div>
+                 <p id="userName">{{ user.first_name }} {{ user.last_name }}</p>
+            </div>
+           
+        </div>
+        
         <div id="body">
             {% block body %}
             {% endblock %}
