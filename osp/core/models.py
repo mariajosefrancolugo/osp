@@ -48,7 +48,7 @@ class UserProfile(models.Model):
                     # Cycle through the authenticated user's group membership
                     # to see if any match the groups permitted to view this record.
                     for group in authenticated_user_groups:
-                        if group in record['groups_permitted']:
+                        if group.name in record['groups_permitted']:
                            return_dataset.append(record)
                            break
                 # If the authenticated user does not have permission to view any
