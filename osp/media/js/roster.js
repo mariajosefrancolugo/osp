@@ -4,8 +4,8 @@
 function clearCheckBoxes() {
     var students = document.forms["roster-form"];
     for(n=0; n<students.elements.length; n++) {
-        if(students[i].type == "checkbox") {
-            students[i].checked = false;
+        if(students[n].type === 'checkbox') {
+            students[n].checked = false;
         }
     }
 }
