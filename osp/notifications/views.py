@@ -50,7 +50,8 @@ def notify(request,
                 for student_id in request.POST['students'].split(','):
                     contact.students.add(get_object_or_404(User,
                                                            id=int(student_id)))
-                contact.emial_contact()
+                contact.email_contact()
+                
             elif notification_type == 'intervention':
                 intervention = form.save(commit=False)
                 intervention.instructor = request.user
