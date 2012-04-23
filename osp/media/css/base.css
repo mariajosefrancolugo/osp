@@ -359,6 +359,11 @@ form.assessment ul label, form.survey ul label
 {
     font-weight: normal;
 }
+#visit_note-form
+{
+    float: right;
+    margin-top: 28px;
+}
 .ui-dialog textarea, #contact-form input[type="text"]
 {
     width: 500px;
@@ -572,12 +577,4 @@ div.field.checkbox label
 {
     margin: 0px;
     padding: 0px;
-}
-
-#innerProfileDetails
-{
-    border-style: solid;
-    border-color: #dfdfdf;
-    margin-top:20px;
-    padding:10px;
 }
