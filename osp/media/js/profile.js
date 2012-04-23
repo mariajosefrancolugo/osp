@@ -16,6 +16,7 @@ $(function() {
 
     $('#view-note-window').dialog(default_window_options);
     $('#view-visit-window').dialog(default_window_options);
+
     $('#log-visit-window').dialog(default_window_options);
     $('#log-visit-window').dialog('option', 'buttons', [
         {
@@ -38,8 +39,8 @@ $(function() {
     ]);
 
    $('#note-window').dialog(default_window_options);
-      $('#note-window').dialog('option', 'buttons', [
-          {
+   $('#note-window').dialog('option', 'buttons', [
+        {
             text: 'Submit',
             click: function() {
                 var data = $('#note-form').serializeArray();
@@ -67,8 +68,7 @@ $(function() {
 
     $('#id-note').click(function() {
         var data = $('#visit_note-form').serializeArray();
-        $.get(base_url + 'note/add', data, 
-        function(data) {
+        $.get(base_url + 'note/add', data, function(data) {
             $('#note-window').html(data);
             $('#note-window').dialog('open');
         });

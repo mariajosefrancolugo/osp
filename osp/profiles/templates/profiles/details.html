@@ -1,0 +1,12 @@
+<div class="clear"></div>
+<div id="detailCategory">
+    {% for dict in additional_data %}
+      <ul>
+          <h4 class="detailHeader">{{ dict.category }}</h4>
+          {% for item in dict.dataset %}
+              <li><b>{{ item.label }}:&nbsp;</b>  {{ item.value }}</li>
+          {% endfor %}
+      </ul>
+    {% endfor %}
+</div>
+<div class="clear"></div>
