@@ -573,8 +573,28 @@ div.field.checkbox label
     display:none;
 }
 
-#profileDetails
+#detailCategory
 {
-    margin: 0px;
-    padding: 0px;
+    margin-left: -40px;
+    padding:0px;
 }
+
+#detailCategory li, #detailCategory ul
+{
+    list-style: none;
+    margin:0px;
+    float: left;
+}
+
+#detailCategory li
+{
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+h4.detailHeader
+{
+    background: #dfdfdf;
+    padding:5px;
+    padding-right:30px;
