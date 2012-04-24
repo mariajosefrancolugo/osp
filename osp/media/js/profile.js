@@ -96,7 +96,7 @@ $(function() {
 
     $('#id-intervene').click(function() {
         if($('input[name=section_id]:checked').val() != undefined){
-        var data = $('#intervention-form').serializeArray();
+        var data = $('#profile_intervention-form').serializeArray();
         $.get(base_url + 'notification/intervene/', data, function(data) {
             $('#intervention-window').html(data);
             $('#intervention-window').dialog('open');
