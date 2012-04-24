@@ -87,8 +87,8 @@
         "last_name": "Baggins",
         "email": "frodo.baggins@example.edu",
         "phone_number": "555-555-5555",
-        "is_active": true
-
+        "is_active": true,
+        "additional_data":[{"category":"SAT Results", "dataset":[{"groups_permitted":["Instructors","Counselors","Students"], "label":"Verbal", "value":200}]}]
     },
     {
         "id_number": "0000016",
@@ -133,6 +133,17 @@
         "last_name": "Lightyear",
         "email": "buzz.lightyear@example.edu",
         "phone_number": "555-555-5555",
-        "is_active": true
+        "is_active": true,
+        "additional_data":[{"category":"SAT Results",
+             "dataset":[{"groups_permitted":["Instructors","Counselors","Students"], "label":"Verbal", "value":600},
+                        {"groups_permitted":["Counselors","Instructors","Students"], "label":"Math", "value":500},
+                        {"groups_permitted":["Counselors", "Instructors","Students"], "label":"Essay", "value":9},
+                        {"groups_permitted":["Instructors","Counselors","Students"], "label":"Total", "value":"1100"}]
+            },
+            {"category":"Test category 2",
+             "dataset":[{"groups_permitted":["Instructors"], "label":"Field One", "value":"Test value for field one."},
+                        {"groups_permitted":["Students"], "label":"Field Two", "value":"I am a test value for field two."},
+                        {"groups_permitted":["Instructors", "Counselors"], "label":"Field Three", "value":"Test value for field three"}
+            ]}]
     }
 ]

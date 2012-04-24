@@ -24,13 +24,16 @@ def import_instructors(request):
 
         # Load users into local database using utility method
         stats = load_users(data[0]['instructors'], ['Instructors', 'Employees'])
-
         status.append('Received %d instructor records' % stats[0])
         status.append('Updated %d user objects' % stats[1])
         status.append('Created %d user objects' % stats[2])
         if len(stats[3]) > 0:
            status.append('Instructor records in error:')
            for item in stats[3]:
+               status.append(item)
+        if len(stats[4]) > 0:
+           status.append('Instructor records with improperly formatted json string in additional_data:')
+           for item in stats[4]:
                status.append(item)
     else:
         status.append('Invalid request')
@@ -59,6 +62,10 @@ def import_counselors(request):
            status.append('Counselor records in error:')
            for item in stats[3]:
                status.append(item)
+        if len(stats[4]) > 0:
+           status.append('Counselor records with improperly formatted json string in additional_data:')
+           for item in stats[4]:
+               status.append(item)
     else:
         status.append('Invalid request')
 
@@ -85,6 +92,10 @@ def import_students(request):
         if len(stats[3]) > 0:
            status.append('Student records in error:')
            for item in stats[3]:
+               status.append(item)
+        if len(stats[4]) > 0:
+           status.append('Student records with improperly formatted json string in additional_data:')
+           for item in stats[4]:
                status.append(item)
     else:
         status.append('Invalid request')

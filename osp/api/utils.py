@@ -2,6 +2,7 @@ import sys
 
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
+from django.utils import simplejson as json
 
 from osp.core.models import UserProfile, Section, Enrollment
 
@@ -81,6 +82,7 @@ def load_users(data, groups):
     users_updated = 0
     users_created = 0
     user_exceptions = []
+    additional_data_exceptions = []
 
     id_numbers = []
     for u in data:
@@ -156,12 +158,20 @@ def load_users(data, groups):
 
             # Check if anything changed before updating the profile object
             if (profile.id_number != u['id_number']
-                or profile.phone_number != u['phone_number']):
+                or profile.phone_number != u['phone_number']
+                or ('additional_data' in u and profile.additional_data != u['additional_data'])):
                 profile.id_number = u['id_number']
                 profile.phone_number = u['phone_number']
-
+                if 'additional_data' in u:
+                    try:
+                        # convert additional_data back into a json formatted string to save
+                        profile.additional_data = json.dumps(u['additional_data'])
+                    except:
+                        # if additional_data contained improperly formatted json, an error should
+                        # have been triggered before now
+                        additional_data_exceptions.append('Invalid json format in additional_data: %s' % u)
                 profile.save()
         except:
             user_exceptions.append('%s %s' % (sys.exc_info()[0], u))
     # Return statistics on user account creation and modification
-    return (len(data), users_updated, users_created, user_exceptions)
+    return (len(data), users_updated, users_created, user_exceptions, additional_data_exceptions)

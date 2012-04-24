@@ -25,10 +25,10 @@ class UserProfile(models.Model):
                         {"groups_permitted":["Counselors", "Instructors","Students"], "label":"Essay", "value":9},
                         {"groups_permitted":["Instructors","Counselors","Students"], "label":"Total", "value":"1100"}]
             },
-            {"category":"Test cat 2",
-             "dataset":[{"groups_permitted":["Instructors"], "label":"Field One", "value":"I am a test value."},
-                        {"groups_permitted":["Students"], "label":"Field Two", "value":"I am a test value for field 2."},
-                        {"groups_permitted":["Instructors", "Counselors"], "label":"Field Three", "value":"Three"}"
+            {"category":"Test category 2",
+             "dataset":[{"groups_permitted":["Instructors"], "label":"Field One", "value":"I am a test value for field one."},
+                        {"groups_permitted":["Students"], "label":"Field Two", "value":"I am a test value for field two."},
+                        {"groups_permitted":["Instructors", "Counselors"], "label":"Field Three", "value":"I am a test value for field three."}
             ]}]
         """
         return json.loads(self.additional_data)
