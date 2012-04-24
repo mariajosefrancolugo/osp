@@ -117,12 +117,14 @@ def profile(request, user_id):
             for score in personality_type_analysis.graphScores]
     else:
         personality_type_scores = None
-
+    #is_instructor - the user is not an instructor
+    is_instructor = False
     additional_data = student.userprofile.permitted_additional_data(request.user.groups.all())
 
     if (not request.user.groups.filter(name='Counselors')
         and not request.user.groups.filter(name='Instructors')):
         can_view_visits = False
+
         #visits = None
         activity = None
     else:
@@ -133,6 +135,8 @@ def profile(request, user_id):
         if not request.user.groups.filter(name='Counselors'):
             #visits = visits.filter(private=False)
             can_view_private = False
+            #is_instructor - the user must be an instructor
+            is_instructor = True
         visits, notes, interventions, contacts, activity = get_activity(request, student.id, can_view_private)
 
     #if visits:
@@ -152,6 +156,7 @@ def profile(request, user_id):
         'latest_learning_style_result': latest_learning_style_result,
         'additional_data': additional_data,
         'can_view_visits': can_view_visits,
+        'is_instructor': is_instructor,
         'activity': activity,
         'paginator': paginator,
         'page': page,
