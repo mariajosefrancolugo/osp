@@ -17,7 +17,6 @@ def notify(request,
            template='notifications/contact.html'):
     if not request.user.groups.filter(name='Instructors'):
         raise Http403
-
     section_id = (request.POST['section_id']
                   if request.method == 'POST'
                   else request.GET['section_id'])
@@ -32,10 +31,8 @@ def notify(request,
                     else request.POST.get('students').split(','))
     for student_id in student_list:
         students.append(get_object_or_404(User, id=int(student_id)))
-
     if not students:
         raise Http403
-
     if request.method == 'POST':
         if notification_type == 'contact':
             form = ContactForm(request.POST)

@@ -1,6 +1,6 @@
 <div class="clear"></div>
 {% if current_enrollments %}
-<form id="intervention-form">
+<form id="profile_intervention-form">
 {% if is_instructor %}
     <input type="button" id="id-intervene" name="intervene" value="Intervene" style="float:right; margin-top:-35px;"/>
 {% endif %}
@@ -28,7 +28,6 @@
     {% endfor %}
   </tbody>
 </table>
-
 <input type="hidden" name="students" id="id_student" value="{{ student.id }}" />
 </form>
 {% else %}
