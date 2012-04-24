@@ -23,8 +23,8 @@ def notify(request,
                   else request.GET['section_id'])
     section = get_object_or_404(Section, id=int(section_id))
 
-    if not section.instructors.filter(username=request.user.username):
-        raise Http403
+    #if not section.instructors.filter(username=request.user.username):
+    #    raise Http403
 
     students = []
     student_list = (request.GET.getlist('students')
