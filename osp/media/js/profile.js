@@ -59,6 +59,26 @@ $(function() {
         }
     ]);
 
+    $('#intervention-window').dialog(default_window_options);
+    $('#intervention-window').dialog('option', 'buttons', [
+        {
+            text: 'Submit',
+            click: function() {
+                var data = $('#intervention-form').serializeArray();
+                $.post(base_url + 'notification/intervene/',
+                       data,
+                       function(data) {
+                    if(data.status == 'success') {
+                        $('#intervention-window').dialog('close');
+                    } else if(data.status == 'fail') {
+                        $('#intervention-window').html(data.template);
+                        applyNotificationStyles();
+                    }
+                }, 'json');
+            }
+        }
+    ]);
+
     $('#log-visit').click(function() {
         $.get(base_url + 'visit/' + student_id + '/log/', function(data) {
             $('#log-visit-window').html(data);
@@ -71,6 +91,14 @@ $(function() {
         $.get(base_url + 'note/add', data, function(data) {
             $('#note-window').html(data);
             $('#note-window').dialog('open');
+        });
+    });
+
+    $('#id-intervene').click(function() {
+        var data = $('#intervention-form').serializeArray();
+        $.get(base_url + 'notification/intervene/', data, function(data) {
+            $('#intervention-window').html(data);
+            $('#intervention-window').dialog('open');
         });
     });
 
