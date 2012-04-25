@@ -47,7 +47,7 @@
       {% for student in students %}
       <tr class="{% cycle "odd" "even" %}">
         <td style="text-align: center;"><input type="checkbox" name="students" id="id_students_{{ forloop.counter0 }}" value="{{ student.id }}" /></td>
-        <td>{{ student.id_number }}</td>
+        <td><b>{{ student.id_number }}</b></td>
         <td><a href="{% url profile:profile student.id %}">{{ student.full_name }}</a>
             {% if student.notes > 0 or student.contacts > 0 or student.visits > 0 %}
             <a class="icons" href="{% url profile:profile student.id %}" title= "{% if student.notes > 0 %}Notes: {{ student.notes }} {% endif %}{% if student.contacts > 0 %} Contacts: {{ student.contacts }} {% endif %}{% if student.visits > 0 %} Visits: {{ student.visits }}{% endif %}"><img src="{{ MEDIA_URL }}img/information.png" alt="Information Icon" id="roster-icon"></a>
