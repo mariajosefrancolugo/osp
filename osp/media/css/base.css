@@ -144,8 +144,9 @@ label
 
 #userName
 {
-    color: #017fbe;
-    font-size: 18px;
+    font-size: 15px;
+    color: gray;
+    font-style: italic;
     float:left;
     margin: 0px;
 }
