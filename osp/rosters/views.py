@@ -40,6 +40,7 @@ def roster(request, section_id):
 
         students.append({
             'id': enrollment.student.id,
+            'id_number' : enrollment.student.userprofile.id_number,
             'full_name': enrollment.student.get_full_name(),
             'personality_type': personality_type,
             'learning_style': learning_style,
