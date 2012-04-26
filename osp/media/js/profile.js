@@ -10,6 +10,12 @@ function refreshVisits(page) {
 
 $(function() {
 
+    $('#additional-details-header').click(function() {
+        $(this).next().next().toggle('fast');
+        return false;
+    });
+
+
     $('#visit-paging a').live('click', function() {
         refreshVisits($(this).data('page'));
     });
