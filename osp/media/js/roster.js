@@ -11,6 +11,7 @@ function clearCheckBoxes() {
 }
 
 
+
 $(function() {
     $('#contact-window').dialog(default_window_options);
     $('#contact-window').dialog('option', 'buttons', [

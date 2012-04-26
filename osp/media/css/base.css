@@ -574,6 +574,11 @@ div.field.checkbox label
     display:none;
 }
 
+#additional-details
+{
+    display: none;
+}
+
 #detailCategory
 {
     margin-left: -40px;
