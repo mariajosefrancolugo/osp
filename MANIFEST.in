@@ -16,3 +16,4 @@ recursive-include osp/rosters/templates *
 recursive-include osp/surveys/data *
 recursive-include osp/surveys/templates *
 recursive-include osp/visits/templates *
+recursive-include osp/notes/templates *
