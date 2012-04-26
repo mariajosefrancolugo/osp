@@ -79,8 +79,8 @@ var personality_type_scores = [
 
 {% if additional_data %}
 <div class="clear"></div>
-<h2 class="float-left" id="additional-details-header">+ Additional Details</h2>
-<h2 class="float-left" id="additional-details-header2" style="display:none;">- Additional Details</h2>
+<h2 class="float-left" id="additional-details-header">Additional Details &nbsp;<img src="{{ MEDIA_URL }}img/plus.png" alt="Plus Icon" id="plus-icon"></h2>
+<h2 class="float-left" id="additional-details-header2" style="display:none;">Additional Details &nbsp;<img src="{{ MEDIA_URL }}img/minus.png" alt="Minus Icon" id="minus-icon"></h2>
 <div class="clear"></div>
 <div id="additional-details">
 {% include "profiles/details.html" %}
