@@ -1,19 +1,20 @@
 <div class="clear"></div>
-<div id="detailCategory">
     {% for dict in additional_data %}
-    	<h4 class="detailHeader">{{ dict.category }}</h4>
-    	<dl> 
-        	{% for item in dict.dataset %}
-        		<dt><b>{{ item.label }}:&nbsp;</b></dt>
-            	<dd>{{ item.value }}</dd>
-        	{% endfor %}
-        </dl>
-        <div class="clear"></div>
+    	<div class="clear"></div>
         {% if additional_data.messages|length > 0 %}
         	{% for item in dict.messages %}
         		<div class="error">{{ item }}</div>
 			{% endfor %}
         {% endif %}
+    	<h4 class="categoryLabel">{{ dict.category }}</h4>
+    	<dl class="catagoryValues"> 
+        	{% for item in dict.dataset %}
+        		{% if item.label and item.value %}
+        			<dt id="{{ item.label }}"><b>{{ item.label }}:&nbsp;</b></dt>
+            		<dd id="{{ item.label }}_value">{{ item.value }}</dd>
+            	{% endif %}
+        	{% endfor %}
+        </dl>
+        <div class="clear"></div>
     {% endfor %}
-</div>
 <div class="clear"></div>
