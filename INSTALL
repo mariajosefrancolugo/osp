@@ -1,0 +1,12 @@
+1. Get the latest source tarball from
+   http://code.google.com/p/osp/downloads
+
+2. Extract the contents of the archive
+
+3. Run the setup script, answering questions when prompted:
+
+   $ cd osp
+   $ ./scripts/setup.sh
+
+For more detailed installation documentation, visit
+http://code.google.com/p/osp/wiki/AdvancedInstallation
