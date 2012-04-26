@@ -33,19 +33,41 @@ var personality_type_scores = [
   {% endif %}
 </h1>
 <p id="id-number">ID Number: {{ student.profile.id_number }}</p>
+<div class="clear"></div>
+<div id="incomplete_warning"><p><em>Student has not completed the following assessments:
+  {% if latest_learning_style_result == None %} &nbsp; Learning Style {% else %}
+  {% endif %}
+  {% if latest_personality_type_result == None %} &nbsp; Personality Type {% else %}
+  {% endif %}
+  </em></p>
+  {% if student.result_set.all|length == 0 %}<em>Student has not completed any Surveys </em>{% else %}
+  {% endif %}
+</div>
+<div class="clear"></div>
 <h2 class="float-left">Current Enrollments</h2>
 {% include "profiles/profile_current_enrollments.html" %}
+{% if latest_learning_style_result %}
 <div id="learning-style">
   <h2 class="float-left">Learning Style</h2>
   {% include "profiles/profile_learning_style.html" %}
+  <div id="learning-style-window"></div>
 </div>
+{% endif %}
+
+{% if student.result_set.all|length > 0 %}
 <div id="survey-results">
   <h2 class="float-left">Survey Results</h2>
   {% include "profiles/profile_survey_results.html" %}
 </div>
-<div class="clear"></div>
+<div id="survey-window"></div>
+{% endif %}
+
+{% if latest_personality_type_result %}
 <h2 class="float-left">Personality Type</h2>
 {% include "profiles/profile_personality_type.html" %}
+<div id="personality-type-window"></div>
+{% endif %}
+
 {% if can_view_visits %}
 <div class="clear"></div>
 <h2 class="float-left">Activity</h2>
