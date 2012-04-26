@@ -11,6 +11,15 @@ function refreshVisits(page) {
 $(function() {
 
     $('#additional-details-header').click(function() {
+        $(this).toggle(1);
+        $(this).next().toggle(1);
+        $(this).next().next().next().toggle('fast');
+        return false;
+    });
+
+    $('#additional-details-header2').click(function() {
+        $(this).toggle(1);
+        $(this).prev().toggle(1);
         $(this).next().next().toggle('fast');
         return false;
     });
