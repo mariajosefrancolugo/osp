@@ -35,11 +35,6 @@ var personality_type_scores = [
 <p id="id-number">ID Number: {{ student.profile.id_number }}</p>
 <h2 class="float-left">Current Enrollments</h2>
 {% include "profiles/profile_current_enrollments.html" %}
-{% if additional_data %}
-<div class="clear"></div>
-<h2 class="float-left" >Additional Details</h2>
-{% include "profiles/details.html" %}
-{% endif %}
 <div id="learning-style">
   <h2 class="float-left">Learning Style</h2>
   {% include "profiles/profile_learning_style.html" %}
@@ -56,4 +51,13 @@ var personality_type_scores = [
 <h2 class="float-left">Activity</h2>
 {% include "profiles/profile_visits.html" %}
 {% endif %}
+
+{% if additional_data %}
+<h2 class="float-left" id="additional-details-header">+ Additional Details</h2>
+<div class="clear"></div>
+<div id="additional-details">
+{% include "profiles/details.html" %}
+</div>
+{% endif %}
+
 {% endblock %}
