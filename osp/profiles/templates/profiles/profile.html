@@ -48,24 +48,27 @@ var personality_type_scores = [
 {% include "profiles/profile_current_enrollments.html" %}
 {% if latest_learning_style_result %}
 <div id="learning-style">
+  <div class="clear"></div>
   <h2 class="float-left">Learning Style</h2>
   {% include "profiles/profile_learning_style.html" %}
   <div id="learning-style-window"></div>
 </div>
 {% endif %}
 
+{% if latest_personality_type_result %}
+<div class="clear"></div>
+<h2 class="float-left">Personality Type</h2>
+{% include "profiles/profile_personality_type.html" %}
+<div id="personality-type-window"></div>
+{% endif %}
+
 {% if student.result_set.all|length > 0 %}
+<div class="clear"></div>
 <div id="survey-results">
   <h2 class="float-left">Survey Results</h2>
   {% include "profiles/profile_survey_results.html" %}
 </div>
 <div id="survey-window"></div>
-{% endif %}
-
-{% if latest_personality_type_result %}
-<h2 class="float-left">Personality Type</h2>
-{% include "profiles/profile_personality_type.html" %}
-<div id="personality-type-window"></div>
 {% endif %}
 
 {% if can_view_visits %}
@@ -75,6 +78,7 @@ var personality_type_scores = [
 {% endif %}
 
 {% if additional_data %}
+<div class="clear"></div>
 <h2 class="float-left" id="additional-details-header">+ Additional Details</h2>
 <div class="clear"></div>
 <div id="additional-details">
