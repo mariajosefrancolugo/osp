@@ -16,7 +16,9 @@ class UserProfile(models.Model):
     def deserialize_additional_data(self):
         """
            Value saved in additional_data is a json formatted string.
-           Return it as a dictionary.
+           Return it as a list of dictionaries. This method should not be called
+           directly from anywhere other than the permitted_additional_data method
+           as that method returns only data the user is authorized to see.
 
            Sample json format=
            [{"category":"SAT Results",
@@ -35,31 +37,63 @@ class UserProfile(models.Model):
 
     def permitted_additional_data(self,authenticated_user_groups):
         """
-           Returns only the records from additional data that the authenticated user is
-           permitted to view based on their group membership.
+            Returns only the records from additional data that the authenticated user is
+            permitted to view based on their group membership.
+
+            Also returns a list of messages to indicate any problems with the data (i.e. missing keys).
+
+            Sample return data:
+            [{"category":"SAT Results",
+             "dataset":[{"groups_permitted":["Instructors","Counselors","Students"], "label":"Verbal", "value":600},
+                        {"groups_permitted":["Counselors","Instructors","Students"], "label":"Math", "value":500},
+                        {"groups_permitted":["Counselors", "Instructors","Students"], "label":"Essay", "value":9},
+                        {"groups_permitted":["Instructors","Counselors","Students"], "label":"Total", "value":"1100"}],
+             "messages":[]
+            },
+            {"category":"Test category 2",
+             "dataset":[{"groups_permitted":["Instructors", "Counselors"], "label":"Field Three", "value":"I am a test value for field three."},
+             "messages":[]
+            ]}] 
         """
         permitted_data=[]
         try:
             # Deserialize additional_data. 
             deserialized_data = self.deserialize_additional_data()
+            required_category_keys = ['category', 'dataset']
+            required_dataset_keys = ['groups_permitted', 'label', 'value']
             for category in deserialized_data:
+                messages = []
+                # verify category and dataset exist
+                for cat_key in required_category_keys:
+                    if cat_key in category:
+                        pass
+                    else:
+                        messages.append('Incomplete information in additional details - key %s is missing.' % cat_key)
                 return_dataset = []
                 for record in category['dataset']:
+                    # verify label, value, and groups_permitted exist
+                    for data_key in required_dataset_keys:
+                        if data_key in record:
+                            pass
+                        else:
+                            messages.append('Incomplete information in additional details - key %s is missing.' % data_key)
+
                     # Cycle through the authenticated user's group membership
                     # to see if any match the groups permitted to view this record.
                     for group in authenticated_user_groups:
-                        if group.name in record['groups_permitted']:
-                           return_dataset.append(record)
-                           break
+                        if 'groups_permitted' in record and group.name in record['groups_permitted']:
+                            return_dataset.append(record)
+                            break
                 # If the authenticated user does not have permission to view any
                 # of the records in the dataset for the current category, then
                 # the category will not be included at all.
                 if len(return_dataset) > 0:
-                    permitted_data.append({"category":category['category'],
-                                           "dataset":return_dataset})
+                    permitted_data.append({"category":category['category'] if 'category' in category else '',
+                                           "dataset":return_dataset,
+                                           "messages":messages})
         except:
-            # If a problem occurs processing the information in the 
-            # additional_data field, an empty list will be returned.
+            # If a problem (other than missing keys) occurs processing the 
+            # information in the additional_data field, an empty list will be returned.
             pass
         return permitted_data
         
