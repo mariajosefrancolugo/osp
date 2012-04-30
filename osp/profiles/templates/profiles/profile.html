@@ -34,14 +34,33 @@ var personality_type_scores = [
 </h1>
 <p id="id-number">ID Number: {{ student.profile.id_number }}</p>
 <div class="clear"></div>
-<div id="incomplete_warning"><p><em>Student has not completed the following assessments:
-  {% if latest_learning_style_result == None %} &nbsp; Learning Style {% else %}
-  {% endif %}
-  {% if latest_personality_type_result == None %} &nbsp; Personality Type {% else %}
-  {% endif %}
-  </em></p>
-  {% if student.result_set.all|length == 0 %}<em>Student has not completed any Surveys </em>{% else %}
-  {% endif %}
+<div id="incomplete_warning">
+{% if latest_learning_style_result == None or latest_personality_type_result == None or student.result_set.all|length == 0 %} 
+    <p><em>There is no 
+    {% if latest_learning_style_result == None and latest_personality_type_result == None and student.result_set.all|length == 0 %} 
+        Learning Style,  Personality Type or Survey
+    {% else %} 
+        {% if latest_learning_style_result == None and latest_personality_type_result == None %}
+            Learning Style or Personality Type
+    {% else %} 
+        {% if latest_learning_style_result == None and student.result_set.all|length == 0 %}
+            Learning Style or Survey
+    {% else %} 
+        {% if latest_learning_style_result == None %}
+            Learning Style
+    {% else %}
+        {% if latest_personality_type_result == None and student.result_set.all|length == 0%}
+            Personality Type or Survey
+    {% else %} 
+        {% if latest_personality_type_result == None %} 
+            Personality Type 
+    {% else %}
+        {% if student.result_set.all|length == 0 %} 
+            Survey 
+    {% else %}
+    {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+    data available for {{ student.get_full_name }}.</em></p>
+{% else %}{% endif %}
 </div>
 <div class="clear"></div>
 <h2 class="float-left">Current Enrollments</h2>
