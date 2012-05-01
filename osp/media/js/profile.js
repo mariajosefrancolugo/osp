@@ -130,12 +130,10 @@ $(function() {
 
     $('a.modal').each(function() {
       if($(this).attr('ref') == 'learning-style-window') {
-        $('#learning-style-window').dialog(default_window_options).load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');
+        $('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');
       } else if($(this).attr('ref') == 'personality-type-window') {
-        $('#personality-type-window').dialog(default_window_options).load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');
-      } else if($(this).attr('ref') == 'survey-window') {
-        $('#survey-window').dialog(default_window_options).load(base_url + 'survey/results/' + $(this).data('result-id') + '/');
-      }
+        $('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');
+      } 
     });
 
     $('a.modal').click(function() {

@@ -363,7 +363,7 @@ form.assessment ul label, form.survey ul label
 #visit_note-form
 {
     float: right;
-    margin-top: 28px;
+    margin-top: -30px;
 }
 .ui-dialog textarea, #contact-form input[type="text"]
 {
@@ -404,7 +404,7 @@ h1.profile a
     font-style: italic;
 }
 
-#survey-results, #learning-style, #personality-type
+#survey-results, #personality-type, #learning-style
 {
     clear: both;
     margin:0px;
@@ -417,7 +417,8 @@ h1.profile a
 
 .large-tile
 {
-    padding: 10px 25px;
+    float: left;
+    padding: 10px 30px;
     width: 409px;
     height: 226px;
     background: url('../img/large_tile_background.png') no-repeat;
@@ -429,21 +430,33 @@ h1.profile a
 
 #personality-type
 {
-    height: 300px;
     padding:0;
 }
-#personality-type h2
+#personality-type-window-content, #personality-type-window h1
 {
+    margin: 0;
     padding-left: 20px;
+    padding-top: 30px;
 }
-#personality-type ul
+#personality-type-window-content
+{
+    margin-top: 10px;
+}
+#personality-type-charts
+{
+     padding: 0;
+     margin: 0px;
+     margin-top: 10px;
+     clear: both;
+}
+#personality-type-charts ul
 {
     list-style: none;
     margin: 0 5px;
     padding: 0;
 }
 
-#personality-type li
+#personality-type-charts li
 {
     float: left;
     margin-right: 8px;
@@ -451,11 +464,11 @@ h1.profile a
     height: 225px;
     background: url('../img/small_tile_background.png') no-repeat;
 }
-#personality-type li.last
+#personality-type-charts li.last
 {
     margin-right: 0;
 }
-#personality-type li h4
+#personality-type-charts li h4
 {
     margin: 20px 0 0 0;
     text-align: center;
