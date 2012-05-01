@@ -13,6 +13,9 @@ function clearCheckBoxes() {
 
 
 $(function() {
+
+    $("#roster_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
+
     $('#contact-window').dialog(default_window_options);
     $('#contact-window').dialog('option', 'buttons', [
         {
@@ -140,5 +143,5 @@ function drawChart() {
     learning_style_counts_data.setValue(2, 1, learning_style_counts.visual);
     
     var learning_style_counts_chart = new google.visualization.BarChart(document.getElementById('class-chart'));
-    learning_style_counts_chart.draw(learning_style_counts_data, {width: 480, height: 200, legend: 'none', backgroundColor: '#fff'});
+    learning_style_counts_chart.draw(learning_style_counts_data, {width: 480, height: 200, legend: 'none', backgroundColor: '#f1f1f1'});
 }

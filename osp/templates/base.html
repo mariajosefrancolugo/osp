@@ -35,7 +35,7 @@
                 <p id="name"><a href="{% url core:index %}">Online Student Profile</a></p>
                 {% endblock %}
                 {% if user.first_name %}
-                 <p id="userName">Welcome, {{ user.first_name }} {{ user.last_name }}</p>
+                 <p id="userName">Welcome, {{ user.first_name }} {{ user.last_name }} (<a href="{% url logout %}" id="logout">Logout</a>)</p>
                  {% endif %}
             </div>
            
