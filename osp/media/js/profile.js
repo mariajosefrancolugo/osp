@@ -10,20 +10,7 @@ function refreshVisits(page) {
 
 $(function() {
 
-    $('#additional-details-header').click(function() {
-        $(this).toggle(1);
-        $(this).next().toggle(1);
-        $(this).next().next().next().toggle('fast');
-        return false;
-    });
-
-    $('#additional-details-header2').click(function() {
-        $(this).toggle(1);
-        $(this).prev().toggle(1);
-        $(this).next().next().toggle('fast');
-        return false;
-    });
-
+    $("#profile_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
 
     $('#visit-paging a').live('click', function() {
         refreshVisits($(this).data('page'));

@@ -1,11 +1,11 @@
+{% if additional_data %}
 <div class="clear"></div>
+{% for dict in additional_data %}
+{% if dict.messages|length > 0 %}
+        <div class="error">In {{ dict.category }}, Error: {{ dict.messages.0 }}</div>
+{% endif %}
+{% endfor %}
     {% for dict in additional_data %}
-    	<div class="clear"></div>
-        {% if additional_data.messages|length > 0 %}
-        	{% for item in dict.messages %}
-        		<div class="error">{{ item }}</div>
-			{% endfor %}
-        {% endif %}
     	<h4 class="categoryLabel">{{ dict.category }}</h4>
     	<dl class="catagoryValues"> 
         	{% for item in dict.dataset %}
@@ -18,3 +18,4 @@
         <div class="clear"></div>
     {% endfor %}
 <div class="clear"></div>
+{% endif %}

@@ -393,22 +393,23 @@ h1.profile a
     color: #546d9e;
 }
 
+#id-intervene, #id-note, #log-visit
+{
+    font-weight:bold;
+}
+
 #id-number
 {
     color: gray;
     font-style: italic;
 }
 
-#survey-results, #learning-style
+#survey-results, #learning-style, #personality-type
 {
-    float: left;
-    margin: 25px 0;
-    width: 459px;
+    clear: both;
+    margin:0px;
 }
-#learning-style
-{
-    margin-right: 42px;
-}
+
 #survey-results ul
 {
     margin: 10px 0;
@@ -428,14 +429,24 @@ h1.profile a
 
 #personality-type
 {
+    height: 300px;
+    padding:0;
+}
+#personality-type h2
+{
+    padding-left: 20px;
+}
+#personality-type ul
+{
     list-style: none;
     margin: 0 5px;
     padding: 0;
 }
+
 #personality-type li
 {
     float: left;
-    margin-right: 10px;
+    margin-right: 8px;
     width: 230px;
     height: 225px;
     background: url('../img/small_tile_background.png') no-repeat;
@@ -454,7 +465,10 @@ h1.profile a
     margin: 0 auto;
     width: 175px;
 }
-
+#personality-type-charts
+{
+    padding: 0;
+}
 .ui-widget
 {
     font-family: Arial, Helvetica, sans-serif;
@@ -578,12 +592,6 @@ div.field.checkbox label
 {
     display:none;
 }
-
-#additional-details
-{
-    display: none;
-}
-
 
 .catagoryValues dd, .catagoryValues dt, #incomplete_warning ul
 {
