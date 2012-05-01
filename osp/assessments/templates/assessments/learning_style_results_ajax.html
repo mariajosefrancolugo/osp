@@ -1,5 +1,8 @@
+
 {% for description in descriptions %}
 <h1>{{ description.style }} Learner</h1>
+ {% include "profiles/profile_learning_style.html" %}
+ <h2>Overview</h2>
 {{ description.description|safe }}
 <h2>Some Famous {{ description.style }} Learners</h2>
 <ul>
@@ -8,3 +11,4 @@
 {% endfor %}
 </ul>
 {% endfor %}
+
