@@ -63,46 +63,68 @@ var personality_type_scores = [
 {% else %}{% endif %}
 </div>
 <div class="clear"></div>
-<h2 class="float-left">Current Enrollments</h2>
-{% include "profiles/profile_current_enrollments.html" %}
-{% if latest_learning_style_result %}
-<div id="learning-style">
-  <div class="clear"></div>
-  <h2 class="float-left">Learning Style</h2>
-  {% include "profiles/profile_learning_style.html" %}
-  <div id="learning-style-window"></div>
+
+<div id="profile_menu">
+    <ul>
+        {% if current_enrollments %}
+            <li class="profile_menu_item"><a href="#current_enrollments">Current Enrollments</a></li>
+        {% endif %}
+        {% if can_view_visits and activity %}
+            <li class="profile_menu_item"><a href="#activity">Activity</a></li>
+        {% endif %}
+        {% if latest_learning_style_result %}
+            <li class="profile_menu_item"><a href="#learning-style">Learning Style</a></li>
+        {% endif %}
+        {% if student.result_set.all|length > 0 %}
+            <li class="profile_menu_item"><a href="#survey-results">Survey Results</a></li>
+        {% endif %}
+        {% if latest_personality_type_result %}
+            <li class="profile_menu_item"><a href="#personality-type">Personality Type</a></li>
+        {% endif %}
+        {% if additional_data %}
+            <li class="profile_menu_item"><a href="#additional_details">Additional Details</a></li>
+        {% endif %}
+    </ul>
+    {% if current_enrollments %}
+        <div id="current_enrollments">
+            <h2 class="float-left">Current Enrollments</h2>
+            <div class="clear"></div>
+            {% include "profiles/profile_current_enrollments.html" %}
+        </div>
+    {% endif %}
+    {% if can_view_visits and activity %}
+        <div id="activity">
+            <h2 class="float-left">Activity</h2>
+            {% include "profiles/profile_visits.html" %}
+        </div>
+    {% endif %}
+    {% if latest_learning_style_result %}
+        <div id="learning-style">
+            <h2 class="float-left">Learning Style</h2>
+            {% include "profiles/profile_learning_style.html" %}
+            <div id="learning-style-window"></div>
+        </div>
+    {% endif %}
+    {% if student.result_set.all|length > 0 %}
+        <div id="survey-results">
+            <h2 class="float-left">Survey Results</h2>
+            {% include "profiles/profile_survey_results.html" %}
+        </div>
+        <div id="survey-window"></div>
+    {% endif %}
+    {% if latest_personality_type_result %}
+        <div id="personality-type">
+            <h2 class="float-left">Personality Type</h2> 
+            {% include "profiles/profile_personality_type.html" %}
+        </div>
+        <div id="personality-type-window"></div>
+    {% endif %}
+    {% if additional_data %}    
+        <div id="additional_details">
+            <h2 class="float-left">Additional Details</h2>
+            {% include "profiles/details.html" %}
+        </div>
+    {% endif %}
 </div>
-{% endif %}
-
-{% if student.result_set.all|length > 0 %}
-<div id="survey-results">
-  <h2 class="float-left">Survey Results</h2>
-  {% include "profiles/profile_survey_results.html" %}
-</div>
-<div id="survey-window"></div>
-{% endif %}
-
-{% if latest_personality_type_result %}
-<div class="clear"></div>
-<h2 class="float-left">Personality Type</h2>
-{% include "profiles/profile_personality_type.html" %}
-<div id="personality-type-window"></div>
-{% endif %}
-
-{% if can_view_visits %}
-<div class="clear"></div>
-<h2 class="float-left">Activity</h2>
-{% include "profiles/profile_visits.html" %}
-{% endif %}
-
-{% if additional_data %}
-<div class="clear"></div>
-<h2 class="float-left" id="additional-details-header">Additional Details &nbsp;<img src="{{ MEDIA_URL }}img/plus.png" alt="Plus Icon" id="plus-icon"></h2>
-<h2 class="float-left" id="additional-details-header2" style="display:none;">Additional Details &nbsp;<img src="{{ MEDIA_URL }}img/minus.png" alt="Minus Icon" id="minus-icon"></h2>
-<div class="clear"></div>
-<div id="additional-details">
-{% include "profiles/details.html" %}
-</div>
-{% endif %}
 
 {% endblock %}
