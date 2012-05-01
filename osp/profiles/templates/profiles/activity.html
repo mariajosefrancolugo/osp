@@ -23,9 +23,13 @@
         <td style="width: 25%;">{{ item.submitter.get_full_name }}</td>
         <td style="width: 25%;">{{ item.type }}</td>
         {% if item.private %}
-        <td style="width: 30%;">Private Note</td>
+            <td style="width: 30%;">Private Note</td>
         {% else %}
-        <td style="width: 30%;">{{ item.details }}</td>
+            {% ifequal item.model "contact" %}
+                <td style="width: 30%;">{{ item.details|slice:"0:40" }}</td>
+            {% else %}
+                <td style="width: 30%;">{{ item.details }}</td>
+            {% endifequal %}
         {% endif %}
       <tr>
       {% endfor %}
