@@ -20,7 +20,10 @@ class EnrollmentAdmin(admin.ModelAdmin):
                      'section__number', 'section__section', 'section__term',
                      'section__year', 'section__title',)
 
+class HelpTopicAdmin(admin.ModelAdmin):
+    fields = ('topic','description','order',)
 
 admin.site.register(models.UserProfile, UserProfileAdmin)
 admin.site.register(models.Section, SectionAdmin)
 admin.site.register(models.Enrollment, EnrollmentAdmin)
+admin.site.register(models.HelpTopic, HelpTopicAdmin)

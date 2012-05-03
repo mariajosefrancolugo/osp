@@ -151,3 +151,19 @@ class Enrollment(models.Model):
                                     self.student.username,
                                     self.section.term,
                                     self.section.year)
+
+class HelpTopic(models.Model):
+    topic = models.CharField(max_length=255)       
+    description = models.TextField()
+    order = models.IntegerField()
+
+    def __unicode__(self):
+        return '%s' %(self.topic)
+
+
+
+
+
+
+
+
