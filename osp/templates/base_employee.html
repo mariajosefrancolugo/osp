@@ -40,7 +40,7 @@
         <li class="submenu-item"><a href="{% url report:visit-report %}">Visit</a></li>
       </ul>
     </li>
-    <li class="menu-item last">{% if user.is_authenticated %}<a href="{% url logout %}" class="menu-link">Sign Out</a>{% else %}<a href="{% url login %}" class="menu-link">Sign In</a>{% endif %}</li>
+    <li class="menu-item last"><a href="{% url core:help %}" class="menu-link">Help</a></li>
   </ul>
   <div id="navigation-right"></div>
 </div>
@@ -49,5 +49,4 @@
 
 {% block footer %}
 {{ block.super }}
-<p style="text-align: center;"><a href="{% url core:help %}">Need Help?</a></p>
 {% endblock %}
