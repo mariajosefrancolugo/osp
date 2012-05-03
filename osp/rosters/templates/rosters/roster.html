@@ -13,8 +13,8 @@
 {% if learning_style_counts.auditory > 0 or learning_style_counts.kinesthetic > 0 or learning_style_counts.visual > 0 %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% endif %}
-<script type="text/javascript" src="{{ MEDIA_URL }}js/roster.js"></script>
 {% endif %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/roster.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -22,19 +22,21 @@
 <div id="roster_menu">
   <ul>
       <li class="roster_menu_item"><a href="#roster">Roster</a></li>
-      {% if learning_style_counts.auditory > 0 or learning_style_counts.kinesthetic > 0 or learning_style_counts.visual > 0 %}
-        <li class="roster_menu_item"><a href="#statistics">Statistics</a></li>
-      {% else %}{% endif %}
+      <li class="roster_menu_item"><a href="#statistics">Statistics</a></li>
   </ul>
   <div id="statistics">
       <h2>Statistics</h2>
       <div id="statistics-window">
-        <div id="class-chart"></div>
-        <div id="chart-explanation">
-          <h2>Discription</h2>
-          <p>This graph shows the number of students in this class who fall into each of the three learning styles: auditory, kinesthetic, and visual.
-          It is worth noting that, often times, all students in a given class do not take the learning style assessment. Therefore, this graph may not reflect the breakdown of the entire class, but rather a small sampling of the class.</p>
-        </div>
+         {% if learning_style_counts.auditory > 0 or learning_style_counts.kinesthetic > 0 or learning_style_counts.visual > 0 %}
+            <div id="class-chart"></div>
+            <div id="chart-explanation">
+              <h2>Description</h2>
+              <p>This graph shows the number of students in this class who fall into each of the three learning styles: auditory, kinesthetic, and visual.
+              It is worth noting that, often times, all students in a given class do not take the learning style assessment. Therefore, this graph may not reflect the breakdown of the entire class, but rather a small sampling of the class.</p>
+            </div>
+         {% else %}
+            <p>There are no statistics available for this class.</p>
+         {% endif %}
     </div>
   </div>
   <div id="roster">

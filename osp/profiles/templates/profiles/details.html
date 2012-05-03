@@ -1,10 +1,12 @@
 {% if additional_data %}
 <div class="clear"></div>
-{% for dict in additional_data %}
-{% if dict.messages|length > 0 %}
-        <div class="error">In {{ dict.category }}, Error: {{ dict.messages.0 }}</div>
-{% endif %}
-{% endfor %}
+<div class="error">Incomplete information in
+    {% for dict in additional_data %}
+    {% if dict.messages|length > 0 %}
+            {{ dict.category }}: {{ dict.messages.0 }}, 
+    {% endif %}
+    {% endfor %}
+</div>
     {% for dict in additional_data %}
     	<h4 class="categoryLabel">{{ dict.category }}</h4>
     	<dl class="catagoryValues"> 

@@ -68,7 +68,7 @@ class UserProfile(models.Model):
                     if cat_key in category:
                         pass
                     else:
-                        messages.append('Incomplete information in additional details - key %s is missing.' % cat_key)
+                        messages.append(' %s is missing' % cat_key)
                 return_dataset = []
                 for record in category['dataset']:
                     # verify label, value, and groups_permitted exist
@@ -76,7 +76,7 @@ class UserProfile(models.Model):
                         if data_key in record:
                             pass
                         else:
-                            messages.append('Incomplete information in additional details - key %s is missing.' % data_key)
+                            messages.append(' %s is missing' % data_key)
 
                     # Cycle through the authenticated user's group membership
                     # to see if any match the groups permitted to view this record.

@@ -167,7 +167,7 @@ function drawCharts() {
         }
 
         var personality_type_chart_1 = new google.visualization.PieChart(document.getElementById('personality-type-chart-1'));
-        personality_type_chart_1.draw(personality_type_data_1, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+        personality_type_chart_1.draw(personality_type_data_1, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
 
         // Sensing/Intuitive Chart
         var personality_type_data_2 = new google.visualization.DataTable();
@@ -188,7 +188,7 @@ function drawCharts() {
         }
 
         var personality_type_chart_2 = new google.visualization.PieChart(document.getElementById('personality-type-chart-2'));
-        personality_type_chart_2.draw(personality_type_data_2, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+        personality_type_chart_2.draw(personality_type_data_2, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
 
         // Thinking/Feeling Chart
         var personality_type_data_3 = new google.visualization.DataTable();
@@ -209,7 +209,7 @@ function drawCharts() {
         }
 
         var personality_type_chart_3 = new google.visualization.PieChart(document.getElementById('personality-type-chart-3'));
-        personality_type_chart_3.draw(personality_type_data_3, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+        personality_type_chart_3.draw(personality_type_data_3, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
 
         // Judging/Perceiving Chart
         var personality_type_data_4 = new google.visualization.DataTable();
@@ -230,7 +230,7 @@ function drawCharts() {
         }
 
         var personality_type_chart_4 = new google.visualization.PieChart(document.getElementById('personality-type-chart-4'));
-        personality_type_chart_4.draw(personality_type_data_4, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#ededee'});
+        personality_type_chart_4.draw(personality_type_data_4, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
     }
 
     if (latest_learning_style_result.id !== '') {
@@ -254,7 +254,7 @@ function drawCharts() {
 
         // Draw bar chart for learning style
         var learning_style_chart = new google.visualization.BarChart(document.getElementById('learning-style-chart'));
-        learning_style_chart.draw(learning_style_data, {width: 400, height: 200, legend: 'none', backgroundColor: '#ededee'});
+        learning_style_chart.draw(learning_style_data, {width: 400, height: 200, legend: 'none', backgroundColor: '#f1f1f1'});
     }
 }
 
