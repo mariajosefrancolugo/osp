@@ -107,7 +107,8 @@ var personality_type_scores = [
     {% endif %}
     {% if student.result_set.all|length > 0 %}
         <div id="survey-results">
-            <h1 class="float-left">Survey Results <span id="survey-count">({{ student.result_set.count }})</span></h1>
+            <h1 class="float-left">Survey Results</h1>
+            <h1 id="survey-count">Surveys completed: {{ student.result_set.count }}</h1>
             {% include "profiles/profile_survey_results.html" %}
         </div>
        

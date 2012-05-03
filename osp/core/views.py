@@ -11,6 +11,7 @@ from django.views.generic.simple import direct_to_template
 
 from osp.core.middleware.http import Http403
 from osp.core.models import UserProfile
+from osp.core.models import HelpTopic
 
 @login_required
 def index(request):
@@ -25,7 +26,9 @@ def index(request):
 def help(request):
     if not request.user.groups.filter(name='Employees'):
         raise Http403
-    return direct_to_template(request, 'core/help.html', {})
+    topics = []
+    topics = HelpTopic.objects.all().order_by('order')
+    return direct_to_template(request, 'core/help.html', { 'topics': topics })
 
 @login_required
 def search(request):
