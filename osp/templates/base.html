@@ -29,18 +29,17 @@
         </div>
         {% endblock %}
         {% block header %}
-
         <div id="header">
             <div id="header-inner">
                 <p id="name"><a href="{% url core:index %}">Online Student Profile</a></p>
-                {% endblock %}
+                <div class="clear"></div>
                 {% if user.first_name %}
-                 <p id="userName">Welcome, {{ user.first_name }} {{ user.last_name }} (<a href="{% url logout %}" id="logout">Logout</a>)</p>
-                 {% endif %}
+                 <p id="userName">Welcome, {{ user.first_name }} {{ user.last_name }} (<a href="{% url logout %}" id="logout">Sign Out</a>)</p>
+                 {% endif %} 
+                {% endblock %}    
             </div>
-           
         </div>
-        
+       
         <div id="body">
             {% block body %}
             {% endblock %}

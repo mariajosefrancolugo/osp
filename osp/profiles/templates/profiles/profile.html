@@ -75,13 +75,14 @@ var personality_type_scores = [
         {% if latest_learning_style_result %}
             <li class="profile_menu_item"><a href="#learning-style">Learning Style</a></li>
         {% endif %}
-        {% if student.result_set.all|length > 0 %}
-            <li class="profile_menu_item"><a href="#survey-results">Survey Results</a></li>
-        {% endif %}
         {% if latest_personality_type_result %}
             <li class="profile_menu_item"><a href="#personality-type">Personality Type</a></li>
         {% endif %}
         {% if additional_data %}
+        {% if student.result_set.all|length > 0 %}
+            <li class="profile_menu_item"><a href="#survey-results">Survey Results</a></li>
+        {% endif %}
+            <li class="profile_menu_item"><a href="#survey-results">Assessment Results</a></li>
             <li class="profile_menu_item"><a href="#additional_details">Additional Details</a></li>
         {% endif %}
     </ul>
@@ -112,7 +113,7 @@ var personality_type_scores = [
        
     {% endif %}
     {% if latest_personality_type_result %}
-        <div id="personality-type">
+        <div id="personality-type" onfocus="load_personality()">
             <a href="javascript:;" class="modal float-right" ref="personality-type-window"></a>
             <div id="personality-type-window"></div>
         </div>   
