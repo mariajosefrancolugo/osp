@@ -1,7 +1,5 @@
 /* Global Stylesheet */
 
-
-
 html, body
 {
     margin: 0;
@@ -119,8 +117,9 @@ label
 .permissions-table
 {
     margin: 10px;
-    padding: 2px;
+    padding: 3px;
     border: 1px solid #d6d6d6;
+    box-shadow: 1px 1px 1px;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -136,6 +135,7 @@ label
 }
 .permissions-table th, .permissions-table td
 {
+    padding: 2px;
     border: 1px solid ##969696;
     background: -moz-linear-gradient(center top , #F1F1F1, #969696) repeat scroll 0 0 transparent;
     box-shadow: 1px 1px 1px;
