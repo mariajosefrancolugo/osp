@@ -8,6 +8,116 @@
 {% block body %}
 <h2>Help Topics</h2>
 <div id="procedures" class="accordion">
+   <h3><a href="#">Permissions Tables</a></h3>
+  <div>
+    <table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Navigation Menu</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Classes</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Assessments</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Surveys</th><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Reports</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Profile</th><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Profile Menu</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Current Enrollments</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Activity</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Learning Style</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Personality Type</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Survey Results</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Additional Details</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Assessment Results</th><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Roster Menu</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Roster</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Statistics</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Actions Available</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Intervention</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>*Visit</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>*Note</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Contact</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<h3>* Couselors can set/view private</h3>
+  </div>
 {% for topic in topics %}
   <h3><a href="#">{{ topic.topic }}</a></h3>
   <div>
