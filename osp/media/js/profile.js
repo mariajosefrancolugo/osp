@@ -128,7 +128,7 @@ $(function() {
         });
     });
 
-    $('a.modal').each(function() {
+    $('a.graph').each(function() {
       if($(this).attr('ref') == 'learning-style-window') {
         $('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');
       } else if($(this).attr('ref') == 'personality-type-window') {
@@ -136,9 +136,6 @@ $(function() {
       } 
     });
 
-    $('a.modal').click(function() {
-        $('#' + $(this).attr('ref')).dialog('open');
-    });
 });
 
 if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
