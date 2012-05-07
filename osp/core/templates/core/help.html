@@ -8,7 +8,7 @@
 {% block body %}
 <h2>Help Topics</h2>
 <div id="procedures" class="accordion">
-   <h3><a href="#">Permissions Tables</a></h3>
+   <h3><a href="#">Roles and Permissions</a></h3>
   <div>
     <table class="permissions-table">
    <thead>
@@ -117,10 +117,11 @@
   </tbody>
 </table>
 <h3>* Couselors can set/view private</h3>
-  </div>
+</div>
 {% for topic in topics %}
   <h3><a href="#">{{ topic.topic }}</a></h3>
   <div>
+
     <p>{{ topic.description|linebreaks }}</p>
   </div>
 {% endfor %}
