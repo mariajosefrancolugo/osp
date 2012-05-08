@@ -19,4 +19,9 @@ def classes(request):
     else:
         return {'classes': None}
 
-
+def assessments(request):
+    try:
+        extensions = settings.EXTEND_ASSESSMENTS_MENU
+    except:
+        extensions = []
+    return {'EXTEND_ASSESSMENTS_MENU': extensions}
