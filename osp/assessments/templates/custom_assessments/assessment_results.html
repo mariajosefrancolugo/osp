@@ -1,0 +1,11 @@
+{% extends base_template %}
+
+{% block body %}
+<h1>{% block assessment_heading %}{{ title }}{% endblock %}</h1>
+<p>Correct responses: {{ correct}}</p>
+<p>Incorrect responses: {{ incorrect }}</p>
+<p>Unanswered responses: {{ unanswered }}</p>
+{% for description in descriptions %}
+{{ description.description|safe }}
+{% endfor %}
+{% endblock %}
