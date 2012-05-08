@@ -55,3 +55,27 @@ class LearningStyleForm(forms.Form):
                     ('0', 'No'),
                 ), widget=forms.RadioSelect)
             )
+
+
+class AssessmentForm(forms.Form):
+    """
+        Default form used for custom assessments.
+    """
+    def __init__(self, *args, **kwargs):
+        self.data_root = kwargs.pop('data_root')
+        super(AssessmentForm, self).__init__(*args, **kwargs)
+
+        # Get statements from JSON data file and convert to Python object
+        data = load_json_data('assessment.json', self.data_root)
+        # Create fields for each question
+        for item in data:
+            assessment_choices = []
+            if 'question' in item and 'possible_answers' in item and 'question_id' in item:
+                for answer in item['possible_answers']:
+                    if 'value' in answer and 'label' in answer:
+                        assessment_choices.append((answer['value'],answer['label']))
+                self.fields[item['question_id']] = (
+                    forms.ChoiceField(label=item['question'],
+                    choices=assessment_choices,
+                    widget=forms.RadioSelect)
+                )

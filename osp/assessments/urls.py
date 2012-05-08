@@ -10,3 +10,12 @@ urlpatterns = patterns('',
     (r'^learning-style/results/(?P<result_id>\d+)/$',
         views.learning_style_results, {}, 'learning-style-results'),
 )
+
+try:
+    url_extensions =  settings.EXTEND_ASSESSMENTS_URLS
+except:
+    url_extensions = []
+for assessment_url in url_extensions:
+    urlpatterns += patterns('',
+        (r'^%s' % assessment_url['path'], include('%s' % assessment_url['file'])),
+)
