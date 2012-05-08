@@ -16,6 +16,9 @@
       <ul class="submenu">
         <li class="submenu-item"><a href="{% url assessment:personality-type %}">Personality Type</a></li>
         <li class="submenu-item"><a href="{% url assessment:learning-style %}">Learning Style</a></li>
+        {% for menuitem in EXTEND_ASSESSMENTS_MENU %}
+            {% include menuitem %}
+        {% endfor %}
       </ul>
     </li>
     <li class="menu-item last">{% if user.is_authenticated %}<a href="{% url logout %}" class="menu-link">Sign Out</a>{% else %}<a href="{% url login %}" class="menu-link">Sign In</a>{% endif %}</li>
