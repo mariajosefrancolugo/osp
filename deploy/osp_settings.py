@@ -213,3 +213,16 @@ VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [(x, x) for x in
                                          VISIT_CAREER_SERVICES_OUTCOME_CHOICES]
 INTERVENTION_REASONS = [(x, x) for x in INTERVENTION_REASONS]
 
+# Settings for including custom assessments:
+# Add custom assessments to list of installed apps.
+#INSTALLED_APPS.extend(['exampletest'])
+# List of templates containing html for including menu options for custom
+# assessments under the assessments menu.
+#EXTEND_ASSESSMENTS_MENU = [
+#    'exampletest/exampletest_menu.html'
+#]
+# List of dictionaries containing path and file information for
+# including additional urls.py files for custom assessments.
+#EXTEND_ASSESSMENTS_URLS = [
+#    {'path': 'exampletest/', 'file': 'exampletest.urls'}
+#]
