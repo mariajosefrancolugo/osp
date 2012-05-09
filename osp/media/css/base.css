@@ -79,7 +79,7 @@ label
     width: 20px;
     background: -moz-linear-gradient(center top , #009900, #005500) repeat scroll 0 0 transparent;
     border: 1px solid #005500;
-    box-shadow: 3px 3px 3px inset;
+    box-shadow: 1px 1px 1px;
     -webkit-border-bottom-right-radius: 7px;
     -webkit-border-bottom-left-radius: 7px;
     -webkit-border-top-right-radius: 7px;
@@ -98,8 +98,8 @@ label
     margin-left: 55px;
     height: 10px;
     width: 20px;
-    background: -moz-linear-gradient(center top, #CC0000, #770000) repeat scroll 0 0 transparent;
-    border: 1px solid #770000;
+    background: -moz-linear-gradient(center top, #AAAAAA, #AAAAAA) repeat scroll 0 0 transparent;
+    border: 1px solid #AAAAAA;
     box-shadow: 1px 1px 1px inset;
     -webkit-border-bottom-right-radius: 7px;
     -webkit-border-bottom-left-radius: 7px;
@@ -116,10 +116,9 @@ label
 }
 .permissions-table
 {
-    margin: 10px;
+    margin-top: 10px;
     padding: 3px;
-    border: 1px solid #d6d6d6;
-    box-shadow: 1px 1px 1px;
+    border: 1px solid #AAAAAA;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -136,9 +135,7 @@ label
 .permissions-table th, .permissions-table td
 {
     padding: 2px;
-    border: 1px solid ##969696;
-    background: -moz-linear-gradient(center top , #F1F1F1, #969696) repeat scroll 0 0 transparent;
-    box-shadow: 1px 1px 1px;
+    background: -moz-linear-gradient(center top , #F1F1F1, #CCCCCC) repeat scroll 0 0 transparent;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -155,10 +152,16 @@ label
 .permissions-table td
 {
     background: -moz-linear-gradient(center top , #F5F5F5, #E1E1E1) repeat scroll 0 0 transparent;
+    border: 1px solid #E1E1E1;
+    box-shadow: none;
 }
 .permissions-table th
 {
     text-align: center;
+}
+.permissions-table tbody th
+{
+    background: #DDDDDD;
 }
 .clear
 {
@@ -469,6 +472,13 @@ div.field div.help-text
 {
     margin: 5px 0;
     font-size: 11px;
+    color: #777;
+    font-style: italic;
+}
+p.help-text
+{
+    margin: 20px 0px;
+    font-size: 14px;
     color: #777;
     font-style: italic;
 }
@@ -919,4 +929,8 @@ div.field.checkbox label
     -moz-border-radius-bottomleft: 7px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+}
+#help-description
+{
+    text-indent: 50px;
 }

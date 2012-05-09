@@ -4,7 +4,7 @@
     "model": "core.helptopic", 
     "fields": {
       "topic": "View the list of classes that you are teaching", 
-      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\n A list of the classes you are currently teaching will be listed under the ‘Classes’ menu.",
+      "description": "In the upper right hand corner you will find a menu with the 'Classes' option to the left. When you hover over this option you will see a dropdown menu providing the courses that you are instructing.\n\nIf there are no courses available in the list you are not set as the 'Instructor' for any courses this semester.",
       "order": 1
     }
   }, 
@@ -22,7 +22,7 @@
     "model": "core.helptopic", 
     "fields": {
       "topic": "View a list of students in a class", 
-      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\nA list of the classes you are currently teaching will be listed under the ‘Classes’ menu.\n\nClick on the desired class.\n\nThe class roster will be displayed in the 'Roster' tab.\n\nThe class roster includes the students’ names, learning styles, and personality types.",
+      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\nA list of the classes you are currently teaching will be listed under the ‘Classes’ menu.\n\nClick on the desired class.\n\nThe class roster will be displayed in the 'Roster' tab.\n\nThe class roster includes the students’ names, learning styles, and personality types. \n\n If the student has not completed the 'Learning Style Assessment' or the 'Personality Type Assessment' these field will be blank.",
       "order": 3
     }
   }, 
@@ -39,8 +39,8 @@
     "pk": 5, 
     "model": "core.helptopic", 
     "fields": {
-      "topic": "Send an intervention notification on behalf of one or more students in a class", 
-      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\nYou will see a list of the classes you are currently teaching under the ‘Classes’ menu.\n\nClick on the desired class.\n\nIn the 'Roster' tab there will be a checkbox next to each student’s name.\n\nSpecify which students you want to send an intervention for by checking the checkboxes next to their names.\n\nLook at the bottom of the page and click the ‘Intervene’ button.\n\nA form will be displayed containing a list of possible reasons for intervention, a campus drop-down, and comments fields.\n\nCheck the boxes next to the reasons that apply for this intervention notification.\n\nUsing the Campus drop-down, select the campus where this class is being held.\n\nType the message you would like sent in the 'Comments' field.\n\nClick the ‘Submit’ button and an intervention notification email will be sent to the appropriate personnel.",
+      "topic": "Send an Intervention notification on behalf of one or more students in a class", 
+      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\nYou will see a list of the classes you are currently teaching under the ‘Classes’ menu.\n\nClick on the desired class.\n\nIn the 'Roster' tab there will be a checkbox next to each student’s name.\n\nSpecify which students you want to send an intervention for by checking the checkboxes next to their names.\n\nLook at the upper right of the roster and click the ‘Intervene’ button.\n\nA form will be displayed containing a list of possible reasons for intervention, a campus drop-down, and comments fields.\n\nCheck the boxes next to the reasons that apply for this intervention notification.\n\nUsing the Campus drop-down, select the campus where this class is being held.\n\nType the message you would like sent in the 'Comments' field.\n\nClick the ‘Submit’ button and an intervention notification email will be sent to the appropriate personnel.",
       "order":5 
     }
   },
@@ -48,31 +48,40 @@
     "pk": 6, 
     "model": "core.helptopic", 
     "fields": {
-      "topic": "View a student’s profile using search for student", 
-      "description": "it is possible to search for a student profile by the first name, last name, or email address of the student.\n\nLook in the upper right hand corner of the page for the ‘search for student’ search box.\n\nIn the ‘search for student’ search box, type in two or more characters to search for the start of a student’s first name, last name, or email address.\n\nA list of matching students will be displayed below the ‘search for student’ search box.\n\nClick on the desired student.\n\nThe profile of that student will be displayed.",
-      "order": 6
+      "topic": "Send an Intervention notification on behalf of a student in a class you are not teaching", 
+      "description": "View the students profile by using search for student.\n\nIn the 'Current Enrollments' tab there will be a checkbox next to each course the student is enrolled in.\n\nSpecify which course you want to send an intervention for by checking the checkboxe next to the course name.\n\nLook at the top right of the enrollments table and click the ‘Intervene’ button.\n\nA form will be displayed containing a list of possible reasons for intervention, a campus drop-down, and comments fields.\n\nCheck the boxes next to the reasons that apply for this intervention notification.\n\nUsing the Campus drop-down, select the campus where this class is being held.\n\nType the message you would like sent in the 'Comments' field.\n\nClick the ‘Submit’ button and an intervention notification email will be sent to the appropriate personnel.",
+      "order":5 
     }
   },
   {
     "pk": 7, 
     "model": "core.helptopic", 
     "fields": {
-      "topic": "View a student’s profile using a class roster", 
-      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\nA list of the classes you are currently teaching will be listed under the ‘Classes’ menu.\n\nClick on the desired class.\n\nIn the 'Roster' tab click on the name of the student whose profile you want to view.\n\nThe profile of that student will be displayed.",
-      "order": 7
+      "topic": "To view a student’s profile using 'search for student'", 
+      "description": "It is possible to search for a student profile by the first name, last name, or email address of the student.\n\nLook in the upper right hand corner of the page for the ‘search for student’ search box.\n\nIn the ‘search for student’ search box, type in two or more characters to search for the start of a student’s first name, last name, or email address.\n\nA list of matching students will be displayed below the ‘search for student’ search box.\n\nClick on the desired student.\n\nThe profile of that student will be displayed.",
+      "order": 12
     }
   },
   {
     "pk": 8, 
     "model": "core.helptopic", 
     "fields": {
-      "topic": "View a list of classes a student is currently taking", 
-      "description": "View the student’s profile.\n\nTo see a list of the classes a student is taking, look in the ‘Current Enrollments’ tab.",
-      "order": 8
+      "topic": "View a student’s profile using a class roster", 
+      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\nA list of the classes you are currently teaching will be listed under the ‘Classes’ menu.\n\nClick on the desired class.\n\nIn the 'Roster' tab click on the name of the student whose profile you want to view.\n\nThe profile of that student will be displayed.\n\n You may also click on any notification icon, beside the students name in the 'Roster', to go directly to that students 'Activity Log'.",
+      "order": 7
     }
   },
   {
     "pk": 9, 
+    "model": "core.helptopic", 
+    "fields": {
+      "topic": "View a list of classes a student is currently taking", 
+      "description": "View the student’s profile.\n\nTo see a list of the classes a student is taking, look in the ‘Current Enrollments’ tab. (Open by default)",
+      "order": 8
+    }
+  },
+  {
+    "pk": 10, 
     "model": "core.helptopic", 
     "fields": {
       "topic": "View information on a student’s learning style", 
@@ -81,7 +90,7 @@
     }
   },
   {
-    "pk": 10, 
+    "pk": 11, 
     "model": "core.helptopic", 
     "fields": {
       "topic": "View information on surveys a student has taken", 
@@ -90,7 +99,7 @@
     }
   },
   {
-    "pk": 11, 
+    "pk": 12, 
     "model": "core.helptopic", 
     "fields": {
       "topic": "View information on a student’s personality type", 
@@ -99,7 +108,7 @@
     }
   },
   {
-    "pk": 12, 
+    "pk": 13, 
     "model": "core.helptopic", 
     "fields": {
       "topic": "View a list of a student’s activity", 
@@ -108,34 +117,34 @@
     }
   },
   {
-    "pk": 13, 
-    "model": "core.helptopic", 
-    "fields": {
-      "topic": "Log a student visit", 
-      "description": "View the student’s profile.\n\nLook in the 'Activity' tab and click the ‘Visit’ button.\n\nYou will see a form containing the student’s name, and several form fields.\n\nFill in the form fields appropriately.\n\nWhen you have completed filling out the visit information, click the Submit button to save the visit.\n\nThe visit will be saved and you will then see the visit in the activity table on the student's profile.",
-      "order": 13
-    }
-  },
-  {
     "pk": 14, 
     "model": "core.helptopic", 
     "fields": {
-      "topic": "Log a student note", 
-      "description": "View the student’s profile.\n\nLook in the 'Activity' tab and click the ‘Note’ button.\n\nYou will see a form containing the student’s name, and a form field.\n\nFill in the form field appropriately.\n\nWhen you have completed filling out the note information, click the Submit button to save the visit.\n\nThe note will be saved and you will then see the note in the activity table on the student's profile.",
-      "order": 14
+      "topic": "Log a Visit or Note for a Student as a Counselor", 
+      "description": "View the student’s profile.\n\nLook in the 'Activity' tab and click the ‘Visit’ or 'Note' button.\n\nYou will see a form containing the student’s name, and several form fields.\n\nFill in the form fields appropriately.\n\nWhen you have completed filling out the fields, click the Submit button to save the visit or note.\n\nYou will then see the visit or note in the activity tab on the student's profile.",
+      "order": 13
     }
   },
   {
     "pk": 15, 
     "model": "core.helptopic", 
     "fields": {
-      "topic": "View additional details about a student", 
-      "description": "IMPORTANT! :Additional data must be loaded to view this tab.\n\nView the student’s profile.\n\nLook in the 'Additional Details' tab.\n\nYou will see a table containing the additional information that has been loaded.",
-      "order": 15
+      "topic": "Log a Note for a student as an Instructor", 
+      "description": "Look in the upper right hand corner of the page and hover over the ‘Classes’ menu.\n\nA list of the classes you are currently teaching will be listed under the ‘Classes’ menu.\n\nClick on the desired class.\n\nLook in the 'Roster' tab and select the students you would like to log a Note for by checking the boxes to the left of their names.\n\nclick the 'Note' button.\n\nYou will see a form containing the student’s name, and several form fields.\n\nFill in the form fields appropriately.\n\nWhen you have completed filling out the fields, click the Submit button to save the Note.\n\nYou will then see the Note in the activity tab on the student's profile.",
+      "order": 4
     }
   },
   {
     "pk": 16, 
+    "model": "core.helptopic", 
+    "fields": {
+      "topic": "View additional details about a student", 
+      "description": "IMPORTANT! : Additional data must be loaded to view the 'Additional Details' tab in the profile.\n\nView the student’s profile.\n\nLook in the 'Additional Details' tab.\n\nYou will see a table containing the additional information that has been loaded.",
+      "order": 15
+    }
+  },
+  {
+    "pk": 17, 
     "model": "core.helptopic", 
     "fields": {
       "topic": "View a list of available reports", 
@@ -144,7 +153,7 @@
     }
   },
   {
-    "pk": 17, 
+    "pk": 18, 
     "model": "core.helptopic", 
     "fields": {
       "topic": "Generate a report of Personality Type assessment results", 
@@ -153,7 +162,7 @@
     }
   },
   {
-    "pk": 18, 
+    "pk": 19, 
     "model": "core.helptopic", 
     "fields": {
       "topic": "Generate a report of Learning Style assessment results", 
