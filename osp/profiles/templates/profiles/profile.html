@@ -1,0 +1,133 @@
+{% extends base_template %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+var student_id = "{{ student.id }}";
+var latest_learning_style_result = {
+  'id': '{{ latest_learning_style_result.id }}',
+  'auditory_score': parseInt({{ latest_learning_style_result.auditory_score }}),
+  'kinesthetic_score': parseInt({{ latest_learning_style_result.kinesthetic_score }}),
+  'visual_score': parseInt({{ latest_learning_style_result.visual_score }})
+}
+var latest_personality_type_result_id = '{{ latest_personality_type_result.id }}';
+var personality_type_scores = [
+  ['{{ personality_type_scores.0.0 }}', parseFloat({{ personality_type_scores.0.1 }}), parseFloat({{ personality_type_scores.0.2 }})],
+  ['{{ personality_type_scores.1.0 }}', parseFloat({{ personality_type_scores.1.1 }}), parseFloat({{ personality_type_scores.1.2 }})],
+  ['{{ personality_type_scores.2.0 }}', parseFloat({{ personality_type_scores.2.1 }}), parseFloat({{ personality_type_scores.2.2 }})],
+  ['{{ personality_type_scores.3.0 }}', parseFloat({{ personality_type_scores.3.1 }}), parseFloat({{ personality_type_scores.3.2 }})]
+]
+</script>
+{% if latest_personality_type_result or latest_learning_style_result %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endif %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/profile.js"></script>
+{% endblock %}
+
+{% block body %}
+<h1 class="profile">
+  {% if student.email %}
+  <a href="mailto: {{ student.email }}">{{ student.get_full_name }}</a>
+  {% else %}
+  {{ student.get_full_name }}
+  {% endif %}
+</h1>
+<p id="id-number">ID Number: {{ student.profile.id_number }}</p>
+<div class="clear"></div>
+<div id="incomplete_warning">
+{% if latest_learning_style_result == None or latest_personality_type_result == None or student.result_set.all|length == 0 %} 
+    <p><em>There is no 
+    {% if latest_learning_style_result == None and latest_personality_type_result == None and student.result_set.all|length == 0 %} 
+        Learning Style,  Personality Type or Survey
+    {% else %} 
+        {% if latest_learning_style_result == None and latest_personality_type_result == None %}
+            Learning Style or Personality Type
+    {% else %} 
+        {% if latest_learning_style_result == None and student.result_set.all|length == 0 %}
+            Learning Style or Survey
+    {% else %} 
+        {% if latest_learning_style_result == None %}
+            Learning Style
+    {% else %}
+        {% if latest_personality_type_result == None and student.result_set.all|length == 0%}
+            Personality Type or Survey
+    {% else %} 
+        {% if latest_personality_type_result == None %} 
+            Personality Type 
+    {% else %}
+        {% if student.result_set.all|length == 0 %} 
+            Survey 
+    {% else %}
+    {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+    data available for {{ student.get_full_name }}.</em></p>
+{% else %}{% endif %}
+</div>
+<div class="clear"></div>
+
+<div id="profile_menu">
+    <ul>
+        {% if current_enrollments %}
+            <li class="profile_menu_item"><a href="#current_enrollments">Current Enrollments</a></li>
+        {% endif %}
+        {% if can_view_visits and activity %}
+            <li class="profile_menu_item"><a href="#activity">Activity</a></li>
+        {% endif %}
+        {% if latest_learning_style_result %}
+            <li class="profile_menu_item"><a href="#learning-style">Learning Style</a></li>
+        {% endif %}
+        {% if latest_personality_type_result %}
+            <li class="profile_menu_item"><a href="#personality-type">Personality Type</a></li>
+        {% endif %}
+        {% if student.result_set.all|length > 0 %}
+            <li class="profile_menu_item"><a href="#survey-results">Survey Results</a></li>
+        {% endif %}
+            <li class="profile_menu_item" style="display:none;"><a href="#assessment-results">Assessment Results</a></li>
+        {% if additional_data %}
+            <li class="profile_menu_item"><a href="#additional_details">Additional Details</a></li>
+        {% endif %}
+    </ul>
+    {% if current_enrollments %}
+        <div id="current_enrollments">
+            <h1 class="float-left">Current Enrollments</h1>
+            <div class="clear"></div>
+            {% include "profiles/profile_current_enrollments.html" %}
+        </div>
+    {% endif %}
+    {% if can_view_visits and activity %}
+        <div id="activity">
+            <h1 class="float-left">Activity</h1>
+            {% include "profiles/profile_visits.html" %}
+        </div>
+    {% endif %}
+    {% if latest_learning_style_result %}
+        <div id="learning-style">
+            <a href="javascript:;" class="graph float-right" ref="learning-style-window"></a>
+            <div id="learning-style-window"></div>
+        </div>
+    {% endif %}
+    {% if student.result_set.all|length > 0 %}
+        <div id="survey-results">
+            <h1 class="float-left">Survey Results</h1>
+            <h1 id="survey-count">Surveys completed: {{ student.result_set.count }}</h1>
+            {% include "profiles/profile_survey_results.html" %}
+        </div>
+       
+    {% endif %}
+    {% if latest_personality_type_result %}
+        <div id="personality-type">
+            <a href="javascript:;" class="graph float-right" ref="personality-type-window"></a>
+            <div id="personality-type-window"></div>
+        </div>   
+    {% endif %}
+        <div id="assessment-results">
+
+        </div>
+    {% if additional_data %}    
+        <div id="additional_details">
+            <h1 class="float-left">Additional Details</h1>
+            {% include "profiles/details.html" %}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
