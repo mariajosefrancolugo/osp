@@ -45,6 +45,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'osp.core.context_processors.media_url',
     'osp.core.context_processors.base_template',
     'osp.core.context_processors.classes',
+    'osp.core.context_processors.assessments',
 ]
 
 INSTALLED_APPS = [

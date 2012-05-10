@@ -19,4 +19,9 @@ def classes(request):
     else:
         return {'classes': None}
 
-
+def assessments(request):
+    try:
+        custom_assessments = settings.CUSTOM_ASSESSMENTS
+    except:
+        custom_assessments = []
+    return {'CUSTOM_ASSESSMENTS': custom_assessments}

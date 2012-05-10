@@ -1,0 +1,8 @@
+{% extends base_template %}
+
+{% block body %}
+<h1>{% block assessment_heading %}{{ title }}{% endblock %}</h1>
+{% for response in responses %}
+<p>{{ response.question }}<br/>{{ response.answer }}</p>
+{% endfor %}
+{% endblock %}

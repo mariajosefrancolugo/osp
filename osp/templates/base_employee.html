@@ -30,6 +30,9 @@
       <ul class="submenu">
         <li class="submenu-item"><a href="{% url assessment:personality-type %}">Personality Type</a></li>
         <li class="submenu-item"><a href="{% url assessment:learning-style %}">Learning Style</a></li>
+        {% for assessment in CUSTOM_ASSESSMENTS %}
+           <li class="submenu-item"><a href="{{ assessment.menu_href }}">{{ assessment.menu_label }}</a></li> 
+        {% endfor %}
       </ul>
     </li>
     <li class="menu-item">
