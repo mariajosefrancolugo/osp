@@ -13,10 +13,11 @@ urlpatterns = patterns('',
 )
 
 try:
-    url_extensions =  settings.EXTEND_ASSESSMENTS_URLS
+    custom_assessments = settings.CUSTOM_ASSESSMENTS
+    url_extensions = [{'urls_path': '%s/' % item['application_name'], 'urls_file': '%s.%s' % (item['application_name'], 'urls')} for item in custom_assessments]
 except:
     url_extensions = []
 for assessment_url in url_extensions:
     urlpatterns += patterns('',
-        (r'^%s' % assessment_url['path'], include('%s' % assessment_url['file'])),
+        (r'^%s' % assessment_url['urls_path'], include('%s' % assessment_url['urls_file'])),
 )

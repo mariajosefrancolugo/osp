@@ -21,7 +21,7 @@ def classes(request):
 
 def assessments(request):
     try:
-        extensions = settings.EXTEND_ASSESSMENTS_MENU
+        custom_assessments = settings.CUSTOM_ASSESSMENTS
     except:
-        extensions = []
-    return {'EXTEND_ASSESSMENTS_MENU': extensions}
+        custom_assessments = []
+    return {'CUSTOM_ASSESSMENTS': custom_assessments}

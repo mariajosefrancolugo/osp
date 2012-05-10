@@ -213,16 +213,30 @@ VISIT_CAREER_SERVICES_OUTCOME_CHOICES = [(x, x) for x in
                                          VISIT_CAREER_SERVICES_OUTCOME_CHOICES]
 INTERVENTION_REASONS = [(x, x) for x in INTERVENTION_REASONS]
 
-# Settings for including custom assessments:
-# Add custom assessments to list of installed apps.
-#INSTALLED_APPS.extend(['exampletest'])
-# List of templates containing html for including menu options for custom
-# assessments under the assessments menu.
-#EXTEND_ASSESSMENTS_MENU = [
-#    'exampletest/exampletest_menu.html'
-#]
-# List of dictionaries containing path and file information for
-# including additional urls.py files for custom assessments.
-#EXTEND_ASSESSMENTS_URLS = [
-#    {'path': 'exampletest/', 'file': 'exampletest.urls'}
-#]
+# Settings for including custom assessment applications.
+# A custom assessment must be wrapped inside a django application.
+CUSTOM_ASSESSMENTS = [
+    {'application_name': 'newtest1',
+     'menu_href': '/assessment/newtest1/show/',
+     'menu_label': 'New Test1',
+     'results_href': '/assessment/newtest1/results/',
+     'results_label': 'New Test1 Results',
+     'responses_href': '/assessment/newtest1/responses',
+     'responses_label': 'New Test1 Responses'
+    },
+    {'application_name': 'customlearnstyle',
+     'menu_href': '/assessment/customlearnstyle/show',
+     'menu_label': 'Custom Learning Style',
+     'results_href': '/assessment/customlearnstyle/results/',
+     'results_label': 'Custom Learning Style Results',
+     'responses_href': '/assessment/customlearnstyle/responses',
+     'responses_label': 'Custom Learning Style Response'
+    }
+]
+try:
+    # Add custom assessments to list of installed apps.
+    custom_assessments_apps = [item['application_name'] for item in CUSTOM_ASSESSMENTS]
+    INSTALLED_APPS.extend(custom_assessments_apps)
+except:
+    pass
+
