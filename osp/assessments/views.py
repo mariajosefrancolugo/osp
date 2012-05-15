@@ -89,7 +89,7 @@ class Assessment(object):
         result = self.result_model.objects.get(pk=result_id)
         correct, incorrect, unanswered = self.score(request, result_id)
 
-        descriptions = [{"description":"testing testing"}]
+        descriptions = [{"description":"testing testing. this is a custom test."}]
         return direct_to_template(request, 'custom_assessments/assessment_results.html',
             {'result': result,
              'title': self.title,

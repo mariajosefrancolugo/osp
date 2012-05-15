@@ -870,7 +870,7 @@ div.field.checkbox label
     display:none;
 }
 
-.catagoryValues dd, .catagoryValues dt, #incomplete_warning ul
+.catagoryValues dd, .catagoryValues dt, #incomplete_warning ul, .custom_assessment_responses dd, .custom_assessment_responses dt
 {
     list-style: none;
     margin: 0px;
@@ -889,13 +889,13 @@ div.field.checkbox label
     padding-right: 20px;
 }
 
-.catagoryValues dd
+.catagoryValues dd, .custom_assessment_responses dd
 {
     padding-right: 30px;
     padding-bottom: 5px;
 }
 
-.categoryLabel
+.categoryLabel, .custom_assessment_category
 {
     background: #dfdfdf;
     padding:5px;
@@ -933,4 +933,17 @@ div.field.checkbox label
 #help-description
 {
     text-indent: 50px;
+}
+
+.custom_assessment_correct li, .custom_assessment_incorrect li, .custom_assessment_unanwered li
+{
+    list-style: none;
+    margin: 0px;
+    float: left;
+    padding-right: 30px;
+    padding-bottom: 5px;
+}
+.custom_assessment_warning
+{
+    padding-left: 35px;
 }
