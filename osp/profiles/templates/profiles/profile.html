@@ -125,7 +125,7 @@ var personality_type_scores = [
         <div id="assessment-results">
             {% for assessment in CUSTOM_ASSESSMENTS %}
             <div id="assessment-results-{{ assessment.application_name }}"></div>
-            <script>$('#assessment-results-{{ assessment.application_name }}').load(base_url + 'assessment/{{ assessment.application_name }}/show/');</script>
+            <script>$('#assessment-results-{{ assessment.application_name }}').load(base_url + 'assessment/{{ assessment.application_name }}/get/results/{{ student.id }}');</script>
             {% endfor %}
         </div>
     {% endif %}
