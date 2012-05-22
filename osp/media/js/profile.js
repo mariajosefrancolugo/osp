@@ -127,10 +127,6 @@ $(function() {
             $('#view-note-window').dialog('open');
         });
     });
-
-  
-    $('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');
-    $('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');
  
 });
 

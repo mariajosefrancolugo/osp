@@ -918,9 +918,9 @@ div.field.checkbox label
 
 }
 #roster, #statistics, #current_enrollments, #activity, 
-#learning-style, #survey-results, #personality-type, #additional_details
+#learning-style, #survey-results, #personality-type, #additional_details, #assessment-results
 {
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     border: 1px solid #d6d6d6;
     border-top: none;
     -webkit-border-bottom-right-radius: 7px;
