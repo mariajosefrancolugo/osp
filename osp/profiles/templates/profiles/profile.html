@@ -81,7 +81,9 @@ var personality_type_scores = [
         {% if student.result_set.all|length > 0 %}
             <li class="profile_menu_item"><a href="#survey-results">Survey Results</a></li>
         {% endif %}
+        {% if CUSTOM_ASSESSMENTS|length > 0 %}
             <li class="profile_menu_item"><a href="#assessment-results">Assessment Results</a></li>
+        {% endif %}
         {% if additional_data %}
             <li class="profile_menu_item"><a href="#additional_details">Additional Details</a></li>
         {% endif %}
@@ -102,6 +104,7 @@ var personality_type_scores = [
     {% if latest_learning_style_result %}
         <div id="learning-style">
             <div id="learning-style-window"></div>
+            <script>$('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');</script>
         </div>
     {% endif %}
     {% if student.result_set.all|length > 0 %}
@@ -115,15 +118,17 @@ var personality_type_scores = [
     {% if latest_personality_type_result %}
         <div id="personality-type">
             <div id="personality-type-window"></div>
+            <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');</script>
         </div>   
     {% endif %}
+    {% if CUSTOM_ASSESSMENTS|length > 0 %}
         <div id="assessment-results">
             {% for assessment in CUSTOM_ASSESSMENTS %}
-            <h2>{{ assessment.menu_label }}</h2>
-            <a href="{{ assessment.results_href }}">{{ assessment.results_href }}</a>
-
+            <div id="assessment-results-{{ assessment.application_name }}"></div>
+            <script>$('#assessment-results-{{ assessment.application_name }}').load(base_url + 'assessment/{{ assessment.application_name }}/show/');</script>
             {% endfor %}
         </div>
+    {% endif %}
     {% if additional_data %}    
         <div id="additional_details">
             <h1 class="float-left">Additional Details</h1>
