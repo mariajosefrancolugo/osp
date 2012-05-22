@@ -1,0 +1,8 @@
+{% for assessment in CUSTOM_ASSESSMENTS %}
+    <h2>{{ assessment.menu_label }}</h2>
+    <div id="assessment">
+	    <h3 class="custom_assessment_category">{{ assessment.results_label }}</h3>
+	    <a href="">{{ assessment.results_href }}{{student.profile.id_number}}{{assessment.application_name}}</a>
+	    <div id="{{ assessment.application_name }}"></div>
+    </div>
+{% endfor %}
