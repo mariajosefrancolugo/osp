@@ -516,7 +516,7 @@ h1.profile a
     font-style: italic;
 }
 
-#roster a
+#roster a, #survey-results a
 {
     color: #017fbe;
     font-weight: bold;
