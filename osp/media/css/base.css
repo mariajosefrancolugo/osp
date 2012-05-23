@@ -490,11 +490,13 @@ h1.profile
 {
     margin-bottom: 0;
     padding-bottom: 0;
+    float: left;
 }
 h1.profile a
 {
     text-decoration: none;
     color: #546d9e;
+    float: left;
 }
 #statistics
 {
@@ -509,11 +511,38 @@ h1.profile a
 {
     font-weight:bold;
 }
-
+#roster-action-buttons input
+{
+    float: right;
+    margin-left: 5px;
+}
+#roster-action-buttons
+{   
+    float: right;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #F1F1F1;
+    border: 1px solid #D6D6D6;
+    -webkit-border-bottom-left-radius: 45px;
+    -webkit-border-bottom-right-radius: 45px;
+    -webkit-border-top-left-radius: 45px;
+    -webkit-border-top-right-radius: 45px;
+    -moz-border-radius-bottomleft: 45px;
+    -moz-border-radius-bottomright: 45px;
+    -moz-border-radius-topleft: 45px;
+    -moz-border-radius-topright: 45px;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    box-shadow: 0px 0px 45px #017fbe;
+    ;
+}
 #id-number
 {
     color: gray;
     font-style: italic;
+    float: left;
 }
 
 #roster a

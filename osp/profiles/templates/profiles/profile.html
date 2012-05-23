@@ -32,6 +32,14 @@ var personality_type_scores = [
   {{ student.get_full_name }}
   {% endif %}
 </h1>
+<div id="roster-action-buttons">
+    {% if can_view_visits %}
+    <input type="button" id="id-intervene" name="intervene" value="Intervene"/>
+    <input type="button" id="id-note" name="note" value="Note" />
+    <input type="button" id="log-visit" name="visit" value="Visit" />
+    {% endif %}
+</div>
+<div class="clear"></div>
 <p id="id-number">ID Number: {{ student.profile.id_number }}</p>
 <div class="clear"></div>
 <div id="incomplete_warning">
