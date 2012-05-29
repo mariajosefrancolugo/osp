@@ -1,26 +1,16 @@
-.selfefficacy-legend
-{
-    margin: 7px 0px;
-    padding-left: 25px;
-    width: 75px;
-    font-size: 12px;
-    font-weight: bold;
-    float: right;
-}
+
 #selfefficacy-legend-discription
 {
     margin-top: 10px;
     padding: 0;
     float: left;
     font-weight: normal;
-    color: #546d9e;
     font-size: 18px;
     white-space: nowrap;
 }
 .selfefficacy-question
 {
     float: left;
-    width: 47%;
     font-size: 16px;
     padding-top: 5px;
     padding-left: 10px;
@@ -44,27 +34,6 @@ div.field
     clear:both;
     height:50px;
     padding: 15px 5px 10px 5px;
-    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
-    -webkit-border-bottom-right-radius: 7px;
-    -webkit-border-bottom-left-radius: 7px;
-    -webkit-border-top-right-radius: 7px;
-    -webkit-border-top-left-radius: 7px;
-    -moz-border-radius-bottomright: 7px;
-    -moz-border-radius-bottomleft: 7px;
-    -moz-border-radius-topright: 7px;
-    -moz-border-radius-topleft: 7px;
-    border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
-}
-div.even
-{
-    background:#fff;
-}
-div.odd
-{
-    background:#f1f1f1;
 }
 #id_submit
 {
