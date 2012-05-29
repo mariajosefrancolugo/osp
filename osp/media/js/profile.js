@@ -175,10 +175,10 @@ function drawCharts() {
             personality_type_data_2.setValue(0, 1, personality_type_scores[1][2]);
             personality_type_data_2.setValue(1, 1, personality_type_scores[1][1]);
         }
-
+        console.log(personality_type_data_2);
         var personality_type_chart_2 = new google.visualization.PieChart(document.getElementById('personality-type-chart-2'));
         personality_type_chart_2.draw(personality_type_data_2, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
-
+        //console.log(personality_type_chart_2);
         // Thinking/Feeling Chart
         var personality_type_data_3 = new google.visualization.DataTable();
 
