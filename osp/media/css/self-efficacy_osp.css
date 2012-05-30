@@ -16,7 +16,7 @@
     padding-top: 5px;
     padding-left: 10px;
 }
-.field ul
+.selfefficacy-field ul
 {
     list-style: none;
     float: right;
@@ -25,12 +25,12 @@
     height: 50px;
     padding-bottom: 10px;
 }
-.field li 
+.selfefficacy-field li 
 {
     float:left;
     padding: 10px 33px;
 }
-div.field 
+div.selfefficacy-field 
 {
     margin: 0px;
     clear:both;
