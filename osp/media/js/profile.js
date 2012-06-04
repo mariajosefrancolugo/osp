@@ -128,21 +128,29 @@ $(function() {
         });
     });
 
-    $('a.graph').each(function() {
+    $('a.graph').each(function () {
       if($(this).attr('ref') == 'learning-style-window') {
         $('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');
       } else if($(this).attr('ref') == 'personality-type-window') {
         $('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');
-      } 
+      }
     });
 
+    $('a.graph').click(function() {
+        if($(this).attr('ref') == 'learning-style-window') {
+        $('#learning-style-charts').toggle('fast');
+      } else if($(this).attr('ref') == 'personality-type-window') {
+        $('#personality-type-charts').toggle('fast');
+      }
+
+    });
+
+},function () {
+    if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
+        google.load('visualization', '1', {packages: ['corechart']});
+        google.setOnLoadCallback(drawCharts);
+    }
 });
-
-if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
-    google.load('visualization', '1', {packages: ['corechart']});
-    google.setOnLoadCallback(drawCharts);
-
-}
 function drawCharts() {
     if (latest_personality_type_result_id !== '') {
         // Extraverted/Introverted Chart
@@ -253,5 +261,5 @@ function drawCharts() {
         var learning_style_chart = new google.visualization.BarChart(document.getElementById('learning-style-chart'));
         learning_style_chart.draw(learning_style_data, {width: 400, height: 200, legend: 'none', backgroundColor: '#f1f1f1'});
     }
-}
+};
 
