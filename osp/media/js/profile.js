@@ -136,15 +136,6 @@ $(function() {
       }
     });
 
-    $('a.graph').click(function() {
-        if($(this).attr('ref') == 'learning-style-window') {
-        $('#learning-style-charts').toggle('fast');
-      } else if($(this).attr('ref') == 'personality-type-window') {
-        $('#personality-type-charts').toggle('fast');
-      }
-
-    });
-
 },function () {
     if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
         google.load('visualization', '1', {packages: ['corechart']});
