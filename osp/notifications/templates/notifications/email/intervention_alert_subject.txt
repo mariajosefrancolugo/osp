@@ -1,1 +1,1 @@
-Interventions for {{ intervention.section }} - {{ intervention.section.title }}: {% for student in intervention.students.all %}{{ student.last_name }}, {{ student.first_name }}{% if not forloop.last %}; {% endif %}{% endfor %}
+Interventions for {% if intervention.section %}{{ intervention.section }} - {{ intervention.section.title }}: {% endif %}{% for student in intervention.students.all %}{{ student.last_name }}, {{ student.first_name }}{% if not forloop.last %}; {% endif %}{% endfor %}
