@@ -1,12 +1,33 @@
 <h1>{{ description.long_name }}</h1>
-{% include "profiles/profile_personality_type.html" %}
+<div class="clear"></div>
+  <div id="personality-type-charts">
+      <ul>
+        <li>
+          <h4>{{ latest_personality_type_result.personality_type.0 }}</h4>
+          <div id="personality-type-chart-1" class="chart"></div>
+        </li>
+        <li>
+          <h4>{{ latest_personality_type_result.personality_type.1 }}</h4>
+          <div id="personality-type-chart-2" class="chart"></div>
+        </li>
+        <li>
+          <h4>{{ latest_personality_type_result.personality_type.2 }}</h4>
+          <div id="personality-type-chart-3" class="chart"></div>
+        </li>
+        <li class="last">
+          <h4>{{ latest_personality_type_result.personality_type.3 }}</h4>
+          <div id="personality-type-chart-4" class="chart"></div>
+        </li>
+      </ul>
+  </div>
+<div class="clear"></div>
 <div id="personality-type-window-content">
-	<h2>Overview</h2>
-	{{ description.description|safe }}
-	<h2>Possible Career Paths for the {{ description.type }}:</h2>
-	<ul>
-		{% for person in description.careers %}
-		  <li>{{ person }}</li>
-		{% endfor %}
-	</ul>
+  <h2>Overview</h2>
+  {{ description.description|safe }}
+  <h2>Possible Career Paths for the {{ description.type }}:</h2>
+  <ul>
+    {% for person in description.careers %}
+      <li>{{ person }}</li>
+    {% endfor %}
+  </ul>
 </div>
