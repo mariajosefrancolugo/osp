@@ -124,14 +124,6 @@ $(function() {
         });
     });
 
-    $('a.graph').each(function () {
-      if($(this).attr('ref') == 'learning-style-window') {
-        $('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');
-      } else if($(this).attr('ref') == 'personality-type-window') {
-        $('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');
-      }
-    });
-
 },function () {
     if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
         google.load('visualization', '1', {packages: ['corechart']});
