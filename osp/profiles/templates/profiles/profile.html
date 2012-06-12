@@ -89,9 +89,6 @@ var personality_type_scores = [
         {% if student.result_set.all|length > 0 %}
             <li class="profile_menu_item"><a href="#survey-results">Survey Results</a></li>
         {% endif %}
-        {% if CUSTOM_ASSESSMENTS|length > 0 %}
-            <li class="profile_menu_item"><a href="#assessment-results">Assessment Results</a></li>
-        {% endif %}
         {% if additional_data %}
             <li class="profile_menu_item"><a href="#additional_details">Additional Details</a></li>
         {% endif %}
@@ -128,9 +125,6 @@ var personality_type_scores = [
             <div id="personality-type-window"></div>
             <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');</script>
         </div>   
-    {% endif %}
-    {% if CUSTOM_ASSESSMENTS|length > 0 %}
-        {% include "profiles/profile_custom_assessments.html" %}
     {% endif %}
     {% if additional_data %}    
         <div id="additional_details">
