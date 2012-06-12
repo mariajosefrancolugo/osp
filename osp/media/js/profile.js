@@ -123,13 +123,14 @@ $(function() {
             $('#view-note-window').dialog('open');
         });
     });
-
-},function () {
-    if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
-        google.load('visualization', '1', {packages: ['corechart']});
-        google.setOnLoadCallback(drawCharts);
-    }
+ 
 });
+
+if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
+    google.load('visualization', '1', {packages: ['corechart']});
+    google.setOnLoadCallback(drawCharts);
+
+}
 function drawCharts() {
     if (latest_personality_type_result_id !== '') {
         // Extraverted/Introverted Chart
