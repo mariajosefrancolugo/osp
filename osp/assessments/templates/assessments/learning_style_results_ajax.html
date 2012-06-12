@@ -1,0 +1,22 @@
+
+{% for description in descriptions %}
+	<h1>{{ description.style }} Learner</h1>
+	<div id = "learning-style-charts">
+		{% include "profiles/profile_learning_style.html" %}
+		<div class="learning-style-famous">
+			<h2>Some Famous {{ description.style }} Learners</h2>
+			<ul>
+				{% for person in description.famous %}
+					<li>{{ person }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="learning-style-discription">
+		<h2 style="float:left;">Overview</h2>
+		<div class="clear"></div>
+		{{ description.description|safe }}
+	</div>
+{% endfor %}
+
