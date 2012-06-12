@@ -89,7 +89,9 @@ var personality_type_scores = [
         {% if student.result_set.all|length > 0 %}
             <li class="profile_menu_item"><a href="#survey-results">Survey Results</a></li>
         {% endif %}
-            <li class="profile_menu_item" style="display:none;"><a href="#assessment-results">Assessment Results</a></li>
+        {% if CUSTOM_ASSESSMENTS|length > 0 %}
+            <li class="profile_menu_item"><a href="#assessment-results">Assessment Results</a></li>
+        {% endif %}
         {% if additional_data %}
             <li class="profile_menu_item"><a href="#additional_details">Additional Details</a></li>
         {% endif %}
@@ -109,8 +111,8 @@ var personality_type_scores = [
     {% endif %}
     {% if latest_learning_style_result %}
         <div id="learning-style">
-            <a href="javascript:;" class="graph float-right" ref="learning-style-window"></a>
             <div id="learning-style-window"></div>
+            <script>$('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');</script>
         </div>
     {% endif %}
     {% if student.result_set.all|length > 0 %}
@@ -123,13 +125,13 @@ var personality_type_scores = [
     {% endif %}
     {% if latest_personality_type_result %}
         <div id="personality-type">
-            <a href="javascript:;" class="graph float-right" ref="personality-type-window"></a>
             <div id="personality-type-window"></div>
+            <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');</script>
         </div>   
     {% endif %}
-        <div id="assessment-results">
-
-        </div>
+    {% if CUSTOM_ASSESSMENTS|length > 0 %}
+        {% include "profiles/profile_custom_assessments.html" %}
+    {% endif %}
     {% if additional_data %}    
         <div id="additional_details">
             <h1 class="float-left">Additional Details</h1>
