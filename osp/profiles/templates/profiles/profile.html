@@ -102,7 +102,7 @@ var personality_type_scores = [
             {% include "profiles/profile_current_enrollments.html" %}
         </div>
     {% endif %}
-    {% if can_view_visits and activity %}
+    {% if can_view_visits %}
         <div id="activity">
             <h1 class="float-left">Activity</h1>
             {% include "profiles/profile_visits.html" %}
