@@ -8,7 +8,14 @@ function refreshVisits(page) {
     });
 }
 
+function detailedResults(id){
+    alert("YES!",id);
+    $('#details_window').load(id);
+    $('#details_window').show();
+}
+
 $(function() {
+
 
     $("#profile_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
 
