@@ -41,13 +41,3 @@ class LearningStyleResult(models.Model):
     auditory_score = models.IntegerField()
     date_taken = models.DateTimeField(auto_now_add=True)
 
-class AssessmentResult(models.Model):
-    """
-        Abstract model used for creating custom assessments.
-    """
-    student = models.ForeignKey(User)
-    answers = models.TextField()
-    date_taken = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        abstract = True

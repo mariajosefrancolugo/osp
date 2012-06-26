@@ -216,21 +216,21 @@ INTERVENTION_REASONS = [(x, x) for x in INTERVENTION_REASONS]
 # Settings for including custom assessment applications.
 # A custom assessment must be wrapped inside a django application.
 CUSTOM_ASSESSMENTS = [
-    {'application_name': 'newtest1',
-     'menu_href': '/assessment/newtest1/show/',
-     'menu_label': 'New Test1',
-     'results_href': '/assessment/newtest1/results/',
-     'results_label': 'New Test1 Results',
-     'responses_href': '/assessment/newtest1/responses',
-     'responses_label': 'New Test1 Responses'
+    {'application_name': 'onlinereadiness',
+     'menu_href': '/assessment/onlinereadiness/show/',
+     'menu_label': 'Online Readiness',
+     'results_href': '/assessment/onlinereadiness/results/',
+     'results_label': 'Online Readiness Results',
+     'responses_href': '/assessment/onlinereadiness/responses',
+     'responses_label': 'Online Readiness Responses'
     },
-    {'application_name': 'customlearnstyle',
-     'menu_href': '/assessment/customlearnstyle/show',
-     'menu_label': 'Custom Learning Style',
-     'results_href': '/assessment/customlearnstyle/results/',
-     'results_label': 'Custom Learning Style Results',
-     'responses_href': '/assessment/customlearnstyle/responses',
-     'responses_label': 'Custom Learning Style Response'
+    {'application_name': 'studyskills',
+     'menu_href': '/assessment/studyskills/show',
+     'menu_label': 'Study Skills',
+     'results_href': '/assessment/studyskills/results/',
+     'results_label': 'Study Skills Results',
+     'responses_href': '/assessment/studyskills/responses',
+     'responses_label': 'Study Skills Responses'
     }
 ]
 try:
