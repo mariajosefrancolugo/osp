@@ -1,0 +1,62 @@
+
+#selfefficacy-legend-discription
+{
+    margin-top: 10px;
+    padding: 0;
+    float: left;
+    font-weight: normal;
+    font-size: 18px;
+    white-space: nowrap;
+}
+.selfefficacy-question
+{
+    float: left;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+.field ul
+{
+    list-style: none;
+    float: right;
+    padding: 0;
+    margin: 0;
+    height: 25px;
+}
+.field li 
+{
+    float:left;
+    padding: 10px 5px;
+}
+div.field 
+{
+    margin: 0px;
+    clear:both;
+    height:50px;
+    padding: 15px 5px 10px 5px;
+}
+#id_submit
+{
+    margin-left: 20px;
+    margin-top: 20px;
+    box-shadow: 3px 3px 1px rgba(200, 200, 200, 0.6);
+    width: 100px;
+ }
+#score-details h3
+{
+    margin-left: 45%;
+}
+
+.clear 
+{
+	clear: both;
+}
+#self-efficacy-details p
+{
+    margin: 25px;
+}
+.detail-information
+{
+    font-style: normal;
+    font-weight: normal;
+}

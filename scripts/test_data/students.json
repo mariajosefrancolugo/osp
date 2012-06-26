@@ -1,0 +1,149 @@
+[
+    {
+        "id_number": "0000006",
+        "username": "jason.bourne",
+        "first_name": "Jason",
+        "last_name": "Bourne",
+        "email": "jason.bourne@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000007",
+        "username": "harry.potter",
+        "first_name": "Harry",
+        "last_name": "Potter",
+        "email": "harry.potter@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000008",
+        "username": "peter.parker",
+        "first_name": "Peter",
+        "last_name": "Parker",
+        "email": "peter.parker@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000009",
+        "username": "tony.stark",
+        "first_name": "Tony",
+        "last_name": "Stark",
+        "email": "tony.stark@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000010",
+        "username": "bruce.banner",
+        "first_name": "Bruce",
+        "last_name": "Banner",
+        "email": "bruce.banner@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000011",
+        "username": "bruce.wayne",
+        "first_name": "Bruce",
+        "last_name": "Wayne",
+        "email": "bruce.wayne@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000012",
+        "username": "luke.skywalker",
+        "first_name": "Luke",
+        "last_name": "Skywalker",
+        "email": "luke.skywalker@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000013",
+        "username": "dom.cobb",
+        "first_name": "Dom",
+        "last_name": "Cobb",
+        "email": "dom.cobb@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000014",
+        "username": "malcom.reynolds",
+        "first_name": "Malcom",
+        "last_name": "Reynolds",
+        "email": "malcom.reynolds@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000015",
+        "username": "frodo.baggins",
+        "first_name": "Frodo",
+        "last_name": "Baggins",
+        "email": "frodo.baggins@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true,
+        "additional_data":[{"category":"SAT Results", "dataset":[{"groups_permitted":["Instructors","Counselors","Students"], "label":"Verbal", "value":200}]}]
+    },
+    {
+        "id_number": "0000016",
+        "username": "corbin.dallas",
+        "first_name": "Corbin",
+        "last_name": "Dallas",
+        "email": "corbin.dallas@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000017",
+        "username": "lars.lindstrom",
+        "first_name": "Lars",
+        "last_name": "Lindstrom",
+        "email": "lars.lindstrom@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000018",
+        "username": "lester.burnham",
+        "first_name": "Lester",
+        "last_name": "Burnham",
+        "email": "lester.burnham@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000019",
+        "username": "woody.pride",
+        "first_name": "Woody",
+        "last_name": "Pride",
+        "email": "woodie.pride@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true
+    },
+    {
+        "id_number": "0000020",
+        "username": "buzz.lightyear",
+        "first_name": "Buzz",
+        "last_name": "Lightyear",
+        "email": "buzz.lightyear@example.edu",
+        "phone_number": "555-555-5555",
+        "is_active": true,
+        "additional_data":[{"category":"SAT Results",
+             "dataset":[{"groups_permitted":["Instructors","Counselors","Students"], "label":"Verbal", "value":600},
+                        {"groups_permitted":["Counselors","Instructors","Students"], "label":"Math", "value":500},
+                        {"groups_permitted":["Counselors", "Instructors","Students"], "label":"Essay", "value":9},
+                        {"groups_permitted":["Instructors","Counselors","Students"], "label":"Total", "value":"1100"}]
+            },
+            {"category":"Test category 2",
+             "dataset":[{"groups_permitted":["Instructors"], "label":"Field One", "value":"Test value for field one."},
+                        {"groups_permitted":["Students"], "label":"Field Two", "value":"I am a test value for field two."},
+                        {"groups_permitted":["Instructors", "Counselors"], "label":"Field Three", "value":"Test value for field three"}
+            ]}]
+    }
+]
