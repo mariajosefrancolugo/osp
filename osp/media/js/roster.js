@@ -119,8 +119,8 @@ $(function() {
         }
     });
     
-    
 });
+
 
 if (learning_style_counts.auditory > 0 || learning_style_counts.kinesthetic > 0 || learning_style_counts.visual > 0) {
     google.load('visualization', '1', {packages: ['corechart']});
