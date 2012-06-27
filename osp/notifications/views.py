@@ -17,11 +17,18 @@ def notify(request,
            template='notifications/contact.html'):
     if not request.user.groups.filter(name='Instructors'):
         raise Http403
-    section_id = (request.POST['section_id']
-                  if request.method == 'POST'
-                  else request.GET['section_id'])
-    section = get_object_or_404(Section, id=int(section_id))
 
+    # Section is no longer required in order to submit an intervention.
+    if request.method == 'POST' and 'section_id' in request.POST:
+        section_id = request.POST['section_id']
+    elif request.method == 'GET' and 'section_id' in request.GET:
+        section_id = request.GET['section_id']
+    else:
+        section_id = None
+    if section_id:
+        section = get_object_or_404(Section, id=int(section_id))
+    else:
+        section = None
     #if not section.instructors.filter(username=request.user.username):
     #    raise Http403
 

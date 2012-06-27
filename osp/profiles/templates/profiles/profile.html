@@ -32,6 +32,16 @@ var personality_type_scores = [
   {{ student.get_full_name }}
   {% endif %}
 </h1>
+{% if can_view_visits %}
+    <div id="roster-action-buttons">
+        {% if is_instructor %}
+            <input type="button" id="id-intervene" name="intervene" value="Intervene"/>
+        {% endif %}
+        <input type="button" id="id-note" name="note" value="Note" />
+        <input type="button" id="log-visit" name="visit" value="Visit" />    
+    </div>
+{% endif %}
+<div class="clear"></div>
 <p id="id-number">ID Number: {{ student.profile.id_number }}</p>
 <div class="clear"></div>
 <div id="incomplete_warning">
@@ -69,7 +79,7 @@ var personality_type_scores = [
         {% if current_enrollments %}
             <li class="profile_menu_item"><a href="#current_enrollments">Current Enrollments</a></li>
         {% endif %}
-        {% if can_view_visits and activity %}
+        {% if can_view_visits %}
             <li class="profile_menu_item"><a href="#activity">Activity</a></li>
         {% endif %}
         {% if latest_learning_style_result %}
@@ -95,7 +105,7 @@ var personality_type_scores = [
             {% include "profiles/profile_current_enrollments.html" %}
         </div>
     {% endif %}
-    {% if can_view_visits and activity %}
+    {% if can_view_visits %}
         <div id="activity">
             <h1 class="float-left">Activity</h1>
             {% include "profiles/profile_visits.html" %}

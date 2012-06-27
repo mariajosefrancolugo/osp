@@ -117,29 +117,35 @@ def profile(request, user_id):
             for score in personality_type_analysis.graphScores]
     else:
         personality_type_scores = None
-    #is_instructor - the user is not an instructor
+
+    #is_instructor - the user is not an instructor (default)
     is_instructor = False
+
     additional_data = student.userprofile.permitted_additional_data(request.user.groups.all())
 
     if (not request.user.groups.filter(name='Counselors')
         and not request.user.groups.filter(name='Instructors')):
+        # can_view_visits now controls whether they can view activity (activity includes
+        # visits, notes, interventions, contacts and anything else that may get added in the
+        # future)
         can_view_visits = False
 
-        #visits = None
         activity = None
     else:
+        # counselors and instructors can view visits (activity)
         can_view_visits = True
-        #visits = Visit.objects.filter(student=student)
-        can_view_private = True
 
-        if not request.user.groups.filter(name='Counselors'):
-            #visits = visits.filter(private=False)
-            can_view_private = False
-            #is_instructor - the user must be an instructor
+        # only counselors can view private notes
+        can_view_private = False
+        if request.user.groups.filter(name='Counselors'):
+            can_view_private = True
+
+        # only instructors can submit interventions
+        if request.user.groups.filter(name='Instructors'):
             is_instructor = True
+
         visits, notes, interventions, contacts, activity = get_activity(request, student.id, can_view_private)
 
-    #if visits:
     if activity:
         paginator = Paginator(activity, 5)
         page = paginator.page(1)
@@ -169,14 +175,10 @@ def view_all_activity(request, user_id, page):
 
     student = get_object_or_404(User, id=user_id)
 
-    #visits = Visit.objects.filter(student=student)
-    #if not request.user.groups.filter(name='Counselors'):
-    #    visits = visits.filter(private=False)
-    
-    can_view_private = True
+    can_view_private = False 
 
-    if not request.user.groups.filter(name='Counselors'):
-        can_view_private = False
+    if request.user.groups.filter(name='Counselors'):
+        can_view_private = True
     visits, notes, interventions, contacts, activity = get_activity(request, student.id, can_view_private)
 
 

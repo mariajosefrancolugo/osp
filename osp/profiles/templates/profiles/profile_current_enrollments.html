@@ -1,29 +1,20 @@
 <div class="clear"></div>
 {% if current_enrollments %}
 <form id="profile_intervention-form">
-{% if can_view_visits %}
-    <input type="button" id="id-intervene" name="intervene" value="Intervene" style="float:right; margin-top:-35px;"/>
-{% endif %}
 <table>
   <thead>
     <tr>
-      {% if can_view_visits %}
-      <th></th>
-      {% endif %}
-      <th>Course</th>
-      <th>Title</th>
-      <th>Credit Hours</th>
+      <th style="width: 25%;">Course</th>
+      <th style="width: 50%;">Title</th>
+      <th style="width: 25%;">Credit Hours</th>
     </tr>
   </thead>
   <tbody>
     {% for enrollment in current_enrollments %}
     <tr class="{% cycle "odd" "even" %}">
-      {% if can_view_visits %}
-      <td style="width: 5%;"><input type="radio" id="id_section_id" name="section_id" value="{{ enrollment.section.id }}" /></td>
-      {% endif %}
-      <td style="width: 25%;">{{ enrollment.section.prefix }}{{ enrollment.section.number }}-{{ enrollment.section.section }}</td>
-      <td style="width: 50%;">{{ enrollment.section.title }}</td>
-      <td style="width: 25%;">{{ enrollment.section.credit_hours }}</td>
+      <td>{{ enrollment.section.prefix }}{{ enrollment.section.number }}-{{ enrollment.section.section }}</td>
+      <td>{{ enrollment.section.title }}</td>
+      <td>{{ enrollment.section.credit_hours }}</td>
     </tr>
     {% endfor %}
   </tbody>

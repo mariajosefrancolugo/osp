@@ -9,7 +9,7 @@ from osp.notifications.utils import email_user
 
 class Intervention(models.Model):
     students = models.ManyToManyField(User)
-    section = models.ForeignKey(Section)
+    section = models.ForeignKey(Section, blank=True, null=True)
     instructor = models.ForeignKey(User, related_name='submitted_interventions')
     reasons = models.CharField(max_length=255)
     campus = models.CharField(max_length=255, choices=settings.CAMPUS_CHOICES)
