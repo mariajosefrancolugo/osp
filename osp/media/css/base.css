@@ -25,7 +25,6 @@ a
     color: #017fbe;
     font-weight: bold;
 }
-
 table tr.even a.icons
 {
     color:#f1f1f1;
@@ -490,11 +489,13 @@ h1.profile
 {
     margin-bottom: 0;
     padding-bottom: 0;
+    float: left;
 }
 h1.profile a
 {
     text-decoration: none;
     color: #546d9e;
+    float: left;
 }
 #statistics
 {
@@ -509,11 +510,37 @@ h1.profile a
 {
     font-weight:bold;
 }
-
+#roster-action-buttons input
+{
+    float: right;
+    margin-left: 5px;
+}
+#roster-action-buttons
+{   
+    float: right;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #F1F1F1;
+    border: 1px solid #D6D6D6;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 1px 1px 2px #FFFFFF inset;
+}
 #id-number
 {
     color: gray;
     font-style: italic;
+    float: left;
 }
 
 #roster a, #survey-results a
@@ -764,7 +791,9 @@ a.float-right
     display: block;
     margin-top: 25px;
     padding-left:10px;
+    padding-right: 10px;
     font-size: 14px;
+    color: #017fbe;
 }
 
 div.survey-answer

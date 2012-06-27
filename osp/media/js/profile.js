@@ -8,12 +8,6 @@ function refreshVisits(page) {
     });
 }
 
-function detailedResults(id){
-    alert("YES!",id);
-    $('#details_window').load(id);
-    $('#details_window').show();
-}
-
 $(function() {
 
 
@@ -38,6 +32,7 @@ $(function() {
                     if(data.status == 'success') {
                         refreshVisits(1);
                         $('#log-visit-window').dialog('close');
+                        location.reload();
                     } else if(data.status == 'fail') {
                         $('#log-visit-window').html(data.template);
                         applyNotificationStyles();
@@ -59,6 +54,7 @@ $(function() {
                     if(data.status == 'success') {
                         refreshVisits(1);
                         $('#note-window').dialog('close');
+                        window.location.reload();
                     } else if(data.status == 'fail') {
                         $('#note-window').html(data.template);
                         applyNotificationStyles();
@@ -79,6 +75,7 @@ $(function() {
                        function(data) {
                     if(data.status == 'success') {
                         $('#intervention-window').dialog('close');
+                        location.reload();
                     } else if(data.status == 'fail') {
                         $('#intervention-window').html(data.template);
                         applyNotificationStyles();
@@ -104,15 +101,11 @@ $(function() {
     });
 
     $('#id-intervene').click(function() {
-        if($('input[name=section_id]:checked').val() != undefined){
         var data = $('#profile_intervention-form').serializeArray();
         $.get(base_url + 'notification/intervene/', data, function(data) {
             $('#intervention-window').html(data);
             $('#intervention-window').dialog('open');
         });
-        }else{
-            alert("Please select a class.");
-        }
     });
 
     $('.view-visit').live('click', function() {
@@ -144,7 +137,6 @@ $(function() {
     $('a.modal').click(function() {
         $('#' + $(this).attr('ref')).dialog('open');
     });
-    
  
 });
 
@@ -193,10 +185,9 @@ function drawCharts() {
             personality_type_data_2.setValue(0, 1, personality_type_scores[1][2]);
             personality_type_data_2.setValue(1, 1, personality_type_scores[1][1]);
         }
-        console.log(personality_type_data_2);
         var personality_type_chart_2 = new google.visualization.PieChart(document.getElementById('personality-type-chart-2'));
         personality_type_chart_2.draw(personality_type_data_2, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
-        //console.log(personality_type_chart_2);
+
         // Thinking/Feeling Chart
         var personality_type_data_3 = new google.visualization.DataTable();
 
@@ -263,5 +254,5 @@ function drawCharts() {
         var learning_style_chart = new google.visualization.BarChart(document.getElementById('learning-style-chart'));
         learning_style_chart.draw(learning_style_data, {width: 400, height: 200, legend: 'none', backgroundColor: '#f1f1f1'});
     }
-}
+};
 

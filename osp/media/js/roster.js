@@ -14,6 +14,8 @@ function clearCheckBoxes() {
 
 $(function() {
 
+
+
     $("#roster_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
 
     $('#contact-window').dialog(default_window_options);
@@ -48,6 +50,7 @@ $(function() {
                        function(data) {
                     if(data.status == 'success') {
                         $('#intervention-window').dialog('close');
+                        window.location.reload();
                     } else if(data.status == 'fail') {
                         $('#intervention-window').html(data.template);
                         applyNotificationStyles();
@@ -69,6 +72,7 @@ $(function() {
                        function(data) {
                     if(data.status == 'success') {
                         $('#note-window').dialog('close');
+                        window.location.reload();
                     } else if(data.status == 'fail') {
                         $('#note-window').html(data.template);
                         applyNotificationStyles();
