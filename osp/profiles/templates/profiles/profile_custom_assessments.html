@@ -36,11 +36,8 @@
                     function( data ){
                         $.each(data, function(key, val){
                             row = eval(val);
-                            if(row.id % 2 == 0){
-                                $('#custom-assessments-body').append('<tr class="even"><td>{{ assessment.application_name }}</td><td>' + row.date_taken + '</td><td><a id="custom-assessment-link_{{ assessment.application_name }}_' + row.id + '" ref="'+row.id+'" href="javascript:;">Details</a></td></tr>');
-                            }else{
-                                $('#custom-assessments-body').append('<tr class="odd"><td>{{ assessment.application_name }}</td><td>' + row.date_taken + '</td><td><a id="custom-assessment-link_{{ assessment.application_name }}_' + row.id + '" ref="'+row.id+'" href="javascript:;">Details</a></td></tr>');
-                            }
+                            $('#custom-assessments-body').append('<tr><td>{{ assessment.application_name }}</td><td>' + row.date_taken + '</td><td><a id="custom-assessment-link_{{ assessment.application_name }}_' + row.id + '" ref="'+row.id+'" href="javascript:;">Details</a></td></tr>');
+
                             $('#custom-assessment-link_{{ assessment.application_name }}_' + row.id).click(function() { 
                                 var result_id = $(this).attr('ref');
                                 if($('#custom-assessment-details').is(":visible")){

@@ -8,8 +8,25 @@ function refreshVisits(page) {
     });
 }
 
+function styleTable(){
+    if($('#custom-assessments-body tr:even').hasClass("even")){
+    }else{
+        $('#custom-assessments-body tr:even').addClass("even");
+    }
+    if($('#custom-assessments-body tr:odd').hasClass("odd")){
+    }else{
+        $('#custom-assessments-body tr:odd').addClass("odd");
+    }
+}
+
 $(function() {
 
+    $('a').click(function(){ 
+        if($(this).attr('href') == '#assessment-results') {
+            styleTable();
+        }
+        
+    });
 
     $("#profile_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
 
