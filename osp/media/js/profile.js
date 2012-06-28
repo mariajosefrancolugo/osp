@@ -9,13 +9,13 @@ function refreshVisits(page) {
 }
 
 function styleTable(){
-    if($('#custom-assessments-body tr:even').hasClass("even")){
+    if($('#custom-assessments-body tr:even').hasClass("odd")){
     }else{
-        $('#custom-assessments-body tr:even').addClass("even");
+        $('#custom-assessments-body tr:even').addClass("odd");
     }
-    if($('#custom-assessments-body tr:odd').hasClass("odd")){
+    if($('#custom-assessments-body tr:odd').hasClass("even")){
     }else{
-        $('#custom-assessments-body tr:odd').addClass("odd");
+        $('#custom-assessments-body tr:odd').addClass("even");
     }
 }
 
