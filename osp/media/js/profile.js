@@ -144,15 +144,12 @@ $(function() {
             $('#view-note-window').dialog('open');
         });
     });
-
-    $('a.modal').each(function() {
-        if($(this).attr('ref') == 'survey-window') {
-            $('#survey-window').dialog(default_window_options).load(base_url + 'survey/results/' + $(this).data('result-id') + '/');
-        }
-    });
     
     $('a.modal').click(function() {
-        $('#' + $(this).attr('ref')).dialog('open');
+        if($(this).attr('ref') == 'survey-window') {
+            $('#survey-window').dialog(default_window_options).load(base_url + 'survey/results/' + $(this).data('result-id') + '/');
+            $('#survey-window').dialog('open');
+        }
     });
  
 });
