@@ -3,7 +3,7 @@ var default_window_options = {
     width: 750,
     height: 450,
     modal: true,
-    resizable: false,
+    resizable: false
 };
 
 function applyNotificationStyles() {
