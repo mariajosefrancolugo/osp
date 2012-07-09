@@ -3,6 +3,7 @@
     <head>
         {% block head %}
         <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
         <title>{% block page_title %}Online Student Profile{% endblock %}</title>
         {% block styles %}
         <link rel="stylesheet" href="{{ MEDIA_URL }}lib/jquery-ui/css/aristo/jquery-ui-1.8.7.custom.css" type="text/css" />
@@ -36,11 +37,11 @@
                 <div class="clear"></div>
                 {% if user.first_name %}
                  <p id="userName">Welcome, {{ user.first_name }} {{ user.last_name }} (<a href="{% url logout %}" id="logout">Sign Out</a>)</p>
-                 {% endif %} 
-                {% endblock %}    
+                 {% endif %}
+                {% endblock %}
             </div>
         </div>
-       
+
         <div id="body">
             {% block body %}
             {% endblock %}
