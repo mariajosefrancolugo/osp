@@ -1,0 +1,20 @@
+
+<form id="visit_note-form">
+    <input type="hidden" id="id_students" name="students" value="{{ student.id }}" />
+</form>
+<div class="clear"></div>
+<div id="visits" style="min-height: 225px;">
+  {% if activity %}
+  {% include "profiles/activity.html" %}
+  {% else %}
+  <div class="clear"></div>
+  <p><em>Student has no activity</em></p>
+  {% endif %}
+</div>
+<div id="view-visit-window" title="Visit"></div>
+<div id="log-visit-window" title="Visit"></div>
+<div id="intervention-window" title="Intervention"></div>
+<div id="view-note-window" title="Note"></div>
+<div id="note-window" title="Note"></div>
+
+
