@@ -33,7 +33,6 @@ table tr.odd a.icons
 {
     color:#fff;
 }
-
 h1, h2
 {
     margin: 15px 0;
@@ -191,7 +190,7 @@ label
     padding: 10px 15px;
     background: #fcf0f0;
     border: 1px solid #e2d0d0;
-     
+
 }
 
 .error, .notification
@@ -289,8 +288,8 @@ ul.ui-autocomplete li.ui-menu-item a
     color: #333;
     text-decoration: none;
 }
-ul.ui-autocomplete li.ui-menu-item a:hover, 
-ul.ui-autocomplete li.ui-menu-item a.ui-state-hover 
+ul.ui-autocomplete li.ui-menu-item a:hover,
+ul.ui-autocomplete li.ui-menu-item a.ui-state-hover
 {
     background: #eee;
     border: none;
@@ -516,7 +515,7 @@ h1.profile a
     margin-left: 5px;
 }
 #roster-action-buttons
-{   
+{
     float: right;
     margin-top: 20px;
     padding: 10px 20px;
@@ -603,7 +602,7 @@ h1.profile a
     margin: 5px 0px 5px 15px;
     width: 30%;
     min-height: 226px;
-    text-align: center; 
+    text-align: center;
     background-color: #f9f9f9;
     border: 1px solid #d6d6d6;
     -webkit-border-bottom-right-radius: 7px;
@@ -845,7 +844,7 @@ dl#visit-details dd
 {
     font-size: 13px;
 }
-div.campus-field 
+div.campus-field
 {
     display: block;
     float: left;
@@ -887,6 +886,7 @@ div.field.checkbox label
 {
     float: right;
     padding-left: 3px;
+    border: none;
 }
 #roster-form
 #plus-icon, #minus-icon
@@ -946,7 +946,7 @@ div.field.checkbox label
     border-top-left-radius: 7px;
 
 }
-#roster, #statistics, #current_enrollments, #activity, 
+#roster, #statistics, #current_enrollments, #activity,
 #learning-style, #survey-results, #personality-type, #additional_details, #assessment-results
 {
     padding-bottom: 40px;
@@ -978,5 +978,5 @@ div.field.checkbox label
 }
 #details_label hr
 {
-    
+
 }
