@@ -1,0 +1,26 @@
+<div class="clear"></div>
+{% if current_enrollments %}
+<form id="profile_intervention-form">
+<table style="width: 95%;">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Course</th>
+      <th style="width: 50%;">Title</th>
+      <th style="width: 20%;">Credit Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for enrollment in current_enrollments %}
+    <tr class="{% cycle "odd" "even" %}">
+      <td>{{ enrollment.section.prefix }}{{ enrollment.section.number }}-{{ enrollment.section.section }}</td>
+      <td>{{ enrollment.section.title }}</td>
+      <td>{{ enrollment.section.credit_hours }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<input type="hidden" name="students" id="id_student" value="{{ student.id }}" />
+</form>
+{% else %}
+<p><em>Student is not currently enrolled in any courses</em></p>
+{% endif %}
