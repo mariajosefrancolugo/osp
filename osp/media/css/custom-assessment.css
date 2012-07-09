@@ -1,0 +1,203 @@
+
+#id_submit
+{
+    margin-left: 20px;
+    margin-top: 20px;
+    box-shadow: 3px 3px 1px rgba(200, 200, 200, 0.6);
+    width: 100px;
+ }
+.clear
+{
+	clear: both;
+}
+.detail-information
+{
+    font-style: normal;
+    font-weight: normal;
+}
+div.even
+{
+    background:#fff;
+}
+div.odd
+{
+    background:#f1f1f1;
+}
+
+/* -- Online Readiness --*/
+
+div.onlinereadiness-field
+{
+    margin: 0px;
+    clear:both;
+    height:65px;
+    padding: 15px 5px 10px 5px;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+#onlinereadiness-results th
+{
+    text-align: center;
+    font-size: 12px;
+    background:#D1D1D1;
+    border: 1px solid #AAAAAA;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+#onlinereadiness-results td
+{
+    background:#f1f1f1;
+    border: 1px solid #AAAAAA;
+    font-weight: bold;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+#onlinereadiness-score
+{
+    font-weight: bold;
+    color: #333333;
+}
+.onlinereadiness-score-category-description
+{
+    font-size: 14px;
+}
+
+/* -- Study Skills -- */
+
+div.studyskills-field
+{
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+fieldset.studyskills-fieldset
+{
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+legend.studyskills-legend
+{
+    border: 1px solid #d6d6d6;
+    box-shadow: 2px 2px 2px #c1c1c1;
+    background-color: #F1F1F1;
+    font-weight: normal;
+    font-size: 18px;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+.study-skills-category, .study-skills-category-last
+{
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8) inset;
+    background-color: #D6D6D6;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+.study-skills-sub_category
+{
+    border: 1px solid #d6d6d6;
+    background-color: #F1F1F1;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+.study-skills-description fieldset, .study-skills-description-last fieldset
+{
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-radius: 7px;
+}
+.study-skills-description legend, .study-skills-description-last legend
+{
+    font-weight: bold;
+    border: 1px solid #888888;
+    background-color: #D6D6D6;
+    padding: 0px 15px;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    -moz-border-radius-topright: 7px;
+    -moz-border-radius-topleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+.errors
+{
+    padding: 10px 15px;
+    background: #fcf0f0;
+    border: 1px solid #DD8888;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-topleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
