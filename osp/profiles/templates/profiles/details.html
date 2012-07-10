@@ -1,15 +1,20 @@
 {% if additional_data %}
 <div class="clear"></div>
-<div class="error">Incomplete information in
     {% for dict in additional_data %}
-    {% if dict.messages|length > 0 %}
-            {{ dict.category }}: {{ dict.messages.0 }}, 
-    {% endif %}
+        {% if dict.messages.0 != "" %}
+            <div class="error">Incomplete information in &nbsp;
+        {% endif %}
+    {% endfor%}
+    {% for dict in additional_data %}
+        {% if dict.messages|length > 0 %}
+                {{ dict.category }}: {{ dict.messages.0 }}, &nbsp;
+        {% endif %}
     {% endfor %}
-</div>
+    </div>
+    {% endif %}
     {% for dict in additional_data %}
     	<h4 class="categoryLabel">{{ dict.category }}</h4>
-    	<dl class="catagoryValues"> 
+    	<dl class="catagoryValues">
         	{% for item in dict.dataset %}
         		{% if item.label and item.value %}
         			<dt id="{{ item.label }}"><b>{{ item.label }}:&nbsp;</b></dt>
