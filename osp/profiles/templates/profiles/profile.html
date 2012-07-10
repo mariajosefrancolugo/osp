@@ -38,35 +38,35 @@ var personality_type_scores = [
             <input type="button" id="id-intervene" name="intervene" value="Intervene"/>
         {% endif %}
         <input type="button" id="id-note" name="note" value="Note" />
-        <input type="button" id="log-visit" name="visit" value="Visit" />    
+        <input type="button" id="log-visit" name="visit" value="Visit" />
     </div>
 {% endif %}
 <div class="clear"></div>
 <p id="id-number">ID Number: {{ student.profile.id_number }}</p>
 <div class="clear"></div>
 <div id="incomplete_warning">
-{% if latest_learning_style_result == None or latest_personality_type_result == None or student.result_set.all|length == 0 %} 
-    <p><em>There is no 
-    {% if latest_learning_style_result == None and latest_personality_type_result == None and student.result_set.all|length == 0 %} 
+{% if latest_learning_style_result == None or latest_personality_type_result == None or student.result_set.all|length == 0 %}
+    <p><em>There is no
+    {% if latest_learning_style_result == None and latest_personality_type_result == None and student.result_set.all|length == 0 %}
         Learning Style,  Personality Type or Survey
-    {% else %} 
+    {% else %}
         {% if latest_learning_style_result == None and latest_personality_type_result == None %}
             Learning Style or Personality Type
-    {% else %} 
+    {% else %}
         {% if latest_learning_style_result == None and student.result_set.all|length == 0 %}
             Learning Style or Survey
-    {% else %} 
+    {% else %}
         {% if latest_learning_style_result == None %}
             Learning Style
     {% else %}
         {% if latest_personality_type_result == None and student.result_set.all|length == 0%}
             Personality Type or Survey
-    {% else %} 
-        {% if latest_personality_type_result == None %} 
-            Personality Type 
     {% else %}
-        {% if student.result_set.all|length == 0 %} 
-            Survey 
+        {% if latest_personality_type_result == None %}
+            Personality Type
+    {% else %}
+        {% if student.result_set.all|length == 0 %}
+            Survey
     {% else %}
     {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
     data available for {{ student.get_full_name }}.</em></p>
@@ -123,23 +123,28 @@ var personality_type_scores = [
             <h1 id="survey-count">Surveys completed: {{ student.result_set.count }}</h1>
             {% include "profiles/profile_survey_results.html" %}
         </div>
-       
+
     {% endif %}
     {% if latest_personality_type_result %}
         <div id="personality-type">
             <div id="personality-type-window"></div>
             <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');</script>
-        </div>   
+        </div>
     {% endif %}
     {% if CUSTOM_ASSESSMENTS|length > 0 %}
         {% include "profiles/profile_custom_assessments.html" %}
     {% endif %}
-    {% if additional_data %}    
+    {% if additional_data %}
         <div id="additional_details">
             <h1 class="float-left">Additional Details</h1>
             {% include "profiles/details.html" %}
         </div>
     {% endif %}
 </div>
-
+<script>
+    if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
+            google.load('visualization', '1', {packages: ['corechart']});
+            google.setOnLoadCallback(drawCharts);
+        }
+</script>
 {% endblock %}
