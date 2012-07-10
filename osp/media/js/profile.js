@@ -21,11 +21,11 @@ function styleTable(){
 
 $(function() {
 
-    $('a').click(function(){ 
+    $('a').click(function(){
         if($(this).attr('href') == '#assessment-results') {
             styleTable();
         }
-        
+
     });
 
     $("#profile_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
@@ -105,7 +105,7 @@ $(function() {
     $('#log-visit').click(function() {
         $.get(base_url + 'visit/' + student_id + '/log/', function(data) {
             $('#log-visit-window').html(data);
-            $('#log-visit-window').dialog('open'); 
+            $('#log-visit-window').dialog('open');
         });
     });
 
@@ -144,21 +144,15 @@ $(function() {
             $('#view-note-window').dialog('open');
         });
     });
-    
+
     $('a.modal').click(function() {
         if($(this).attr('ref') == 'survey-window') {
             $('#survey-window').dialog(default_window_options).load(base_url + 'survey/results/' + $(this).data('result-id') + '/');
             $('#survey-window').dialog('open');
         }
     });
- 
 });
 
-if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
-    google.load('visualization', '1', {packages: ['corechart']});
-    google.setOnLoadCallback(drawCharts);
-
-}
 function drawCharts() {
     if (latest_personality_type_result_id !== '') {
         // Extraverted/Introverted Chart
