@@ -28,7 +28,7 @@ class Activity:
 
 def get_activity(request, student_id, can_view_private):
     """
-       Returns the combined activity (visits, notes, intervents, contacts 
+       Returns the combined activity (visits, notes, intervents, contacts
        for the requested student.
     """
     from operator import attrgetter
@@ -122,6 +122,11 @@ def profile(request, user_id):
     is_instructor = False
 
     additional_data = student.userprofile.permitted_additional_data(request.user.groups.all())
+    for item in additional_data:
+        if (item['messages']):
+            additional_data_errors = True;
+        else:
+            additional_data_errors = False;
 
     if (not request.user.groups.filter(name='Counselors')
         and not request.user.groups.filter(name='Instructors')):
@@ -161,6 +166,7 @@ def profile(request, user_id):
         'personality_type_scores': personality_type_scores,
         'latest_learning_style_result': latest_learning_style_result,
         'additional_data': additional_data,
+        'additional_data_errors': additional_data_errors,
         'can_view_visits': can_view_visits,
         'is_instructor': is_instructor,
         'activity': activity,
@@ -175,7 +181,7 @@ def view_all_activity(request, user_id, page):
 
     student = get_object_or_404(User, id=user_id)
 
-    can_view_private = False 
+    can_view_private = False
 
     if request.user.groups.filter(name='Counselors'):
         can_view_private = True

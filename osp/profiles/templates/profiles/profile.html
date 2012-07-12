@@ -21,6 +21,10 @@ var personality_type_scores = [
 {% if latest_personality_type_result or latest_learning_style_result %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% endif %}
+<!-- <script type="text/javascript" src="{{ MEDIA_URL }}js/raphael-min.js"></script> -->
+<script type="text/javascript" src="{{ MEDIA_URL }}js/raphael.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/g.raphael-min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/g.bar-min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/profile.js"></script>
 {% endblock %}
 
@@ -114,7 +118,8 @@ var personality_type_scores = [
     {% if latest_learning_style_result %}
         <div id="learning-style">
             <div id="learning-style-window"></div>
-            <script>$('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/');</script>
+            <script>$('#learning-style-window').load(base_url + 'assessment/learning-style/results/' + latest_learning_style_result.id + '/' ,
+            drawLearningChart);</script>
         </div>
     {% endif %}
     {% if student.result_set.all|length > 0 %}
@@ -128,7 +133,7 @@ var personality_type_scores = [
     {% if latest_personality_type_result %}
         <div id="personality-type">
             <div id="personality-type-window"></div>
-            <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/');</script>
+            <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/ #personality' , drawRCharts);</script>
         </div>
     {% endif %}
     {% if CUSTOM_ASSESSMENTS|length > 0 %}
@@ -142,9 +147,9 @@ var personality_type_scores = [
     {% endif %}
 </div>
 <script>
-    if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
-            google.load('visualization', '1', {packages: ['corechart']});
-            google.setOnLoadCallback(drawCharts);
-        }
+    // if (latest_personality_type_result_id !== '' || latest_learning_style_result.id !== '') {
+    //         google.load('visualization', '1', {packages: ['corechart']});
+    //         google.setOnLoadCallback(drawCharts);
+    //     }
 </script>
 {% endblock %}

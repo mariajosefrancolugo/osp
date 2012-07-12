@@ -555,7 +555,6 @@ h1.profile a
 .learning-style-famous
 {
     float: left;
-
     padding: 30px 0px 10px 50px;
     height: 240px;
 }
@@ -573,7 +572,8 @@ h1.profile a
 .large-tile
 {
     float: left;
-    padding: 10px 30px;
+    padding: 10px 20px;
+    padding-right: 30px;
     width: 375px;
     height: 226px;
     background-color: #f1f1f1;
@@ -665,7 +665,6 @@ h1.profile a
     margin-top: 50px;
     width: 960px;
 }
-
 .dashboard-menu
 {
     text-align: center;
@@ -702,23 +701,14 @@ h1.profile a
 #personality-type-charts li
 {
     float: left;
-    margin: 0px 7px;
-    width: 220px;
-    height: 225px;
+    margin: 7px 7px;
+    width: 48%;
+    height: 90px;
     background-color: #f1f1f1;
     border: 1px solid #d6d6d6;
-    -webkit-border-bottom-right-radius: 7px;
-    -webkit-border-bottom-left-radius: 7px;
-    -webkit-border-top-right-radius: 7px;
-    -webkit-border-top-left-radius: 7px;
-    -moz-border-radius-bottomright: 7px;
-    -moz-border-radius-bottomleft: 7px;
-    -moz-border-radius-topright: 7px;
-    -moz-border-radius-topleft: 7px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
     box-shadow: 2px 2px 2px #c1c1c1;
 
 }
@@ -730,11 +720,6 @@ h1.profile a
 {
     margin: 20px 0 0 0;
     text-align: center;
-}
-#personality-type .chart
-{
-    margin: 0 auto;
-    width: 175px;
 }
 #personality-type-charts
 {
@@ -976,7 +961,49 @@ div.field.checkbox label
 {
     padding-left: 35px;
 }
-#details_label hr
+.personality-type-chart-label .left
 {
-
+    margin-left: 25px;
+    margin-bottom: 2px;
+    float: left;
+    font-size: 12px;
+}
+.personality-type-chart-label .right
+{
+    margin-right: 35px;
+    margin-bottom: 2px;
+    float: right;
+    font-size: 12px;
+}
+.highlight
+{
+    padding: 2px 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    /*box-shadow: 0px 0px 2px #666 inset;
+    color: #546d9e;*/
+    font-weight: bold;
+}
+#learning-style-label
+{
+    list-style: none;
+    float: left;
+    margin: 0px;
+    margin-top: 38px;
+    padding: 0px;
+    border-right: 1px solid #000;
+}
+#learning-style-label li
+{
+    padding: 15px 0px;
+    padding-right: 10px;
+    margin: 0px;
+}
+#learning-style-chart
+{
+    float: right;
+    padding: 0px;
+    margin: 0px;
+    width: 300px;
 }

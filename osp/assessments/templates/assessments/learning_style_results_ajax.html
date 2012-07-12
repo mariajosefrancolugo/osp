@@ -1,16 +1,9 @@
 {% if result %}
 	<h1>{{ descriptions.0.style }} Learner</h1>
 	<div class="clear"></div>
-	<div class="large-tile">
+	<div id="Learning-style-container" class="large-tile" style="display: none;">
+		<ul id="learning-style-label"><li>Auditory</li><li>Kinesthetic</li><li>Visual</li></ul>
   		<div id="learning-style-chart"></div>
-	</div>
-	<div class="learning-style-famous">
-		<h2>Some Famous {{ descriptions.0.style }} Learners</h2>
-		<ul>
-			{% for person in descriptions.0.famous %}
-				<li>{{ person }}</li>
-			{% endfor %}
-		</ul>
 	</div>
 	<div class="clear"></div>
 	<div class="learning-style-discription">
