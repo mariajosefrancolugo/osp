@@ -151,116 +151,74 @@ $(function() {
             $('#survey-window').dialog('open');
         }
     });
+
 });
 
-function drawCharts() {
-    if (latest_personality_type_result_id !== '') {
-        // Extraverted/Introverted Chart
-        var personality_type_data_1 = new google.visualization.DataTable();
-
-        personality_type_data_1.addColumn('string', 'Category');
-        personality_type_data_1.addColumn('number', 'Score');
-
-        personality_type_data_1.addRows(2);
-        personality_type_data_1.setValue(0, 0, 'Extraverted');
-        personality_type_data_1.setValue(1, 0, 'Introverted');
-
-        if (personality_type_scores[0][0] == 'E') {
-            personality_type_data_1.setValue(0, 1, personality_type_scores[0][1]);
-            personality_type_data_1.setValue(1, 1, personality_type_scores[0][2]);
+function showPersonalityCharts(){$('#personality-type-charts').show();};
+function showLearningCharts(){$('#Learning-style-container').show();};
+function drawRCharts(){
+    var r1 = Raphael("personality-type-chart-1"),
+    fin = function () {
+        var bar_value = this.bar.value*100;
+        bar_value = bar_value.toFixed(0);
+        var text_value = bar_value + "%";
+        this.flag = r1.label((this.bar.x/10)*8.5, this.bar.y,  text_value || "0").insertBefore(this);
+    },
+    fout = function () {
+        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+    };
+    if (personality_type_scores[0][0] == 'E') {
+            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][2]], [personality_type_scores[0][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label1 span.right').addClass('highlight');
         } else {
-            personality_type_data_1.setValue(0, 1, personality_type_scores[0][2]);
-            personality_type_data_1.setValue(1, 1, personality_type_scores[0][1]);
+            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][1]], [personality_type_scores[0][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label1 span.left').addClass('highlight');
         }
-
-        var personality_type_chart_1 = new google.visualization.PieChart(document.getElementById('personality-type-chart-1'));
-        personality_type_chart_1.draw(personality_type_data_1, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
-
-        // Sensing/Intuitive Chart
-        var personality_type_data_2 = new google.visualization.DataTable();
-
-        personality_type_data_2.addColumn('string', 'Category');
-        personality_type_data_2.addColumn('number', 'Score');
-
-        personality_type_data_2.addRows(2);
-        personality_type_data_2.setValue(0, 0, 'Sensing');
-        personality_type_data_2.setValue(1, 0, 'Intuitive');
-
-        if (personality_type_scores[1][0] == 'S') {
-            personality_type_data_2.setValue(0, 1, personality_type_scores[1][1]);
-            personality_type_data_2.setValue(1, 1, personality_type_scores[1][2]);
+    var r2 = Raphael("personality-type-chart-2");
+    if (personality_type_scores[1][0] == 'S') {
+            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][2]], [personality_type_scores[1][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label2 span.right').addClass('highlight');
         } else {
-            personality_type_data_2.setValue(0, 1, personality_type_scores[1][2]);
-            personality_type_data_2.setValue(1, 1, personality_type_scores[1][1]);
+            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][1]], [personality_type_scores[1][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label2 span.left').addClass('highlight');
         }
-        var personality_type_chart_2 = new google.visualization.PieChart(document.getElementById('personality-type-chart-2'));
-        personality_type_chart_2.draw(personality_type_data_2, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
-
-        // Thinking/Feeling Chart
-        var personality_type_data_3 = new google.visualization.DataTable();
-
-        personality_type_data_3.addColumn('string', 'Category');
-        personality_type_data_3.addColumn('number', 'Score');
-
-        personality_type_data_3.addRows(2);
-        personality_type_data_3.setValue(0, 0, 'Thinking');
-        personality_type_data_3.setValue(1, 0, 'Feeling');
-
-        if (personality_type_scores[2][0] == 'T') {
-            personality_type_data_3.setValue(0, 1, personality_type_scores[2][1]);
-            personality_type_data_3.setValue(1, 1, personality_type_scores[2][2]);
+    var r3 = Raphael("personality-type-chart-3");
+    if (personality_type_scores[2][0] == 'T') {
+            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][2]], [personality_type_scores[2][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label3 span.right').addClass('highlight');
         } else {
-            personality_type_data_3.setValue(0, 1, personality_type_scores[2][2]);
-            personality_type_data_3.setValue(1, 1, personality_type_scores[2][1]);
+            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][1]], [personality_type_scores[2][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label3 span.left').addClass('highlight');
         }
-
-        var personality_type_chart_3 = new google.visualization.PieChart(document.getElementById('personality-type-chart-3'));
-        personality_type_chart_3.draw(personality_type_data_3, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
-
-        // Judging/Perceiving Chart
-        var personality_type_data_4 = new google.visualization.DataTable();
-
-        personality_type_data_4.addColumn('string', 'Category');
-        personality_type_data_4.addColumn('number', 'Score');
-
-        personality_type_data_4.addRows(2);
-        personality_type_data_4.setValue(0, 0, 'Judging');
-        personality_type_data_4.setValue(1, 0, 'Perceiving');
-
-        if (personality_type_scores[3][0] == 'J') {
-            personality_type_data_4.setValue(0, 1, personality_type_scores[3][1]);
-            personality_type_data_4.setValue(1, 1, personality_type_scores[3][2]);
+    var r4 = Raphael("personality-type-chart-4");
+    if (personality_type_scores[3][0] == 'J') {
+            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][2]], [personality_type_scores[3][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label4 span.right').addClass('highlight');
         } else {
-            personality_type_data_4.setValue(0, 1, personality_type_scores[3][2]);
-            personality_type_data_4.setValue(1, 1, personality_type_scores[3][1]);
+            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][1]], [personality_type_scores[3][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            $('#personality-type-chart-label4 span.left').addClass('highlight');
         }
+        showPersonalityCharts();
 
-        var personality_type_chart_4 = new google.visualization.PieChart(document.getElementById('personality-type-chart-4'));
-        personality_type_chart_4.draw(personality_type_data_4, {width: 175, height: 175, legend: 'bottom', backgroundColor: '#f1f1f1'});
-    }
+};
 
-    if (latest_learning_style_result.id !== '') {
-        // Learning Styles Chart
-        var learning_style_data = new google.visualization.DataTable();
-
-        // Data table columns
-        learning_style_data.addColumn('string', 'Style');
-        learning_style_data.addColumn('number', 'Score');
-
-        // Data table rows
-        learning_style_data.addRows(3);
-        learning_style_data.setValue(0, 0, 'Auditory');
-        learning_style_data.setValue(1, 0, 'Kinesthetic');
-        learning_style_data.setValue(2, 0, 'Visual');
-
-        // Add learning style scores to data table
-        learning_style_data.setValue(0, 1, latest_learning_style_result.auditory_score);
-        learning_style_data.setValue(1, 1, latest_learning_style_result.kinesthetic_score);
-        learning_style_data.setValue(2, 1, latest_learning_style_result.visual_score);
-
-        // Draw bar chart for learning style
-        var learning_style_chart = new google.visualization.BarChart(document.getElementById('learning-style-chart'));
-        learning_style_chart.draw(learning_style_data, {width: 400, height: 200, legend: 'none', backgroundColor: '#f1f1f1'});
-    }
+function drawLearningChart(){
+    var l1 = Raphael("learning-style-chart"),
+    fin = function () {
+        var bar_value = this.bar.value*100;
+        if (bar_value < 10){
+            bar_value = bar_value.toFixed(0);
+            var text_value = "Score: "+bar_value;
+            this.flag = l1.label(50 , this.bar.y,  text_value || "0").insertBefore(this);
+        }
+    },
+    fout = function () {
+        if (this.bar.value*100 < 10){
+        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+        }
+    };
+    Raphael.g.axis(3,175,275,null,null,10,0,["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], "-", 0, l1);
+    l1.hbarchart(0, 30, 275, 200, [[latest_learning_style_result.auditory_score]/100,[latest_learning_style_result.kinesthetic_score]/100,[latest_learning_style_result.visual_score]/100,[.1]], {type: "soft", "gutter":"40%", colors:['#6D95F3','#6D95F3','#6D95F3']}).hover(fin,fout);
+    showLearningCharts();
 };
 
