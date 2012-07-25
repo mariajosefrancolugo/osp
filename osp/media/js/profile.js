@@ -168,34 +168,34 @@ function drawRCharts(){
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
     };
     if (personality_type_scores[0][0] == 'E') {
-            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][2]], [personality_type_scores[0][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][2]], [personality_type_scores[0][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label1 span.right').addClass('highlight');
         } else {
-            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][1]], [personality_type_scores[0][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][1]], [personality_type_scores[0][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label1 span.left').addClass('highlight');
         }
     var r2 = Raphael("personality-type-chart-2");
     if (personality_type_scores[1][0] == 'S') {
-            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][2]], [personality_type_scores[1][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][2]], [personality_type_scores[1][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label2 span.right').addClass('highlight');
         } else {
-            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][1]], [personality_type_scores[1][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][1]], [personality_type_scores[1][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label2 span.left').addClass('highlight');
         }
     var r3 = Raphael("personality-type-chart-3");
     if (personality_type_scores[2][0] == 'T') {
-            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][2]], [personality_type_scores[2][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][2]], [personality_type_scores[2][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label3 span.right').addClass('highlight');
         } else {
-            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][1]], [personality_type_scores[2][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][1]], [personality_type_scores[2][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label3 span.left').addClass('highlight');
         }
     var r4 = Raphael("personality-type-chart-4");
     if (personality_type_scores[3][0] == 'J') {
-            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][2]], [personality_type_scores[3][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][2]], [personality_type_scores[3][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label4 span.right').addClass('highlight');
         } else {
-            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][1]], [personality_type_scores[3][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#333333").hover(fin,fout);
+            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][1]], [personality_type_scores[3][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label4 span.left').addClass('highlight');
         }
         showPersonalityCharts();
@@ -203,7 +203,7 @@ function drawRCharts(){
 };
 
 function drawLearningChart(){
-    var l1 = Raphael("learning-style-chart"),
+    var l1 = Raphael("learningStyleChart"),
     fin = function () {
         var bar_value = this.bar.value*100;
         if (bar_value < 10){
@@ -217,8 +217,13 @@ function drawLearningChart(){
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
         }
     };
-    Raphael.g.axis(3,175,275,null,null,10,0,["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], "-", 0, l1);
+    //X axis labels
+    //rLabel = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+
     l1.hbarchart(0, 30, 275, 200, [[latest_learning_style_result.auditory_score]/100,[latest_learning_style_result.kinesthetic_score]/100,[latest_learning_style_result.visual_score]/100,[.1]], {type: "soft", "gutter":"40%", colors:['#6D95F3','#6D95F3','#6D95F3']}).hover(fin,fout);
+    //Drawing the X-axis (not supported in IE - used a css/html solution)
+    //axis = Raphael.g.axis(3,175,275,null,null,10,0,rLabel, "-", 5, l1);
+    // axis.text.attr({font:"12px Arial", "font-weight": "regular", "fill": "#333333"});
     showLearningCharts();
 };
 
