@@ -120,6 +120,7 @@ def profile(request, user_id):
 
     #is_instructor - the user is not an instructor (default)
     is_instructor = False
+    additional_data_errors = False;
 
     additional_data = student.userprofile.permitted_additional_data(request.user.groups.all())
     for item in additional_data:

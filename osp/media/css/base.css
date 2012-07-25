@@ -1000,10 +1000,28 @@ div.field.checkbox label
     padding-right: 10px;
     margin: 0px;
 }
-#learning-style-chart
+#learningStyleChart
 {
     float: right;
     padding: 0px;
     margin: 0px;
-    width: 300px;
+    height: 175px;
+    width: 298px;
+}
+#chartXaxis
+{
+    list-style: none;
+    margin-left: 30px;
+    margin-top: -20px;
+    width: 400px;
+
+}
+#chartXaxis li
+{
+    border-top: 1px solid #000;
+    padding-top: 2px;
+    float: left;
+    padding-right: 15px;
+    padding-left: 5px;
+
 }
