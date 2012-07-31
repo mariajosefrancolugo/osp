@@ -134,7 +134,8 @@ var personality_type_scores = [
     {% if latest_personality_type_result %}
         <div id="personality-type">
             <div id="personality-type-window"></div>
-            <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/ #personality' , drawRCharts);</script>
+            <script>$('#personality-type-window').load(base_url + 'assessment/personality-type/results/' + latest_personality_type_result_id + '/ #personality' , drawRCharts);
+                </script>
         </div>
     {% endif %}
     {% if CUSTOM_ASSESSMENTS|length > 0 %}

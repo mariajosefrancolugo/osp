@@ -156,50 +156,113 @@ $(function() {
 
 function showPersonalityCharts(){$('#personality-type-charts').show();};
 function showLearningCharts(){$('#Learning-style-container').show();};
+
 function drawRCharts(){
     var r1 = Raphael("personality-type-chart-1"),
-    fin = function () {
-        var bar_value = this.bar.value*100;
+    r2 = Raphael("personality-type-chart-2"),
+    r3 = Raphael("personality-type-chart-3"),
+    r4 = Raphael("personality-type-chart-4"),
+    fin = function (num) {
+        var bar_value = num*100;
         bar_value = bar_value.toFixed(0);
         var text_value = bar_value + "%";
-        this.flag = r1.label((this.bar.x/10)*8.5, this.bar.y,  text_value || "0").insertBefore(this);
+        this.flag = this.label(0,50,  text_value || "0").insertBefore(this);
     },
     fout = function () {
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
     };
+
+
+    var r1Rect1 = r1.rect(25, 5, 400*personality_type_scores[0][1], 28, 3);
+    var r1Rect2 = r1.rect(25+400*personality_type_scores[0][1], 5, (400 - 400*personality_type_scores[0][1]), 28, 3);
+    r1Rect1.attr({fill: "#6D95F3", stroke: "#777"});
+    r1Rect2.attr({fill: "#CCDAFB", stroke: "#777"});
+    var value1 = personality_type_scores[0][1]
+    value1 = value1*100;
+    value1 = value1.toFixed(0);
+    value1 = value1+"%";
+    var value2 = personality_type_scores[0][2]
+    value2 = value2*100;
+    value2 = value2.toFixed(0);
+    value2 = value2+"%";
+
+    var r1Text = r1.text(50,25,value1).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+     r1Text = r1.text(400,25,value2).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+     // r1.path("M25, 40L425, 40");
+    // r1.text(225,38, "|")
+
+    var r2Rect1 = r2.rect(25, 5, 400*personality_type_scores[1][1], 28, 3);
+    var r2Rect2 = r2.rect(25+400*personality_type_scores[1][1], 5, (400 - 400*personality_type_scores[1][1]), 28, 3);
+    r2Rect1.attr({fill: "#6D95F3", stroke: "#777"});
+    r2Rect2.attr({fill: "#CCDAFB", stroke: "#777"});
+    value1 = personality_type_scores[1][1]
+    value1 = value1*100;
+    value1 = value1.toFixed(0);
+    value1 = value1+"%";
+    value2 = personality_type_scores[1][2]
+    value2 = value2*100;
+    value2 = value2.toFixed(0);
+    value2 = value2+"%";
+    var r2Text = r2.text(50,25,value1).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+    r2Text = r2.text(400,25,value2).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+    //r2.path("M25, 40L425, 40");
+    //r2.text(225,38, "|")
+
+    var r3Rect1 = r3.rect(25, 5, 400*personality_type_scores[2][1], 28, 3);
+    var r3Rect2 = r3.rect(25+400*personality_type_scores[2][1], 5, (400 - 400*personality_type_scores[2][1]), 28, 3);
+    r3Rect1.attr({fill: "#6D95F3", stroke: "#777"});
+    r3Rect2.attr({fill: "#CCDAFB", stroke: "#777"});
+    value1 = personality_type_scores[2][1]
+    value1 = value1*100;
+    value1 = value1.toFixed(0);
+    value1 = value1+"%";
+    value2 = personality_type_scores[2][2]
+    value2 = value2*100;
+    value2 = value2.toFixed(0);
+    value2 = value2+"%";
+    var r3Text = r3.text(50,25,value1).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+    r3Text = r3.text(400,25,value2).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+    //r3.path("M25, 40L425, 40");
+    //r3.text(225,38, "|")
+
+    var r4Rect1 = r4.rect(25, 5, 400*personality_type_scores[3][1], 28, 3);
+    var r4Rect2 = r4.rect(25+400*personality_type_scores[3][1], 5, (400 - 400*personality_type_scores[3][1]), 28, 3);
+    r4Rect1.attr({fill: "#6D95F3", stroke: "#777"});
+    r4Rect2.attr({fill: "#CCDAFB", stroke: "#777"});
+    value1 = personality_type_scores[3][1]
+    value1 = value1*100;
+    value1 = value1.toFixed(0);
+    value1 = value1+"%";
+    value2 = personality_type_scores[3][2]
+    value2 = value2*100;
+    value2 = value2.toFixed(0);
+    value2 = value2+"%";
+    var r4Text = r4.text(50,25,value1).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+    r4Text = r4.text(400,25,value2).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
+    //r4.path("M25, 40L425, 40");
+    //r4.text(225,38, "|")
+
     if (personality_type_scores[0][0] == 'E') {
-            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][2]], [personality_type_scores[0][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
-            $('#personality-type-chart-label1 span.right').addClass('highlight');
-        } else {
-            r1.hbarchart(25, 0, 400, 35, [[personality_type_scores[0][1]], [personality_type_scores[0][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label1 span.left').addClass('highlight');
+        } else {
+            $('#personality-type-chart-label1 span.right').addClass('highlight');
         }
-    var r2 = Raphael("personality-type-chart-2");
     if (personality_type_scores[1][0] == 'S') {
-            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][2]], [personality_type_scores[1][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label2 span.right').addClass('highlight');
         } else {
-            r2.hbarchart(25, 0, 400, 35, [[personality_type_scores[1][1]], [personality_type_scores[1][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label2 span.left').addClass('highlight');
         }
-    var r3 = Raphael("personality-type-chart-3");
     if (personality_type_scores[2][0] == 'T') {
-            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][2]], [personality_type_scores[2][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label3 span.right').addClass('highlight');
         } else {
-            r3.hbarchart(25, 0, 400, 35, [[personality_type_scores[2][1]], [personality_type_scores[2][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label3 span.left').addClass('highlight');
         }
-    var r4 = Raphael("personality-type-chart-4");
     if (personality_type_scores[3][0] == 'J') {
-            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][2]], [personality_type_scores[3][1]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
-            $('#personality-type-chart-label4 span.right').addClass('highlight');
-        } else {
-            r4.hbarchart(25, 0, 400, 35, [[personality_type_scores[3][1]], [personality_type_scores[3][2]]], {stacked: true, colors:["#6D95F3","#CCDAFB"]}).attr("stroke", "#777777").hover(fin,fout);
             $('#personality-type-chart-label4 span.left').addClass('highlight');
+        } else {
+            $('#personality-type-chart-label4 span.right').addClass('highlight');
         }
         showPersonalityCharts();
-
 };
 
 function drawLearningChart(){
@@ -217,13 +280,22 @@ function drawLearningChart(){
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
         }
     };
-    //X axis labels
-    //rLabel = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    //Drawing the x and y axis.
+    var x = l1.path("M0 175L270 175");
+    var y = l1.path("M0 40L0 175");
+    var i = 1;
+    while(i<11){
+
+        l1.text(0+(i*27),190,i+"");
+        var m = "M"+(i*27)+" 175";
+        var l = "L"+(i*27)+" 165"
+        l1.path("M"+(i*27)+" 180L"+(i*27)+" 175");
+        i++;
+    }
+    l1.path("M0 180L0 170");
+    l1.text(3,190,"0");
 
     l1.hbarchart(0, 30, 275, 200, [[latest_learning_style_result.auditory_score]/100,[latest_learning_style_result.kinesthetic_score]/100,[latest_learning_style_result.visual_score]/100,[.1]], {type: "soft", "gutter":"40%", colors:['#6D95F3','#6D95F3','#6D95F3']}).hover(fin,fout);
-    //Drawing the X-axis (not supported in IE - used a css/html solution)
-    //axis = Raphael.g.axis(3,175,275,null,null,10,0,rLabel, "-", 5, l1);
-    // axis.text.attr({font:"12px Arial", "font-weight": "regular", "fill": "#333333"});
+
     showLearningCharts();
 };
-

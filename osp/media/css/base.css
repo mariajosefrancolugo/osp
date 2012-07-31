@@ -703,7 +703,7 @@ h1.profile a
     float: left;
     margin: 7px 7px;
     width: 48%;
-    height: 90px;
+    height: 100px;
     background-color: #f1f1f1;
     border: 1px solid #d6d6d6;
     -webkit-border-radius: 7px;
@@ -720,10 +720,6 @@ h1.profile a
 {
     margin: 20px 0 0 0;
     text-align: center;
-}
-#personality-type-charts
-{
-    padding: 0;
 }
 .ui-widget
 {
@@ -992,7 +988,7 @@ div.field.checkbox label
     margin: 0px;
     margin-top: 38px;
     padding: 0px;
-    border-right: 1px solid #000;
+
 }
 #learning-style-label li
 {
