@@ -1,27 +1,8 @@
 
-<script>
-    var show_table = 0;
-</script>
-
-{% for assessment in CUSTOM_ASSESSMENTS %}
-<script>
-    $.getJSON(base_url + 'assessment/{{ assessment.application_name }}/get/results/{{ student.id }}', 
-        function( data ){ 
-            if( data == ""){
-                $('#assessments-results-warning').append('<span style="font-weight: bold; margin-right: 7px;">{{ assessment.application_name }} </span>');
-                $('#assessments-results-warning').show('fast');
-            }else{
-                $('#assessment-table').show('fast');
-            }
-
-        });
-
-</script>
-{% endfor %}
 <div id="assessment-results">
 <div id="assessments-results-warning" style="display: none;">Student has not completed an assessment for: </div>
     <div id="assessment-table" style="display: none;">
-        <table id="custom-assessments">
+        <table id="custom-assessments" class="tablesorter" >
             <thead>
                 <tr>
                     <th style="width: 25%;">Assessment</th>
@@ -32,24 +13,35 @@
             <tbody id="custom-assessments-body"></tbody>
             {% for assessment in CUSTOM_ASSESSMENTS %}
             <script>
-                $.getJSON(base_url + 'assessment/{{ assessment.application_name }}/get/results/{{ student.id }}', 
+                $.getJSON(base_url + 'assessment/{{ assessment.application_name }}/get/results/{{ student.id }}',
                     function( data ){
-                        $.each(data, function(key, val){
-                            row = eval(val);
-                            $('#custom-assessments-body').append('<tr><td>{{ assessment.application_name }}</td><td>' + row.date_taken + '</td><td><a id="custom-assessment-link_{{ assessment.application_name }}_' + row.id + '" ref="'+row.id+'" href="javascript:;">Details</a></td></tr>');
+                        if( data == ""){
+                            $('#assessments-results-warning').append('<span style="font-weight: bold; margin-right: 7px;">{{ assessment.application_name }} </span>');
+                            $('#assessments-results-warning').show('fast');
+                        }else{
+                            $.each(data, function(key, val){
+                                row = eval(val);
+                                $('#custom-assessments-body').append('<tr><td>{{ assessment.application_name }}</td><td>' + row.date_taken + '</td><td><a id="custom-assessment-link_{{ assessment.application_name }}_' + row.id + '" ref="'+row.id+'" href="javascript:;">Details</a></td></tr>');
 
-                            $('#custom-assessment-link_{{ assessment.application_name }}_' + row.id).click(function() { 
-                                var result_id = $(this).attr('ref');
-                                if($('#custom-assessment-details').is(":visible")){
+                                $('#custom-assessment-link_{{ assessment.application_name }}_' + row.id).click(function() {
+                                    var result_id = $(this).attr('ref');
+                                    if($('#custom-assessment-details').is(":visible")){
                                         $('#custom-assessment-details').hide('fast');
                                     }
-                                $('#details_window').load(base_url + 'assessment/{{ assessment.application_name }}/get/result/'+ result_id+'/', function(){
-                                $('#custom-assessment-details').show('fast');
+                                    $('#details_window').load(base_url + 'assessment/{{ assessment.application_name }}/get/result/'+ result_id+'/', function(){
+                                        $('#custom-assessment-details').show('fast');
+                                    });
                                 });
                             });
-                        });
+                            $("#custom-assessments").tablesorter({
+                                sortList: [[1,1]],
+                                headers: {0: { sorter: false }, 2: { sorter: false }}
+                            });
+                            $('#assessment-table').show('fast');
+                        }
                     });
-            </script>
+                    styleTable();
+                </script>
             {% endfor %}
         </table>
         <div id="custom-assessment-details" style="display: none;">
