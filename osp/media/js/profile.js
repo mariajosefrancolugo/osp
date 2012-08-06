@@ -19,6 +19,29 @@ function styleTable(){
     }
 }
 
+function toggleTabs(){
+
+    var is_disabled = $( "#tabtoggle" ).attr("checked");
+        if(is_disabled){
+            $( "#profile_menu" ).tabs();
+            setTabbed();
+        }else{
+            $( "#profile_menu" ).tabs("destroy");
+            setUnTabbed();
+        }
+}
+
+function setUnTabbed(){
+$("#profile_menu-tabs").hide();
+$(".tab-window").removeClass("tab-window-on").addClass("tab-window-off");
+$(".tab-window").append("<hr />");
+}
+function setTabbed(){
+$("#profile_menu-tabs").show();
+$(".tab-window").removeClass("tab-window-off").addClass("tab-window-on");
+$(".tab-window hr").remove();
+}
+
 $(function() {
 
     $('a').click(function(){
@@ -29,6 +52,7 @@ $(function() {
     });
 
     $("#profile_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
+    document.getElementById('tabtoggle').checked = true;
 
     $('#visit-paging a').live('click', function() {
         refreshVisits($(this).data('page'));
