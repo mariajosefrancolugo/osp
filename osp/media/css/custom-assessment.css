@@ -62,7 +62,6 @@ div.onlinereadiness-field
 }
 #onlinereadiness-results td
 {
-    background:#f1f1f1;
     border: 1px solid #AAAAAA;
     font-weight: bold;
     box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
@@ -81,6 +80,44 @@ div.onlinereadiness-field
 .onlinereadiness-score-category-description
 {
     font-size: 14px;
+}
+.onlinereadiness-score-description
+{
+    border: 1px solid #AAAAAA;
+    font-weight: bold;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+.onlinereadiness-score-category-score
+{
+    font-size: 18px;
+}
+#onlinereadiness-score-details h3 span
+{
+    font-size: 12px;
+    font-weight: normal;
+}
+.OLSscore
+{
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+}
+.sub-scale
+{
+    text-align: center;
+    padding: 5px 12px;
+    margin-left: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    background:#D1D1D1;
+    border: 1px solid #AAAAAA;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6) inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 /* -- Study Skills -- */

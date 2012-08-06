@@ -496,6 +496,27 @@ h1.profile a
     color: #546d9e;
     float: left;
 }
+#tab-preference, #tab-preference label, #tab-preference input
+{
+    margin: 0px;
+    float: right;
+    padding: 0px;
+}
+#tab-preference label
+{
+    margin-right: 5px;
+}
+#tab-preference
+{
+    margin-top: -30px;
+    padding: 3px 10px;
+    background-color: #F8F8F8;
+    border: 1px solid #D6D6D6;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px #FFFFFF inset;
+}
 #statistics
 {
     height: 300px;
@@ -670,19 +691,10 @@ h1.profile a
     text-align: center;
 }
 
-#personality-type
-{
-    padding:0;
-}
 #personality-type-window-content, #personality-type-window h1
 {
-    margin: 0;
-    padding-left: 20px;
-    padding-top: 30px;
-}
-#personality-type-window-content
-{
-    margin-top: 0px;
+    margin: 0px;
+    padding: 30px 10px 0px 20px;
 }
 #personality-type-charts
 {
@@ -927,7 +939,7 @@ div.field.checkbox label
     border-top-left-radius: 7px;
 
 }
-#roster, #statistics, #current_enrollments, #activity,
+/*#roster, #statistics, #current_enrollments, #activity,
 #learning-style, #survey-results, #personality-type, #additional_details, #assessment-results
 {
     padding-bottom: 40px;
@@ -939,6 +951,19 @@ div.field.checkbox label
     -moz-border-radius-bottomleft: 7px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+}*/
+.tab-window-off
+{
+    padding-bottom: 40px;
+    border: none;
+}
+.tab-window-on
+{
+    /*padding-bottom: 40px;*/
+    padding: 0px 10px 40px 0px;
+    border: 1px solid #d6d6d6;
+    border-top: none;
+
 }
 #help-description
 {
