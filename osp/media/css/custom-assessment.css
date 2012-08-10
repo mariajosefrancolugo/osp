@@ -243,6 +243,22 @@ legend.studyskills-legend
     -moz-border-radius: 15px;
     border-radius: 15px;
 }
+#ss-descriptions-links input
+{
+    color: #333;
+}
+.ss-description-category fieldset legend
+{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.ss-description-category fieldset
+{
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
 .errors
 {
     padding: 10px 15px;
