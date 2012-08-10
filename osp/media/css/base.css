@@ -496,11 +496,12 @@ h1.profile a
     color: #546d9e;
     float: left;
 }
-#tab-preference, #tab-preference label, #tab-preference input
+#tab-preference, #tab-preference label, #tab-preference a
 {
     margin: 0px;
     float: right;
     padding: 0px;
+    text-decoration: none;
 }
 #tab-preference label
 {
@@ -508,14 +509,8 @@ h1.profile a
 }
 #tab-preference
 {
-    margin-top: -30px;
-    padding: 3px 10px;
-    background-color: #F8F8F8;
-    border: 1px solid #D6D6D6;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    box-shadow: 1px 1px 2px #FFFFFF inset;
+    margin-top: -20px;
+    padding: 3px 0px 3px;
 }
 #statistics
 {
@@ -939,19 +934,6 @@ div.field.checkbox label
     border-top-left-radius: 7px;
 
 }
-/*#roster, #statistics, #current_enrollments, #activity,
-#learning-style, #survey-results, #personality-type, #additional_details, #assessment-results
-{
-    padding-bottom: 40px;
-    border: 1px solid #d6d6d6;
-    border-top: none;
-    -webkit-border-bottom-right-radius: 7px;
-    -webkit-border-bottom-left-radius: 7px;
-    -moz-border-radius-bottomright: 7px;
-    -moz-border-radius-bottomleft: 7px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-}*/
 .tab-window-off
 {
     padding-bottom: 40px;
@@ -1002,8 +984,6 @@ div.field.checkbox label
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    /*box-shadow: 0px 0px 2px #666 inset;
-    color: #546d9e;*/
     font-weight: bold;
 }
 #learning-style-label

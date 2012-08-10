@@ -18,19 +18,22 @@ function styleTable(){
         $('#custom-assessments-body tr:odd').addClass("even");
     }
 }
-
+// function to manipulate the tab toggle link
 function toggleTabs(){
-
-    var is_disabled = $( "#tabtoggle" ).attr("checked");
-        if(is_disabled){
+    var is_disabled = $( "#tabtoggle" ).attr("value");
+        if(is_disabled == "with"){
             $( "#profile_menu" ).tabs();
+            $( "#tabtoggle" ).attr("value", "without");
+            $("#tabtoggle").html("View Without Tabs");
             setTabbed();
         }else{
             $( "#profile_menu" ).tabs("destroy");
+            $( "#tabtoggle" ).attr("value", "with");
+            $("#tabtoggle").html("View With Tabs");
             setUnTabbed();
         }
 }
-
+// functions to manipulate the content divs.
 function setUnTabbed(){
 $("#profile_menu-tabs").hide();
 $(".tab-window").removeClass("tab-window-on").addClass("tab-window-off");
@@ -42,13 +45,14 @@ $(".tab-window").removeClass("tab-window-off").addClass("tab-window-on");
 $(".tab-window hr").remove();
 }
 
-$(function() {
+$(function(){
+
+    $('#tabtoggle').click(function(){toggleTabs();});
 
     $('a').click(function(){
         if($(this).attr('href') == '#assessment-results') {
             styleTable();
         }
-
     });
 
     $("#profile_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
