@@ -220,6 +220,29 @@ legend.studyskills-legend
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
 }
+#study-skills-preference h2 span
+{
+    color: #333;
+}
+.study-skills-graph
+{
+    background-color: #f1f1f1;
+    border: 1px solid #d6d6d6;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px #c1c1c1;
+}
+#sstoolTip
+{
+    border: 1px solid #111111;
+    background-color: #FDFDFD;
+    box-shadow: 6px 6px 15px #000000;
+    padding: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
 .errors
 {
     padding: 10px 15px;
