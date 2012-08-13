@@ -26,7 +26,11 @@ def learning_style_report(request):
                     datetime.combine(form.cleaned_data['to_date'], time.max),
                 )
             )
+
             if results:
+                if results.count() > 65500:
+                    results = results[:65500]
+
                 filename = ('learning_style-%s-%s.xls'
                             % (form.cleaned_data['from_date'].strftime('%Y%m%d'),
                                form.cleaned_data['to_date'].strftime('%Y%m%d')))

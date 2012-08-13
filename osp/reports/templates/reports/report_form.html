@@ -9,7 +9,7 @@
 {% if error %}
 <p class="error">No results found for the selected date range.</p>
 {% endif %}
-<p class="notification">Please select the range of dates that you would like for your report to include.</p>
+<p class="notification">No more than 65500 results can be generated in a single report.</p>
 <h1>{% if learning %}Learning Style {% endif %}{% if personality %}Personality Type {% endif %}{% if visit %}Visit {% endif %} Report</h1>
 <form action="{% if learning %}{% url report:learning-style-report %}{% endif %}{% if personality %}{% url report:personality-type-report %}{% endif %}{% if visit %}{% url report:visit-report %}{% endif %}" method="POST" class="ui-form">
   {% csrf_token %}
