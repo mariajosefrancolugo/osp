@@ -28,8 +28,8 @@ def learning_style_report(request):
             )
 
             if results:
-                if results.count() > 65500:
-                    results = results[:65500]
+                if results.count() > settings.REPORT_MAX_ROWS:
+                    results = results[:settings.REPORT_MAX_ROWS]
 
                 filename = ('learning_style-%s-%s.xls'
                             % (form.cleaned_data['from_date'].strftime('%Y%m%d'),
@@ -51,10 +51,12 @@ def learning_style_report(request):
         return direct_to_template(request, 'reports/report_form.html', {
             'error': True,
             'learning': True,
+            'max_rows': settings.REPORT_MAX_ROWS,
         })
 
     return direct_to_template(request, 'reports/report_form.html', {
         'learning': True,
+        'max_rows': settings.REPORT_MAX_ROWS,
     })
 
 @login_required
@@ -73,6 +75,9 @@ def personality_type_report(request):
                 )
             )
             if results:
+                if results.count() > settings.REPORT_MAX_ROWS:
+                    results = results[:settings.REPORT_MAX_ROWS]
+
                 filename = ('personality_type-%s-%s.xls'
                             % (form.cleaned_data['from_date'].strftime('%Y%m%d'),
                                form.cleaned_data['to_date'].strftime('%Y%m%d')))
@@ -97,10 +102,12 @@ def personality_type_report(request):
         return direct_to_template(request, 'reports/report_form.html', {
             'error': True,
             'personality': True,
+            'max_rows': settings.REPORT_MAX_ROWS,
         })
 
     return direct_to_template(request, 'reports/report_form.html', {
         'personality': True,
+        'max_rows': settings.REPORT_MAX_ROWS,
     })
 
 @login_required
@@ -117,6 +124,9 @@ def visit_report(request):
                 datetime.combine(form.cleaned_data['to_date'], time.max),
             ))
             if results:
+                if results.count() > settings.REPORT_MAX_ROWS:
+                    results = results[:settings.REPORT_MAX_ROWS]
+
                 filename = ('visit-%s-%s.xls' %
                             (form.cleaned_data['from_date'].strftime('%Y%m%d'),
                              form.cleaned_data['to_date'].strftime('%Y%m%d')))
@@ -164,10 +174,12 @@ def visit_report(request):
         return direct_to_template(request, 'reports/report_form.html', {
             'error': True,
             'visit': True,
+            'max_rows': settings.REPORT_MAX_ROWS,
         })
 
     return direct_to_template(request, 'reports/report_form.html', {
         'visit': True,
+        'max_rows': settings.REPORT_MAX_ROWS,
     })
 
 def truncate(request, visit, value, arg):
