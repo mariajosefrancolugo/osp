@@ -115,6 +115,10 @@ INDEX_STUDENTS = False
 # WARNING: Do not Exceed 60000 characters.
 NOTE_MAX_CHARS = 5000
 
+#Number of rows displayed in a report.
+#WARNING: Do not exceed 65000 rows.
+REPORT_MAX_ROWS = 65000
+
 # All potential term choices that could be received by the API
 TERM_CHOICES = [
     ('fa', 'Fall'),
