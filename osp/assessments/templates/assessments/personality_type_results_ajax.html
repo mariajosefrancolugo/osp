@@ -1,0 +1,41 @@
+
+<div id="personality">
+<h1>{{ description.long_name }}</h1>
+<div class="clear"></div>
+  <div id="personality-type-charts" style="display: none;">
+      <ul>
+        <li>
+          <h4>{{ latest_personality_type_result.personality_type.0 }}</h4>
+          <div id= "personality-type-chart-label1" class="personality-type-chart-label"><span class="left">Extraverted</span><span class="right">Introverted</span></div>
+          <div id="personality-type-chart-1" class="chart"></div>
+        </li>
+        <li>
+          <h4>{{ latest_personality_type_result.personality_type.1 }}</h4>
+          <div id= "personality-type-chart-label2" class="personality-type-chart-label"><span class="left">Intuitive</span><span class="right">Sensing</span></div>
+          <div id="personality-type-chart-2" class="chart"></div>
+        </li>
+        <li>
+          <h4>{{ latest_personality_type_result.personality_type.2 }}</h4>
+          <div id= "personality-type-chart-label3" class="personality-type-chart-label"><span class="left">Feeling</span><span class="right">Thinking</span></div>
+          <div id="personality-type-chart-3" class="chart"></div>
+        </li>
+        <li class="last">
+          <h4>{{ latest_personality_type_result.personality_type.3 }}</h4>
+          <div id= "personality-type-chart-label4" class="personality-type-chart-label"><span class="left">Judging</span><span class="right">Perceiving</span></div>
+          <div id="personality-type-chart-4" class="chart"></div>
+        </li>
+      </ul>
+  </div>
+<div class="clear"></div>
+<div id="personality-type-window-content">
+  <h2>Overview</h2>
+  {{ description.description|safe }}
+  <h2>Possible Career Paths for the {{ description.type }}:</h2>
+  <ul>
+    {% for person in description.careers %}
+      <li>{{ person }}</li>
+    {% endfor %}
+  </ul>
+</div>
+</div>
+

@@ -1,0 +1,135 @@
+{% extends base_template %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/core.js"></script>
+{% endblock %}
+
+{% block body %}
+<h1>Help Topics</h1>
+<p class="help-text">
+  Select a heading below to view a helpful guideline. 
+</p>
+<div id="procedures" class="accordion">
+   <h3><a href="#">Roles and Permissions</a></h3>
+  <div>
+    <h2>Overview</h2>
+    <p>
+      There are two major permissions groups, <strong>Student</strong> and <strong>Employee</strong>. The <strong>Instructor</strong> and <strong>Counselor</strong> groups are sub-groups of the <strong>Employee</strong> group. This allows the <strong>Instructor</strong> and <strong>Counselor</strong> groups to both have all of the permissions of the <strong>Employee</strong> group, in addition to a few special permissions of their own. The table below illustrates the available menu options, as well as actions, each group has permission to use. Please note that only <strong>Counselors</strong> have the ability to mark a 'Note' and a 'Visit' as private.
+    </p>
+  <table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Navigation Menu</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Classes</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Assessments</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Surveys</th><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Reports</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Profile</th><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Profile Menu</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Current Enrollments</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Activity</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Learning Style</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Personality Type</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Survey Results</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>**Additional Details</th><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="check"></div></td>
+    </tr>
+    <tr>
+      <th>Assessment Results</th><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Roster Menu</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Roster</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Statistics</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<table class="permissions-table">
+   <thead>
+      <tr>
+        <th style="width: 15%; font-size: 18px;">Actions Available</th>
+        <th style="width: 5%;">Student</th>
+        <th style="width: 5%;">Instructor</th>
+        <th style="width: 5%;">Counselor</th>
+        <th style="width: 5%;">Employee</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Intervention</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>*Visit</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>*Note</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td>
+    </tr>
+    <tr>
+      <th>Contact</th><td><div class="exx"></div></td><td><div class="check"></div></td><td><div class="exx"></div></td><td><div class="exx"></div></td>
+    </tr>
+  </tbody>
+</table>
+<h3>* Counselors can set/view private</h3>
+<h3>** Individual group permissions are loaded with the data</h3>
+</div>
+{% for topic in topics %}
+  <h3><a href="#">{{ topic.topic }}</a></h3>
+  <div id="{{topic.topic}}">
+    {{ topic.description|linebreaks }}
+  </div>
+{% endfor %}
+{% endblock %}

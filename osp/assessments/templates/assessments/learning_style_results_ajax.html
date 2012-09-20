@@ -1,0 +1,19 @@
+{% if result %}
+	<h1>{{ descriptions.0.style }} Learner</h1>
+	<div class="clear"></div>
+	<div id="Learning-style-container" class="large-tile" style="display: none;">
+		<ul id="learning-style-label">
+			<li>Auditory</li>
+			<li>Kinesthetic</li>
+			<li>Visual</li>
+		</ul>
+  		<div id="learningStyleChart"></div>
+	</div>
+	<div class="clear"></div>
+	<div class="learning-style-discription">
+		<h2 style="float:left;">Overview</h2>
+		<div class="clear"></div>
+		{{ descriptions.0.description|safe }}
+	</div>
+{% endif %}
+
