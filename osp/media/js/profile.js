@@ -333,11 +333,6 @@ function drawRCharts(){
         r4Text = r4.text(400,25,value1).attr({ "font-size": 20, "font-family": "Arial, Helvetica, sans-serif" });;
     }
 
-    console.log(personality_type_scores[0][0]);
-    console.log(personality_type_scores[1][0]);
-    console.log(personality_type_scores[2][0]);
-    console.log(personality_type_scores[3][0]);
-
     if (personality_type_scores[0][0] == 'E') {
             $('#personality-type-chart-label1 span.left').addClass('highlight');
         } else {
