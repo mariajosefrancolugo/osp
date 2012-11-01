@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OSP',
-    version = '1.3.3',
+    version = '1.3.4',
     url = 'http://code.google.com/p/osp/',
     author = 'Central Piedmont Community College',
     description = ('Early warning system to improve retention rates '
