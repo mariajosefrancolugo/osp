@@ -10,12 +10,7 @@ function clearCheckBoxes() {
     }
 }
 
-
-
 $(function() {
-
-
-
     $("#roster_menu").tabs({ fx: { opacity: 'toggle', duration: 'fast' } });
 
     $('#contact-window').dialog(default_window_options);
@@ -82,8 +77,6 @@ $(function() {
             }
         }
     ]);
-    
-    
 
     $('#id_contact').click(function() {
         if($('input[name=students]:checked').length > 0) {
@@ -124,7 +117,6 @@ $(function() {
     });
     
 });
-
 
 if (learning_style_counts.auditory > 0 || learning_style_counts.kinesthetic > 0 || learning_style_counts.visual > 0) {
     google.load('visualization', '1', {packages: ['corechart']});
