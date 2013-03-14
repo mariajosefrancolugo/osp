@@ -1,0 +1,85 @@
+These instructions are primarily for installs configured using the
+setup.sh script. If you have installed OSP in a non-standard way, you
+will need to glean from this document what you can and apply it to your
+own environment.
+
+    1. Ensure that the WORKON_HOME environment variable is set and the
+       virtualenvwrapper.sh file is sourced in your bash config. Also
+       make sure that you have the correct paths on your PYTHONPATH.
+
+       In ~/.bashrc, add the following lines and save:
+
+       export PYTHONPATH=$PYTHONPATH:/opt/wsgi:/opt/django
+       export WORKON_HOME=/opt/virtualenv
+       source /usr/local/bin/virtualenvwrapper.sh
+       
+       Then, source your .bashrc file:
+       
+       $ source ~/.bashrc
+
+    2. Ensure that South is installed in your virtualenv's site-packages
+   
+       $ workon osp
+       $ easy_install South
+
+    3. Download the upgrade script and make it executable
+
+       $ cd ~
+       $ wget http://osp.googlecode.com/hg/scripts/upgrade.py
+       $ chmod +x upgrade.py
+
+    4. Ensure that there is not a directory named "osp" at the same
+       level as the upgrade script
+
+       $ mv osp osp.bak
+
+    5. Run the upgrade script and answer the questions as prompted
+
+       $ ./upgrade.py
+
+    6. Restart Apache
+
+       $ sudo /etc/init.d/apache2 restart
+
+    7. Add the following lines under osp/deploy/osp_settings.py if you are currently running a version prior to 1.3
+
+       # Regular expression to match your ERP ID number pattern
+       ID_NUMBER_PATTERN = '\d{7}'
+
+       # Create a student index to improve search speed
+       INDEX_STUDENTS = False
+      
+       # Number of characters in the note field of a visit to be displayed in a report.
+       # WARNING: Do not Exceed 60000 characters.
+       NOTE_MAX_CHARS = 5000
+      
+       # Number of rows displayed in a report.
+       # WARNING: Do not exceed 65000 rows.
+       REPORT_MAX_ROWS = 65000
+
+       # Settings for including custom assessment applications.
+       # A custom assessment must be wrapped inside a django application.
+       # CUSTOM_ASSESSMENTS = [
+       #     {'application_name': 'onlinereadiness',
+       #      'menu_href': '/assessment/onlinereadiness/show/',
+       #      'menu_label': 'Online Readiness',
+       #      'results_href': '/assessment/onlinereadiness/results/',
+       #      'results_label': 'Online Readiness Results',
+       #      'responses_href': '/assessment/onlinereadiness/responses',
+       #      'responses_label': 'Online Readiness Responses'
+       #     },
+       #     {'application_name': 'studyskills',
+       #      'menu_href': '/assessment/studyskills/show',
+       #      'menu_label': 'Study Skills',
+       #      'results_href': '/assessment/studyskills/results/',
+       #      'results_label': 'Study Skills Results',
+       #      'responses_href': '/assessment/studyskills/responses',
+       #      'responses_label': 'Study Skills Responses'
+       #     }
+       # ]
+       # try:
+       #     # Add custom assessments to list of installed apps.
+       #     custom_assessments_apps = [item['application_name'] for item in CUSTOM_ASSESSMENTS]
+       #     INSTALLED_APPS.extend(custom_assessments_apps)
+       # except:
+       #     pass
