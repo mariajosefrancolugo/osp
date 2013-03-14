@@ -41,3 +41,45 @@ own environment.
 
        $ sudo /etc/init.d/apache2 restart
 
+    7. Add the following lines under osp/deploy/osp_settings.py if you are currently running a version prior to 1.3
+
+       # Regular expression to match your ERP ID number pattern
+       ID_NUMBER_PATTERN = '\d{7}'
+
+       # Create a student index to improve search speed
+       INDEX_STUDENTS = False
+      
+       # Number of characters in the note field of a visit to be displayed in a report.
+       # WARNING: Do not Exceed 60000 characters.
+       NOTE_MAX_CHARS = 5000
+      
+       # Number of rows displayed in a report.
+       # WARNING: Do not exceed 65000 rows.
+       REPORT_MAX_ROWS = 65000
+
+       # Settings for including custom assessment applications.
+       # A custom assessment must be wrapped inside a django application.
+       # CUSTOM_ASSESSMENTS = [
+       #     {'application_name': 'onlinereadiness',
+       #      'menu_href': '/assessment/onlinereadiness/show/',
+       #      'menu_label': 'Online Readiness',
+       #      'results_href': '/assessment/onlinereadiness/results/',
+       #      'results_label': 'Online Readiness Results',
+       #      'responses_href': '/assessment/onlinereadiness/responses',
+       #      'responses_label': 'Online Readiness Responses'
+       #     },
+       #     {'application_name': 'studyskills',
+       #      'menu_href': '/assessment/studyskills/show',
+       #      'menu_label': 'Study Skills',
+       #      'results_href': '/assessment/studyskills/results/',
+       #      'results_label': 'Study Skills Results',
+       #      'responses_href': '/assessment/studyskills/responses',
+       #      'responses_label': 'Study Skills Responses'
+       #     }
+       # ]
+       # try:
+       #     # Add custom assessments to list of installed apps.
+       #     custom_assessments_apps = [item['application_name'] for item in CUSTOM_ASSESSMENTS]
+       #     INSTALLED_APPS.extend(custom_assessments_apps)
+       # except:
+       #     pass
